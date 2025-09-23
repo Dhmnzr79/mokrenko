@@ -1,0 +1,22 @@
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs / temp
+*.log
+*.tmp
+
+# Node / build (если собирать ассеты)
+node_modules/
+dist/
+build/
+*.map
+
+# Архивы/мусор на всякий случай
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz

@@ -1,0 +1,58 @@
+:root{
+  --brk-sm: 768px;
+  --brk-lg: 1280px;
+  --brk-xl: 1400px;
+
+  --container-max: 1400px;
+  --gutter-mob: 16px;
+  --gutter-desk: 24px;
+
+  --col-gap-mob: 16px;
+  --col-gap-desk: 30px; /* desktop gap */
+
+  /* Brand colors */
+  --color-bg: #E5F4F3;
+  --color-accent: #3EB3BC;
+  --gradient-brand: linear-gradient(94.24deg, #84EBDA -5.47%, #B7D8F8 114.07%);
+}
+
+/* Local fonts */
+@font-face {
+  font-family: 'Golos Text';
+  src: local('Golos Text Regular'), local('Golos Text 400'), url('../fonts/GolosText-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'NTSomic';
+  src: url('../fonts/NTSomic-Semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'NTSomic';
+  src: url('../fonts/NTSomic-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+html { box-sizing: border-box; }
+*,*::before,*::after { box-sizing: inherit; }
+
+body { margin:0; font-family: 'Golos Text', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height:1.5; color:#111; }
+
+a { color: var(--color-accent); }
+
+/* Utilities for brand backgrounds */
+.bg-brand { background-color: var(--color-bg); }
+.bg-gradient-brand { background: var(--gradient-brand); }
+
+/* Headings use NTSomic */
+h1, h2, h3, h4, h5, h6 { font-family: 'NTSomic', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+
+/* Headings (desktop sizes are mandatory) */
+h2 { font-size: clamp(28px, 4vw, 44px); line-height: 1.2; }
+h3 { font-size: clamp(18px, 2.4vw, 22px); line-height: 1.3; }
