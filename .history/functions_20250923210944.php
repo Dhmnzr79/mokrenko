@@ -48,7 +48,6 @@ function reviews_meta_callback($post){
 	wp_nonce_field('reviews_meta_nonce', 'reviews_meta_nonce');
 	$fio = get_post_meta($post->ID, '_reviews_fio', true);
 	$video_url = get_post_meta($post->ID, '_reviews_video_url', true);
-	$show_on_home = get_post_meta($post->ID, '_reviews_show_on_home', true);
 	?>
 	<table class="form-table">
 		<tr>
@@ -58,13 +57,6 @@ function reviews_meta_callback($post){
 		<tr>
 			<th><label for="reviews_video_url">Ссылка на видео</label></th>
 			<td><input type="url" id="reviews_video_url" name="reviews_video_url" value="<?php echo esc_attr($video_url); ?>" style="width: 100%;" placeholder="https://youtube.com/watch?v=..." /></td>
-		</tr>
-		<tr>
-			<th><label for="reviews_show_on_home">Показать на главной</label></th>
-			<td>
-				<input type="checkbox" id="reviews_show_on_home" name="reviews_show_on_home" value="1" <?php checked($show_on_home, '1'); ?> />
-				<label for="reviews_show_on_home">Отметить этот отзыв для показа на главной странице</label>
-			</td>
 		</tr>
 	</table>
 	<?php
@@ -88,10 +80,6 @@ add_action('save_post', function($post_id){
 	if (isset($_POST['reviews_video_url'])) {
 		update_post_meta($post_id, '_reviews_video_url', esc_url_raw($_POST['reviews_video_url']));
 	}
-	
-	// Сохранение чекбокса "Показать на главной"
-	$show_on_home = isset($_POST['reviews_show_on_home']) ? '1' : '0';
-	update_post_meta($post_id, '_reviews_show_on_home', $show_on_home);
 });
 
 add_action('wp_enqueue_scripts', function(){

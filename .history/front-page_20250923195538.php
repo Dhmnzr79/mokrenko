@@ -37,50 +37,24 @@ get_header();
 		</div>
 		
 		<div class="row reviews__grid">
-			<?php
-			$reviews = get_posts([
-				'post_type' => 'reviews',
-				'posts_per_page' => 3,
-				'post_status' => 'publish',
-				'meta_query' => [
-					[
-						'key' => '_reviews_show_on_home',
-						'value' => '1',
-						'compare' => '='
-					]
-				]
-			]);
-			
-			foreach($reviews as $review):
-				$fio = get_post_meta($review->ID, '_reviews_fio', true);
-				$video_url = get_post_meta($review->ID, '_reviews_video_url', true);
-				$thumbnail = get_the_post_thumbnail($review->ID, 'medium');
-			?>
 			<div class="col-sm-12 col-lg-4">
 				<div class="review-card">
-					<?php if($thumbnail): ?>
-						<div class="review-card__photo">
-							<?php echo $thumbnail; ?>
-						</div>
-					<?php endif; ?>
-					
-					<div class="review-card__content">
-						<h3><?php echo $fio ? esc_html($fio) : get_the_title($review->ID); ?></h3>
-						<div class="review-card__text">
-							<?php echo wp_kses_post($review->post_content); ?>
-						</div>
-						
-						<?php if($video_url): ?>
-							<div class="review-card__video">
-								<a href="<?php echo esc_url($video_url); ?>" target="_blank" class="btn btn--video">
-									Смотреть видео отзыв
-								</a>
-							</div>
-						<?php endif; ?>
-					</div>
+					<h3>Анна Петрова</h3>
+					<p>Отличный сервис, профессиональные врачи</p>
 				</div>
 			</div>
-			<?php endforeach; ?>
+			<div class="col-sm-12 col-lg-4">
+				<div class="review-card">
+					<h3>Михаил Иванов</h3>
+					<p>Быстро и качественно, рекомендую</p>
+				</div>
+			</div>
+			<div class="col-sm-12 col-lg-4">
+				<div class="review-card">
+					<h3>Елена Сидорова</h3>
+					<p>Очень довольна результатом лечения</p>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
@@ -126,64 +100,50 @@ get_header();
 <section class="section section--benefits benefits">
 	<div class="container">
 		<div class="row benefits__row-201">
-			<div class="col-sm-12 col-lg-8">
-				<div class="bg-demo-1">
-					<div class="row">
-						<div class="col-sm-12 col-lg-12">
-							<div class="bg-demo-6">
-								<h2>Наши плюсы</h2>
-								<p>Демонстрация схем 210 и 209 внутри левой области.</p>
-							</div>
-						</div>
+			<div class="col-sm-12 col-lg-8 bg-demo-1">
+				<!-- Сетка 210: одна колонка на всю ширину -->
+				<div class="row">
+					<div class="col-sm-12 col-lg-12 bg-demo-6">
+						<h2>Наши плюсы</h2>
+						<p>Демонстрация схем 210 и 209 внутри левой области.</p>
 					</div>
-					<div class="row" style="margin-top:16px">
-						<div class="col-sm-12 col-lg-6">
-							<div class="bg-demo-7">
-								<p>Колонка A (6/12)</p>
-							</div>
-						</div>
-						<div class="col-sm-12 col-lg-6">
-							<div class="bg-demo-8">
-								<p>Колонка B (6/12)</p>
-							</div>
-						</div>
+				</div>
+				<!-- Сетка 209: 6/6 -->
+				<div class="row" style="margin-top:16px">
+					<div class="col-sm-12 col-lg-6 bg-demo-7">
+						<p>Колонка A (6/12)</p>
+					</div>
+					<div class="col-sm-12 col-lg-6 bg-demo-8">
+						<p>Колонка B (6/12)</p>
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-12 col-lg-4">
-				<div class="bg-demo-2">
-					<div class="bg-demo-card">
-						<h3>Гарантии и качество</h3>
-						<p>Стерильность, контроль качества, персональный подход.</p>
-					</div>
+			<div class="col-sm-12 col-lg-4 bg-demo-2">
+				<div class="bg-demo-card">
+					<h3>Гарантии и качество</h3>
+					<p>Стерильность, контроль качества, персональный подход.</p>
 				</div>
 			</div>
 		</div>
 
 		
 		<div class="row benefits__row-205">
-			<div class="col-sm-12 col-lg-4">
-				<div class="bg-demo-3">
-					<div class="bg-demo-card">
-						<h3>Без боли</h3>
-						<p>Современная анестезия, щадящие методики.</p>
-					</div>
+			<div class="col-sm-12 col-lg-4 bg-demo-3">
+				<div class="bg-demo-card">
+					<h3>Без боли</h3>
+					<p>Современная анестезия, щадящие методики.</p>
 				</div>
 			</div>
-			<div class="col-sm-12 col-lg-4">
-				<div class="bg-demo-4">
-					<div class="bg-demo-card">
-						<h3>Честные цены</h3>
-						<p>Прозрачные сметы, акции и рассрочка.</p>
-					</div>
+			<div class="col-sm-12 col-lg-4 bg-demo-4">
+				<div class="bg-demo-card">
+					<h3>Честные цены</h3>
+					<p>Прозрачные сметы, акции и рассрочка.</p>
 				</div>
 			</div>
-			<div class="col-sm-12 col-lg-4">
-				<div class="bg-demo-5">
-					<div class="bg-demo-card">
-						<h3>Сроки и гарантии</h3>
-						<p>Соблюдаем сроки лечения, предоставляем гарантию.</p>
-					</div>
+			<div class="col-sm-12 col-lg-4 bg-demo-5">
+				<div class="bg-demo-card">
+					<h3>Сроки и гарантии</h3>
+					<p>Соблюдаем сроки лечения, предоставляем гарантию.</p>
 				</div>
 			</div>
 		</div>

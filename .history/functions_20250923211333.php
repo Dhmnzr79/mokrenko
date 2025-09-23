@@ -88,10 +88,6 @@ add_action('save_post', function($post_id){
 	if (isset($_POST['reviews_video_url'])) {
 		update_post_meta($post_id, '_reviews_video_url', esc_url_raw($_POST['reviews_video_url']));
 	}
-	
-	// Сохранение чекбокса "Показать на главной"
-	$show_on_home = isset($_POST['reviews_show_on_home']) ? '1' : '0';
-	update_post_meta($post_id, '_reviews_show_on_home', $show_on_home);
 });
 
 add_action('wp_enqueue_scripts', function(){

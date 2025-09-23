@@ -41,14 +41,7 @@ get_header();
 			$reviews = get_posts([
 				'post_type' => 'reviews',
 				'posts_per_page' => 3,
-				'post_status' => 'publish',
-				'meta_query' => [
-					[
-						'key' => '_reviews_show_on_home',
-						'value' => '1',
-						'compare' => '='
-					]
-				]
+				'post_status' => 'publish'
 			]);
 			
 			foreach($reviews as $review):

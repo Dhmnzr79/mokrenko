@@ -12,24 +12,6 @@
   clip: rect(0 0 0 0); overflow:hidden;
 }
 
-/* gap между рядами в секциях с двумя сетками */
-.section--reviews .container,
-.section--services .container,
-.section--benefits .container {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-/* одинаковый gap на мобилках для всех секций */
-@media (max-width: 767px) {
-  .section--reviews .container,
-  .section--services .container,
-  .section--benefits .container {
-    gap: 16px;
-  }
-}
-
 /* demo backgrounds (для визуализации блоков) */
 .bg-demo-1 { background: #fde047; }
 .bg-demo-2 { background: #60a5fa; }

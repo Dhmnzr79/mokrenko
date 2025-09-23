@@ -14,9 +14,7 @@
 	<div class="container">
 		<div class="row header__row">
 			<div class="col-sm-6 col-lg-3 header__logo">
-				<a href="<?php echo esc_url(home_url('/')); ?>" class="header__brand">
-					<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/svg/logo.svg" alt="Стоматологическая Клиника Елены Мокренко" class="header__logo-img">
-				</a>
+				<a href="<?php echo esc_url(home_url('/')); ?>" class="header__brand">Лого</a>
 			</div>
 			<div class="col-sm-6 col-lg-3 header__address">
 				<div class="header__info">Адрес</div>
