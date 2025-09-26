@@ -1,0 +1,186 @@
+/* Components: independent BEM blocks go here */
+.site-header{ padding-block: 12px; }
+.header__row{ align-items: center; }
+.header__brand{ display:inline-block; font-weight: 700; text-decoration:none; color:#111; }
+.menu--primary{ display:flex; gap: 24px; list-style:none; padding:0; margin:0; }
+.menu--primary a{ text-decoration:none; color:#111; }
+.header__actions{ display:flex; justify-content:flex-end; gap:12px; }
+.header__burger, .header__search{ width:32px; height:32px; border:0; background:transparent; cursor:pointer; }
+
+/* hero box */
+.hero__box{ border-radius: 16px; padding: 16px; }
+@media (min-width: 1280px){ .hero__box{ padding: 24px; } }
+
+/* hero block has no spacing here; use .section and modifiers */
+
+/* Стили для страницы врача */
+.doctor-header {
+  padding: 40px 0;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 40px;
+}
+
+.doctor-header__photo {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.doctor-header__img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.doctor-header__name {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  color: #1a1a1a;
+}
+
+.doctor-header__position {
+  font-size: 18px;
+  color: #1976d2;
+  margin: 0 0 16px 0;
+  font-weight: 500;
+}
+
+.doctor-header__experience,
+.doctor-header__rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.doctor-header__label {
+  font-weight: 600;
+  color: #666;
+}
+
+.doctor-header__value {
+  color: #1a1a1a;
+}
+
+.doctor-header__stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star {
+  color: #ddd;
+  font-size: 18px;
+}
+
+.star--active {
+  color: #ffc107;
+}
+
+.doctor-header__bio {
+  margin: 20px 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+}
+
+.doctor-header__cta {
+  margin-top: 24px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn--primary {
+  background: #1976d2;
+  color: white;
+}
+
+.btn--primary:hover {
+  background: #1565c0;
+  transform: translateY(-1px);
+}
+
+/* Образование и сертификаты */
+.doctor-education,
+.doctor-certs {
+  margin: 40px 0;
+}
+
+.doctor-education h2,
+.doctor-certs h2 {
+  font-size: 28px;
+  margin-bottom: 24px;
+  color: #1a1a1a;
+}
+
+.education-item,
+.cert-item {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.education-item__year,
+.cert-item__year {
+  font-weight: 600;
+  color: #1976d2;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.education-item__desc,
+.cert-item__title {
+  font-size: 16px;
+  color: #1a1a1a;
+  margin-bottom: 4px;
+}
+
+.cert-item__issuer {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Контакты */
+.doctor-contacts {
+  margin: 40px 0;
+  padding: 24px;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.doctor-contacts h2 {
+  font-size: 28px;
+  margin-bottom: 24px;
+  color: #1a1a1a;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.contact-item__label {
+  font-weight: 600;
+  color: #666;
+  min-width: 80px;
+}
+
+.contact-item__value {
+  color: #1976d2;
+  text-decoration: none;
+}
+
+.contact-item__value:hover {
+  text-decoration: underline;
+}

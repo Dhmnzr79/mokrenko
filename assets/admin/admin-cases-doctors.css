@@ -1,0 +1,137 @@
+/**
+ * CSS для админки врачей и кейсов
+ */
+
+
+/* Галерея сертификатов */
+#certs-gallery {
+    margin-top: 20px;
+}
+
+#select-certs {
+    background: #0073aa;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+#select-certs:hover {
+    background: #005a87;
+}
+
+#certs-preview {
+    margin-top: 10px;
+}
+
+#certs-preview img {
+    max-width: 100px;
+    height: auto;
+    margin: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+/* Селекторы изображений */
+#before-image-preview,
+#after-image-preview {
+    margin-top: 10px;
+}
+
+#before-image-preview img,
+#after-image-preview img {
+    max-width: 150px;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+#select-before-image,
+#select-after-image {
+    background: #0073aa;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#select-before-image:hover,
+#select-after-image:hover {
+    background: #005a87;
+}
+
+/* Общие стили */
+.form-table th {
+    width: 200px;
+    vertical-align: top;
+    padding-top: 15px;
+}
+
+.form-table td {
+    padding: 10px;
+}
+
+.form-table input[type="text"],
+.form-table input[type="url"],
+.form-table input[type="number"],
+.form-table textarea {
+    width: 100%;
+    max-width: 500px;
+}
+
+.form-table select {
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Стили для метабоксов */
+#doctor_meta,
+#case_meta {
+    background: #fff;
+}
+
+#doctor_meta h3,
+#case_meta h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Скрытые поля */
+textarea[name="doctor_education_json"],
+textarea[name="doctor_certs_json"] {
+    display: none;
+}
+
+/* Стили для excerpt и content */
+#excerpt {
+    width: 100%;
+    max-width: 500px;
+    min-height: 80px;
+}
+
+#content {
+    width: 100%;
+}
+
+/* Стили для описаний полей */
+.form-table .description {
+    font-style: italic;
+    color: #666;
+    margin-top: 5px;
+    font-size: 13px;
+}
+
+/* Стили для wp_editor */
+.wp-editor-wrap {
+    margin-top: 5px;
+}
+
+.wp-editor-wrap .wp-editor-container {
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}

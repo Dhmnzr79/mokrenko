@@ -1,0 +1,107 @@
+
+.slider {
+    position: relative;
+    overflow: hidden;
+}
+
+.slider__container {
+    position: relative;
+    width: 100%;
+}
+
+.slider__track {
+    display: flex;
+}
+
+.slider__slide {
+    min-width: 100%;
+    flex: 0 0 100%;
+    overflow: hidden;
+    display: none;
+}
+
+.slider__slide--active {
+    display: block;
+}
+
+.slider__slide .row--case {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    gap: var(--col-gap-desk, 30px);
+    margin: 0;
+}
+
+.slider__slide .row--case > [class*="col-"] {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@media (max-width: 767.98px){
+    .slider__slide .row--case {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+.slider__nav {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.slider__prev,
+.slider__next {
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.slider__prev:hover,
+.slider__next:hover {
+    background: #e0e0e0;
+}
+
+.slider__prev:disabled,
+.slider__next:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.case-card, .case-panel {
+    padding: 16px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.case img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.case-duration {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.site-header{ padding-block: 12px; }
+.header__row{ align-items: center; }
+.header__brand{ display:inline-block; font-weight: 700; text-decoration:none; color:#111; }
+.menu--primary{ display:flex; gap: 24px; list-style:none; padding:0; margin:0; }
+.menu--primary a{ text-decoration:none; color:#111; }
+.header__actions{ display:flex; justify-content:flex-end; gap:12px; }
+.header__burger, .header__search{ width:32px; height:32px; border:0; background:transparent; cursor:pointer; }
+
+/* hero box */
+.hero__box{ border-radius: 16px; padding: 16px; }
+@media (min-width: 1280px){ .hero__box{ padding: 24px; } }
+
+/* hero block has no spacing here; use .section and modifiers */
