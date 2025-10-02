@@ -22,13 +22,20 @@ get_header();
 	<div class="container">
 		<div class="row reviews__header">
 			<div class="col-sm-8 col-lg-8">
-				<h2>Отзывы наших пациентов</h2>
-				<p>Узнайте, что говорят о нашей работе</p>
+				<h2>Наш приоритет - высокое качество услуг, счастливые и здоровые пациенты</h2>
+
 			</div>
 			<div class="col-sm-4 col-lg-4">
 				<div class="reviews__stats">
-					<div class="stat-number">4.9</div>
-					<p>Средняя оценка</p>
+					<div class="reviews__faces">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_01.jpg" alt="Фото пациента 1" class="reviews__face">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_06.jpg" alt="Фото пациента 2" class="reviews__face">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_07.jpg" alt="Фото пациента 3" class="reviews__face">
+					</div>
+					<div class="reviews__rating">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Рейтинг звезды" class="reviews__stars">
+						<p class="reviews__rating-text">Более 20 000 улыбок подарили мы за 19 лет работы</p>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -86,7 +93,7 @@ get_header();
 	<div class="container">
 		<div class="row chief-doctor__header">
 			<div class="col-sm-12 col-lg-12">
-				<h2>Клиника основана стоматологом-ортопедом Еленой Мокренко</h2>
+				<h2 class="chief-doctor__title">Клиника основана стоматологом-ортопедом <br><span class="chief-doctor__name">Еленой Мокренко</span></h2>
 			</div>
 		</div>
 		
@@ -95,7 +102,7 @@ get_header();
 				<div class="row">
 					<div class="col-sm-12 col-lg-12">
 						<div class="chief-doctor__block-210">
-							<p>Владеет в совершенстве современными методами профилактики, диагностики и лечения в области ортопедии. Обучает выпускников медицинских университетов.</p>
+							<p class="chief-doctor__description">Владеет в совершенстве современными методами профилактики, диагностики и лечения в области ортопедии. Обучает выпускников медицинских университетов.</p>
 						</div>
 					</div>
 				</div>
@@ -104,7 +111,9 @@ get_header();
 					<div class="col-sm-12 col-lg-6">
 						<div class="chief-doctor__block-209-1">
 							<div class="achievement-item">
-								<div class="achievement-icon">✓</div>
+								<div class="achievement-icon">
+									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="achievement-icon__img">
+								</div>
 								<p>Эксперт в корректировке формы, цвета и украшении зубов</p>
 							</div>
 						</div>
@@ -112,7 +121,9 @@ get_header();
 					<div class="col-sm-12 col-lg-6">
 						<div class="chief-doctor__block-209-2">
 							<div class="achievement-item">
-								<div class="achievement-icon">✓</div>
+								<div class="achievement-icon">
+									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="achievement-icon__img">
+								</div>
 								<p>Сертифицированный специалист по установке люминиров с 12-летним опытом</p>
 							</div>
 						</div>
@@ -123,7 +134,9 @@ get_header();
 					<div class="col-sm-12 col-lg-6">
 						<div class="chief-doctor__block-209-3">
 							<div class="achievement-item">
-								<div class="achievement-icon">✓</div>
+								<div class="achievement-icon">
+									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="achievement-icon__img">
+								</div>
 								<p>Участник Стоматологической Ассоциации России</p>
 							</div>
 						</div>
@@ -131,7 +144,9 @@ get_header();
 					<div class="col-sm-12 col-lg-6">
 						<div class="chief-doctor__block-209-4">
 							<div class="achievement-item">
-								<div class="achievement-icon">✓</div>
+								<div class="achievement-icon">
+									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="achievement-icon__img">
+								</div>
 								<p>Участник American Dental Academy: повышение квалификации и обмен опытом с лучшими американскими и европейскими стоматологами</p>
 							</div>
 						</div>
@@ -140,10 +155,15 @@ get_header();
 			</div>
 			<div class="col-sm-12 col-lg-6">
 				<div class="chief-doctor__photo">
-					<img src="https://via.placeholder.com/400x500/4CAF50/FFFFFF?text=Фото+врача" alt="Дугинец Надежда Семеновна" class="chief-doctor__img">
-					<div class="chief-doctor__badge">
-						<span class="chief-doctor__badge-text">Главный врач</span>
+					<div class="chief-doctor__icon">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/mokrenko_icon_01.svg" alt="Иконка Мокренко" class="chief-doctor__icon-img">
 					</div>
+					<div class="chief-doctor__experience">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/33_index.svg" alt="33 года опыта" class="chief-doctor__experience-icon">
+						<p class="chief-doctor__experience-text">Стоматолог-ортопед высшей категории с опытом более 33 лет</p>
+					</div>
+					
+
 				</div>
 			</div>
 		</div>
@@ -154,15 +174,15 @@ get_header();
 	<div class="container">
 		<div class="row services__grid">
 			<div class="col-sm-12 col-lg-4">
-				<div class="service-card service-card--header" style="background-color: #f0f0f0;">
-					<h2>Наши услуги</h2>
-					<p>Полный спектр стоматологических услуг для всей семьи</p>
+				<div class="service-card service-card--header">
+					<h2>Лечим зубы и дарим <span class="services__highlight">самые красивые улыбки</span> в Москве</h2>
+					<p>Честные и доступные цены без экономии на качестве</p>
 				</div>
 			</div>
 			<div class="col-sm-12 col-lg-4">
-				<div class="service-card" style="background-color: #f0f0f0;">
+				<div class="service-card service-card--gradient">
 					<h3>Восстановить зуб</h3>
-					<div class="service-links" style="display: flex; flex-direction: column; gap: 8px;">
+					<div class="service-links">
 						<a href="#" class="service-link">Коронка на зуб</a>
 						<a href="#" class="service-link">Импланты зубов</a>
 						<a href="#" class="service-link">Протезирование зубов</a>
@@ -171,9 +191,9 @@ get_header();
 				</div>
 			</div>
 			<div class="col-sm-12 col-lg-4">
-				<div class="service-card" style="background-color: #f0f0f0;">
+				<div class="service-card service-card--light-green">
 					<h3>Вылечить зубы</h3>
-					<div class="service-links" style="display: flex; flex-direction: column; gap: 8px;">
+					<div class="service-links">
 						<a href="#" class="service-link">Лечение зубов</a>
 						<a href="#" class="service-link">Удаление зубов</a>
 						<a href="#" class="service-link">Лечение десен</a>
@@ -185,9 +205,9 @@ get_header();
 		
 		<div class="row services__header">
 			<div class="col-sm-12 col-lg-4">
-				<div class="service-card" style="background-color: #f0f0f0;">
+				<div class="service-card service-card--gradient">
 					<h3>Вставить все зубы</h3>
-					<div class="service-links" style="display: flex; flex-direction: column; gap: 8px;">
+					<div class="service-links">
 						<a href="#" class="service-link">Все зубы за 1 день All-on-4</a>
 						<a href="#" class="service-link">Имплантация All-on-6</a>
 						<a href="#" class="service-link">Несъёмные протезы</a>
@@ -196,9 +216,9 @@ get_header();
 				</div>
 			</div>
 			<div class="col-sm-12 col-lg-8">
-				<div class="service-card" style="background-color: #f0f0f0;">
+				<div class="service-card service-card--light-green service-card--bg">
 					<h3>Красивая улыбка</h3>
-					<div class="service-links" style="display: flex; flex-direction: column; gap: 8px;">
+					<div class="service-links">
 						<a href="#" class="service-link">Виниры на зубы</a>
 						<a href="#" class="service-link">Брекеты</a>
 						<a href="#" class="service-link">Отбеливание зубов</a>
@@ -252,14 +272,16 @@ get_header();
 							<img src="<?php echo get_template_directory_uri(); ?>/assets/images/plus_icon_bg.jpg" alt="Фон иконки" class="benefits__icon-bg">
 							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/plus_icon_03.svg" alt="Иконка лаборатории" class="benefits__icon-main">
 						</div>
-						<h3>Собственная лаборатория и оборудование</h3>
-						<div class="benefits__feature-item">
-							<h4>Компьютерная томограмма:</h4>
-							<p>Мы делаем все снимки в день обращения прямо в нашей клинике</p>
-						</div>
-						<div class="benefits__feature-item">
-							<h4>Аппарат Cerec:</h4>
-							<p>Изготавливаем коронки при вас в клинике за 45 минут</p>
+						<div class="benefits__card-bottom">
+							<h3>Собственная лаборатория и оборудование</h3>
+							<div class="benefits__feature-item">
+								<h4>Компьютерная томограмма:</h4>
+								<p>Мы делаем все снимки в день обращения прямо в нашей клинике</p>
+							</div>
+							<div class="benefits__feature-item">
+								<h4>Аппарат Cerec:</h4>
+								<p>Изготавливаем коронки при вас в клинике за 45 минут</p>
+							</div>
 						</div>
 					</div>
 				</div>
