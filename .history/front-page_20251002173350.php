@@ -218,25 +218,25 @@ get_header();
 					<div class="row">
 						<div class="col-sm-12 col-lg-12">
 							<div class="benefits__header">
-								<h2>Выбор клиники - <br><span class="benefits__highlight">ключевой этап</span> в лечении зубов</h2>
-								<p class="benefits__subtitle">Наша цель — укрепить здоровье ваших зубов</p>
+								<h2>Выбор клиники - ключевой этап в лечении зубов</h2>
+								<p>Наша цель — укрепить здоровье ваших зубов</p>
 							</div>
 						</div>
 					</div>
 					<div class="row" style="margin-top:16px">
 						<div class="col-sm-12 col-lg-6">
-							<div class="benefits__feature benefits__feature--gradient">
+							<div class="benefits__feature" style="background-color: #f0f0f0;">
 								<div class="benefits__feature-icon">
-									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/plus_icon_01.svg" alt="Иконка плюс" class="benefits__icon">
+									<span class="benefits__icon">🏷️</span>
 								</div>
 								<h3>Честные цены без накруток и скрытых платежей</h3>
 								<p>Цены на сайте соответствуют ценам в клинике. Не навязываем лишних услуг и не вносим скрытые платежи в договор. У нас честный подход.</p>
 							</div>
 						</div>
 						<div class="col-sm-12 col-lg-6">
-							<div class="benefits__feature benefits__feature--light-green">
+							<div class="benefits__feature" style="background-color: #f0f0f0;">
 								<div class="benefits__feature-icon">
-									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/plus_icon_02.svg" alt="Иконка лечения" class="benefits__icon">
+									<span class="benefits__icon">🦷</span>
 								</div>
 								<h3>Качественное лечение с гарантией по договору</h3>
 								<p>Делаем только качественно и на века. Если по нашей вине у вас выпала пломба, коронка или имплант - мы исправим все абсолютно бесплатно в тот же день.</p>
@@ -246,11 +246,10 @@ get_header();
 				</div>
 			</div>
 			<div class="col-sm-12 col-lg-4">
-				<div class="benefits__card benefits__card--gradient">
+				<div class="benefits__card" style="background-color: #f0f0f0;">
 					<div class="benefits__card-content">
-						<div class="benefits__card-icon benefits__card-icon--lab">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/images/plus_icon_bg.jpg" alt="Фон иконки" class="benefits__icon-bg">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/plus_icon_03.svg" alt="Иконка лаборатории" class="benefits__icon-main">
+						<div class="benefits__card-icon">
+							<span class="benefits__icon">🏥</span>
 						</div>
 						<h3>Собственная лаборатория и оборудование</h3>
 						<div class="benefits__feature-item">
@@ -269,10 +268,10 @@ get_header();
 		
 		<div class="row benefits__row-205">
 			<div class="col-sm-12 col-lg-4">
-				<div class="benefits__card benefits__card--light-green">
+				<div class="benefits__card" style="background-color: #f0f0f0;">
 					<div class="benefits__card-content">
 						<div class="benefits__card-icon">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/plus_icon_04.svg" alt="Иконка без боли" class="benefits__icon">
+							<span class="benefits__icon">😊</span>
 						</div>
 						<h3>Лечение без боли</h3>
 						<p>Вы ничего не почувствуете. Швейцарские медикаменты и 30-летний опыт главного врача позволяют гарантировать полное отсутствие боли</p>
@@ -280,19 +279,19 @@ get_header();
 				</div>
 			</div>
 			<div class="col-sm-12 col-lg-4">
-				<div class="benefits__card benefits__card--image">
+				<div class="benefits__card" style="background-color: #f0f0f0;">
 					<div class="benefits__card-content">
 						<div class="benefits__card-image">
-							
+							<img src="https://via.placeholder.com/300x200/f0f0f0/666666?text=Фото" alt="Честные цены" class="benefits__img">
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="col-sm-12 col-lg-4">
-				<div class="benefits__card benefits__card--light-green">
+				<div class="benefits__card" style="background-color: #f0f0f0;">
 					<div class="benefits__card-content">
 						<div class="benefits__card-icon">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/plus_icon_05.svg" alt="Иконка рассрочки" class="benefits__icon">
+							<span class="benefits__icon">📅</span>
 						</div>
 						<h3>Рассрочка платежа</h3>
 						<p>Беспроцентная рассрочка на 6-12 месяцев</p>

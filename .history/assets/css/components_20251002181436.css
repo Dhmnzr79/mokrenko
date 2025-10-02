@@ -300,22 +300,3 @@
     margin-left: -15px;
 }
 
-.benefits__row-201,
-.benefits__row-205 {
-    align-items: stretch;
-}
-
-.benefits__row-201 > [class*="col-"],
-.benefits__row-205 > [class*="col-"] {
-    display: flex;
-}
-
-.benefits__main,
-.benefits__feature,
-.benefits__card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-}
-

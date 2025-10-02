@@ -283,7 +283,7 @@ get_header();
 				<div class="benefits__card benefits__card--image">
 					<div class="benefits__card-content">
 						<div class="benefits__card-image">
-							
+							<img src="https://via.placeholder.com/300x200/f0f0f0/666666?text=Фото" alt="Честные цены" class="benefits__img">
 						</div>
 					</div>
 				</div>

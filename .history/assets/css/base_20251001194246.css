@@ -60,27 +60,8 @@ a { color: var(--color-accent); }
 .bg-brand { background-color: var(--color-bg); }
 .bg-gradient-brand { background: var(--gradient-brand); }
 
-/* Reset and base styles */
-h1, h2, h3, h4, h5, h6,
-p,
-ul, ol {
-  margin: 0;
-  padding: 0;
-}
-
-ul, ol {
-  list-style: none;
-}
-
-p {
-  line-height: 1.5; 
-  margin-bottom: 1em; 
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'NTSomic', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  margin-bottom: 0.5em;
-}
+/* Headings use NTSomic */
+h1, h2, h3, h4, h5, h6 { font-family: 'NTSomic', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
 
 /* Headings (desktop sizes are mandatory) */
 h2 { font-size: clamp(28px, 4vw, 44px); line-height: 1.2; }

@@ -218,7 +218,7 @@ get_header();
 					<div class="row">
 						<div class="col-sm-12 col-lg-12">
 							<div class="benefits__header">
-								<h2>Выбор клиники - <br><span class="benefits__highlight">ключевой этап</span> в лечении зубов</h2>
+								<h2>Выбор клиники - <span class="benefits__highlight">ключевой этап</span> в лечении зубов</h2>
 								<p class="benefits__subtitle">Наша цель — укрепить здоровье ваших зубов</p>
 							</div>
 						</div>
@@ -248,9 +248,8 @@ get_header();
 			<div class="col-sm-12 col-lg-4">
 				<div class="benefits__card benefits__card--gradient">
 					<div class="benefits__card-content">
-						<div class="benefits__card-icon benefits__card-icon--lab">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/images/plus_icon_bg.jpg" alt="Фон иконки" class="benefits__icon-bg">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/plus_icon_03.svg" alt="Иконка лаборатории" class="benefits__icon-main">
+						<div class="benefits__card-icon">
+							<span class="benefits__icon">🏥</span>
 						</div>
 						<h3>Собственная лаборатория и оборудование</h3>
 						<div class="benefits__feature-item">
@@ -269,7 +268,7 @@ get_header();
 		
 		<div class="row benefits__row-205">
 			<div class="col-sm-12 col-lg-4">
-				<div class="benefits__card benefits__card--light-green">
+				<div class="benefits__card">
 					<div class="benefits__card-content">
 						<div class="benefits__card-icon">
 							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/plus_icon_04.svg" alt="Иконка без боли" class="benefits__icon">
@@ -283,13 +282,13 @@ get_header();
 				<div class="benefits__card benefits__card--image">
 					<div class="benefits__card-content">
 						<div class="benefits__card-image">
-							
+							<img src="https://via.placeholder.com/300x200/f0f0f0/666666?text=Фото" alt="Честные цены" class="benefits__img">
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="col-sm-12 col-lg-4">
-				<div class="benefits__card benefits__card--light-green">
+				<div class="benefits__card">
 					<div class="benefits__card-content">
 						<div class="benefits__card-icon">
 							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/plus_icon_05.svg" alt="Иконка рассрочки" class="benefits__icon">

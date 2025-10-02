@@ -249,7 +249,7 @@ get_header();
 				<div class="benefits__card benefits__card--gradient">
 					<div class="benefits__card-content">
 						<div class="benefits__card-icon benefits__card-icon--lab">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/images/plus_icon_bg.jpg" alt="Фон иконки" class="benefits__icon-bg">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/шьфпуы/plus_icon_bg.svg" alt="Фон иконки" class="benefits__icon-bg">
 							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/plus_icon_03.svg" alt="Иконка лаборатории" class="benefits__icon-main">
 						</div>
 						<h3>Собственная лаборатория и оборудование</h3>
@@ -283,7 +283,7 @@ get_header();
 				<div class="benefits__card benefits__card--image">
 					<div class="benefits__card-content">
 						<div class="benefits__card-image">
-							
+							<img src="https://via.placeholder.com/300x200/f0f0f0/666666?text=Фото" alt="Честные цены" class="benefits__img">
 						</div>
 					</div>
 				</div>
