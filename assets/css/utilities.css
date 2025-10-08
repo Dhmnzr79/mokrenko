@@ -4,7 +4,11 @@
 /* hero spacing modifier */
 .section--hero { padding-block: 0; }
 
+/* reviews spacing modifier */
+.section--reviews { padding-bottom: 0; }
+
 .text-center { text-align: center; }
+.text-accent { color: var(--color-accent); }
 .hidden { display: none !important; }
 .visually-hidden {
   position:absolute!important; width:1px; height:1px; margin:-1px; border:0; padding:0;

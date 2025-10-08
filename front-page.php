@@ -71,7 +71,6 @@ get_header();
 		<div class="row reviews__header">
 			<div class="col-sm-8 col-lg-8">
 				<h2>Наш приоритет - высокое качество услуг, счастливые и здоровые пациенты</h2>
-
 			</div>
 			<div class="col-sm-4 col-lg-4">
 				<div class="reviews__stats">
@@ -88,51 +87,31 @@ get_header();
 			</div>
 		</div>
 		
-		<div class="row reviews__grid">
-			<?php
-			$reviews = get_posts([
-				'post_type' => 'reviews',
-				'posts_per_page' => 3,
-				'post_status' => 'publish',
-				'meta_query' => [
-					[
-						'key' => '_reviews_show_on_home',
-						'value' => '1',
-						'compare' => '='
-					]
-				]
-			]);
-			
-			foreach($reviews as $review):
-				$fio = get_post_meta($review->ID, '_reviews_fio', true);
-				$video_url = get_post_meta($review->ID, '_reviews_video_url', true);
-				$thumbnail = get_the_post_thumbnail($review->ID, 'medium');
-			?>
+		<div class="row">
 			<div class="col-sm-12 col-lg-4">
 				<div class="review-card">
-					<?php if($thumbnail): ?>
-						<div class="review-card__photo">
-							<?php echo $thumbnail; ?>
-						</div>
-					<?php endif; ?>
-					
-					<div class="review-card__content">
-						<h3><?php echo $fio ? esc_html($fio) : get_the_title($review->ID); ?></h3>
-						<div class="review-card__text">
-							<?php echo wp_kses_post($review->post_content); ?>
-						</div>
-						
-						<?php if($video_url): ?>
-							<div class="review-card__video">
-								<a href="<?php echo esc_url($video_url); ?>" target="_blank" class="btn btn--video">
-									Смотреть видео отзыв
-								</a>
-							</div>
-						<?php endif; ?>
-					</div>
+					<h3 class="review-card__name">Анна Соколова</h3>
+					<button class="review-card__play">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/play.svg" alt="Play" class="review-card__play-icon">
+					</button>
 				</div>
 			</div>
-			<?php endforeach; ?>
+			<div class="col-sm-12 col-lg-4">
+				<div class="review-card">
+					<h3 class="review-card__name">Дмитрий Петров</h3>
+					<button class="review-card__play">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/play.svg" alt="Play" class="review-card__play-icon">
+					</button>
+				</div>
+			</div>
+			<div class="col-sm-12 col-lg-4">
+				<div class="review-card">
+					<h3 class="review-card__name">Мария Иванова</h3>
+					<button class="review-card__play">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/play.svg" alt="Play" class="review-card__play-icon">
+					</button>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
@@ -503,6 +482,30 @@ get_header();
 	</div>
 </section>
 
+<section class="section section--gallery gallery">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 col-lg-12">
+				<h2>Мы всегда <span class="text-accent">рады вас видеть</span></h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12 col-lg-12">
+				<div class="gallery__grid">
+					<?php 
+					$gallery_order = [1, 2, 3, 5, 4, 6, 7, 8, 9, 10, 11, 12];
+					foreach($gallery_order as $i): 
+					?>
+					<a href="<?php echo get_template_directory_uri(); ?>/assets/images/gallery/gallery<?php echo str_pad($i, 2, '0', STR_PAD_LEFT); ?>.jpg" class="gallery__item" data-lightbox="gallery">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/gallery/gallery<?php echo str_pad($i, 2, '0', STR_PAD_LEFT); ?>.jpg" alt="Галерея <?php echo $i; ?>" class="gallery__image">
+					</a>
+					<?php endforeach; ?>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
 <section class="section section--contacts contacts">
 	<div class="container">
 		<div class="row">
@@ -532,9 +535,19 @@ get_header();
 						</div>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-sm-12 col-lg-12">
+						<button class="contacts__call-btn">
+							Заказать звонок
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка" class="contacts__call-arrow">
+						</button>
+					</div>
+				</div>
 			</div>
 			<div class="col-sm-12 col-lg-6">
-				<div class="contacts__map" role="region" aria-label="Карта проезда"></div>
+				<div class="contacts__map" role="region" aria-label="Карта проезда">
+					<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A323a54469180fade51313f036c1802f512630e5b6ff890ed079c3eccf0923412&amp;width=100%25&amp;height=600&amp;lang=ru_RU&amp;scroll=true"></script>
+				</div>
 			</div>
 		</div>
 	</div>
