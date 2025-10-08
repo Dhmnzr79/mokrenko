@@ -26,6 +26,13 @@
 }
 @font-face {
   font-family: 'NTSomic';
+  src: url('../fonts/NTSomic-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'NTSomic';
   src: url('../fonts/NTSomic-Semibold.woff2') format('woff2');
   font-weight: 600;
   font-style: normal;
@@ -83,5 +90,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Headings (desktop sizes are mandatory) */
+h1 { font-size: clamp(48px, 6vw, 72px); line-height: 1; color: white; font-weight: 600; margin-bottom: 0.2em; }
 h2 { font-size: clamp(28px, 4vw, 44px); line-height: 1.2; }
 h3 { font-size: clamp(18px, 2.4vw, 22px); line-height: 1.3; }

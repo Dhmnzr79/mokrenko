@@ -3,15 +3,63 @@ get_header();
 ?>
 <section class="section section--hero hero">
 	<div class="container">
-		<div class="hero__box bg-gradient-brand">
-			<div class="row">
-				<div class="col-sm-8 col-lg-8">
-					<h2>Тестовый блок 1</h2>
-					<p>Это пример текста в первом тестовом блоке. Здесь проверяем типографику и сетку.</p>
+		<div class="hero__box bg-gradient-brand hero__box--with-doctor">
+			<div class="hero__menu">
+				<div class="hero__menu-burger">
+					<button class="hero__burger-btn">
+						<span class="hero__burger-icon"></span>
+						<span class="hero__burger-text">Услуги</span>
+					</button>
 				</div>
-				<div class="col-sm-4 col-lg-4">
-					<h3>Сайд-блок</h3>
-					<p>Дополнительный текст для проверки колонок и отступов.</p>
+				<nav class="hero__menu-nav">
+					<a href="#" class="hero__menu-link">О клинике</a>
+					<a href="#" class="hero__menu-link">Портфолио</a>
+					<a href="#" class="hero__menu-link">Врачи</a>
+					<a href="#" class="hero__menu-link">Прайс</a>
+					<a href="#" class="hero__menu-link">Акции</a>
+					<a href="#" class="hero__menu-link">Блог</a>
+					<a href="#" class="hero__menu-link">Отзывы</a>
+					<a href="#" class="hero__menu-link">Контакты</a>
+				</nav>
+				<div class="hero__menu-search">
+					<button class="hero__search-btn">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/search.svg" alt="Поиск" class="hero__search-icon">
+					</button>
+				</div>
+			</div>
+			<div class="hero__layout">
+				<div class="hero__content">
+					<h1>Стоматология Елены Мокренко</h1>
+					<div class="hero__rating">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_main.svg" alt="Рейтинг" class="hero__rating-icon">
+						<p class="hero__rating-text">Наш рейтинг на независимых порталах</p>
+					</div>
+					<div class="hero__cta">
+						<h3>Запишитесь на осмотр и получите</h3>
+						<p>Полное обследование рта, а также полной анализ вашего организма по нашей методике</p>
+							<button class="hero__cta-btn">
+								Записаться на консультацию
+								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка" class="hero__cta-arrow">
+							</button>
+					</div>
+				</div>
+				<div class="hero__features">
+					<div class="hero__feature-item">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="hero__feature-icon">
+						<p>Гарантия полной безболезненности</p>
+					</div>
+					<div class="hero__feature-item">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="hero__feature-icon">
+						<p>Честные цены без накруток и скрытых платежей</p>
+					</div>
+					<div class="hero__feature-item">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="hero__feature-icon">
+						<p>Высококлассные врачи с опытом более 10 лет</p>
+					</div>
+					<div class="hero__doctor-info">
+						<h4>Главный врач:</h4>
+						<p>Елена Мокренко - стоматолог-ортопед с опытом работы более 33-х лет</p>
+					</div>
 				</div>
 			</div>
 		</div>

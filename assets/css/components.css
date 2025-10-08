@@ -100,8 +100,216 @@
 .header__actions{ display:flex; justify-content:flex-end; gap:12px; }
 .header__burger, .header__search{ width:32px; height:32px; border:0; background:transparent; cursor:pointer; }
 
+.header__info-title {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.header__info-text {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.header__contact {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.header__contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header__contact-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.header__contact-phone {
+  font-size: 20px;
+  text-decoration: none;
+}
+
 .hero__box{ border-radius: 16px; padding: 16px; }
-@media (min-width: 1280px){ .hero__box{ padding: 24px; } }
+
+.hero__box--with-doctor {
+  position: relative;
+  background-image: url('../images/mokrenko_first.png'), linear-gradient(94.24deg, #84EBDA -5.47%, #B7D8F8 114.07%);
+  background-repeat: no-repeat, no-repeat;
+  background-position: 60% bottom, 0 0;
+  background-size: 440px, cover;
+}
+
+
+.hero__menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.hero__menu-burger {
+  display: flex;
+  align-items: center;
+}
+
+.hero__burger-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.hero__burger-icon {
+  width: 20px;
+  height: 16px;
+  position: relative;
+}
+
+.hero__burger-icon::before,
+.hero__burger-icon::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  left: 0;
+}
+
+.hero__burger-icon::before {
+  top: 4px;
+}
+
+.hero__burger-icon::after {
+  top: 10px;
+}
+
+.hero__burger-text {
+  color: currentColor;
+  font-size: 16px;
+}
+
+.hero__menu-nav {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.hero__menu-link {
+  color: currentColor;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.hero__menu-search {
+  display: flex;
+  align-items: center;
+}
+
+.hero__search-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.hero__search-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.hero__layout {
+  display: flex;
+  align-items: stretch;
+}
+
+.hero__content {
+  padding: 40px;
+  width: 55%;
+}
+
+.hero__features {
+  width: 30%;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 40px;
+  gap: 10px;
+}
+
+.hero__doctor-info {
+  background: #ffffff4a;
+  border-radius: 15px;
+  padding: 20px;
+  border-left: 1px solid white;
+  border-top: 1px solid white;
+  margin-top: 40px;
+}
+
+.hero__doctor-info p {
+  font-size: 16px;
+}
+
+.hero__feature-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.hero__rating {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero__cta {
+  max-width: 420px;
+  background-image: url('../svg/hero_bg.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 340px;
+  padding: 70px 30px 30px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.hero__cta::after {
+  content: '';
+  position: absolute;
+  background-image: url('../svg/arrow_black.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 100px;
+  height: 90px;
+  top: 10%;
+  right: 50px;
+  transform: translateY(-50%);
+}
+
+.hero__cta-btn {
+  background: linear-gradient(90deg, #EEAA2B 0%, #FF6A09 100%);
+  border-radius: 10px;
+  padding: 20px;
+  color: white;
+  font-family: 'Golos Text', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
 
 .awards {
     padding: 40px 0;

@@ -2,8 +2,7 @@
 @media (min-width: 1280px){ .section { padding-block: 72px; } }
 
 /* hero spacing modifier */
-.section--hero { padding-block: 32px; }
-@media (min-width: 1280px){ .section--hero { padding-block: 48px; } }
+.section--hero { padding-block: 0; }
 
 .text-center { text-align: center; }
 .hidden { display: none !important; }
