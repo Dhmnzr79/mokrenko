@@ -53,6 +53,13 @@ function theme_doctor_meta_box_callback($post) {
             <th><label for="doctor_video_url"><?php _e('Видео (YouTube URL)', 'mokrenko'); ?></label></th>
             <td><input type="url" id="doctor_video_url" name="doctor_video_url" value="<?php echo esc_attr($video_url); ?>" style="width: 100%;" placeholder="https://youtube.com/watch?v=..." /></td>
         </tr>
+        <tr>
+            <th><label for="doctor_show_on_home"><?php _e('Показывать на главной', 'mokrenko'); ?></label></th>
+            <td>
+                <input type="checkbox" id="doctor_show_on_home" name="doctor_show_on_home" value="1" <?php checked(get_post_meta($post->ID, 'doctor_show_on_home', true), '1'); ?> />
+                <label for="doctor_show_on_home"><?php _e('Показывать в слайдере на главной странице', 'mokrenko'); ?></label>
+            </td>
+        </tr>
     </table>
 
     <!-- Краткое превью и подробная информация -->
@@ -255,6 +262,9 @@ function theme_save_doctor_meta($post_id) {
             update_post_meta($post_id, $field, sanitize_text_field($_POST[$field]));
         }
     }
+
+    $show_on_home = isset($_POST['doctor_show_on_home']) ? '1' : '0';
+    update_post_meta($post_id, 'doctor_show_on_home', $show_on_home);
 
     // Сохранение образования (простое текстовое поле)
     if (isset($_POST['doctor_education'])) {

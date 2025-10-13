@@ -24,25 +24,31 @@
     display: block;
 }
 
-.slider__slide .row--case {
+.slider__slide .row {
     width: 100%;
     max-width: 100%;
     display: flex;
-    gap: var(--col-gap-desk, 30px);
+    gap: 30px;
     margin: 0;
+    grid-template-columns: none;
 }
 
-.slider__slide .row--case > [class*="col-"] {
-    flex: 1 1 0;
+.slider__slide .row > [class*="col-"] {
+    flex: 0 0 calc((100% - 60px) / 3);
     min-width: 0;
     padding: 0;
     box-sizing: border-box;
+    grid-column: auto;
 }
 
 @media (max-width: 767.98px){
-    .slider__slide .row--case {
+    .slider__slide .row {
         flex-direction: column;
         gap: 12px;
+    }
+    
+    .slider__slide .row > [class*="col-"] {
+        flex: 0 0 100%;
     }
 }
 
@@ -373,6 +379,17 @@
   object-fit: contain;
 }
 
+.lightbox__video {
+  width: 90vw;
+  max-width: 1200px;
+  aspect-ratio: 16 / 9;
+}
+
+.lightbox__video iframe {
+  width: 100%;
+  height: 100%;
+}
+
 .lightbox__close {
   position: absolute;
   top: 20px;
@@ -407,6 +424,12 @@
 
 .lightbox__next {
   right: 20px;
+}
+
+@media (max-width: 767px) {
+  .lightbox__video {
+    width: 95vw;
+  }
 }
 
 @media (min-width: 768px) {
@@ -853,4 +876,113 @@ h2 {
 .reviews__rating-text {
     font-size: 16px;
     margin: 0;
+}
+
+.doctors__stats {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.doctors__faces {
+    display: flex;
+    align-items: center;
+}
+
+.doctors__face {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    object-fit: cover;
+}
+
+.doctors__face:nth-child(2),
+.doctors__face:nth-child(3) {
+    margin-left: -15px;
+    outline: 3px solid white;
+}
+
+.doctors__stats-text {
+    font-size: 15px;
+    margin: 0;
+}
+
+.doctor-card-slider {
+    display: flex;
+    flex-direction: column;
+    background: #E5F4F3;
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.doctor-card-slider__photo {
+    width: 65%;
+    position: absolute;
+    right: -20px;
+    bottom: -30px;
+    pointer-events: none;
+    max-height: 390px;
+}
+
+.doctor-card-slider__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right top;
+}
+
+.doctor-card-slider__link {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    z-index: 2;
+}
+
+.doctor-card-slider__content {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 1;
+}
+
+.doctor-card-slider__header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.doctor-card-slider__name {
+    margin: 0;
+}
+
+.doctor-card-slider__position {
+    margin: 0;
+    font-size: 15px;
+}
+
+.doctor-card-slider__experience {
+    margin: 0;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.72);
+    border-width: 1px 0px 0px 1px;
+    border-style: solid;
+    border-color: #FFFFFF;
+    backdrop-filter: blur(4.5px);
+    border-radius: 10px;
+}
+
+@media (min-width: 1280px) {
+    .doctor-card-slider {
+        height: 420px;
+    }
+    
+    .doctor-card-slider__content {
+        height: 100%;
+    }
 }

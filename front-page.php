@@ -88,30 +88,45 @@ get_header();
 		</div>
 		
 		<div class="row">
-			<div class="col-sm-12 col-lg-4">
-				<div class="review-card">
-					<h3 class="review-card__name">Анна Соколова</h3>
-					<button class="review-card__play">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/play.svg" alt="Play" class="review-card__play-icon">
-					</button>
-				</div>
-			</div>
-			<div class="col-sm-12 col-lg-4">
-				<div class="review-card">
-					<h3 class="review-card__name">Дмитрий Петров</h3>
-					<button class="review-card__play">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/play.svg" alt="Play" class="review-card__play-icon">
-					</button>
-				</div>
-			</div>
-			<div class="col-sm-12 col-lg-4">
-				<div class="review-card">
-					<h3 class="review-card__name">Мария Иванова</h3>
-					<button class="review-card__play">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/play.svg" alt="Play" class="review-card__play-icon">
-					</button>
-				</div>
-			</div>
+			<?php
+			$reviews = get_posts([
+				'post_type' => 'reviews',
+				'posts_per_page' => 3,
+				'post_status' => 'publish',
+				'meta_query' => [
+					[
+						'key' => '_reviews_show_on_home',
+						'value' => '1',
+						'compare' => '='
+					]
+				]
+			]);
+			
+			if (empty($reviews)) {
+				echo '<div class="col-sm-12 col-lg-12">';
+				echo '<p>Нет отзывов для отображения. Отметьте отзывы для показа на главной в админке.</p>';
+				echo '</div>';
+			} else {
+				foreach ($reviews as $review) {
+					$fio = get_post_meta($review->ID, '_reviews_fio', true);
+					$video_url = get_post_meta($review->ID, '_reviews_video_url', true);
+					$thumbnail_id = get_post_thumbnail_id($review->ID);
+					$thumbnail_url = $thumbnail_id ? wp_get_attachment_image_url($thumbnail_id, 'large') : '';
+					?>
+					<div class="col-sm-12 col-lg-4">
+						<div class="review-card" <?php if ($thumbnail_url): ?>style="background-image: url('<?php echo esc_url($thumbnail_url); ?>');"<?php endif; ?>>
+							<h3 class="review-card__name"><?php echo esc_html($fio); ?></h3>
+							<?php if ($video_url): ?>
+							<a href="<?php echo esc_url($video_url); ?>" class="review-card__play" data-lightbox="video">
+								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/play.svg" alt="Play" class="review-card__play-icon">
+							</a>
+							<?php endif; ?>
+						</div>
+					</div>
+					<?php
+				}
+			}
+			?>
 		</div>
 	</div>
 </section>
@@ -250,6 +265,74 @@ get_header();
 						<a href="#" class="service-link">Брекеты</a>
 						<a href="#" class="service-link">Отбеливание зубов</a>
 						<a href="#" class="service-link">Чистка Air Flow</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section section--doctors doctors">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 col-lg-8">
+				<h2>Врачи <span class="doctors__highlight">международного уровня</span>, которым можно доверять</h2>
+			</div>
+			<div class="col-sm-12 col-lg-4">
+				<div class="doctors__stats">
+					<div class="doctors__faces">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/doc_face_01.jpg" alt="Фото врача 1" class="doctors__face">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/doc_face_02.jpg" alt="Фото врача 2" class="doctors__face">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/doc_face_03.jpg" alt="Фото врача 3" class="doctors__face">
+					</div>
+					<p class="doctors__stats-text">Ведущие специалисты с опытом работы от 10 лет!</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12 col-lg-12">
+				<div class="slider">
+					<div class="slider__container">
+						<div class="slider__track">
+							<?php
+							$doctors = get_posts([
+								'post_type' => 'doctor',
+								'posts_per_page' => -1,
+								'post_status' => 'publish',
+								'meta_query' => [
+									[
+										'key' => 'doctor_show_on_home',
+										'value' => '1',
+										'compare' => '='
+									]
+								]
+							]);
+							
+							if (empty($doctors)) {
+								echo '<div class="slider__slide slider__slide--active">';
+								echo '<p>Нет врачей для отображения. Отметьте врачей для показа на главной в админке.</p>';
+								echo '</div>';
+							} else {
+								$chunks = array_chunk($doctors, 3);
+								foreach ($chunks as $index => $chunk) {
+									echo '<div class="slider__slide' . ($index === 0 ? ' slider__slide--active' : '') . '">';
+									echo '<div class="row">';
+									foreach ($chunk as $doctor) {
+										echo '<div class="col-sm-12 col-lg-4">';
+										get_template_part('template-parts/doctor/card-slider', null, ['doctor_id' => $doctor->ID]);
+										echo '</div>';
+									}
+									echo '</div>';
+									echo '</div>';
+								}
+							}
+							?>
+						</div>
+					</div>
+					<div class="slider__nav">
+						<button class="slider__prev" type="button">←</button>
+						<button class="slider__next" type="button">→</button>
 					</div>
 				</div>
 			</div>

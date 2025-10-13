@@ -140,6 +140,12 @@ function theme_register_meta_fields() {
             'sanitize_callback' => 'sanitize_textarea_field',
             'show_in_rest' => true,
             'single' => true
+        ],
+        'doctor_show_on_home' => [
+            'type' => 'boolean',
+            'sanitize_callback' => 'rest_sanitize_boolean',
+            'show_in_rest' => true,
+            'single' => true
         ]
     ];
 

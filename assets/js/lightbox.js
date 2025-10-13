@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
   const galleryItems = document.querySelectorAll('[data-lightbox="gallery"]');
+  const videoItems = document.querySelectorAll('[data-lightbox="video"]');
   
-  if (galleryItems.length === 0) return;
+  if (galleryItems.length === 0 && videoItems.length === 0) return;
   
   const lightbox = document.createElement('div');
   lightbox.className = 'lightbox';
@@ -10,12 +11,14 @@ document.addEventListener('DOMContentLoaded', function() {
     <button class="lightbox__prev" aria-label="Предыдущее">‹</button>
     <div class="lightbox__content">
       <img src="" alt="" class="lightbox__image">
+      <div class="lightbox__video"></div>
     </div>
     <button class="lightbox__next" aria-label="Следующее">›</button>
   `;
   document.body.appendChild(lightbox);
   
   const lightboxImage = lightbox.querySelector('.lightbox__image');
+  const lightboxVideo = lightbox.querySelector('.lightbox__video');
   const closeBtn = lightbox.querySelector('.lightbox__close');
   const prevBtn = lightbox.querySelector('.lightbox__prev');
   const nextBtn = lightbox.querySelector('.lightbox__next');
@@ -26,16 +29,40 @@ document.addEventListener('DOMContentLoaded', function() {
     alt: item.querySelector('img').alt
   }));
   
+  function getYouTubeEmbedUrl(url) {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? `https://www.youtube.com/embed/${match[2]}?autoplay=1` : null;
+  }
+  
   function openLightbox(index) {
     currentIndex = index;
     lightboxImage.src = images[index].src;
     lightboxImage.alt = images[index].alt;
+    lightboxImage.style.display = 'block';
+    lightboxVideo.style.display = 'none';
+    lightbox.classList.add('lightbox--active');
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function openVideoLightbox(videoUrl) {
+    const embedUrl = getYouTubeEmbedUrl(videoUrl);
+    if (!embedUrl) return;
+    
+    lightboxImage.style.display = 'none';
+    lightboxVideo.style.display = 'block';
+    lightboxVideo.innerHTML = `<iframe src="${embedUrl}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+    prevBtn.style.display = 'none';
+    nextBtn.style.display = 'none';
     lightbox.classList.add('lightbox--active');
     document.body.style.overflow = 'hidden';
   }
   
   function closeLightbox() {
     lightbox.classList.remove('lightbox--active');
+    lightboxVideo.innerHTML = '';
+    prevBtn.style.display = 'block';
+    nextBtn.style.display = 'block';
     document.body.style.overflow = '';
   }
   
@@ -55,6 +82,14 @@ document.addEventListener('DOMContentLoaded', function() {
     item.addEventListener('click', function(e) {
       e.preventDefault();
       openLightbox(index);
+    });
+  });
+  
+  videoItems.forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      const videoUrl = item.getAttribute('href') || item.dataset.videoUrl;
+      openVideoLightbox(videoUrl);
     });
   });
   
