@@ -403,12 +403,26 @@
   height: 60px;
 }
 
-.contacts__map {
+.location__content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.location__header {
+  flex: 1;
+}
+
+.location__cta {
+  margin-top: auto;
+}
+
+.location__map {
   border-radius: 20px;
   overflow: hidden;
 }
 
-.contacts__call-btn { display:inline-flex; }
+.location__call-btn { display:inline-flex; }
 
 .gallery h2 {
   margin-bottom: 40px;

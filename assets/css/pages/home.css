@@ -130,3 +130,71 @@
 .section--consult .consult__row--cta{ margin-top:40px; }
 .section--consult .consult__cta-btn{ }
 .section--consult .consult__list{ margin:0; padding-left:0; }
+
+/* ----- Contacts section ----- */
+.section--contacts .contacts__box{
+  background: url('../../svg/bg-contact.svg') no-repeat left center, linear-gradient(94.24deg, #84EBDA -5.47%, #B7D8F8 114.07%);
+  background-size: auto 100%, cover;
+  border-radius: 16px;
+  padding: 20px;
+  position: relative;
+}
+
+.section--contacts .contacts__bg{
+  position: absolute;
+  left: 10%;
+  bottom: 0;
+  width: 400px;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.section--contacts .contacts__content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 30px;
+  background: #ffffff5e;
+  border-radius: 20px;
+  border-left: 1px solid #fff;
+  border-top: 1px solid #fff;
+}
+
+.section--contacts .contacts__list{
+  padding: 0;
+  list-style: none;
+}
+
+.section--contacts .contacts__list li{
+  margin-bottom: 15px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.section--contacts .contacts__list li::before{
+  content: attr(data-emoji);
+  flex-shrink: 0;
+  font-size: 18px;
+}
+
+.section--contacts .contacts__question{
+  margin: 30px 0;
+}
+
+.section--contacts .contacts__question h3{
+  font-size: 30px;
+  margin: 0 0 12px 0;
+  font-weight: 600;
+}
+
+.section--contacts .contacts__question p{
+  margin: 0;
+  line-height: 1.4;
+}
+
+.section--contacts .contacts__cta-btn{
+  align-self: flex-start;
+}
