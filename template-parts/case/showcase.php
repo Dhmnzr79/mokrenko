@@ -8,6 +8,13 @@ $after_image = get_post_meta($case_id, 'case_after_image', true);
 $after_desc = get_post_meta($case_id, 'case_after_desc', true);
 $duration = get_post_meta($case_id, 'case_duration', true);
 
+// Получаем динамические проблемы и решения
+$problems_data = get_post_meta($case_id, 'case_problems_dynamic', true);
+$problems_data = $problems_data ? json_decode($problems_data, true) : [];
+
+$solutions_data = get_post_meta($case_id, 'case_solutions_dynamic', true);
+$solutions_data = $solutions_data ? json_decode($solutions_data, true) : [];
+
 $doctor = get_post($doctor_id);
 if (!$doctor) return;
 
@@ -42,10 +49,20 @@ $doctor_link = get_permalink($doctor_id);
                     <?php else: ?>
                         <img src="https://via.placeholder.com/300x200/f0f0f0/666666?text=ДО" alt="До лечения">
                     <?php endif; ?>
+                    <div class="case-panel__label case-panel__label--before">До</div>
                 </div>
-                <div class="case-panel__badge">ДО</div>
+                <div class="case-panel__badge">Проблема</div>
                 <div class="case-panel__content">
-                    <p><?php echo esc_html($before_desc); ?></p>
+                    <?php if (!empty($problems_data)): ?>
+                        <div class="case-panel__checklist">
+                            <?php foreach ($problems_data as $problem_text): ?>
+                                <div class="case-panel__checklist-item case-panel__checklist-item--problem">
+                                    <span class="case-panel__checklist-icon">✓</span>
+                                    <span class="case-panel__checklist-text"><?php echo esc_html($problem_text); ?></span>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -57,10 +74,20 @@ $doctor_link = get_permalink($doctor_id);
                     <?php else: ?>
                         <img src="https://via.placeholder.com/300x200/f0f0f0/666666?text=ПОСЛЕ" alt="После лечения">
                     <?php endif; ?>
+                    <div class="case-panel__label case-panel__label--after">После</div>
                 </div>
-                <div class="case-panel__badge">ПОСЛЕ</div>
+                <div class="case-panel__badge">Решение</div>
                 <div class="case-panel__content">
-                    <p><?php echo esc_html($after_desc); ?></p>
+                    <?php if (!empty($solutions_data)): ?>
+                        <div class="case-panel__checklist">
+                            <?php foreach ($solutions_data as $solution_text): ?>
+                                <div class="case-panel__checklist-item case-panel__checklist-item--solution">
+                                    <span class="case-panel__checklist-icon">✓</span>
+                                    <span class="case-panel__checklist-text"><?php echo esc_html($solution_text); ?></span>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

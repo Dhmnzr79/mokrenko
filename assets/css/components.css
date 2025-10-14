@@ -78,8 +78,23 @@
     cursor: not-allowed;
 }
 
-.case-card, .case-panel {
-    padding: 16px;
+.case-card {
+    background: #7ED5D8;
+    background-image: url('../svg/pattern.svg');
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: auto;
+    padding: 15px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.case-panel {
+    padding: 0;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -89,6 +104,90 @@
     max-width: 100%;
     height: auto;
     display: block;
+}
+
+.case-card__photo {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    pointer-events: none;
+    height: 98%;
+}
+
+.case-card__photo img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    object-position: right bottom;
+}
+
+.case-panel img {
+    border-radius: 20px;
+}
+
+.case-panel__image {
+    position: relative;
+}
+
+.case-panel__label {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.case-panel__label--before {
+    background: #dc3545;
+}
+
+.case-panel__label--after {
+    background: #20c997;
+}
+
+.case-card__content {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: auto;
+    position: relative;
+    z-index: 2;
+}
+
+.case-card__link {
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+}
+
+.case-card__link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: #7ED5D8;
+    transition: width 0.3s ease;
+}
+
+.case-card__link:hover::after {
+    width: 100%;
+}
+
+.case-card__position {
+    font-size: 16px;
+}
+
+.case-panel__badge {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 16px 0 12px 0;
 }
 
 .case-duration {
@@ -986,3 +1085,38 @@ h2 {
         height: 100%;
     }
 }
+
+/* Case showcase checklist styles */
+.case-panel__checklist {
+    margin-bottom: 15px;
+}
+
+.case-panel__checklist-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.case-panel__checklist-item--problem {
+}
+
+.case-panel__checklist-item--solution {
+}
+
+.case-panel__checklist-icon {
+    margin-right: 8px;
+    font-weight: bold;
+    color: #28a745;
+    margin-top: 2px;
+}
+
+.case-panel__checklist-item--problem .case-panel__checklist-icon {
+    color: #dc3545;
+}
+
+.case-panel__checklist-text {
+    flex: 1;
+}
+

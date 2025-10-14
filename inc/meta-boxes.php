@@ -214,7 +214,34 @@ function theme_case_meta_box_callback($post) {
         </tr>
         <tr>
             <th><label for="case_before_desc"><?php _e('Описание проблемы', 'mokrenko'); ?></label></th>
-            <td><textarea id="case_before_desc" name="case_before_desc" rows="4" style="width: 100%;"><?php echo esc_textarea($before_desc); ?></textarea></td>
+            <td>
+                <div class="case-description-fields">
+                    <div class="case-description-checklist">
+                        <h4><?php _e('Проблемы (заполните нужное количество):', 'mokrenko'); ?></h4>
+                        <?php
+                        $problems_data = get_post_meta($post->ID, 'case_problems_dynamic', true);
+                        $problems_data = $problems_data ? json_decode($problems_data, true) : [];
+                        
+                        // Создаем 4 поля для проблем
+                        for ($i = 0; $i < 4; $i++): 
+                            $problem_text = isset($problems_data[$i]) ? $problems_data[$i] : '';
+                            $problem_enabled = !empty($problem_text);
+                        ?>
+                            <div class="dynamic-field-group">
+                                <label class="dynamic-field-label">
+                                    <input type="checkbox" name="case_problem_enabled[]" value="<?php echo $i; ?>" 
+                                           <?php checked($problem_enabled); ?> class="dynamic-field-checkbox" />
+                                    <span class="dynamic-field-number"><?php echo $i + 1; ?></span>
+                                </label>
+                                <input type="text" name="case_problem_text[]" value="<?php echo esc_attr($problem_text); ?>" 
+                                       placeholder="<?php _e('Опишите проблему...', 'mokrenko'); ?>" 
+                                       class="dynamic-field-input" <?php echo $problem_enabled ? '' : 'disabled'; ?> />
+                            </div>
+                        <?php endfor; ?>
+                    </div>
+                    
+                </div>
+            </td>
         </tr>
     </table>
 
@@ -234,9 +261,146 @@ function theme_case_meta_box_callback($post) {
         </tr>
         <tr>
             <th><label for="case_after_desc"><?php _e('Описание решения', 'mokrenko'); ?></label></th>
-            <td><textarea id="case_after_desc" name="case_after_desc" rows="4" style="width: 100%;"><?php echo esc_textarea($after_desc); ?></textarea></td>
+            <td>
+                <div class="case-description-fields">
+                    <div class="case-description-checklist">
+                        <h4><?php _e('Решения (заполните нужное количество):', 'mokrenko'); ?></h4>
+                        <?php
+                        $solutions_data = get_post_meta($post->ID, 'case_solutions_dynamic', true);
+                        $solutions_data = $solutions_data ? json_decode($solutions_data, true) : [];
+                        
+                        // Создаем 4 поля для решений
+                        for ($i = 0; $i < 4; $i++): 
+                            $solution_text = isset($solutions_data[$i]) ? $solutions_data[$i] : '';
+                            $solution_enabled = !empty($solution_text);
+                        ?>
+                            <div class="dynamic-field-group">
+                                <label class="dynamic-field-label">
+                                    <input type="checkbox" name="case_solution_enabled[]" value="<?php echo $i; ?>" 
+                                           <?php checked($solution_enabled); ?> class="dynamic-field-checkbox" />
+                                    <span class="dynamic-field-number"><?php echo $i + 1; ?></span>
+                                </label>
+                                <input type="text" name="case_solution_text[]" value="<?php echo esc_attr($solution_text); ?>" 
+                                       placeholder="<?php _e('Опишите решение...', 'mokrenko'); ?>" 
+                                       class="dynamic-field-input" <?php echo $solution_enabled ? '' : 'disabled'; ?> />
+                            </div>
+                        <?php endfor; ?>
+                    </div>
+                    
+                </div>
+            </td>
         </tr>
     </table>
+
+    <style>
+    .case-description-fields {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        background: #fafafa;
+    }
+    .case-description-checklist {
+        margin-bottom: 20px;
+    }
+    .case-description-checklist h4 {
+        margin-top: 0;
+        margin-bottom: 15px;
+        color: #333;
+        font-size: 14px;
+        font-weight: 600;
+    }
+    .dynamic-field-group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+        padding: 10px;
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+    }
+    .dynamic-field-group:hover {
+        background: #f8f9fa;
+        border-color: #0073aa;
+    }
+    .dynamic-field-label {
+        display: flex;
+        align-items: center;
+        margin-right: 12px;
+        cursor: pointer;
+    }
+    .dynamic-field-checkbox {
+        margin-right: 8px;
+    }
+    .dynamic-field-number {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background: #f0f0f0;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 24px;
+        font-size: 12px;
+        font-weight: bold;
+        color: #666;
+    }
+    .dynamic-field-group:has(.dynamic-field-checkbox:checked) .dynamic-field-number {
+        background: #0073aa;
+        color: #fff;
+    }
+    .dynamic-field-input {
+        flex: 1;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 8px 12px;
+        font-family: inherit;
+        transition: all 0.2s ease;
+    }
+    .dynamic-field-input:disabled {
+        background: #f5f5f5;
+        color: #999;
+        cursor: not-allowed;
+    }
+    .dynamic-field-input:focus {
+        border-color: #0073aa;
+        box-shadow: 0 0 0 1px #0073aa;
+        outline: none;
+    }
+    </style>
+
+    <script>
+    jQuery(document).ready(function($) {
+        // Управление динамическими полями
+        function toggleFieldInput(checkbox, input) {
+            if (checkbox.is(':checked')) {
+                input.prop('disabled', false);
+                input.focus();
+            } else {
+                input.prop('disabled', true);
+                input.val('');
+            }
+        }
+        
+        // Обработчики для чекбоксов проблем
+        $('.dynamic-field-checkbox[name="case_problem_enabled[]"]').on('change', function() {
+            var input = $(this).closest('.dynamic-field-group').find('.dynamic-field-input[name="case_problem_text[]"]');
+            toggleFieldInput($(this), input);
+        });
+        
+        // Обработчики для чекбоксов решений
+        $('.dynamic-field-checkbox[name="case_solution_enabled[]"]').on('change', function() {
+            var input = $(this).closest('.dynamic-field-group').find('.dynamic-field-input[name="case_solution_text[]"]');
+            toggleFieldInput($(this), input);
+        });
+        
+        // Инициализация при загрузке страницы
+        $('.dynamic-field-checkbox').each(function() {
+            var input = $(this).closest('.dynamic-field-group').find('.dynamic-field-input');
+            toggleFieldInput($(this), input);
+        });
+        
+    });
+    </script>
     <?php
 }
 
@@ -327,13 +491,6 @@ function theme_save_case_meta($post_id) {
         }
     }
 
-    // Сохранение описаний
-    $descriptions = ['case_before_desc', 'case_after_desc'];
-    foreach ($descriptions as $field) {
-        if (isset($_POST[$field])) {
-            update_post_meta($post_id, $field, wp_kses_post($_POST[$field]));
-        }
-    }
 
     // Сохранение категорий
     if (isset($_POST['case_categories'])) {
@@ -342,4 +499,32 @@ function theme_save_case_meta($post_id) {
     } else {
         update_post_meta($post_id, 'case_categories', '');
     }
+
+    // Сохранение динамических проблем
+    $problems_data = [];
+    if (isset($_POST['case_problem_enabled']) && isset($_POST['case_problem_text'])) {
+        $enabled_indices = array_map('intval', $_POST['case_problem_enabled']);
+        $problem_texts = array_map('sanitize_textarea_field', $_POST['case_problem_text']);
+        
+        foreach ($enabled_indices as $index) {
+            if (isset($problem_texts[$index]) && !empty(trim($problem_texts[$index]))) {
+                $problems_data[$index] = trim($problem_texts[$index]);
+            }
+        }
+    }
+    update_post_meta($post_id, 'case_problems_dynamic', wp_json_encode($problems_data, JSON_UNESCAPED_UNICODE));
+
+    // Сохранение динамических решений
+    $solutions_data = [];
+    if (isset($_POST['case_solution_enabled']) && isset($_POST['case_solution_text'])) {
+        $enabled_indices = array_map('intval', $_POST['case_solution_enabled']);
+        $solution_texts = array_map('sanitize_textarea_field', $_POST['case_solution_text']);
+        
+        foreach ($enabled_indices as $index) {
+            if (isset($solution_texts[$index]) && !empty(trim($solution_texts[$index]))) {
+                $solutions_data[$index] = trim($solution_texts[$index]);
+            }
+        }
+    }
+    update_post_meta($post_id, 'case_solutions_dynamic', wp_json_encode($solutions_data, JSON_UNESCAPED_UNICODE));
 }
