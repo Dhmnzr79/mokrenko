@@ -66,6 +66,7 @@ get_header();
 	</div>
 </section>
 
+
 <section class="section section--reviews reviews">
 	<div class="container">
 		<div class="row reviews__header">
@@ -292,7 +293,7 @@ get_header();
 
 		<div class="row">
 			<div class="col-sm-12 col-lg-12">
-				<div class="slider">
+				<div class="slider slider--two">
 					<div class="slider__container">
 						<div class="slider__track">
 							<?php
@@ -477,6 +478,118 @@ get_header();
 								}
 							}
 							?>
+						</div>
+					</div>
+					<div class="slider__nav">
+						<button class="slider__prev" type="button">←</button>
+						<button class="slider__next" type="button">→</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section section--social-proof social-proof">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 col-lg-12">
+				<div class="social-proof__header visually-hidden">Отзывы из внешних источников</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12 col-lg-6">
+				<div class="social-proof__intro">
+					<h2>Более <span class="text-accent">25 000</span> улыбок мы подарили нашим клиентам за <span class="text-contrast">20 лет работы</span></h2>
+					<div class="reviews__stats">
+					<div class="reviews__faces">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_01.jpg" alt="Фото пациента 1" class="reviews__face">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_06.jpg" alt="Фото пациента 2" class="reviews__face">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_07.jpg" alt="Фото пациента 3" class="reviews__face">
+					</div>
+					<div class="reviews__rating">
+						<p class="reviews__rating-text">96% процентов пациентов приходят по рекомендации от своих друзей и близких.</p>
+					</div>
+				</div>
+				</div>
+			</div>
+			<div class="col-sm-12 col-lg-6">
+				<div class="slider">
+					<div class="slider__container">
+						<div class="slider__track">
+							<div class="slider__slide slider__slide--active">
+								<div class="row">
+									<div class="col-sm-12 col-lg-6">
+										<article class="proof-card">
+											<header class="proof-card__header">
+												<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_02.jpg" alt="Аватар" class="proof-card__avatar">
+												<div class="proof-card__meta">
+													<h3 class="proof-card__name">Татьяна Палий</h3>
+													<p class="proof-card__level">Знаток города 10 уровня</p>
+												</div>
+											</header>
+											<div class="proof-card__rating">
+												<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Оценка 5 из 5" class="proof-card__stars">
+												<span class="proof-card__date">12 марта</span>
+											</div>
+											<p class="proof-card__text">Хочу выразить огромную благодарность хирургу стоматологу Богдану Владимировичу за профессионализм и доброжелательное отношение. Внимательное отношение к своим пациентам.</p>
+										</article>
+									</div>
+									<div class="col-sm-12 col-lg-6 proof-card--mobile-hide">
+										<article class="proof-card">
+											<header class="proof-card__header">
+												<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_03.jpg" alt="Аватар" class="proof-card__avatar">
+												<div class="proof-card__meta">
+													<h3 class="proof-card__name">Татьяна Палий</h3>
+													<p class="proof-card__level">Знаток города 10 уровня</p>
+												</div>
+											</header>
+											<div class="proof-card__rating">
+												<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Оценка 5 из 5" class="proof-card__stars">
+												<span class="proof-card__date">12 марта</span>
+											</div>
+											<p class="proof-card__text">Выражаю благодарность врачу Богдану Владимировичу за профессионализм и внимательное отношение. Рекомендую клинику.</p>
+										</article>
+									</div>
+								</div>
+							</div>
+							<div class="slider__slide">
+								<div class="row">
+									<div class="col-sm-12 col-lg-6">
+										<article class="proof-card">
+											<header class="proof-card__header">
+												<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_02.jpg" alt="Аватар" class="proof-card__avatar">
+												<div class="proof-card__meta">
+													<h3 class="proof-card__name">Иван Палий</h3>
+													<p class="proof-card__level">Знаток города 10 уровня</p>
+												</div>
+											</header>
+											<div class="proof-card__rating">
+												<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Оценка 5 из 5" class="proof-card__stars">
+												<span class="proof-card__date">12 марта</span>
+											</div>
+											<p class="proof-card__text">Хочу выразить огромную благодарность хирургу стоматологу Богдану Владимировичу за профессионализм и доброжелательное отношение. Внимательное отношение к своим пациентам.</p>
+										</article>
+									</div>
+									<div class="col-sm-12 col-lg-6 proof-card--mobile-hide">
+										<article class="proof-card">
+											<header class="proof-card__header">
+												<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_03.jpg" alt="Аватар" class="proof-card__avatar">
+												<div class="proof-card__meta">
+													<h3 class="proof-card__name">Петр Палий</h3>
+													<p class="proof-card__level">Знаток города 10 уровня</p>
+												</div>
+											</header>
+											<div class="proof-card__rating">
+												<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Оценка 5 из 5" class="proof-card__stars">
+												<span class="proof-card__date">12 марта</span>
+											</div>
+											<p class="proof-card__text">Выражаю благодарность врачу Богдану Владимировичу за профессионализм и внимательное отношение. Рекомендую клинику.</p>
+										</article>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="slider__nav">

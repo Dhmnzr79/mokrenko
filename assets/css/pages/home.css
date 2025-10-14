@@ -1,1 +1,71 @@
+/* Скрыть вторую карту на мобилке внутри слайда */
+@media (max-width: calc(var(--brk-sm) - 0.02px)){
+  .section--social-proof .proof-card--mobile-hide{ display:none; }
+}
+
+/* Мини‑сетку two-up включаем только для social-proof, чтобы было ровно 2 карточки */
+.section--social-proof .slider__slide .row{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: var(--col-gap-mob);
+}
+@media (min-width: var(--brk-lg)){
+  .section--social-proof .slider__slide .row{ gap: var(--col-gap-desk); }
+}
+@media (max-width: calc(var(--brk-sm) - 0.02px)){
+  .section--social-proof .slider__slide .row{ grid-template-columns: 1fr; gap: 12px; }
+}
+
+/* Стрелки поверх правой карточки, в правом нижнем углу — только здесь */
+.section--social-proof .slider{ position: relative; }
+.section--social-proof .slider__nav{
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  margin-top: 0; /* переопределяем глобальный отступ */
+  z-index: 3;
+}
 /* Page-specific styles: home */
+
+.section--social-proof{
+	background: linear-gradient(94.24deg, #84EBDA -5.47%, #B7D8F8 114.07%);
+}
+
+/* Второй акцент в social-proof — белый цвет текста */
+.section--social-proof .text-contrast{ color:#ffffff; }
+/* Первый акцент (25 000) тоже белым в этом блоке */
+.section--social-proof .text-accent{ color:#ffffff; }
+
+/* reviews__stats только внутри social-proof */
+.section--social-proof .reviews__stats{ display:flex; align-items:center; justify-content:flex-start; }
+.section--social-proof .reviews__stats .reviews__rating{ display:flex; flex-direction:column; align-items:flex-start; }
+.section--social-proof .social-proof__intro{ display:flex; flex-direction:column; justify-content:space-between; height:100%; }
+.section--social-proof .reviews__stats .reviews__rating-text{ align-self:flex-start; }
+.section--social-proof .reviews__stats .reviews__faces{ display:flex; align-items:center; gap:8px; }
+.section--social-proof .reviews__stats .reviews__faces .reviews__face:nth-child(2),
+.section--social-proof .reviews__stats .reviews__faces .reviews__face:nth-child(3){
+	outline: 2px solid #B5E9EC;
+	outline-offset: -2px;
+	border-radius: 50%;
+}
+
+
+/* Текст прижат к левому краю, при этом блоки по вертикали по центру */
+
+
+/* Модификация блока статистики отзывов в social-proof */
+
+/* proof-card стили в social-proof */
+.section--social-proof .proof-card{
+	background:#ffffff;
+	padding:25px;
+	border-radius:20px;
+	display:flex; flex-direction:column; height:100%;
+}
+.section--social-proof .proof-card__text{ font-size:15px; }
+
+/* proof-card типографика и аватар */
+.section--social-proof .proof-card__avatar{ width:60px; height:60px; border-radius:50%; object-fit:cover; }
+.section--social-proof .proof-card__name{ font-size:18px; margin:0; }
+.section--social-proof .proof-card__level{ font-size:14px; }
+.section--social-proof .proof-card__date{ font-size:14px; }

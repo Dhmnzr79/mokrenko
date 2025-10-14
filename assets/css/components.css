@@ -41,6 +41,8 @@
     grid-column: auto;
 }
 
+/* удалены спец‑правила для slider--two, верхние слайдеры восстановлены */
+
 @media (max-width: 767.98px){
     .slider__slide .row {
         flex-direction: column;
@@ -1099,11 +1101,9 @@ h2 {
     line-height: 1.4;
 }
 
-.case-panel__checklist-item--problem {
-}
+.case-panel__checklist-item--problem .case-panel__checklist-icon { color:#dc3545; }
 
-.case-panel__checklist-item--solution {
-}
+.case-panel__checklist-item--solution .case-panel__checklist-icon { color:#28a745; }
 
 .case-panel__checklist-icon {
     margin-right: 8px;
