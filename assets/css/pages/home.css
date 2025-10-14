@@ -33,6 +33,7 @@
 
 /* Второй акцент в social-proof — белый цвет текста */
 .section--social-proof .text-contrast{ color:#ffffff; }
+.section--consult .text-contrast{ color:#ffffff; }
 /* Первый акцент (25 000) тоже белым в этом блоке */
 .section--social-proof .text-accent{ color:#ffffff; }
 
@@ -69,3 +70,63 @@
 .section--social-proof .proof-card__name{ font-size:18px; margin:0; }
 .section--social-proof .proof-card__level{ font-size:14px; }
 .section--social-proof .proof-card__date{ font-size:14px; }
+
+/* ----- Consult section (аналог hero, независимые классы) ----- */
+.section--consult .consult__box{
+  border-radius: 16px;
+  padding: 50px;
+  background: linear-gradient(94.24deg, #84EBDA -5.47%, #B7D8F8 114.07%);
+}
+.section--consult .consult__box--with-doctor{ position: relative; }
+.section--consult .consult__bg{
+  position: absolute;
+  right: 30%;
+  bottom: 0;
+  width: 430px;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+}
+.section--consult .consult__box--with-doctor::before{
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -60%);
+  width: 100px;
+  height: 90px;
+  background-image: url('../../svg/arrow_black.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.section--consult .consult__layout{ display:flex; flex-direction: column; align-items:stretch; }
+.section--consult .consult__row{ }
+.section--consult .consult__row--cards{ display:flex; justify-content:space-between; align-items:flex-end; gap:30px; }
+.section--consult .consult__card{ max-width:380px; }
+.section--consult .consult__card--right{ background:#fff; padding:40px 25px 25px; border-radius:20px; position:relative; }
+.section--consult .consult__badge{ display:inline-block; background:#20B2AA; color:#fff; border-radius:28px; padding:10px 18px; }
+/* Вынести бэйдж на ~50% над карточкой */
+.section--consult .consult__card--right .consult__badge{
+  position:absolute; left:25px; top:0; transform: translateY(-50%);
+  z-index:2;
+}
+.section--consult .consult__bullets{ margin:0; padding-left:0; list-style:none; }
+.section--consult .consult__bullets li{ position:relative; padding-left:20px; margin-bottom:16px; font-size:16px; }
+.section--consult .consult__bullets li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0.65em;
+  width:8px; height:8px;
+  border-radius:50%;
+  background: var(--color-accent, #20B2AA);
+}
+.section--consult .consult__card-title{ margin:0 0 25px 0; }
+.section--consult .consult__item{ display:flex; align-items:flex-start; gap:12px; margin-bottom:25px; }
+.section--consult .consult__item-icon img{ width:24px; height:24px; }
+.section--consult .consult__title{ margin:0 0 8px 0; }
+.section--consult .consult__subtitle{ margin:0; max-width:760px; }
+.section--consult .consult__row--cta{ margin-top:40px; }
+.section--consult .consult__cta-btn{ }
+.section--consult .consult__list{ margin:0; padding-left:0; }
