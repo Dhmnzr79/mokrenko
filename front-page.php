@@ -1,6 +1,43 @@
 <?php
 get_header();
 ?>
+<section class="section section--hero-mobile hero-mobile">
+	<div class="container">
+		<div class="hero-mobile__box">
+			<h1>Стоматология Елены Мокренко</h1>
+			<img src="<?php echo get_template_directory_uri(); ?>/assets/images/mokrenko_first_mobile.png" alt="Доктор Мокренко" class="hero-mobile__image">
+		</div>
+
+		<div class="hero__rating">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_main.svg" alt="Рейтинг" class="hero__rating-icon">
+						<p class="hero__rating-text">Наш рейтинг на независимых порталах</p>
+					</div>
+		<div class="hero-mobile__features">
+			<div class="hero-mobile__feature-item">
+				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="Галочка" class="hero-mobile__feature-icon">
+				<p>Гарантия полной безболезненности</p>
+			</div>
+			<div class="hero-mobile__feature-item">
+				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="Галочка" class="hero-mobile__feature-icon">
+				<p>Честные цены без накруток и скрытых платежей</p>
+			</div>
+			<div class="hero-mobile__feature-item">
+				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="Галочка" class="hero-mobile__feature-icon">
+				<p>Высококлассные врачи с опытом более 10 лет</p>
+			</div>
+
+		</div>
+		<div class="hero__cta">
+						<h3>Запишитесь на осмотр и получите</h3>
+						<p>Полное обследование рта, а также полной анализ вашего организма по нашей методике</p>
+						<button class="btn hero__cta-btn">
+								Записаться на консультацию
+								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка" class="hero__cta-arrow">
+							</button>
+					</div>
+	</div>
+</section>
+
 <section class="section section--hero hero">
 	<div class="container">
 		<div class="hero__box bg-gradient-brand hero__box--with-doctor">
@@ -88,23 +125,26 @@ get_header();
 					</div>
 				</div>
 			</div>
-		</div>
-		
+	</div>
+	
+	<?php
+	$reviews = get_posts([
+		'post_type' => 'reviews',
+		'posts_per_page' => 3,
+		'post_status' => 'publish',
+		'meta_query' => [
+			[
+				'key' => '_reviews_show_on_home',
+				'value' => '1',
+				'compare' => '='
+			]
+		]
+	]);
+	?>
+	
+	<div class="reviews__desktop">
 		<div class="row">
 			<?php
-			$reviews = get_posts([
-				'post_type' => 'reviews',
-				'posts_per_page' => 3,
-				'post_status' => 'publish',
-				'meta_query' => [
-					[
-						'key' => '_reviews_show_on_home',
-						'value' => '1',
-						'compare' => '='
-					]
-				]
-			]);
-			
 			if (empty($reviews)) {
 				echo '<div class="col-sm-12 col-lg-12">';
 				echo '<p>Нет отзывов для отображения. Отметьте отзывы для показа на главной в админке.</p>';
@@ -131,6 +171,48 @@ get_header();
 			}
 			?>
 		</div>
+	</div>
+	
+	<div class="reviews__mobile slider">
+		<div class="row slider__track">
+			<?php
+			if (empty($reviews)) {
+				echo '<div class="col-sm-12 col-lg-12">';
+				echo '<p>Нет отзывов для отображения. Отметьте отзывы для показа на главной в админке.</p>';
+				echo '</div>';
+			} else {
+				foreach ($reviews as $review) {
+					$fio = get_post_meta($review->ID, '_reviews_fio', true);
+					$video_url = get_post_meta($review->ID, '_reviews_video_url', true);
+					$thumbnail_id = get_post_thumbnail_id($review->ID);
+					$thumbnail_url = $thumbnail_id ? wp_get_attachment_image_url($thumbnail_id, 'large') : '';
+					?>
+					<div class="col-sm-12 col-lg-4 slider__slide">
+						<div class="review-card" <?php if ($thumbnail_url): ?>style="background-image: url('<?php echo esc_url($thumbnail_url); ?>');"<?php endif; ?>>
+							<h3 class="review-card__name"><?php echo esc_html($fio); ?></h3>
+							<?php if ($video_url): ?>
+							<a href="<?php echo esc_url($video_url); ?>" class="review-card__play" data-lightbox="video">
+								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/play.svg" alt="Play" class="review-card__play-icon">
+							</a>
+							<?php endif; ?>
+						</div>
+					</div>
+					<?php
+				}
+			}
+			?>
+		</div>
+		<button class="slider__prev" aria-label="Предыдущий отзыв">
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+			</svg>
+		</button>
+		<button class="slider__next" aria-label="Следующий отзыв">
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+			</svg>
+		</button>
+	</div>
 	</div>
 </section>
 
@@ -313,20 +395,13 @@ get_header();
 							]);
 							
 							if (empty($doctors)) {
-								echo '<div class="slider__slide slider__slide--active">';
+								echo '<div class="col-sm-12 col-lg-4 slider__slide slider__slide--active">';
 								echo '<p>Нет врачей для отображения. Отметьте врачей для показа на главной в админке.</p>';
 								echo '</div>';
 							} else {
-								$chunks = array_chunk($doctors, 3);
-								foreach ($chunks as $index => $chunk) {
-									echo '<div class="slider__slide' . ($index === 0 ? ' slider__slide--active' : '') . '">';
-									echo '<div class="row">';
-									foreach ($chunk as $doctor) {
-										echo '<div class="col-sm-12 col-lg-4">';
-										get_template_part('template-parts/doctor/card-slider', null, ['doctor_id' => $doctor->ID]);
-										echo '</div>';
-									}
-									echo '</div>';
+								foreach ($doctors as $index => $doctor) {
+									echo '<div class="col-sm-12 col-lg-4 slider__slide' . ($index === 0 ? ' slider__slide--active' : '') . '">';
+									get_template_part('template-parts/doctor/card-slider', null, ['doctor_id' => $doctor->ID]);
 									echo '</div>';
 								}
 							}

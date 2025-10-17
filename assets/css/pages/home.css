@@ -82,10 +82,11 @@
   position: absolute;
   right: 30%;
   bottom: 0;
-  width: 430px;
+  width: 80%;
   height: auto;
   object-fit: contain;
   pointer-events: none;
+  max-width: 430px;
 }
 .section--consult .consult__box--with-doctor::before{
   content: "";
@@ -144,10 +145,11 @@
   position: absolute;
   left: 10%;
   bottom: 0;
-  width: 400px;
+  width: 80%;
   height: auto;
   object-fit: contain;
   pointer-events: none;
+  max-width: 400px;
 }
 
 .section--contacts .contacts__content{
@@ -197,4 +199,11 @@
 
 .section--contacts .contacts__cta-btn{
   align-self: flex-start;
+}
+
+/* ----- Mobile styles ----- */
+@media (max-width: 767.98px){
+  .section--consult .consult__row--cards{
+    flex-direction: column;
+  }
 }

@@ -500,6 +500,69 @@
   position: relative;
 }
 
+/* ----- Mobile/Desktop Header Toggle ----- */
+.site-header--mobile{
+  display: none;
+}
+
+@media (max-width: 767.98px){
+  /* Скрыть десктопную шапку на мобилках */
+  .site-header:not(.site-header--mobile){
+    display: none;
+  }
+  
+  /* Показать мобильную шапку на мобилках */
+  .site-header--mobile{
+    display: block;
+  }
+  
+  /* Скрыть десктопный первый экран на мобилках */
+  .section--hero{
+    display: none;
+  }
+  
+  .header__row--mobile{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header__mobile-logo{
+    flex-shrink: 0;
+  }
+  
+  .header__mobile-logo .header__logo-img{
+    height: 44px;
+    width: auto;
+  }
+  
+  .header__mobile-actions{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: flex-end;
+  }
+  
+  .header__mobile-phone,
+  .header__mobile-menu{
+    appearance: none;
+    border: 0;
+    background: #f3f4f6;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .header__mobile-icon{
+    width: 20px;
+    height: 20px;
+  }
+}
+
 /* ----- Footer styles ----- */
 .site-footer{
   background: #E0ECEF;
@@ -1160,6 +1223,228 @@ h2 {
 .reviews__rating-text {
     font-size: 16px;
     margin: 0;
+}
+
+.hero-mobile {
+    display: block;
+    background-color: var(--color-bg);
+}
+
+.hero-mobile__box {
+    background: linear-gradient(99.05deg, #3AD5BC 2.79%, #B7D8F8 99.53%), #CEEBE6;
+    border-radius: 20px;
+    padding: 20px 20px 50px 20px;
+    position: relative;
+}
+
+.hero-mobile__image {
+    position: absolute;
+    right: 20px;
+    bottom: 0;
+    max-width: 38%;
+}
+
+.hero-mobile h1 {
+    font-size: clamp(26px, 4vw, 44px);
+    line-height: 1.2;
+    padding-right: 30%;
+}
+
+.hero {
+    display: none;
+}
+
+.reviews__desktop {
+    display: block;
+}
+
+.reviews__mobile {
+    display: none;
+    position: relative;
+    overflow: hidden;
+}
+
+
+.reviews__mobile .slider__track {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--col-gap-mob);
+    transition: none;
+}
+
+.reviews__mobile .slider__slide {
+    grid-column: span 12;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.reviews__mobile .slider__slide:first-child {
+    opacity: 1;
+    visibility: visible;
+}
+
+.reviews__mobile .slider__slide--active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.reviews__mobile .slider__prev,
+.reviews__mobile .slider__next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: white;
+    color: #111;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+.reviews__mobile .slider__prev {
+    left: 0;
+}
+
+.reviews__mobile .slider__next {
+    right: 0;
+}
+
+.reviews__mobile .slider__prev:disabled,
+.reviews__mobile .slider__next:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+@media (min-width: 1280px) {
+    .hero-mobile {
+        display: none;
+    }
+    
+    .hero {
+        display: block;
+    }
+}
+
+@media (max-width: 1279px) {
+    .reviews__desktop {
+        display: none;
+    }
+    
+    .reviews__mobile {
+        display: block;
+    }
+    
+    .hero__rating {
+        gap: 0px;
+        flex-direction: column;
+        align-items: start;
+        margin-top: -30px;
+        position: relative;
+        z-index: 5;
+    }
+    
+    .hero__rating img {
+        width: 120px;
+        margin-left: 30px;
+    }
+    
+    .hero-mobile__feature-item {
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero__cta {
+        height: 360px;
+        padding: 100px 15px 15px;
+        margin-top: -30px;
+    }
+    
+    .hero-mobile__features {
+        margin-top: 20px;
+    }
+    
+    .section--hero-mobile.hero-mobile {
+        padding-bottom: 0;
+    }
+    
+    .btn {
+        padding: 15px;
+    }
+    
+    .reviews__stats {
+        flex-direction: column;
+    }
+    
+    .reviews__face {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .chief-doctor__title {
+        font-size: 26px;
+    }
+    
+    .chief-doctor__name {
+        font-size: 36px;
+    }
+    
+    .chief-doctor__description {
+        font-size: 18px;
+    }
+    
+    .chief-doctor__photo {
+        padding: 20px;
+    }
+    
+    .chief-doctor__experience-text {
+        font-size: 18px;
+    }
+    
+    .chief-doctor__icon img {
+        width: 80px;
+    }
+    
+    .chief-doctor__experience img {
+        width: 120px;
+        margin-top: 20px;
+    }
+    
+    .service-card {
+        padding: 20px;
+    }
+    
+    .service-links {
+        margin-top: 10px;
+    }
+    
+    .service-link {
+        padding: 6px 15px;
+    }
+    
+    .achievement-item p {
+        margin-top: 10px;
+    }
+    
+    .service-card--header {
+        padding: 0;
+    }
+    
+    .service-card--bg {
+        min-height: 500px;
+    }
+    
+    .doctors__stats {
+        flex-direction: column;
+        align-items: start;
+        margin-bottom: 20px;
+    }
+    
 }
 
 .doctors__stats {
