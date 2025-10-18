@@ -592,80 +592,72 @@ get_header();
 				</div>
 			</div>
 			<div class="col-sm-12 col-lg-6">
-				<div class="slider">
+				<div class="slider slider--social">
 					<div class="slider__container">
 						<div class="slider__track">
 							<div class="slider__slide slider__slide--active">
-								<div class="row">
-									<div class="col-sm-12 col-lg-6">
-										<article class="proof-card">
-											<header class="proof-card__header">
-												<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_02.jpg" alt="Аватар" class="proof-card__avatar">
-												<div class="proof-card__meta">
-													<h3 class="proof-card__name">Татьяна Палий</h3>
-													<p class="proof-card__level">Знаток города 10 уровня</p>
-												</div>
-											</header>
-											<div class="proof-card__rating">
-												<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Оценка 5 из 5" class="proof-card__stars">
-												<span class="proof-card__date">12 марта</span>
-											</div>
-											<p class="proof-card__text">Хочу выразить огромную благодарность хирургу стоматологу Богдану Владимировичу за профессионализм и доброжелательное отношение. Внимательное отношение к своим пациентам.</p>
-										</article>
+								<article class="proof-card">
+									<header class="proof-card__header">
+										<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_02.jpg" alt="Аватар" class="proof-card__avatar">
+										<div class="proof-card__meta">
+											<h3 class="proof-card__name">Татьяна Палий</h3>
+											<p class="proof-card__level">Знаток города 10 уровня</p>
+										</div>
+									</header>
+									<div class="proof-card__rating">
+										<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Оценка 5 из 5" class="proof-card__stars">
+										<span class="proof-card__date">12 марта</span>
 									</div>
-									<div class="col-sm-12 col-lg-6 proof-card--mobile-hide">
-										<article class="proof-card">
-											<header class="proof-card__header">
-												<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_03.jpg" alt="Аватар" class="proof-card__avatar">
-												<div class="proof-card__meta">
-													<h3 class="proof-card__name">Татьяна Палий</h3>
-													<p class="proof-card__level">Знаток города 10 уровня</p>
-												</div>
-											</header>
-											<div class="proof-card__rating">
-												<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Оценка 5 из 5" class="proof-card__stars">
-												<span class="proof-card__date">12 марта</span>
-											</div>
-											<p class="proof-card__text">Выражаю благодарность врачу Богдану Владимировичу за профессионализм и внимательное отношение. Рекомендую клинику.</p>
-										</article>
-									</div>
-								</div>
+									<p class="proof-card__text">Хочу выразить огромную благодарность хирургу стоматологу Богдану Владимировичу за профессионализм и доброжелательное отношение. Внимательное отношение к своим пациентам.</p>
+								</article>
 							</div>
 							<div class="slider__slide">
-								<div class="row">
-									<div class="col-sm-12 col-lg-6">
-										<article class="proof-card">
-											<header class="proof-card__header">
-												<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_02.jpg" alt="Аватар" class="proof-card__avatar">
-												<div class="proof-card__meta">
-													<h3 class="proof-card__name">Иван Палий</h3>
-													<p class="proof-card__level">Знаток города 10 уровня</p>
-												</div>
-											</header>
-											<div class="proof-card__rating">
-												<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Оценка 5 из 5" class="proof-card__stars">
-												<span class="proof-card__date">12 марта</span>
-											</div>
-											<p class="proof-card__text">Хочу выразить огромную благодарность хирургу стоматологу Богдану Владимировичу за профессионализм и доброжелательное отношение. Внимательное отношение к своим пациентам.</p>
-										</article>
+								<article class="proof-card">
+									<header class="proof-card__header">
+										<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_03.jpg" alt="Аватар" class="proof-card__avatar">
+										<div class="proof-card__meta">
+											<h3 class="proof-card__name">Мария Петрова</h3>
+											<p class="proof-card__level">Знаток города 10 уровня</p>
+										</div>
+									</header>
+									<div class="proof-card__rating">
+										<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Оценка 5 из 5" class="proof-card__stars">
+										<span class="proof-card__date">12 марта</span>
 									</div>
-									<div class="col-sm-12 col-lg-6 proof-card--mobile-hide">
-										<article class="proof-card">
-											<header class="proof-card__header">
-												<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_03.jpg" alt="Аватар" class="proof-card__avatar">
-												<div class="proof-card__meta">
-													<h3 class="proof-card__name">Петр Палий</h3>
-													<p class="proof-card__level">Знаток города 10 уровня</p>
-												</div>
-											</header>
-											<div class="proof-card__rating">
-												<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Оценка 5 из 5" class="proof-card__stars">
-												<span class="proof-card__date">12 марта</span>
-											</div>
-											<p class="proof-card__text">Выражаю благодарность врачу Богдану Владимировичу за профессионализм и внимательное отношение. Рекомендую клинику.</p>
-										</article>
+									<p class="proof-card__text">Выражаю благодарность врачу Богдану Владимировичу за профессионализм и внимательное отношение. Рекомендую клинику.</p>
+								</article>
+							</div>
+							<div class="slider__slide">
+								<article class="proof-card">
+									<header class="proof-card__header">
+										<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_02.jpg" alt="Аватар" class="proof-card__avatar">
+										<div class="proof-card__meta">
+											<h3 class="proof-card__name">Иван Палий</h3>
+											<p class="proof-card__level">Знаток города 10 уровня</p>
+										</div>
+									</header>
+									<div class="proof-card__rating">
+										<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Оценка 5 из 5" class="proof-card__stars">
+										<span class="proof-card__date">12 марта</span>
 									</div>
-								</div>
+									<p class="proof-card__text">Хочу выразить огромную благодарность хирургу стоматологу Богдану Владимировичу за профессионализм и доброжелательное отношение. Внимательное отношение к своим пациентам.</p>
+								</article>
+							</div>
+							<div class="slider__slide">
+								<article class="proof-card">
+									<header class="proof-card__header">
+										<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_03.jpg" alt="Аватар" class="proof-card__avatar">
+										<div class="proof-card__meta">
+											<h3 class="proof-card__name">Петр Сидоров</h3>
+											<p class="proof-card__level">Знаток города 10 уровня</p>
+										</div>
+									</header>
+									<div class="proof-card__rating">
+										<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Оценка 5 из 5" class="proof-card__stars">
+										<span class="proof-card__date">12 марта</span>
+									</div>
+									<p class="proof-card__text">Выражаю благодарность врачу Богдану Владимировичу за профессионализм и внимательное отношение. Рекомендую клинику.</p>
+								</article>
 							</div>
 						</div>
 					</div>
