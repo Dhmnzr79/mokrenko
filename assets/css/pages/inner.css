@@ -293,6 +293,72 @@
     align-items: center;
 }
 
+/* Prices Section */
+.section--prices {
+    padding-block: 40px;
+}
+
+.prices__category {
+    margin-bottom: 40px;
+}
+
+.prices__category-title {
+    font-size: 20px;
+    font-weight: 400;
+    padding: 15px 20px;
+    margin: 0 0 20px 0;
+    background: linear-gradient(94.24deg, #84EBDA -5.47%, #B7D8F8 114.07%);
+    border-radius: 12px;
+}
+
+.prices__list {
+    display: flex;
+    flex-direction: column;
+}
+
+.prices__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.prices__item--last {
+    border-bottom: none;
+}
+
+.prices__service {
+    flex: 1;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.prices__price {
+    font-size: 16px;
+    white-space: nowrap;
+    margin-left: 20px;
+}
+
+.prices__price--discount {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+.prices__price-old {
+    font-size: 14px;
+    text-decoration: line-through;
+    color: #999;
+}
+
+.prices__price-new {
+        font-size: 16px;
+        color: var(--color-accent);
+        font-weight: 500;
+}
+
 
 /* ========================================
    MEDIA QUERIES
