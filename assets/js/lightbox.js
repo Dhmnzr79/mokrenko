@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const galleryItems = document.querySelectorAll('[data-lightbox="gallery"]');
+  const allLightboxItems = document.querySelectorAll('[data-lightbox]');
   const videoItems = document.querySelectorAll('[data-lightbox="video"]');
   
-  if (galleryItems.length === 0 && videoItems.length === 0) return;
+  if (allLightboxItems.length === 0) return;
   
   const lightbox = document.createElement('div');
   lightbox.className = 'lightbox';
@@ -24,10 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const nextBtn = lightbox.querySelector('.lightbox__next');
   
   let currentIndex = 0;
-  const images = Array.from(galleryItems).map(item => ({
-    src: item.href,
-    alt: item.querySelector('img').alt
-  }));
+  let currentGallery = [];
   
   function getYouTubeEmbedUrl(url) {
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
@@ -35,12 +32,15 @@ document.addEventListener('DOMContentLoaded', function() {
     return (match && match[2].length === 11) ? `https://www.youtube.com/embed/${match[2]}?autoplay=1` : null;
   }
   
-  function openLightbox(index) {
+  function openLightbox(index, galleryGroup) {
     currentIndex = index;
-    lightboxImage.src = images[index].src;
-    lightboxImage.alt = images[index].alt;
+    currentGallery = galleryGroup;
+    lightboxImage.src = currentGallery[index].src;
+    lightboxImage.alt = currentGallery[index].alt;
     lightboxImage.style.display = 'block';
     lightboxVideo.style.display = 'none';
+    prevBtn.style.display = 'block';
+    nextBtn.style.display = 'block';
     lightbox.classList.add('lightbox--active');
     document.body.style.overflow = 'hidden';
   }
@@ -67,21 +67,42 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   function showPrev() {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    lightboxImage.src = images[currentIndex].src;
-    lightboxImage.alt = images[currentIndex].alt;
+    currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+    lightboxImage.src = currentGallery[currentIndex].src;
+    lightboxImage.alt = currentGallery[currentIndex].alt;
   }
   
   function showNext() {
-    currentIndex = (currentIndex + 1) % images.length;
-    lightboxImage.src = images[currentIndex].src;
-    lightboxImage.alt = images[currentIndex].alt;
+    currentIndex = (currentIndex + 1) % currentGallery.length;
+    lightboxImage.src = currentGallery[currentIndex].src;
+    lightboxImage.alt = currentGallery[currentIndex].alt;
   }
   
-  galleryItems.forEach((item, index) => {
-    item.addEventListener('click', function(e) {
-      e.preventDefault();
-      openLightbox(index);
+  // Группируем элементы по значению data-lightbox
+  const galleries = {};
+  allLightboxItems.forEach(item => {
+    const galleryName = item.dataset.lightbox;
+    if (galleryName === 'video') return; // Пропускаем видео
+    
+    if (!galleries[galleryName]) {
+      galleries[galleryName] = [];
+    }
+    galleries[galleryName].push(item);
+  });
+  
+  // Добавляем обработчики для каждой галереи
+  Object.keys(galleries).forEach(galleryName => {
+    const items = galleries[galleryName];
+    const galleryImages = items.map(item => ({
+      src: item.href,
+      alt: item.querySelector('img').alt
+    }));
+    
+    items.forEach((item, index) => {
+      item.addEventListener('click', function(e) {
+        e.preventDefault();
+        openLightbox(index, galleryImages);
+      });
     });
   });
   

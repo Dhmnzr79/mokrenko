@@ -1280,7 +1280,7 @@
 }
 
 .achievement-item p {
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .chief-doctor__photo {
@@ -1520,12 +1520,12 @@ h2 {
 }
 
 .doctor-card-slider__photo {
-    width: 65%;
+    width: 55%;
     position: absolute;
     right: -20px;
-    bottom: -30px;
     pointer-events: none;
     max-height: 390px;
+    top: 50px;
 }
 
 .doctor-card-slider__img {

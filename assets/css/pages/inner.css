@@ -1,0 +1,356 @@
+/* Page-intro: desktop */
+
+.page-intro__box {
+    border-radius: 16px;
+    padding: 16px;
+    position: relative;
+    background-image: url('../../images/mokrenko_first.png'), linear-gradient(94.24deg, #84EBDA -5.47%, #B7D8F8 114.07%);
+    background-repeat: no-repeat, no-repeat;
+    background-position: 70% bottom, 0 0;
+    background-size: 370px, cover;
+}
+
+.section--page-intro {
+    padding: 0;
+}
+
+.page-intro__layout {
+    display: flex;
+    align-items: stretch;
+    gap: 30px;
+    padding: 40px;
+}
+
+.page-intro__content {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.page-intro__content h1 {
+    margin: 0;
+    font-size: 54px;
+    padding-right: 110px;
+}
+
+.page-intro__benefits {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.page-intro__benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    flex-direction: column;
+    flex: 1;
+}
+
+.page-intro__benefit-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.page-intro__cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    margin-top: 60px;
+}
+
+.page-intro__info {
+    background: #ffffff4a;
+    border-radius: 15px;
+    padding: 20px;
+    border-left: 1px solid white;
+    border-top: 1px solid white;
+    backdrop-filter: blur(4.5px);
+    margin-left: auto;
+    align-self: flex-end;
+    max-width: 350px;
+}
+
+.page-intro__info h4 {
+    margin: 0 0 8px 0;
+}
+
+.page-intro__info p {
+    margin: 0;
+    font-size: 16px;
+}
+
+/* Page-intro: mobile */
+
+.page-intro-mobile {
+    display: none;
+    background-color: var(--color-bg);
+}
+
+.page-intro-mobile__box {
+    background: linear-gradient(99.05deg, #3AD5BC 2.79%, #B7D8F8 99.53%), #CEEBE6;
+    border-radius: 20px;
+    padding: 20px 20px 50px 20px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.page-intro-mobile__image {
+    position: absolute;
+    right: 20px;
+    bottom: 0;
+    max-width: 38%;
+}
+
+.page-intro-mobile h1 {
+    font-size: 54px;
+    line-height: 1.2;
+    padding-right: 30%;
+    margin: 0;
+}
+
+.page-intro-mobile__benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-bottom: 20px;
+}
+
+.page-intro-mobile__benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.page-intro-mobile__benefit-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.page-intro-mobile__benefit-item p {
+    margin: 0;
+    font-size: 15px;
+}
+
+.page-intro-mobile__cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.page-intro-mobile__info {
+    background: linear-gradient(99.05deg, #3AD5BC 2.79%, #B7D8F8 99.53%), #CEEBE6;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.page-intro-mobile__info h4 {
+    margin: 0 0 8px 0;
+}
+
+.page-intro-mobile__info p {
+    margin: 0;
+    font-size: 15px;
+}
+
+@media (max-width: calc(var(--brk-lg) - 0.02px)) {
+    .page-intro {
+        display: none;
+    }
+}
+
+@media (min-width: var(--brk-lg)) {
+    .page-intro-mobile {
+        display: none;
+    }
+}
+
+/* Breadcrumbs */
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 0;
+}
+
+.section--breadcrumbs {
+    padding-block: 20px;
+}
+
+.breadcrumbs__link {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.breadcrumbs__separator {
+    color: #999;
+    font-size: 14px;
+}
+
+.breadcrumbs__current {
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* History section */
+
+.section--history {
+    padding-block: 20px;
+}
+
+.section--history .row:nth-child(2),
+.section--history .row:nth-child(3),
+.section--history .row:nth-child(4) {
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.history__content {
+    padding-top: 12px;
+}
+
+.history__year {
+    background: linear-gradient(94.24deg, #84EBDA -5.47%, #B7D8F8 114.07%);
+    border-radius: 50px;
+    padding: 10px 25px;
+    font-size: 20px;
+    font-weight: 400;
+    color: #333;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Video section */
+
+.section--video {
+    padding: 0;
+}
+
+.video__container {
+    width: 100%;
+    height: 620px;
+    background-image: url('../../images/video-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video__play-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.video__play-icon {
+    width: 128px;
+    height: 128px;
+}
+
+/* Certificates Section */
+
+.certificates__gallery {
+    display: flex;
+    gap: 20px;
+}
+
+.certificates__image {
+    flex: 1;
+    border-radius: 12px;
+    overflow: hidden;
+    display: block;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.certificates__image:hover {
+    transform: scale(1.05);
+}
+
+.certificates__image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.certificates__content {
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+}
+
+
+/* ========================================
+   MEDIA QUERIES
+   ======================================== */
+
+/* Mobile: до 768px */
+@media (max-width: 767px) {
+    /* Скрываем десктопную версию первого экрана */
+    .section--page-intro {
+        display: none;
+    }
+    
+    /* Показываем мобильную версию первого экрана */
+    .section--page-intro-mobile {
+        display: block;
+    }
+    
+    /* Page intro mobile */
+    .page-intro-mobile h1 {
+        font-size: 24px;
+    }
+    
+    .page-intro-mobile__box {
+        padding: 30px 20px;
+    }
+    
+    /* Button */
+    .btn {
+        width: 100%;
+    }
+    
+    /* Video */
+    .video__container {
+        height: 240px;
+    }
+    
+    .video__play-icon {
+        width: 68px;
+        height: 68px;
+    }
+    
+    /* History year */
+    .history__year {
+        font-size: 16px;
+    }
+}
+
+/* Desktop: от 768px */
+@media (min-width: 768px) {
+    /* Показываем десктопную версию первого экрана */
+    .section--page-intro {
+        display: block;
+    }
+    
+    /* Скрываем мобильную версию первого экрана */
+    .section--page-intro-mobile {
+        display: none;
+    }
+}
+
+
