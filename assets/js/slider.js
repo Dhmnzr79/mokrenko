@@ -73,25 +73,45 @@ document.addEventListener('DOMContentLoaded', function() {
         let startX = 0;
         let startY = 0;
         let isDragging = false;
+        let moveX = 0;
+        let moveY = 0;
         
         track.addEventListener('touchstart', function(e) {
             startX = e.touches[0].clientX;
             startY = e.touches[0].clientY;
-            isDragging = true;
-        });
+            moveX = startX;
+            moveY = startY;
+            isDragging = false; // Пока не определили направление
+        }, {passive: true});
         
         track.addEventListener('touchmove', function(e) {
-            if (!isDragging) return;
-            e.preventDefault();
+            moveX = e.touches[0].clientX;
+            moveY = e.touches[0].clientY;
+            
+            const diffX = Math.abs(moveX - startX);
+            const diffY = Math.abs(moveY - startY);
+            
+            // Определяем направление только после небольшого движения
+            if (!isDragging && (diffX > 10 || diffY > 10)) {
+                // Если движение больше горизонтальное - это наш свайп
+                if (diffX > diffY) {
+                    isDragging = true;
+                    e.preventDefault();
+                }
+                // Иначе это вертикальный скролл - не трогаем
+            }
+            
+            // Если уже определили что это горизонтальный свайп
+            if (isDragging) {
+                e.preventDefault();
+            }
         });
         
         track.addEventListener('touchend', function(e) {
             if (!isDragging) return;
             
-            const endX = e.changedTouches[0].clientX;
-            const endY = e.changedTouches[0].clientY;
-            const diffX = startX - endX;
-            const diffY = startY - endY;
+            const diffX = startX - moveX;
+            const diffY = startY - moveY;
             
             // Only trigger if horizontal swipe is greater than vertical
             if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
@@ -107,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             isDragging = false;
-        });
+        }, {passive: true});
         
         // Пересчитываем при изменении размера окна (для карусели)
         if (isCarousel) {

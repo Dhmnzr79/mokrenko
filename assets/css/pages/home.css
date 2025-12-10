@@ -1,30 +1,3 @@
-/* Скрыть вторую карту на мобилке внутри слайда */
-@media (max-width: calc(var(--brk-sm) - 0.02px)){
-  .section--social-proof .proof-card--mobile-hide{ display:none; }
-}
-
-/* Мини‑сетку two-up включаем только для social-proof, чтобы было ровно 2 карточки */
-.section--social-proof .slider__slide .row{
-  display:grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  gap: var(--col-gap-mob);
-}
-@media (min-width: var(--brk-lg)){
-  .section--social-proof .slider__slide .row{ gap: var(--col-gap-desk); }
-}
-@media (max-width: calc(var(--brk-sm) - 0.02px)){
-  .section--social-proof .slider__slide .row{ grid-template-columns: 1fr; gap: 12px; }
-}
-
-/* Стрелки поверх правой карточки, в правом нижнем углу — только здесь */
-.section--social-proof .slider{ position: relative; }
-.section--social-proof .slider__nav{
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-  margin-top: 0; /* переопределяем глобальный отступ */
-  z-index: 3;
-}
 /* Page-specific styles: home */
 
 .section--social-proof{
@@ -37,12 +10,22 @@
 /* Первый акцент (25 000) тоже белым в этом блоке */
 .section--social-proof .text-accent{ color:#ffffff; }
 
+/* Стрелки поверх правой карточки, в правом нижнем углу — только здесь */
+.section--social-proof .slider{ position: relative; }
+.section--social-proof .slider__nav{
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  margin-top: 0; /* переопределяем глобальный отступ */
+  z-index: 3;
+}
 
-
-/* Текст прижат к левому краю, при этом блоки по вертикали по центру */
-
-
-/* Модификация блока статистики отзывов в social-proof */
+/* Мини‑сетку two-up включаем только для social-proof, чтобы было ровно 2 карточки */
+.section--social-proof .slider__slide .row{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: var(--col-gap-mob);
+}
 
 /* proof-card стили в social-proof */
 .section--social-proof .proof-card{
@@ -59,11 +42,14 @@
 .section--social-proof .proof-card__level{ font-size:14px; }
 .section--social-proof .proof-card__date{ font-size:14px; }
 
-
-
-/* ----- Mobile styles ----- */
-@media (max-width: 767.98px){
+@media (max-width: calc(var(--brk-sm) - 0.02px)){
+  .section--social-proof .proof-card--mobile-hide{ display:none; }
+  .section--social-proof .slider__slide .row{ grid-template-columns: 1fr; gap: 12px; }
   .section--consult .consult__row--cards{
     flex-direction: column;
   }
+}
+
+@media (min-width: var(--brk-lg)){
+  .section--social-proof .slider__slide .row{ gap: var(--col-gap-desk); }
 }

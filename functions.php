@@ -178,11 +178,42 @@ add_action('wp_enqueue_scripts', function(){
 		wp_enqueue_style('page-home', $uri.'pages/home.css', ['theme-utilities'], $ver);
 	}
 	
-	if (is_page(['about', 'reviews', 'contacts', 'team', 'prices', 'o-klinike', 'otzyvy', 'kontakty', 'komanda', 'tseny'])) {
+	if (is_page(['about', 'reviews', 'contacts', 'team', 'prices', 'doctors', 'o-klinike', 'otzyvy', 'kontakty', 'komanda', 'tseny', 'vrachi'])) {
 		wp_enqueue_style('page-inner', $uri.'pages/inner.css', ['theme-utilities'], $ver);
 		wp_enqueue_style('page-home', $uri.'pages/home.css', ['theme-utilities'], $ver);
 		wp_enqueue_script('theme-lightbox', get_stylesheet_directory_uri() . '/assets/js/lightbox.js', [], $ver, true);
 		wp_enqueue_script('theme-slider', get_stylesheet_directory_uri() . '/assets/js/slider.js', [], $ver, true);
+	}
+	
+	// Яндекс карта для страницы контактов
+	if (is_page_template('page-contacts.php')) {
+		wp_enqueue_script('yandex-map', 'https://api-maps.yandex.ru/2.1/?apikey=YOUR_API_KEY&lang=ru_RU', [], null, true);
+		wp_add_inline_script('yandex-map', '
+			ymaps.ready(function () {
+				var myMap = new ymaps.Map("yandex-map", {
+					center: [55.7934, 37.6331],
+					zoom: 16,
+					controls: []
+				});
+				
+				myMap.behaviors.disable("scrollZoom");
+				
+				var myPlacemark = new ymaps.Placemark([55.7934, 37.6331], {
+					balloonContent: "Москва, проспект Мира, д. 57, корп. 2"
+				}, {
+					preset: "islands#redDotIcon"
+				});
+				
+				myMap.geoObjects.add(myPlacemark);
+				
+				var mapContainer = document.getElementById("yandex-map");
+				mapContainer.addEventListener("wheel", function(e) {
+					if (!e.ctrlKey) {
+						e.preventDefault();
+					}
+				}, { passive: false });
+			});
+		', 'after');
 	}
 	
 	// Enqueue slider script on front page
@@ -194,3 +225,21 @@ add_action('wp_enqueue_scripts', function(){
 	// Enqueue search script
 	wp_enqueue_script('theme-search', get_stylesheet_directory_uri() . '/assets/js/search.js', [], $ver, true);
 });
+
+// Функция для проверки, нужно ли скрывать обычный header (для страниц с .page-top)
+function theme_should_hide_default_header() {
+	$template = get_page_template_slug();
+	$templates_with_page_top = ['page-contacts.php'];
+	
+	if (in_array($template, $templates_with_page_top)) {
+		return true;
+	}
+	
+	// Можно добавить проверку по классу body или другим условиям
+	$body_classes = get_body_class();
+	if (in_array('page-has-top', $body_classes)) {
+		return true;
+	}
+	
+	return false;
+}

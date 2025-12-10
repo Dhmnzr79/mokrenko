@@ -10,6 +10,7 @@
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
+<?php if (!theme_should_hide_default_header()): ?>
 <header class="site-header">
 	<div class="container">
 		<div class="row header__row">
@@ -39,6 +40,7 @@
 		</div>
 	</div>
 </header>
+<?php endif; ?>
 
 <!-- Мобильная шапка -->
 <header class="site-header site-header--mobile">

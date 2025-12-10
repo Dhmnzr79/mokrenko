@@ -159,18 +159,6 @@
     font-size: 15px;
 }
 
-@media (max-width: calc(var(--brk-lg) - 0.02px)) {
-    .page-intro {
-        display: none;
-    }
-}
-
-@media (min-width: var(--brk-lg)) {
-    .page-intro-mobile {
-        display: none;
-    }
-}
-
 /* Breadcrumbs */
 
 .breadcrumbs {
@@ -406,17 +394,31 @@
     }
 }
 
-/* Desktop: от 768px */
+@media (max-width: calc(var(--brk-lg) - 0.02px)) {
+    .page-intro {
+        display: none;
+    }
+}
+
 @media (min-width: 768px) {
-    /* Показываем десктопную версию первого экрана */
     .section--page-intro {
         display: block;
     }
     
-    /* Скрываем мобильную версию первого экрана */
     .section--page-intro-mobile {
         display: none;
     }
+}
+
+@media (min-width: var(--brk-lg)) {
+    .page-intro-mobile {
+        display: none;
+    }
+}
+
+.section--contacts .contacts__content h1 {
+    color: #111;
+    font-size: 44px;
 }
 
 

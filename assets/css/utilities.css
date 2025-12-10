@@ -1,5 +1,4 @@
 .section { padding-block: 48px; }
-@media (min-width: 1280px){ .section { padding-block: 72px; } }
 
 /* hero spacing modifier */
 .section--hero { padding-block: 0; }
@@ -24,13 +23,17 @@
   gap: 30px;
 }
 
-/* одинаковый gap на мобилках для всех секций */
 @media (max-width: 767px) {
   .section--reviews .container,
   .section--services .container,
   .section--benefits .container {
     gap: 16px;
   }
+}
+
+@media (min-width: 1280px){ 
+  .section { padding-block: 72px; } 
+  .section--map { padding-block: 0; padding-bottom: 0; }
 }
 
 /* demo backgrounds (для визуализации блоков) */

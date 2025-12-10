@@ -21,11 +21,11 @@ function theme_register_custom_post_types() {
             'not_found_in_trash' => __('В корзине врачей не найдено', 'mokrenko')
         ],
         'public' => true,
-        'has_archive' => true,
+        'has_archive' => false,
         'menu_icon' => 'dashicons-admin-users',
         'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
         'show_in_rest' => true,
-        'rewrite' => ['slug' => 'doctors']
+        'rewrite' => ['slug' => 'doctor']
     ]);
 
     // CPT: Кейсы
