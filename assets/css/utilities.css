@@ -33,6 +33,7 @@
 
 @media (min-width: 1280px){ 
   .section { padding-block: 72px; } 
+  .section--hero { padding-block: 0; }
   .section--map { padding-block: 0; padding-bottom: 0; }
 }
 

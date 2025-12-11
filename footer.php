@@ -44,11 +44,11 @@
 					<h3 class="footer__title">Навигация</h3>
 					<ul class="footer__list">
 						<li><a href="#" class="footer__link">Портфолио</a></li>
-						<li><a href="#" class="footer__link">Врачи</a></li>
+						<li><a href="<?php echo esc_url(get_page_url_by_template('page-doctors.php')); ?>" class="footer__link">Врачи</a></li>
 						<li><a href="#" class="footer__link">Акции</a></li>
-						<li><a href="#" class="footer__link">Блог</a></li>
-						<li><a href="#" class="footer__link">Отзывы</a></li>
-						<li><a href="#" class="footer__link">Контакты</a></li>
+						<li><a href="<?php echo esc_url(get_page_url_by_template('page-blog.php')); ?>" class="footer__link">Блог</a></li>
+						<li><a href="<?php echo esc_url(get_page_url_by_template('page-reviews.php')); ?>" class="footer__link">Отзывы</a></li>
+						<li><a href="<?php echo esc_url(get_page_url_by_template('page-contacts.php')); ?>" class="footer__link">Контакты</a></li>
 					</ul>
 				</div>
 			</div>

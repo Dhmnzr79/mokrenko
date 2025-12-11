@@ -1,10 +1,13 @@
 <?php
+/**
+ * Template Name: Отзывы
+ */
 get_header();
 ?>
 <section class="section section--hero-mobile hero-mobile">
 	<div class="container">
 		<div class="hero-mobile__box">
-			<h1>Стоматология Елены Мокренко</h1>
+			<h1>Отзывы наших пациентов</h1>
 			<img src="<?php echo get_template_directory_uri(); ?>/assets/images/mokrenko_first_mobile.png" alt="Доктор Мокренко" class="hero-mobile__image">
 		</div>
 
@@ -66,7 +69,7 @@ get_header();
 			</div>
 			<div class="hero__layout">
 				<div class="hero__content">
-					<h1>Стоматология Елены Мокренко</h1>
+					<h1>Отзывы наших пациентов</h1>
 					<div class="hero__rating">
 						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_main.svg" alt="Рейтинг" class="hero__rating-icon">
 						<p class="hero__rating-text">Наш рейтинг на независимых порталах</p>
@@ -103,8 +106,15 @@ get_header();
 	</div>
 </section>
 
-
-
+<section class="section section--breadcrumbs">
+	<div class="container">
+		<div class="breadcrumbs">
+			<a href="/" class="breadcrumbs__link">Главная</a>
+			<span class="breadcrumbs__separator">→</span>
+			<span class="breadcrumbs__current">Отзывы</span>
+		</div>
+	</div>
+</section>
 
 <section class="section section--reviews reviews">
 	<div class="container">
@@ -125,20 +135,15 @@ get_header();
 					</div>
 				</div>
 			</div>
-	</div>
+		</div>
 	
 	<?php
 	$reviews = get_posts([
 		'post_type' => 'reviews',
-		'posts_per_page' => 3,
+		'posts_per_page' => -1,
 		'post_status' => 'publish',
-		'meta_query' => [
-			[
-				'key' => '_reviews_show_on_home',
-				'value' => '1',
-				'compare' => '='
-			]
-		]
+		'orderby' => 'date',
+		'order' => 'DESC'
 	]);
 	?>
 	
@@ -147,7 +152,7 @@ get_header();
 			<?php
 			if (empty($reviews)) {
 				echo '<div class="col-sm-12 col-lg-12">';
-				echo '<p>Нет отзывов для отображения. Отметьте отзывы для показа на главной в админке.</p>';
+				echo '<p>Нет отзывов для отображения.</p>';
 				echo '</div>';
 			} else {
 				foreach ($reviews as $review) {
@@ -178,7 +183,7 @@ get_header();
 			<?php
 			if (empty($reviews)) {
 				echo '<div class="col-sm-12 col-lg-12">';
-				echo '<p>Нет отзывов для отображения. Отметьте отзывы для показа на главной в админке.</p>';
+				echo '<p>Нет отзывов для отображения.</p>';
 				echo '</div>';
 			} else {
 				foreach ($reviews as $review) {
@@ -213,357 +218,6 @@ get_header();
 			</svg>
 		</button>
 	</div>
-	</div>
-</section>
-
-<section class="section section--chief-doctor chief-doctor">
-	<div class="container">
-		<div class="row chief-doctor__header">
-			<div class="col-sm-12 col-lg-12">
-				<h2 class="chief-doctor__title">Клиника основана стоматологом-ортопедом <br><span class="chief-doctor__name">Еленой Мокренко</span></h2>
-			</div>
-		</div>
-		
-		<div class="row chief-doctor__content">
-			<div class="col-sm-12 col-lg-6">
-				<div class="row">
-					<div class="col-sm-12 col-lg-12">
-						<div class="chief-doctor__block-210">
-							<p class="chief-doctor__description">Владеет в совершенстве современными методами профилактики, диагностики и лечения в области ортопедии. Обучает выпускников медицинских университетов.</p>
-						</div>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-sm-12 col-lg-6">
-						<div class="chief-doctor__block-209-1">
-							<div class="achievement-item">
-								<div class="achievement-icon">
-									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="achievement-icon__img">
-								</div>
-								<p>Эксперт в корректировке формы, цвета и украшении зубов</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-12 col-lg-6">
-						<div class="chief-doctor__block-209-2">
-							<div class="achievement-item">
-								<div class="achievement-icon">
-									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="achievement-icon__img">
-								</div>
-								<p>Сертифицированный специалист по установке люминиров с 12-летним опытом</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-sm-12 col-lg-6">
-						<div class="chief-doctor__block-209-3">
-							<div class="achievement-item">
-								<div class="achievement-icon">
-									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="achievement-icon__img">
-								</div>
-								<p>Участник Стоматологической Ассоциации России</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-12 col-lg-6">
-						<div class="chief-doctor__block-209-4">
-							<div class="achievement-item">
-								<div class="achievement-icon">
-									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="achievement-icon__img">
-								</div>
-								<p>Участник American Dental Academy: повышение квалификации и обмен опытом с лучшими американскими и европейскими стоматологами</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-12 col-lg-6">
-				<div class="chief-doctor__photo">
-					<div class="chief-doctor__icon">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/mokrenko_icon_01.svg" alt="Иконка Мокренко" class="chief-doctor__icon-img">
-					</div>
-					<div class="chief-doctor__experience">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/33_index.svg" alt="33 года опыта" class="chief-doctor__experience-icon">
-						<p class="chief-doctor__experience-text">Стоматолог-ортопед высшей категории с опытом более 33 лет</p>
-					</div>
-					
-
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<section class="section section--services services">
-	<div class="container">
-		<div class="row services__grid">
-			<div class="col-sm-12 col-lg-4">
-				<div class="service-card service-card--header">
-					<h2>Лечим зубы и дарим <span class="services__highlight">самые красивые улыбки</span> в Москве</h2>
-					<p>Честные и доступные цены без экономии на качестве</p>
-				</div>
-			</div>
-			<div class="col-sm-12 col-lg-4">
-				<div class="service-card service-card--gradient">
-					<h3>Восстановить зуб</h3>
-					<div class="service-links">
-						<a href="#" class="service-link">Коронка на зуб</a>
-						<a href="#" class="service-link">Импланты зубов</a>
-						<a href="#" class="service-link">Протезирование зубов</a>
-						<a href="#" class="service-link">Реставрация зубов</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-12 col-lg-4">
-				<div class="service-card service-card--light-green">
-					<h3>Вылечить зубы</h3>
-					<div class="service-links">
-						<a href="#" class="service-link">Лечение зубов</a>
-						<a href="#" class="service-link">Удаление зубов</a>
-						<a href="#" class="service-link">Лечение десен</a>
-						<a href="#" class="service-link">Чистка зубов</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="row services__header">
-			<div class="col-sm-12 col-lg-4">
-				<div class="service-card service-card--gradient">
-					<h3>Вставить все зубы</h3>
-					<div class="service-links">
-						<a href="#" class="service-link">Все зубы за 1 день All-on-4</a>
-						<a href="#" class="service-link">Имплантация All-on-6</a>
-						<a href="#" class="service-link">Несъёмные протезы</a>
-						<a href="#" class="service-link">Съёмные протезы</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-12 col-lg-8">
-				<div class="service-card service-card--light-green service-card--bg">
-					<h3>Красивая улыбка</h3>
-					<div class="service-links">
-						<a href="#" class="service-link">Виниры на зубы</a>
-						<a href="#" class="service-link">Брекеты</a>
-						<a href="#" class="service-link">Отбеливание зубов</a>
-						<a href="#" class="service-link">Чистка Air Flow</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<section class="section section--doctors doctors">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-12 col-lg-8">
-				<h2>Врачи <span class="doctors__highlight">международного уровня</span>, которым можно доверять</h2>
-			</div>
-			<div class="col-sm-12 col-lg-4">
-				<div class="doctors__stats">
-					<div class="doctors__faces">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/doc_face_01.jpg" alt="Фото врача 1" class="doctors__face">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/doc_face_02.jpg" alt="Фото врача 2" class="doctors__face">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/doc_face_03.jpg" alt="Фото врача 3" class="doctors__face">
-					</div>
-					<p class="doctors__stats-text">Ведущие специалисты с опытом работы от 10 лет!</p>
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-sm-12 col-lg-12">
-				<div class="slider slider--two">
-					<div class="slider__container">
-						<div class="slider__track">
-							<?php
-							$doctors = get_posts([
-								'post_type' => 'doctor',
-								'posts_per_page' => -1,
-								'post_status' => 'publish',
-								'meta_query' => [
-									[
-										'key' => 'doctor_show_on_home',
-										'value' => '1',
-										'compare' => '='
-									]
-								]
-							]);
-							
-							if (empty($doctors)) {
-								echo '<div class="col-sm-12 col-lg-4 slider__slide slider__slide--active">';
-								echo '<p>Нет врачей для отображения. Отметьте врачей для показа на главной в админке.</p>';
-								echo '</div>';
-							} else {
-								foreach ($doctors as $index => $doctor) {
-									echo '<div class="col-sm-12 col-lg-4 slider__slide' . ($index === 0 ? ' slider__slide--active' : '') . '">';
-									get_template_part('template-parts/doctor/card-slider', null, ['doctor_id' => $doctor->ID]);
-									echo '</div>';
-								}
-							}
-							?>
-						</div>
-					</div>
-					<div class="slider__nav">
-						<button class="slider__prev" type="button">←</button>
-						<button class="slider__next" type="button">→</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<section class="section section--benefits benefits">
-	<div class="container">
-		<div class="row benefits__row-201">
-			<div class="col-sm-12 col-lg-8">
-				<div class="benefits__main">
-					<div class="row">
-						<div class="col-sm-12 col-lg-12">
-							<div class="benefits__header">
-								<h2>Выбор клиники - <br><span class="benefits__highlight">ключевой этап</span> в лечении зубов</h2>
-								<p class="benefits__subtitle">Наша цель — укрепить здоровье ваших зубов</p>
-							</div>
-						</div>
-					</div>
-					<div class="row" style="margin-top:16px">
-						<div class="col-sm-12 col-lg-6">
-							<div class="benefits__feature benefits__feature--gradient">
-								<div class="benefits__feature-icon">
-									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/plus_icon_01.svg" alt="Иконка плюс" class="benefits__icon">
-								</div>
-								<h3>Честные цены без накруток и скрытых платежей</h3>
-								<p>Цены на сайте соответствуют ценам в клинике. Не навязываем лишних услуг и не вносим скрытые платежи в договор. У нас честный подход.</p>
-							</div>
-						</div>
-						<div class="col-sm-12 col-lg-6">
-							<div class="benefits__feature benefits__feature--light-green">
-								<div class="benefits__feature-icon">
-									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/plus_icon_02.svg" alt="Иконка лечения" class="benefits__icon">
-								</div>
-								<h3>Качественное лечение с гарантией по договору</h3>
-								<p>Делаем только качественно и на века. Если по нашей вине у вас выпала пломба, коронка или имплант - мы исправим все абсолютно бесплатно в тот же день.</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-12 col-lg-4">
-				<div class="benefits__card benefits__card--gradient">
-					<div class="benefits__card-content">
-						<div class="benefits__card-icon benefits__card-icon--lab">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/images/plus_icon_bg.jpg" alt="Фон иконки" class="benefits__icon-bg">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/plus_icon_03.svg" alt="Иконка лаборатории" class="benefits__icon-main">
-						</div>
-						<div class="benefits__card-bottom">
-							<h3>Собственная лаборатория и оборудование</h3>
-							<div class="benefits__feature-item">
-								<h4>Компьютерная томограмма:</h4>
-								<p>Мы делаем все снимки в день обращения прямо в нашей клинике</p>
-							</div>
-							<div class="benefits__feature-item">
-								<h4>Аппарат Cerec:</h4>
-								<p>Изготавливаем коронки при вас в клинике за 45 минут</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		
-		<div class="row benefits__row-205">
-			<div class="col-sm-12 col-lg-4">
-				<div class="benefits__card benefits__card--light-green">
-					<div class="benefits__card-content">
-						<div class="benefits__card-icon">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/plus_icon_04.svg" alt="Иконка без боли" class="benefits__icon">
-						</div>
-						<h3>Лечение без боли</h3>
-						<p>Вы ничего не почувствуете. Швейцарские медикаменты и 30-летний опыт главного врача позволяют гарантировать полное отсутствие боли</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-12 col-lg-4">
-				<div class="benefits__card benefits__card--image">
-					<div class="benefits__card-content">
-						<div class="benefits__card-image">
-							
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-12 col-lg-4">
-				<div class="benefits__card benefits__card--light-green">
-					<div class="benefits__card-content">
-						<div class="benefits__card-icon">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/plus_icon_05.svg" alt="Иконка рассрочки" class="benefits__icon">
-						</div>
-						<h3>Рассрочка платежа</h3>
-						<p>Беспроцентная рассрочка на 6-12 месяцев</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<section class="section section--doctors-works doctors-works">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-12 col-lg-12">
-				<div class="doctors-works__header">
-					<h2>Доверяйте своё здоровье врачам <span class="doctors-works__highlight">с подтвержденным опытом</span></h2>
-					<p>А не низким «завлекающим» ценам и красивым словам</p>
-				</div>
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="col-sm-12 col-lg-12">
-				<div class="slider">
-					<div class="slider__container">
-						<div class="slider__track">
-							<?php
-							$cases = get_posts([
-								'post_type' => 'case',
-								'posts_per_page' => 5,
-								'post_status' => 'publish',
-								'meta_query' => [
-									[
-										'key' => 'case_show_on_home',
-										'value' => '1',
-										'compare' => '='
-									]
-								]
-							]);
-							
-							if (empty($cases)) {
-								echo '<div class="slider__slide slider__slide--active">';
-								echo '<p>Нет кейсов для отображения. Отметьте кейсы для показа на главной в админке.</p>';
-								echo '</div>';
-							} else {
-								foreach ($cases as $index => $case) {
-									echo '<div class="slider__slide' . ($index === 0 ? ' slider__slide--active' : '') . '">';
-									get_template_part('template-parts/case/showcase', null, ['case_id' => $case->ID]);
-									echo '</div>';
-								}
-							}
-							?>
-						</div>
-					</div>
-					<div class="slider__nav">
-						<button class="slider__prev" type="button">←</button>
-						<button class="slider__next" type="button">→</button>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 </section>
 
@@ -870,36 +524,5 @@ get_header();
 	</div>
 </section>
 
-<section class="section section--contacts contacts">
-	<div class="container">
-		<div class="contacts__box">
-			<img src="<?php echo get_template_directory_uri(); ?>/assets/images/mokrenko_first.png" alt="Врач" class="contacts__bg">
-			<div class="row">
-				<div class="col-sm-12 col-lg-6">
-					<!-- Пустая колонка для фото -->
-				</div>
-				<div class="col-sm-12 col-lg-6">
-					<div class="contacts__content">
-						<h2>Контакты</h2>
-						<ul class="contacts__list">
-							<li data-emoji="📍">г. Москва, проспект Мира, д. 57, корп. 2</li>
-							<li data-emoji="📞">+7 (495) 123-45-67</li>
-							<li data-emoji="✉️">info@mokrenko.ru</li>
-							<li data-emoji="🕒">Пн-Пт: 9:00 - 21:00<br>Сб-Вс: 10:00 - 18:00</li>
-						</ul>
-						<div class="contacts__question">
-							<h3>Остались вопросы?</h3>
-							<p>Задайте свой вопрос, и мы бесплатно проконсультируем Вас в течении 5 минут</p>
-						</div>
-						<button class="btn contacts__cta-btn">
-							Записаться на приём
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка" class="contacts__cta-arrow">
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
 <?php get_footer(); ?>
+

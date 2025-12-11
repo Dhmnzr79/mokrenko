@@ -178,11 +178,15 @@ add_action('wp_enqueue_scripts', function(){
 		wp_enqueue_style('page-home', $uri.'pages/home.css', ['theme-utilities'], $ver);
 	}
 	
-	if (is_page(['about', 'reviews', 'contacts', 'team', 'prices', 'doctors', 'o-klinike', 'otzyvy', 'kontakty', 'komanda', 'tseny', 'vrachi'])) {
+	if (is_page(['about', 'reviews', 'contacts', 'team', 'prices', 'doctors', 'o-klinike', 'otzyvy', 'kontakty', 'komanda', 'tseny', 'vrachi']) || is_page_template('page-about.php') || is_page_template('page-reviews.php') || is_page_template('page-contacts.php') || is_page_template('page-prices.php') || is_page_template('page-doctors.php') || is_page_template('page-blog.php') || is_single()) {
 		wp_enqueue_style('page-inner', $uri.'pages/inner.css', ['theme-utilities'], $ver);
 		wp_enqueue_style('page-home', $uri.'pages/home.css', ['theme-utilities'], $ver);
 		wp_enqueue_script('theme-lightbox', get_stylesheet_directory_uri() . '/assets/js/lightbox.js', [], $ver, true);
 		wp_enqueue_script('theme-slider', get_stylesheet_directory_uri() . '/assets/js/slider.js', [], $ver, true);
+	}
+	
+	if (is_page_template('page-blog.php') || is_single()) {
+		wp_enqueue_style('page-blog', $uri.'pages/blog.css', ['theme-utilities'], $ver);
 	}
 	
 	// Яндекс карта для страницы контактов
@@ -242,4 +246,23 @@ function theme_should_hide_default_header() {
 	}
 	
 	return false;
+}
+
+// Функция для получения ссылки на страницу по шаблону
+function get_page_url_by_template($template_name) {
+	if (!function_exists('get_pages')) {
+		return '#';
+	}
+	
+	$pages = get_pages([
+		'meta_key' => '_wp_page_template',
+		'meta_value' => $template_name,
+		'number' => 1
+	]);
+	
+	if (!empty($pages) && isset($pages[0]->ID)) {
+		return get_permalink($pages[0]->ID);
+	}
+	
+	return '#';
 }

@@ -782,6 +782,10 @@
 
 .hero__cta-btn { display:inline-flex; }
 
+.hero {
+    display: none;
+}
+
 /* Unified button base */
 .btn{
   background: linear-gradient(90deg, #EEAA2B 0%, #FF6A09 100%);
@@ -1428,10 +1432,6 @@
     font-size: clamp(26px, 4vw, 44px);
     line-height: 1.2;
     padding-right: 30%;
-}
-
-.hero {
-    display: none;
 }
 
 .reviews__desktop {
