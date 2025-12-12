@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Стандартный попап - Готовый к использованию</title>
+    
+    <!-- Подключение шрифта Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS переменные */
+        :root {
+            --body-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --heading-color: #111;
+            --border: #E5E7EB;
+            --brand-color: #EDAD35;
+        }
+
+        /* Базовые стили */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--body-font);
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        /* Кнопка для демонстрации */
+        .demo-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(90deg, #EDAD35 0%, #ED63A5 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .demo-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(237, 173, 53, 0.3);
+        }
+
+        /* ===================================
+           ПОПАП СТИЛИ
+           =================================== */
+
+        body.popup-open {
+            overflow: hidden;
+        }
+
+        /* Overlay */
+        .popup-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(6px);
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.28s ease, visibility 0.28s step-end;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup-overlay.show {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+            transition: opacity 0.28s ease, visibility 0.28s step-start;
+        }
+
+        .popup-overlay.closing {
+            opacity: 0;
+        }
+
+        /* Попап 1: Простая форма */
+        .popup-sheet {
+            background: #fff;
+            color: #111;
+            width: 100%;
+            max-width: 420px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            padding: 16px 16px 20px;
+            position: relative;
+            opacity: 0;
+            transform: scale(0.96);
+            transition: transform 0.28s ease, opacity 0.28s ease;
+        }
+
+        .popup-overlay.show .popup-sheet {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .popup-overlay.closing .popup-sheet {
+            opacity: 0;
+            transform: scale(0.98);
+        }
+
+        .popup-close {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            width: 36px;
+            height: 36px;
+            border: 0;
+            border-radius: 10px;
+            background: #F3F4F6;
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup-sheet h2 {
+            margin: 0 0 10px;
+            font: 700 20px/1.2 var(--body-font);
+            color: var(--heading-color);
+        }
+
+        .popup-subtitle {
+            margin: 0 0 14px;
+            color: var(--muted, #6B7280);
+            font: 14px/1.5 var(--body-font);
+        }
+
+        .popup-field {
+            width: 100%;
+            max-width: 100%;
+            display: block;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid var(--border, #E5E7EB);
+            border-radius: 10px;
+            font: 16px/1 var(--body-font);
+            background: #fff;
+        }
+
+        .popup-cta {
+            display: inline-block;
+            width: 100%;
+            padding: 25px;
+            margin-top: 8px;
+            border-radius: 10px;
+            color: #fff;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: none;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 14px !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.03rem !important;
+            text-transform: uppercase !important;
+        }
+
+        .popup-cta:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #EDAD35 0%, #ED63A5 100%);
+            border-radius: 10px;
+            z-index: -2;
+        }
+
+        .popup-cta:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background-color: #EDA635;
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            z-index: -1;
+        }
+
+        .popup-cta:hover {
+            color: #fff;
+            border-radius: 10px;
+        }
+
+        .popup-cta:hover:before {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .popup-whatsapp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 15px auto 0;
+            padding: 8px 16px;
+            color: #25D366;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            background: transparent;
+            width: fit-content;
+        }
+
+        .popup-whatsapp svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .popup-whatsapp:hover {
+            background: #25D366;
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
+        }
+
+        .popup-policy {
+            margin: 10px 0 0;
+            font: 12px/1.4 var(--body-font);
+            color: #8a919b;
+            text-align: center;
+        }
+
+        .popup-policy a {
+            color: #000000;
+            text-decoration: none;
+        }
+
+        /* Мобильная адаптация */
+        @media (max-width: 768px) {
+            .popup-overlay {
+                align-items: flex-end;
+            }
+            
+            .popup-sheet {
+                max-width: 640px;
+                border-radius: 16px 16px 0 0;
+                opacity: 1;
+                transform: translateY(100%);
+                transition: transform 0.28s ease;
+            }
+            
+            .popup-overlay.show .popup-sheet {
+                transform: translateY(0);
+            }
+            
+            .popup-overlay.closing .popup-sheet {
+                transform: translateY(100%);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .popup-overlay,
+            .popup-sheet {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Демонстрационная кнопка -->
+    <div style="text-align: center; padding: 50px 0;">
+        <button class="demo-btn" onclick="openPopup()">Открыть попап</button>
+    </div>
+
+    <!-- Стандартный попап -->
+    <div id="popup-1" class="popup-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="popup-sheet" role="document">
+            <button class="popup-close" aria-label="Закрыть" onclick="closePopup()">✕</button>
+
+            <h2>Оставьте заявку</h2>
+            <p class="popup-subtitle">
+                Мы перезвоним вам в ближайшее время, разберём вашу ситуацию,
+                подскажем подходящие варианты имплантации и запишем на консультацию, если захотите.
+            </p>
+
+            <form class="popup-form" method="post">
+                <input type="text" name="name" class="popup-field" placeholder="Ваше имя" autocomplete="name" required>
+                <input type="tel" name="phone" class="popup-field" placeholder="+7 (___) ___-__-__" inputmode="numeric" autocomplete="tel" required>
+                
+                <button type="submit" class="popup-cta">Отправить заявку</button>
+                
+                <a href="https://wa.me/79000000000" class="popup-whatsapp" target="_blank" rel="noopener">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                    </svg>
+                    Написать в WhatsApp
+                </a>
+                
+                <p class="popup-policy">
+                    Нажимая кнопку, вы соглашаетесь с <a href="#" target="_blank" rel="noopener">политикой конфиденциальности</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * Управление попапами для стоматологической клиники
+         */
+
+        // Глобальные переменные
+        let currentPopup = null;
+        let isClosing = false;
+
+        /**
+         * Открытие попапа
+         * @param {string} popupId - ID попапа для открытия
+         */
+        function openPopup(popupId = 'popup-1') {
+            if (isClosing) return;
+            
+            const popup = document.getElementById(popupId);
+            if (!popup) return;
+            
+            currentPopup = popup;
+            
+            // Блокируем скролл
+            document.body.classList.add('popup-open');
+            
+            // Показываем попап
+            popup.classList.add('show');
+            
+            // Фокус на первое поле
+            setTimeout(() => {
+                const firstField = popup.querySelector('input');
+                if (firstField) firstField.focus();
+            }, 300);
+            
+            // Обработчики событий
+            setupPopupEvents(popup);
+        }
+
+        /**
+         * Закрытие попапа
+         */
+        function closePopup() {
+            if (!currentPopup || isClosing) return;
+            
+            isClosing = true;
+            
+            // Анимация закрытия
+            currentPopup.classList.add('closing');
+            
+            setTimeout(() => {
+                currentPopup.classList.remove('show', 'closing');
+                document.body.classList.remove('popup-open');
+                currentPopup = null;
+                isClosing = false;
+            }, 280);
+        }
+
+        /**
+         * Настройка обработчиков событий для попапа
+         * @param {HTMLElement} popup - Элемент попапа
+         */
+        function setupPopupEvents(popup) {
+            // Закрытие по клику на overlay
+            popup.addEventListener('click', (e) => {
+                if (e.target === popup) {
+                    closePopup();
+                }
+            });
+            
+            // Закрытие по Escape
+            document.addEventListener('keydown', handleEscape);
+            
+            // Закрытие по клику на кнопку закрытия
+            const closeBtn = popup.querySelector('.popup-close');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closePopup);
+            }
+            
+            // Обработка формы
+            const form = popup.querySelector('.popup-form');
+            if (form) {
+                form.addEventListener('submit', handleFormSubmit);
+            }
+        }
+
+        /**
+         * Обработка нажатия Escape
+         * @param {KeyboardEvent} e - Событие клавиатуры
+         */
+        function handleEscape(e) {
+            if (e.key === 'Escape' && currentPopup) {
+                closePopup();
+            }
+        }
+
+        /**
+         * Обработка отправки формы
+         * @param {Event} e - Событие формы
+         */
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const formData = new FormData(form);
+            
+            // Валидация
+            if (!validateForm(formData)) {
+                return;
+            }
+            
+            // Отправка данных (здесь будет AJAX запрос)
+            submitForm(formData);
+        }
+
+        /**
+         * Валидация формы
+         * @param {FormData} formData - Данные формы
+         * @returns {boolean} - Результат валидации
+         */
+        function validateForm(formData) {
+            const name = formData.get('name');
+            const phone = formData.get('phone');
+            
+            // Проверка имени
+            if (!name || name.trim().length < 2) {
+                showError('Введите корректное имя');
+                return false;
+            }
+            
+            // Проверка телефона
+            const phoneRegex = /^\+7\s?\(?(\d{3})\)?\s?(\d{3})-?(\d{2})-?(\d{2})$/;
+            if (!phone || !phoneRegex.test(phone.replace(/\s/g, ''))) {
+                showError('Введите корректный номер телефона');
+                return false;
+            }
+            
+            return true;
+        }
+
+        /**
+         * Отправка формы
+         * @param {FormData} formData - Данные формы
+         */
+        function submitForm(formData) {
+            // Показываем индикатор загрузки
+            const submitBtn = currentPopup.querySelector('.popup-cta');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Отправляем...';
+            submitBtn.disabled = true;
+            
+            // Здесь будет AJAX запрос
+            // Пока что имитируем отправку
+            setTimeout(() => {
+                submitBtn.textContent = 'Отправлено!';
+                
+                setTimeout(() => {
+                    closePopup();
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }, 1000);
+            }, 1500);
+        }
+
+        /**
+         * Показать ошибку
+         * @param {string} message - Сообщение об ошибке
+         */
+        function showError(message) {
+            // Удаляем предыдущие ошибки
+            const existingError = currentPopup.querySelector('.popup-error');
+            if (existingError) {
+                existingError.remove();
+            }
+            
+            // Создаем элемент ошибки
+            const error = document.createElement('div');
+            error.className = 'popup-error';
+            error.textContent = message;
+            error.style.cssText = `
+                color: #dc2626;
+                font-size: 14px;
+                margin-top: 8px;
+                text-align: center;
+                padding: 8px;
+                background: #fef2f2;
+                border-radius: 6px;
+                border: 1px solid #fecaca;
+            `;
+            
+            // Вставляем ошибку после формы
+            const form = currentPopup.querySelector('.popup-form');
+            form.appendChild(error);
+            
+            // Удаляем ошибку через 5 секунд
+            setTimeout(() => {
+                if (error.parentNode) {
+                    error.remove();
+                }
+            }, 5000);
+        }
+
+        /**
+         * Маска для телефона
+         */
+        function setupPhoneMask() {
+            const phoneInputs = document.querySelectorAll('input[type="tel"]');
+            
+            phoneInputs.forEach(input => {
+                input.addEventListener('input', (e) => {
+                    let value = e.target.value.replace(/\D/g, '');
+                    
+                    if (value.length === 0) {
+                        e.target.value = '';
+                        return;
+                    }
+                    
+                    if (value.length === 1 && value[0] !== '7') {
+                        value = '7' + value;
+                    }
+                    
+                    if (value.length > 11) {
+                        value = value.slice(0, 11);
+                    }
+                    
+                    // Форматирование
+                    let formatted = '+7';
+                    if (value.length > 1) {
+                        formatted += ' (' + value.slice(1, 4);
+                        if (value.length > 4) {
+                            formatted += ') ' + value.slice(4, 7);
+                            if (value.length > 7) {
+                                formatted += '-' + value.slice(7, 9);
+                                if (value.length > 9) {
+                                    formatted += '-' + value.slice(9, 11);
+                                }
+                            }
+                        }
+                    }
+                    
+                    e.target.value = formatted;
+                });
+            });
+        }
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', () => {
+            setupPhoneMask();
+        });
+
+        // Экспорт функций для использования в HTML
+        window.openPopup = openPopup;
+        window.closePopup = closePopup;
+    </script>
+</body>
+</html>

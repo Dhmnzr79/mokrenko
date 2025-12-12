@@ -99,6 +99,7 @@ add_action('save_post', function($post_id){
 require_once get_template_directory() . '/inc/custom-types.php';
 require_once get_template_directory() . '/inc/meta-boxes.php';
 require_once get_template_directory() . '/inc/shortcodes.php';
+require_once get_template_directory() . '/inc/prices-import.php';
 
 // Подключение админских скриптов и стилей
 add_action('admin_enqueue_scripts', 'theme_admin_scripts');
@@ -172,7 +173,8 @@ add_action('wp_enqueue_scripts', function(){
 	$uri = get_stylesheet_directory_uri() . '/assets/css/';
 	wp_enqueue_style('theme-base',       $uri.'base.css',       [], $ver);
 	wp_enqueue_style('theme-layout',     $uri.'layout.css',     ['theme-base'], $ver);
-	wp_enqueue_style('theme-components', $uri.'components.css', ['theme-layout'], $ver);
+	wp_enqueue_style('theme-global',     $uri.'global.css',     ['theme-layout'], $ver);
+	wp_enqueue_style('theme-components', $uri.'components.css', ['theme-global'], $ver);
 	wp_enqueue_style('theme-utilities',  $uri.'utilities.css',  ['theme-components'], $ver);
 	if (is_front_page()) {
 		wp_enqueue_style('page-home', $uri.'pages/home.css', ['theme-utilities'], $ver);
@@ -228,6 +230,9 @@ add_action('wp_enqueue_scripts', function(){
 	
 	// Enqueue search script
 	wp_enqueue_script('theme-search', get_stylesheet_directory_uri() . '/assets/js/search.js', [], $ver, true);
+	
+	// Enqueue popup script
+	wp_enqueue_script('theme-popup', get_stylesheet_directory_uri() . '/assets/js/popup.js', [], $ver, true);
 });
 
 // Функция для проверки, нужно ли скрывать обычный header (для страниц с .page-top)

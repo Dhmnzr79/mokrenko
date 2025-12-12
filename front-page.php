@@ -30,10 +30,10 @@ get_header();
 		<div class="hero__cta">
 						<h3>Запишитесь на осмотр и получите</h3>
 						<p>Полное обследование рта, а также полной анализ вашего организма по нашей методике</p>
-						<button class="btn hero__cta-btn">
-								Записаться на консультацию
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка" class="hero__cta-arrow">
-							</button>
+					<button class="btn hero__cta-btn" data-popup="open">
+							Записаться на консультацию
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка" class="hero__cta-arrow">
+						</button>
 					</div>
 	</div>
 </section>
@@ -74,10 +74,10 @@ get_header();
 					<div class="hero__cta">
 						<h3>Запишитесь на осмотр и получите</h3>
 						<p>Полное обследование рта, а также полной анализ вашего организма по нашей методике</p>
-						<button class="btn hero__cta-btn">
-								Записаться на консультацию
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка" class="hero__cta-arrow">
-							</button>
+					<button class="btn hero__cta-btn" data-popup="open">
+							Записаться на консультацию
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка" class="hero__cta-arrow">
+						</button>
 					</div>
 				</div>
 				<div class="hero__features">
@@ -791,7 +791,7 @@ get_header();
 					</div>
 				</div>
 				<div class="consult__row consult__row--cta">
-					<button class="btn consult__cta-btn">
+					<button class="btn consult__cta-btn" data-popup="open">
 						Записаться на консультацию
 						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка" class="consult__cta-arrow">
 					</button>
@@ -830,7 +830,7 @@ get_header();
 						</div>
 					</div>
 					<div class="location__cta">
-						<button class="btn location__call-btn">
+						<button class="btn location__call-btn" data-popup="open">
 							Заказать звонок
 							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка" class="location__call-arrow">
 						</button>
@@ -879,7 +879,7 @@ get_header();
 					<!-- Пустая колонка для фото -->
 				</div>
 				<div class="col-sm-12 col-lg-6">
-					<div class="contacts__content">
+					<div class="contacts__content-block">
 						<h2>Контакты</h2>
 						<ul class="contacts__list">
 							<li data-emoji="📍">г. Москва, проспект Мира, д. 57, корп. 2</li>
@@ -891,7 +891,7 @@ get_header();
 							<h3>Остались вопросы?</h3>
 							<p>Задайте свой вопрос, и мы бесплатно проконсультируем Вас в течении 5 минут</p>
 						</div>
-						<button class="btn contacts__cta-btn">
+						<button class="btn contacts__cta-btn" data-popup="open">
 							Записаться на приём
 							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка" class="contacts__cta-arrow">
 						</button>

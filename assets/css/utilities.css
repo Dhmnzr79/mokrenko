@@ -1,11 +1,3 @@
-.section { padding-block: 48px; }
-
-/* hero spacing modifier */
-.section--hero { padding-block: 0; }
-
-/* reviews spacing modifier */
-.section--reviews { padding-bottom: 0; }
-
 .text-center { text-align: center; }
 .text-accent { color: var(--color-accent); }
 .hidden { display: none !important; }
@@ -29,12 +21,6 @@
   .section--benefits .container {
     gap: 16px;
   }
-}
-
-@media (min-width: 1280px){ 
-  .section { padding-block: 72px; } 
-  .section--hero { padding-block: 0; }
-  .section--map { padding-block: 0; padding-bottom: 0; }
 }
 
 /* demo backgrounds (для визуализации блоков) */

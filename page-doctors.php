@@ -99,5 +99,35 @@ get_header();
 	</div>
 </section>
 
+<section class="section section--doctors">
+	<div class="container">
+		<div class="row">
+			<?php
+			$doctors = get_posts([
+				'post_type' => 'doctor',
+				'posts_per_page' => -1,
+				'post_status' => 'publish',
+				'orderby' => 'menu_order',
+				'order' => 'ASC'
+			]);
+			
+			if ($doctors):
+				foreach ($doctors as $doctor):
+			?>
+				<div class="col-sm-12 col-lg-4">
+					<?php
+					get_template_part('template-parts/doctor/card-slider', null, [
+						'doctor_id' => $doctor->ID
+					]);
+					?>
+				</div>
+			<?php
+				endforeach;
+			endif;
+			?>
+		</div>
+	</div>
+</section>
+
 <?php get_footer(); ?>
 

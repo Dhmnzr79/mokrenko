@@ -518,7 +518,7 @@ get_header();
 					<!-- Пустая колонка для фото -->
 				</div>
 				<div class="col-sm-12 col-lg-6">
-					<div class="contacts__content">
+					<div class="contacts__content-block">
 						<h2>Контакты</h2>
 						<ul class="contacts__list">
 							<li data-emoji="📍">г. Москва, проспект Мира, д. 57, корп. 2</li>

@@ -169,7 +169,7 @@
 }
 
 .section--breadcrumbs {
-    padding-block: 20px;
+    padding-block: 0;
 }
 
 .breadcrumbs__link {
@@ -282,9 +282,7 @@
 }
 
 /* Prices Section */
-.section--prices {
-    padding-block: 40px;
-}
+
 
 .prices__category {
     margin-bottom: 40px;
@@ -347,6 +345,17 @@
         font-weight: 500;
 }
 
+.section--contacts .contacts__content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.section--contacts .contacts__content h1 {
+    color: #111;
+    font-size: 44px;
+}
 
 /* ========================================
    MEDIA QUERIES
@@ -414,11 +423,6 @@
     .page-intro-mobile {
         display: none;
     }
-}
-
-.section--contacts .contacts__content h1 {
-    color: #111;
-    font-size: 44px;
 }
 
 

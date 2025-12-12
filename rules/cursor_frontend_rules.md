@@ -62,6 +62,57 @@ h3 { font-size: clamp(18px, 2.4vw, 22px); line-height: 1.3; }
 2. Модификаторы — через класс `--mod`, а не через глубокий контекст.
 3. Если нужен узкий контекст для страницы — класть в `pages/*.css`, **1 уровень** контекста максимум.
 
+## Стили секций (.section) - КРИТИЧЕСКИ ВАЖНО!
+
+**Базовый стиль секции в `utilities.css`, модификаторы секций в `components.css`!**
+
+### Правильная структура:
+
+**В `utilities.css`:**
+```css
+/* Базовый стиль секции (утилита для всех секций) */
+.section { padding-block: 48px; }
+```
+
+**В `components.css` (в начале файла):**
+```css
+/* ============================================
+   SECTION MODIFIERS (padding, spacing)
+   ============================================ */
+
+.section--hero { padding-block: 0; }
+.section--reviews { padding-bottom: 0; }
+.section--divider { padding-block: 0; }
+.section--map { padding-block: 0; padding-bottom: 0; }
+.section--contacts { padding-top: 40px; }
+/* ... все остальные модификаторы */
+```
+
+### КРИТИЧЕСКИЕ ПРАВИЛА:
+
+1. **Базовый `.section`** — только в `utilities.css` (базовая утилита).
+2. **Модификаторы `.section--*`** — в начале `components.css`, рядом с остальными стилями секций.
+3. **НЕ дублируй модификаторы!** Если модификатор уже есть — обновляй существующий.
+4. **Все модификаторы должны быть вместе** в начале `components.css`, чтобы не конфликтовать.
+5. **Если нужно изменить padding конкретной секции** — добавляй/обновляй модификатор в начале `components.css`.
+
+### Пример правильной работы:
+
+❌ **НЕПРАВИЛЬНО:**
+```css
+/* В utilities.css */
+.section--contacts { padding-top: 40px; } /* Модификатор не должен быть здесь! */
+```
+
+✅ **ПРАВИЛЬНО:**
+```css
+/* В utilities.css */
+.section { padding-block: 48px; } /* Только базовый стиль */
+
+/* В components.css (в начале) */
+.section--contacts { padding-top: 40px; } /* Модификатор здесь */
+```
+
 ## Чек-лист перед коммитом
 - [ ] Верный файл (base/layout/components/utilities/pages).
 - [ ] Нет дублей правил, нет `!important`.
