@@ -129,6 +129,12 @@ function theme_register_meta_fields() {
             'show_in_rest' => true,
             'single' => true
         ],
+        'doctor_qualification' => [
+            'type' => 'string',
+            'sanitize_callback' => 'wp_kses_post',
+            'show_in_rest' => true,
+            'single' => true
+        ],
         'doctor_video_url' => [
             'type' => 'string',
             'sanitize_callback' => 'esc_url_raw',
@@ -144,6 +150,12 @@ function theme_register_meta_fields() {
         'doctor_show_on_home' => [
             'type' => 'boolean',
             'sanitize_callback' => 'rest_sanitize_boolean',
+            'show_in_rest' => true,
+            'single' => true
+        ],
+        'doctor_photo_2' => [
+            'type' => 'integer',
+            'sanitize_callback' => 'absint',
             'show_in_rest' => true,
             'single' => true
         ]

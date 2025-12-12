@@ -25,8 +25,10 @@ function theme_doctor_meta_box_callback($post) {
     $fact_2 = get_post_meta($post->ID, 'doctor_fact_2', true);
     $fact_3 = get_post_meta($post->ID, 'doctor_fact_3', true);
     $education = get_post_meta($post->ID, 'doctor_education', true);
+    $qualification = get_post_meta($post->ID, 'doctor_qualification', true);
     $video_url = get_post_meta($post->ID, 'doctor_video_url', true);
     $certs = get_post_meta($post->ID, 'doctor_certs_json', true);
+    $photo_2 = get_post_meta($post->ID, 'doctor_photo_2', true);
     ?>
     <table class="form-table">
         <tr>
@@ -60,6 +62,19 @@ function theme_doctor_meta_box_callback($post) {
                 <label for="doctor_show_on_home"><?php _e('Показывать в слайдере на главной странице', 'mokrenko'); ?></label>
             </td>
         </tr>
+        <tr>
+            <th><label for="doctor_photo_2"><?php _e('Фото 2', 'mokrenko'); ?></label></th>
+            <td>
+                <button type="button" id="select-doctor-photo-2"><?php _e('Выбрать изображение', 'mokrenko'); ?></button>
+                <div id="doctor-photo-2-preview">
+                    <?php if ($photo_2): ?>
+                        <?php echo wp_get_attachment_image($photo_2, 'thumbnail'); ?>
+                    <?php endif; ?>
+                </div>
+                <input type="hidden" id="doctor_photo_2" name="doctor_photo_2" value="<?php echo esc_attr($photo_2); ?>" />
+                <p class="description"><?php _e('Дополнительное фото врача для страницы врача (посреди текстового описания)', 'mokrenko'); ?></p>
+            </td>
+        </tr>
     </table>
 
     <!-- Краткое превью и подробная информация -->
@@ -73,13 +88,18 @@ function theme_doctor_meta_box_callback($post) {
             </td>
         </tr>
         <tr>
-            <th><label for="content"><?php _e('Подробная информация', 'mokrenko'); ?></label></th>
+            <th><label for="doctor_content"><?php _e('Подробная информация', 'mokrenko'); ?></label></th>
             <td>
                 <?php
-                wp_editor($post->post_content, 'content', [
+                wp_editor($post->post_content, 'doctor_content', [
                     'textarea_rows' => 8,
                     'media_buttons' => true,
-                    'teeny' => false
+                    'teeny' => false,
+                    'textarea_name' => 'content',
+                    'wpautop' => true,
+                    'tinymce' => [
+                        'forced_root_block' => 'p'
+                    ]
                 ]);
                 ?>
                 <p class="description"><?php _e('Полная информация о враче, достижениях, методах работы', 'mokrenko'); ?></p>
@@ -95,6 +115,18 @@ function theme_doctor_meta_box_callback($post) {
             <td>
                 <textarea id="doctor_education" name="doctor_education" rows="6" style="width: 100%;"><?php echo esc_textarea($education); ?></textarea>
                 <p class="description"><?php _e('Введите образование с разбивкой на параграфы. Например:<br>2010-2016 - Московский медицинский университет<br>2016-2018 - Ординатура по стоматологии', 'mokrenko'); ?></p>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Повышение квалификации (простое текстовое поле) -->
+    <h3><?php _e('Повышение квалификации', 'mokrenko'); ?></h3>
+    <table class="form-table">
+        <tr>
+            <th><label for="doctor_qualification"><?php _e('Повышение квалификации', 'mokrenko'); ?></label></th>
+            <td>
+                <textarea id="doctor_qualification" name="doctor_qualification" rows="6" style="width: 100%;"><?php echo esc_textarea($qualification); ?></textarea>
+                <p class="description"><?php _e('Введите повышение квалификации с разбивкой на параграфы. Например:<br>2020 - Курс по имплантации<br>2021 - Семинар по протезированию', 'mokrenko'); ?></p>
             </td>
         </tr>
     </table>
@@ -427,12 +459,22 @@ function theme_save_doctor_meta($post_id) {
         }
     }
 
+    // Сохранение второго фото врача
+    if (isset($_POST['doctor_photo_2'])) {
+        update_post_meta($post_id, 'doctor_photo_2', absint($_POST['doctor_photo_2']));
+    }
+
     $show_on_home = isset($_POST['doctor_show_on_home']) ? '1' : '0';
     update_post_meta($post_id, 'doctor_show_on_home', $show_on_home);
 
     // Сохранение образования (простое текстовое поле)
     if (isset($_POST['doctor_education'])) {
         update_post_meta($post_id, 'doctor_education', wp_kses_post($_POST['doctor_education']));
+    }
+
+    // Сохранение повышения квалификации (простое текстовое поле)
+    if (isset($_POST['doctor_qualification'])) {
+        update_post_meta($post_id, 'doctor_qualification', wp_kses_post($_POST['doctor_qualification']));
     }
 
     // Сохранение excerpt и content (стандартные поля WordPress) - объединяем в один вызов

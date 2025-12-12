@@ -1,3 +1,76 @@
+/* Doctor info block */
+.doctor-info__photo-wrapper {
+	position: sticky;
+	top: 20px;
+	width: 80%;
+}
+
+.doctor-info__photo-container {
+	position: relative;
+}
+
+.doctor-info__photo {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+.doctor-info__video-btn {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	text-decoration: none;
+}
+
+.doctor-info__facts {
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+}
+
+.doctor-info__fact {
+	flex: 1;
+}
+
+.doctor-info__education-line {
+	margin-bottom: 12px;
+}
+
+.doctor-info__education-line:last-child {
+	margin-bottom: 0;
+}
+
+.doctor-info__certs-slider .slider__container {
+	overflow: hidden;
+}
+
+.doctor-info__certs-slider .slider__track {
+	display: flex;
+	gap: 20px;
+	transition: transform 0.3s ease;
+}
+
+.doctor-info__certs-slider .slider__slide {
+	flex: 0 0 calc((100% - 40px) / 3);
+	min-width: 0;
+}
+
+.doctor-info__cert-link {
+	display: block;
+	text-decoration: none;
+}
+
+.doctor-info__cert-img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
 /* Page-intro: desktop */
 
 .page-intro__box {
@@ -423,6 +496,12 @@
     .page-intro-mobile {
         display: none;
     }
+}
+
+@media (max-width: 767px) {
+	.doctor-info__certs-slider .slider__slide {
+		flex: 0 0 calc((100% - 20px) / 2);
+	}
 }
 
 

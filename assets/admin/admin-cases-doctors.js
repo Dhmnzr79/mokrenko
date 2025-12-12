@@ -9,6 +9,7 @@
     $(document).ready(function() {
         initCertsGallery();
         initImageSelectors();
+        initDoctorPhoto2();
     });
 
     // Галерея сертификатов
@@ -135,6 +136,47 @@
             alt: attachment.alt || attachment.title
         });
         preview.append(img);
+    }
+
+    // Селектор второго фото врача
+    function initDoctorPhoto2() {
+        var doctorPhoto2Frame;
+        
+        // Используем делегирование событий на случай, если метабокс загружается динамически
+        $(document).on('click', '#select-doctor-photo-2', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Проверяем, что wp.media доступен
+            if (typeof wp === 'undefined' || !wp.media) {
+                console.error('WordPress Media Library не загружена');
+                return;
+            }
+            
+            if (doctorPhoto2Frame) {
+                doctorPhoto2Frame.open();
+                return;
+            }
+
+            doctorPhoto2Frame = wp.media({
+                title: theme_admin.strings.selectDoctorPhoto2 || 'Выберите второе фото врача',
+                button: {
+                    text: theme_admin.strings.select || 'Выбрать'
+                },
+                multiple: false,
+                library: {
+                    type: 'image'
+                }
+            });
+
+            doctorPhoto2Frame.on('select', function() {
+                var attachment = doctorPhoto2Frame.state().get('selection').first().toJSON();
+                $('#doctor_photo_2').val(attachment.id);
+                updateImagePreview('#doctor-photo-2-preview', attachment);
+            });
+
+            doctorPhoto2Frame.open();
+        });
     }
 
 })(jQuery);

@@ -121,7 +121,8 @@ function theme_admin_scripts($hook) {
                 'select' => __('Выбрать', 'mokrenko'),
                 'selectCerts' => __('Выберите сертификаты', 'mokrenko'),
                 'selectBeforeImage' => __('Выберите фото "До"', 'mokrenko'),
-                'selectAfterImage' => __('Выберите фото "После"', 'mokrenko')
+                'selectAfterImage' => __('Выберите фото "После"', 'mokrenko'),
+                'selectDoctorPhoto2' => __('Выберите второе фото врача', 'mokrenko')
             ]
         ]);
     }
