@@ -583,3 +583,89 @@ function theme_save_case_meta($post_id) {
     }
     update_post_meta($post_id, 'case_solutions_dynamic', wp_json_encode($solutions_data, JSON_UNESCAPED_UNICODE));
 }
+
+// Метабокс для постов (похожие статьи)
+add_action('add_meta_boxes', 'theme_add_post_meta_box');
+function theme_add_post_meta_box() {
+    add_meta_box(
+        'post_related',
+        __('Похожие статьи', 'mokrenko'),
+        'theme_post_related_meta_box_callback',
+        'post',
+        'normal',
+        'high'
+    );
+}
+
+function theme_post_related_meta_box_callback($post) {
+    wp_nonce_field('post_related_nonce', 'post_related_nonce');
+    
+    $related_1 = get_post_meta($post->ID, 'post_related_1', true);
+    $related_2 = get_post_meta($post->ID, 'post_related_2', true);
+    
+    // Получаем список всех постов, исключая текущий
+    $posts = get_posts([
+        'post_type' => 'post',
+        'posts_per_page' => -1,
+        'post_status' => 'publish',
+        'post__not_in' => [$post->ID]
+    ]);
+    ?>
+    <table class="form-table">
+        <tr>
+            <th><label for="post_related_1"><?php _e('Похожая статья 1', 'mokrenko'); ?></label></th>
+            <td>
+                <select id="post_related_1" name="post_related_1" style="width: 100%;">
+                    <option value=""><?php _e('Выберите статью', 'mokrenko'); ?></option>
+                    <?php foreach ($posts as $related_post): ?>
+                        <option value="<?php echo $related_post->ID; ?>" <?php selected($related_1, $related_post->ID); ?>>
+                            <?php echo esc_html($related_post->post_title); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="post_related_2"><?php _e('Похожая статья 2', 'mokrenko'); ?></label></th>
+            <td>
+                <select id="post_related_2" name="post_related_2" style="width: 100%;">
+                    <option value=""><?php _e('Выберите статью', 'mokrenko'); ?></option>
+                    <?php foreach ($posts as $related_post): ?>
+                        <option value="<?php echo $related_post->ID; ?>" <?php selected($related_2, $related_post->ID); ?>>
+                            <?php echo esc_html($related_post->post_title); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <?php
+}
+
+add_action('save_post', 'theme_save_post_related_meta');
+function theme_save_post_related_meta($post_id) {
+    if (!isset($_POST['post_related_nonce']) || !wp_verify_nonce($_POST['post_related_nonce'], 'post_related_nonce')) {
+        return;
+    }
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+    if (get_post_type($post_id) !== 'post') {
+        return;
+    }
+
+    if (isset($_POST['post_related_1'])) {
+        update_post_meta($post_id, 'post_related_1', absint($_POST['post_related_1']));
+    } else {
+        delete_post_meta($post_id, 'post_related_1');
+    }
+
+    if (isset($_POST['post_related_2'])) {
+        update_post_meta($post_id, 'post_related_2', absint($_POST['post_related_2']));
+    } else {
+        delete_post_meta($post_id, 'post_related_2');
+    }
+}

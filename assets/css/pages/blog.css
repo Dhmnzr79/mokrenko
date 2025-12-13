@@ -13,12 +13,6 @@
     background: #fff;
     border-radius: 20px;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.blog-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .blog-card__image {
@@ -32,10 +26,11 @@
     height: auto;
     display: block;
     object-fit: cover;
+    border-radius: 20px;
 }
 
 .blog-card__content {
-    padding: 20px;
+    padding: 20px 0;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -59,11 +54,6 @@
 .blog-card__title a {
     color: #111;
     text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.blog-card__title a:hover {
-    color: var(--color-accent);
 }
 
 .blog-card__excerpt {
@@ -77,11 +67,6 @@
     color: var(--color-accent);
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-.blog-card__link:hover {
-    color: #111;
 }
 
 .blog__pagination {
@@ -108,11 +93,6 @@
     color: #fff;
 }
 
-.blog-single__article {
-    background: #fff;
-    border-radius: 20px;
-    padding: 40px;
-}
 
 .blog-single__header {
     margin-bottom: 30px;
@@ -135,7 +115,7 @@
 }
 
 .blog-single__image {
-    margin: 30px 0;
+    margin: 0 0 20px;
     border-radius: 20px;
     overflow: hidden;
 }
@@ -177,6 +157,34 @@
     margin-bottom: 8px;
 }
 
+.blog-single__back-to-blog {
+    margin-top: 30px;
+}
+
+.blog-single__back-to-blog-link {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.blog-single__related {
+    margin-top: 50px;
+    padding-top: 50px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.blog-single__related-title {
+    font-size: 36px;
+    margin: 0 0 30px 0;
+    color: #111;
+}
+
+.blog-single__related-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--col-gap-desk);
+}
+
 .blog-single__sidebar {
     position: sticky;
     top: 20px;
@@ -199,6 +207,27 @@
 
 .blog-single__back-link:hover {
     transform: translateX(-5px);
+}
+
+.blog-single__sidebar .doctor-question__box {
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.blog-single__sidebar .doctor-question__text {
+    margin: 0;
+    line-height: 1.4;
+    font-size: 17px;
+}
+
+.blog-single__sidebar .doctor-question__box form,
+.blog-single__sidebar .doctor-question__box .wpcf7-form {
+    margin-top: 20px;
+}
+
+.blog-single__sidebar .doctor-question__box .cf7-row {
+    flex-direction: column;
+    gap: 0;
 }
 
 @media (max-width: 1279px) {
@@ -247,5 +276,19 @@
     .blog-single__sidebar {
         position: static;
         margin-top: 30px;
+    }
+    
+    .blog-single__related {
+        margin-top: 30px;
+        padding-top: 30px;
+    }
+    
+    .blog-single__related-title {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+    
+    .blog-single__related-grid {
+        gap: var(--col-gap-mob);
     }
 }
