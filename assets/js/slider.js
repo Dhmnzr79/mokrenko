@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (!track || !slides.length || !prevBtn || !nextBtn) return;
         
-        const isCarousel = slider.classList.contains('slider--two') || slider.classList.contains('slider--social');
+        const isCarousel = slider.classList.contains('slider--two') || slider.classList.contains('slider--social') || slider.classList.contains('slider--certs');
         let currentSlide = 0;
         const totalSlides = slides.length;
         
@@ -25,6 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 visibleSlides = window.innerWidth >= 768 ? 3 : 1;
             } else if (slider.classList.contains('slider--social')) {
                 visibleSlides = window.innerWidth >= 768 ? 2 : 1;
+            } else if (slider.classList.contains('slider--certs')) {
+                visibleSlides = window.innerWidth >= 768 ? 3 : 2;
             }
         }
         
@@ -137,6 +139,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     newVisibleSlides = window.innerWidth >= 768 ? 3 : 1;
                 } else if (slider.classList.contains('slider--social')) {
                     newVisibleSlides = window.innerWidth >= 768 ? 2 : 1;
+                } else if (slider.classList.contains('slider--certs')) {
+                    newVisibleSlides = window.innerWidth >= 768 ? 3 : 2;
                 }
                 
                 if (newVisibleSlides !== visibleSlides) {

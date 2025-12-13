@@ -1,3 +1,59 @@
+/* Doctor hero block */
+.section--doctor-hero {
+	padding-block: 0;
+}
+
+.doctor-hero__box {
+	padding: 16px 16px 0 16px;
+	border-radius: 16px;
+}
+
+.doctor-hero__layout {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 30px;
+}
+
+.doctor-hero__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 40px 40px 80px;
+}
+
+.doctor-hero__content h1 {
+	font-size: 60px;
+}
+
+.doctor-hero__preview {
+	font-size: 20px;
+}
+
+.doctor-hero__experience {
+    display: inline-block;
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 50px;
+}
+
+.doctor-hero__experience p {
+	margin: 0;
+}
+
+.doctor-hero__btn {
+	margin-top: auto;
+}
+
+.doctor-hero__photo {
+	align-self: end;
+	display: flex;
+	justify-content: center;
+}
+
+.doctor-hero__photo img {
+	width: 65%;
+}
+
 /* Doctor info block */
 .doctor-info__photo-wrapper {
 	position: sticky;
@@ -9,10 +65,25 @@
 	position: relative;
 }
 
+.doctor-info__photo-container::before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 50%;
+	background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+	z-index: 1;
+	pointer-events: none;
+	border-radius: 0 0 20px 20px;
+}
+
 .doctor-info__photo {
 	width: 100%;
 	height: auto;
 	display: block;
+	border-radius: 20px;
+	position: relative;
 }
 
 .doctor-info__video-btn {
@@ -22,9 +93,11 @@
 	right: 0;
 	display: flex;
 	align-items: center;
-	justify-content: center;
 	gap: 10px;
 	text-decoration: none;
+	z-index: 10;
+	padding: 30px;
+	color: #fff;
 }
 
 .doctor-info__facts {
@@ -35,6 +108,16 @@
 
 .doctor-info__fact {
 	flex: 1;
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	flex-direction: column;
+}
+
+.doctor-info__fact-icon {
+	width: 36px;
+	height: 36px;
+	flex-shrink: 0;
 }
 
 .doctor-info__education-line {
@@ -45,30 +128,168 @@
 	margin-bottom: 0;
 }
 
-.doctor-info__certs-slider .slider__container {
-	overflow: hidden;
-}
-
-.doctor-info__certs-slider .slider__track {
-	display: flex;
-	gap: 20px;
-	transition: transform 0.3s ease;
-}
-
 .doctor-info__certs-slider .slider__slide {
-	flex: 0 0 calc((100% - 40px) / 3);
-	min-width: 0;
+	height: 400px;
+}
+
+.doctor-info__content h2,
+.doctor-info__education h2,
+.doctor-info__qualification h2,
+.doctor-info__certs h2 {
+	font-size: 30px;
+	margin: 20px 0 20px;
+}
+
+.section--doctors-works .case-card {
+	background-color: #d8e7e7;
+	background-image: url(../../svg/pattern.svg);
+	background-position: left top;
+	background-repeat: no-repeat;
+	background-size: auto;
+}
+
+/* Form consent */
+.form-consent {
+	margin-top: 20px;
+}
+
+.form-consent__label {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	cursor: pointer;
+}
+
+.form-consent__checkbox {
+	width: 20px;
+	height: 20px;
+	flex-shrink: 0;
+	margin-top: 2px;
+	cursor: pointer;
+	appearance: none;
+	border: 2px solid var(--color-accent);
+	border-radius: 4px;
+	background-color: transparent;
+	position: relative;
+}
+
+.form-consent__checkbox:checked {
+	background-color: var(--color-accent);
+	border-color: var(--color-accent);
+}
+
+.form-consent__checkbox:checked::after {
+	content: '✓';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: #fff;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 1;
+}
+
+.form-consent__text {
+	font-size: 14px;
+	line-height: 1.4;
+}
+
+.form-consent__link {
+	color: #000;
+	text-decoration: underline;
+}
+
+.doctor-question__box .reviews__faces .reviews__face:nth-child(2),
+.doctor-question__box .reviews__faces .reviews__face:nth-child(3) {
+	outline: 3px solid #8be8de;
 }
 
 .doctor-info__cert-link {
 	display: block;
 	text-decoration: none;
+	width: 100%;
+	height: 100%;
 }
 
 .doctor-info__cert-img {
 	width: 100%;
-	height: auto;
+	height: 100%;
 	display: block;
+	object-fit: contain;
+	object-position: top center;
+}
+
+/* Doctor question block */
+.doctor-question__box {
+	border-radius: 16px;
+	padding: 40px;
+}
+
+.doctor-question__title {
+	margin: 15px 0 15px 0;
+	font-size: 36px;
+	font-weight: 600;
+}
+
+.doctor-question__text {
+	margin: 0;
+	line-height: 1.4;
+	font-size: 20px;
+}
+
+.doctor-question__box .cf7-row {
+	display: flex;
+	gap: 20px;
+}
+
+.doctor-question__box .cf7-col {
+	flex: 1;
+	min-width: 0;
+}
+
+.doctor-question__box .cf7-row-full {
+	width: 100%;
+}
+
+.doctor-question__box .wpcf7-form-control {
+	width: 100%;
+	max-width: 100%;
+	display: block;
+	padding: 12px;
+	border: 1px solid #E5E7EB;
+	border-radius: 10px;
+	font-family: 'Golos Text', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+	font-size: 16px;
+	background: #fff;
+	transition: border-color 0.2s ease;
+}
+
+.doctor-question__box .wpcf7-form-control:focus {
+	outline: none;
+	border-color: var(--color-accent);
+}
+
+.doctor-question__box .cf7-row-full:last-of-type {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.doctor-question__box .wpcf7-submit {
+	background: linear-gradient(90deg, #EEAA2B 0%, #FF6A09 100%);
+	border-radius: 10px;
+	padding: 20px;
+	color: #fff;
+	font-family: 'Golos Text', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+	font-size: 16px;
+	line-height: 1;
+	border: 0;
+	cursor: pointer;
+	width: auto;
+}
+
+.doctor-question__box .wpcf7-spinner {
+	display: none;
 }
 
 /* Page-intro: desktop */
@@ -441,6 +662,10 @@
         display: none;
     }
     
+    .section--doctor-hero {
+        display: none;
+    }
+    
     /* Показываем мобильную версию первого экрана */
     .section--page-intro-mobile {
         display: block;
@@ -474,6 +699,11 @@
     .history__year {
         font-size: 16px;
     }
+    
+    /* Doctor info certs slider */
+    .doctor-info__certs-slider .slider__slide {
+        height: 300px;
+    }
 }
 
 @media (max-width: calc(var(--brk-lg) - 0.02px)) {
@@ -490,18 +720,16 @@
     .section--page-intro-mobile {
         display: none;
     }
+    
+    .section--doctor-hero {
+        display: block;
+    }
 }
 
 @media (min-width: var(--brk-lg)) {
     .page-intro-mobile {
         display: none;
     }
-}
-
-@media (max-width: 767px) {
-	.doctor-info__certs-slider .slider__slide {
-		flex: 0 0 calc((100% - 20px) / 2);
-	}
 }
 
 

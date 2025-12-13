@@ -10,6 +10,7 @@
         initCertsGallery();
         initImageSelectors();
         initDoctorPhoto2();
+        loadExistingCerts();
     });
 
     // Галерея сертификатов
@@ -61,6 +62,30 @@
             });
             preview.append(img);
         });
+    }
+
+    // Загрузка существующих сертификатов при открытии страницы
+    function loadExistingCerts() {
+        var certsJson = $('#doctor_certs_json').val();
+        if (certsJson) {
+            try {
+                var certIds = JSON.parse(certsJson);
+                if (Array.isArray(certIds) && certIds.length > 0) {
+                    certIds.forEach(function(certId) {
+                        var attachment = wp.media.attachment(certId);
+                        attachment.fetch().done(function() {
+                            var img = $('<img>').attr({
+                                src: attachment.attributes.sizes && attachment.attributes.sizes.thumbnail ? attachment.attributes.sizes.thumbnail.url : attachment.attributes.url,
+                                alt: attachment.attributes.alt || attachment.attributes.title
+                            });
+                            $('#certs-preview').append(img);
+                        });
+                    });
+                }
+            } catch(e) {
+                console.error('Error parsing certs JSON:', e);
+            }
+        }
     }
 
     // Селекторы изображений для кейсов

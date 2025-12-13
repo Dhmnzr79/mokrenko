@@ -40,7 +40,8 @@
 }
 
 .slider--two .slider__slide,
-.slider--social .slider__slide {
+.slider--social .slider__slide,
+.slider--certs .slider__slide {
     display: block;
 }
 
@@ -92,6 +93,22 @@
 
 .slider--social .slider__slide {
     flex: 0 0 calc((100% - 30px) / 2);
+    min-width: 0;
+}
+
+/* Слайдер сертификатов: карусель с шагом 1 карточка, показ 3 на десктопе, 2 на мобилке */
+.slider--certs .slider__container {
+    overflow: hidden;
+}
+
+.slider--certs .slider__track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.3s ease;
+}
+
+.slider--certs .slider__slide {
+    flex: 0 0 calc((100% - 40px) / 3);
     min-width: 0;
 }
 
@@ -755,7 +772,7 @@
 
 /* ----- Contacts section ----- */
 .section--contacts .contacts__box {
-    background: url('../../svg/bg-contact.svg') no-repeat left center, linear-gradient(94.24deg, #84EBDA -5.47%, #B7D8F8 114.07%);
+    background: url('../svg/figure-bg.svg') no-repeat left center, linear-gradient(94.24deg, #84EBDA -5.47%, #B7D8F8 114.07%);
     background-size: auto 100%, cover;
     border-radius: 16px;
     padding: 40px;
@@ -1374,6 +1391,16 @@
     .slider--social .slider__slide {
         flex: 0 0 100%;
         min-width: 100%;
+    }
+    
+    /* Slider сертификатов */
+    .slider--certs .slider__track {
+        gap: 12px;
+    }
+    
+    .slider--certs .slider__slide {
+        flex: 0 0 calc((100% - 12px) / 2);
+        min-width: 0;
     }
     
     /* Slider общие */
