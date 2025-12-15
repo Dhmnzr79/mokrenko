@@ -181,7 +181,7 @@ add_action('wp_enqueue_scripts', function(){
 		wp_enqueue_style('page-home', $uri.'pages/home.css', ['theme-utilities'], $ver);
 	}
 	
-	if (is_page(['about', 'reviews', 'contacts', 'team', 'prices', 'doctors', 'o-klinike', 'otzyvy', 'kontakty', 'komanda', 'tseny', 'vrachi']) || is_page_template('page-about.php') || is_page_template('page-reviews.php') || is_page_template('page-contacts.php') || is_page_template('page-prices.php') || is_page_template('page-doctors.php') || is_page_template('page-blog.php') || is_single()) {
+	if (is_page(['about', 'reviews', 'contacts', 'team', 'prices', 'doctors', 'o-klinike', 'otzyvy', 'kontakty', 'komanda', 'tseny', 'vrachi']) || is_page_template('page-about.php') || is_page_template('page-reviews.php') || is_page_template('page-contacts.php') || is_page_template('page-prices.php') || is_page_template('page-doctors.php') || is_page_template('page-blog.php') || is_page_template('page-portfolio.php') || is_single()) {
 		wp_enqueue_style('page-inner', $uri.'pages/inner.css', ['theme-utilities'], $ver);
 		wp_enqueue_style('page-home', $uri.'pages/home.css', ['theme-utilities'], $ver);
 		wp_enqueue_script('theme-lightbox', get_stylesheet_directory_uri() . '/assets/js/lightbox.js', [], $ver, true);
@@ -234,6 +234,9 @@ add_action('wp_enqueue_scripts', function(){
 	
 	// Enqueue popup script
 	wp_enqueue_script('theme-popup', get_stylesheet_directory_uri() . '/assets/js/popup.js', [], $ver, true);
+	
+	// Enqueue mobile menu script
+	wp_enqueue_script('theme-mobile-menu', get_stylesheet_directory_uri() . '/assets/js/mobile-menu.js', [], $ver, true);
 });
 
 // Функция для проверки, нужно ли скрывать обычный header (для страниц с .page-top)
@@ -260,15 +263,48 @@ function get_page_url_by_template($template_name) {
 		return '#';
 	}
 	
+	// Сначала ищем по meta_key (шаблон)
 	$pages = get_pages([
 		'meta_key' => '_wp_page_template',
 		'meta_value' => $template_name,
-		'number' => 1
+		'number' => 1,
+		'post_status' => 'publish'
 	]);
 	
 	if (!empty($pages) && isset($pages[0]->ID)) {
 		return get_permalink($pages[0]->ID);
 	}
 	
+	// Если не найдено, пробуем найти по slug (для совместимости)
+	$template_slug = str_replace(['page-', '.php'], '', $template_name);
+	$page = get_page_by_path($template_slug);
+	if ($page && $page->post_status === 'publish') {
+		return get_permalink($page->ID);
+	}
+	
 	return '#';
+}
+
+// Редирект после отправки Contact Form 7 на страницу благодарности
+add_action('wpcf7_mail_sent', 'theme_cf7_redirect_to_thank_you');
+function theme_cf7_redirect_to_thank_you($contact_form) {
+	// Получаем URL страницы благодарности
+	$thank_you_page = get_page_by_path('thank-you');
+	if (!$thank_you_page) {
+		// Пробуем найти по шаблону
+		$pages = get_pages([
+			'meta_key' => '_wp_page_template',
+			'meta_value' => 'page-thank-you.php',
+			'number' => 1
+		]);
+		if (!empty($pages)) {
+			$thank_you_page = $pages[0];
+		}
+	}
+	
+	if ($thank_you_page) {
+		$redirect_url = get_permalink($thank_you_page->ID);
+		wp_safe_redirect($redirect_url);
+		exit;
+	}
 }

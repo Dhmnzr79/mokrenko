@@ -5,7 +5,7 @@
 .section { padding-block: 48px; }
 
 .section--hero { padding-block: 0; }
-.section--reviews { padding-bottom: 0; }
+.section--reviews { padding-bottom: 60px; }
 .section--divider { padding-block: 0; }
 .section--map { padding-block: 0; padding-bottom: 0; }
 .section--contacts { padding-top: 40px; }
@@ -306,6 +306,10 @@
   height: 30px;
 }
 
+.hero__feature-item p {
+  margin-bottom: 15px;
+}
+
 .review-card {
   background-image: url('../images/revire_bg.jpg');
   background-repeat: no-repeat;
@@ -528,7 +532,7 @@
 }
 
 .award-card--header {
-    background: white;
+    background: unset;
     color: #333;
     display: flex;
     flex-direction: column;
@@ -1044,6 +1048,11 @@
     margin-top: 20px;
 }
 
+.achievement-icon__img {
+    width: 44px;
+    height: 44px;
+}
+
 .chief-doctor__photo {
     background-image: url('../images/mokrenko_bg.jpg');
     background-size: cover;
@@ -1434,6 +1443,10 @@
     
     .award-icon {
         font-size: 40px;
+    }
+    
+    .section--contacts .contacts__question h3 {
+        font-size: 24px;
     }
 }
 

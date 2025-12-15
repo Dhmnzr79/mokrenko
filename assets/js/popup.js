@@ -241,9 +241,21 @@ document.addEventListener('DOMContentLoaded', () => {
             openPopup();
         });
     });
+    
+    // Добавляем обработчики на все ссылки услуг для открытия popup-2
+    document.querySelectorAll('.service-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            openPopup('popup-2');
+        });
+    });
 });
 
 // Экспорт функций для использования в HTML
 window.openPopup = openPopup;
 window.closePopup = closePopup;
+
+
+
+
 

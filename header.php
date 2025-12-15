@@ -63,4 +63,23 @@
 	</div>
 </header>
 
+<!-- Мобильное меню -->
+<div class="mobile-menu">
+	<div class="mobile-menu__overlay"></div>
+	<div class="mobile-menu__content">
+		<button class="mobile-menu__close" aria-label="Закрыть меню">
+			<span class="mobile-menu__close-icon"></span>
+		</button>
+		<nav class="mobile-menu__nav">
+			<a href="<?php echo esc_url(get_page_url_by_template('page-about.php')); ?>" class="mobile-menu__link">О клинике</a>
+			<a href="<?php echo esc_url(get_page_url_by_template('page-portfolio.php')); ?>" class="mobile-menu__link">Портфолио</a>
+			<a href="<?php echo esc_url(get_page_url_by_template('page-doctors.php')); ?>" class="mobile-menu__link">Врачи</a>
+			<a href="<?php echo esc_url(get_page_url_by_template('page-prices.php')); ?>" class="mobile-menu__link">Прайс</a>
+			<a href="<?php echo esc_url(get_page_url_by_template('page-blog.php')); ?>" class="mobile-menu__link">Блог</a>
+			<a href="<?php echo esc_url(get_page_url_by_template('page-reviews.php')); ?>" class="mobile-menu__link">Отзывы</a>
+			<a href="<?php echo esc_url(get_page_url_by_template('page-contacts.php')); ?>" class="mobile-menu__link">Контакты</a>
+		</nav>
+	</div>
+</div>
+
 <main class="site-main">

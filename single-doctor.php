@@ -81,7 +81,7 @@ get_header();
 				</div>
 				<nav class="hero__menu-nav">
 					<a href="<?php echo esc_url(get_page_url_by_template('page-about.php')); ?>" class="hero__menu-link">О клинике</a>
-					<a href="#" class="hero__menu-link">Портфолио</a>
+					<a href="<?php echo esc_url(get_page_url_by_template('page-portfolio.php')); ?>" class="hero__menu-link">Портфолио</a>
 					<a href="<?php echo esc_url(get_page_url_by_template('page-doctors.php')); ?>" class="hero__menu-link">Врачи</a>
 					<a href="<?php echo esc_url(get_page_url_by_template('page-prices.php')); ?>" class="hero__menu-link">Прайс</a>
 					<a href="#" class="hero__menu-link">Акции</a>
@@ -255,6 +255,21 @@ get_header();
 	</div>
 </section>
 
+<?php
+$cases = get_posts([
+	'post_type' => 'case',
+	'posts_per_page' => -1,
+	'post_status' => 'publish',
+	'meta_query' => [
+		[
+			'key' => 'case_doctor_id',
+			'value' => $doctor_id,
+			'compare' => '='
+		]
+	]
+]);
+
+if (!empty($cases)): ?>
 <section class="section section--doctors-works doctors-works">
 	<div class="container">
 		<div class="row">
@@ -272,29 +287,10 @@ get_header();
 					<div class="slider__container">
 						<div class="slider__track">
 							<?php
-							$cases = get_posts([
-								'post_type' => 'case',
-								'posts_per_page' => -1,
-								'post_status' => 'publish',
-								'meta_query' => [
-									[
-										'key' => 'case_doctor_id',
-										'value' => $doctor_id,
-										'compare' => '='
-									]
-								]
-							]);
-							
-							if (empty($cases)) {
-								echo '<div class="slider__slide slider__slide--active">';
-								echo '<p>У данного врача пока нет опубликованных кейсов.</p>';
+							foreach ($cases as $index => $case) {
+								echo '<div class="slider__slide' . ($index === 0 ? ' slider__slide--active' : '') . '">';
+								get_template_part('template-parts/case/showcase', null, ['case_id' => $case->ID]);
 								echo '</div>';
-							} else {
-								foreach ($cases as $index => $case) {
-									echo '<div class="slider__slide' . ($index === 0 ? ' slider__slide--active' : '') . '">';
-									get_template_part('template-parts/case/showcase', null, ['case_id' => $case->ID]);
-									echo '</div>';
-								}
 							}
 							?>
 						</div>
@@ -308,6 +304,7 @@ get_header();
 		</div>
 	</div>
 </section>
+<?php endif; ?>
 
 <section class="section section--doctor-question doctor-question">
 	<div class="container">

@@ -41,7 +41,7 @@
 				</div>
 				<nav class="hero__menu-nav">
 					<a href="<?php echo esc_url(get_page_url_by_template('page-about.php')); ?>" class="hero__menu-link">О клинике</a>
-					<a href="#" class="hero__menu-link">Портфолио</a>
+					<a href="<?php echo esc_url(get_page_url_by_template('page-portfolio.php')); ?>" class="hero__menu-link">Портфолио</a>
 					<a href="<?php echo esc_url(get_page_url_by_template('page-doctors.php')); ?>" class="hero__menu-link">Врачи</a>
 					<a href="<?php echo esc_url(get_page_url_by_template('page-prices.php')); ?>" class="hero__menu-link">Прайс</a>
 					<a href="#" class="hero__menu-link">Акции</a>

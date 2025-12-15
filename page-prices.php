@@ -8,7 +8,7 @@ get_header();
 <section class="section section--page-intro-mobile page-intro-mobile">
 	<div class="container">
 		<div class="page-intro-mobile__box">
-			<h1>30 лет опыта в каждом решении и улыбке пациента</h1>
+			<h1>Доступная стоматология с экспертным подходом</h1>
 			<img src="<?php echo get_template_directory_uri(); ?>/assets/images/mokrenko_first_mobile.png" alt="Доктор Мокренко" class="page-intro-mobile__image">
 		</div>
 		<div class="page-intro-mobile__benefits">
@@ -44,7 +44,7 @@ get_header();
 				</div>
 				<nav class="hero__menu-nav">
 					<a href="<?php echo esc_url(get_page_url_by_template('page-about.php')); ?>" class="hero__menu-link">О клинике</a>
-					<a href="#" class="hero__menu-link">Портфолио</a>
+					<a href="<?php echo esc_url(get_page_url_by_template('page-portfolio.php')); ?>" class="hero__menu-link">Портфолио</a>
 					<a href="<?php echo esc_url(get_page_url_by_template('page-doctors.php')); ?>" class="hero__menu-link">Врачи</a>
 					<a href="<?php echo esc_url(get_page_url_by_template('page-prices.php')); ?>" class="hero__menu-link">Прайс</a>
 					<a href="#" class="hero__menu-link">Акции</a>
@@ -60,7 +60,7 @@ get_header();
 			</div>
 			<div class="page-intro__layout">
 				<div class="page-intro__content">
-					<h1>30 лет опыта в каждом решении и улыбке пациента</h1>
+					<h1>Доступная стоматология с экспертным подходом</h1>
 					<div class="page-intro__benefits">
 						<div class="page-intro__benefit-item">
 							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="page-intro__benefit-icon">

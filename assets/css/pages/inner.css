@@ -4,21 +4,26 @@
 }
 
 .doctor-hero__box {
-	padding: 16px 16px 0 16px;
-	border-radius: 16px;
+	padding: 20px 20px 0 20px;
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
 }
 
 .doctor-hero__layout {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 30px;
+	align-items: stretch;
+	height: 580px;
 }
 
 .doctor-hero__content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 40px 40px 80px;
+    padding: 40px;
+    gap: 40px;
 }
 
 .doctor-hero__content h1 {
@@ -27,6 +32,10 @@
 
 .doctor-hero__preview {
 	font-size: 20px;
+}
+
+.doctor-hero__preview p {
+	font-size: 18px;
 }
 
 .doctor-hero__experience {
@@ -48,10 +57,15 @@
 	align-self: end;
 	display: flex;
 	justify-content: center;
+	height: 100%;
+	overflow: hidden;
 }
 
 .doctor-hero__photo img {
 	width: 65%;
+	height: 100%;
+	object-fit: cover;
+	object-position: top center;
 }
 
 /* Doctor info block */
@@ -72,7 +86,7 @@
 	left: 0;
 	right: 0;
 	height: 50%;
-	background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+	background: linear-gradient(to top, rgb(0 0 0 / 60%), rgba(0, 0, 0, 0));
 	z-index: 1;
 	pointer-events: none;
 	border-radius: 0 0 20px 20px;
@@ -303,6 +317,7 @@
     background-position: 70% bottom, 0 0;
     background-size: 370px, cover;
 }
+
 
 .section--page-intro {
     padding: 0;
@@ -680,6 +695,10 @@
         padding: 30px 20px;
     }
     
+    .page-intro-mobile__image {
+        max-height: 140%;
+    }
+    
     /* Button */
     .btn {
         width: 100%;
@@ -703,6 +722,47 @@
     /* Doctor info certs slider */
     .doctor-info__certs-slider .slider__slide {
         height: 300px;
+    }
+    
+    /* Doctor info facts */
+    .doctor-info__facts {
+        flex-direction: column;
+    }
+    
+    /* Doctor info photo */
+    .doctor-info__photo-wrapper {
+        width: 100%;
+    }
+    
+    /* Doctor question */
+    .doctor-question__box {
+        border-radius: 16px;
+        padding: 20px;
+    }
+    
+    .doctor-question__title {
+        font-size: 26px;
+    }
+    
+    .doctor-question__text {
+        font-size: 16px;
+    }
+    
+    .doctor-question__box .cf7-row {
+        flex-direction: column;
+    }
+    
+    /* Thank you page */
+    .thank-you {
+        padding-block: 60px;
+    }
+    
+    .thank-you__title {
+        font-size: 32px;
+    }
+    
+    .thank-you__text {
+        font-size: 16px;
     }
 }
 
@@ -730,6 +790,52 @@
     .page-intro-mobile {
         display: none;
     }
+}
+
+/* ============================================
+   THANK YOU PAGE
+   ============================================ */
+
+.thank-you {
+    padding-block: 80px;
+    text-align: center;
+}
+
+.thank-you__content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.thank-you__icon {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.thank-you__title {
+    font-size: 44px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #111;
+}
+
+.thank-you__text {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.thank-you__text:last-of-type {
+    margin-bottom: 40px;
+}
+
+.thank-you__actions {
+    margin-top: 40px;
+}
+
+.thank-you__btn {
+    display: inline-block;
 }
 
 

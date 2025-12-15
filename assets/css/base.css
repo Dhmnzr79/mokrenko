@@ -57,6 +57,11 @@ body {
   color: #111; 
 }
 
+body.home,
+body.wp-singular {
+  background-color: rgba(255, 255, 255, 1);
+}
+
 a { color: var(--color-accent); }
 
 /* Utilities for brand backgrounds */
