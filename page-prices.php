@@ -119,7 +119,7 @@ get_header();
 						<h2>Контакты</h2>
 						<ul class="contacts__list">
 							<li data-emoji="📍">г. Москва, проспект Мира, д. 57, корп. 2</li>
-							<li data-emoji="📞">+7 (495) 123-45-67</li>
+							<li data-emoji="📞"><a href="tel:+74950035476">+7 (495) 003-54-76</a></li>
 							<li data-emoji="✉️">info@mokrenko.ru</li>
 							<li data-emoji="🕒">Пн-Пт: 9:00 - 21:00<br>Сб-Вс: 10:00 - 18:00</li>
 						</ul>

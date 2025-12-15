@@ -853,6 +853,12 @@
 .section--contacts .contacts__list a {
     font-size: 26px;
     text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s ease;
+}
+
+.section--contacts .contacts__list a:hover {
+    opacity: 0.8;
 }
 
 .section--contacts .contacts__question {
@@ -1116,6 +1122,74 @@
     border-radius: 50%;
 }
 
+/* Social proof section styles */
+.section--social-proof {
+    background: linear-gradient(94.24deg, #84EBDA -5.47%, #B7D8F8 114.07%);
+}
+
+.section--social-proof .text-contrast {
+    color: #ffffff;
+}
+
+.section--consult .text-contrast {
+    color: #ffffff;
+}
+
+.section--social-proof .text-accent {
+    color: #ffffff;
+}
+
+.section--social-proof .slider {
+    position: relative;
+}
+
+.section--social-proof .slider__nav {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    margin-top: 0;
+    z-index: 3;
+}
+
+.section--social-proof .slider__slide .row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--col-gap-mob);
+}
+
+.section--social-proof .proof-card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.section--social-proof .proof-card__text {
+    font-size: 15px;
+}
+
+.section--social-proof .proof-card__avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.section--social-proof .proof-card__name {
+    font-size: 18px;
+    margin: 0;
+}
+
+.section--social-proof .proof-card__level {
+    font-size: 14px;
+}
+
+.section--social-proof .proof-card__date {
+    font-size: 14px;
+}
+
 .reviews__faces {
     display: flex;
     gap: 10px;
@@ -1148,6 +1222,13 @@
 .reviews__rating-text {
     font-size: 16px;
     margin: 0;
+}
+
+/* Proof card component */
+.proof-card__header {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
 }
 
 .hero-mobile {
@@ -1605,6 +1686,19 @@
         align-items: start;
     }
     
+    .section--social-proof .proof-card--mobile-hide {
+        display: none;
+    }
+    
+    .section--social-proof .slider__slide .row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .section--consult .consult__row--cards {
+        flex-direction: column;
+    }
+    
     .reviews__stats {
         gap: 10px;
     }
@@ -1671,6 +1765,10 @@
 
 /* Desktop: min-width 1280px */
 @media (min-width: 1280px) {
+    .section--social-proof .slider__slide .row {
+        gap: var(--col-gap-desk);
+    }
+    
     .hero-mobile {
         display: none;
     }

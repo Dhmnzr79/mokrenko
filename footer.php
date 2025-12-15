@@ -13,14 +13,14 @@
 				<div class="footer__section">
 					<h3 class="footer__title">Услуги:</h3>
 					<ul class="footer__list">
-						<li><a href="#" class="footer__link">Люминиры</a></li>
-						<li><a href="#" class="footer__link">Виниры</a></li>
+						<li><a href="#" class="footer__link">Коронка на зуб</a></li>
+						<li><a href="#" class="footer__link">Импланты зубов</a></li>
+						<li><a href="#" class="footer__link">Протезирование зубов</a></li>
+						<li><a href="#" class="footer__link">Реставрация зубов</a></li>
 						<li><a href="#" class="footer__link">Лечение зубов</a></li>
-						<li><a href="#" class="footer__link">Хирургическая стоматология</a></li>
-						<li><a href="#" class="footer__link">Отбеливание зубов</a></li>
-						<li><a href="#" class="footer__link">Профессиональная гигиена</a></li>
-						<li><a href="#" class="footer__link">Детская стоматология</a></li>
+						<li><a href="#" class="footer__link">Удаление зубов</a></li>
 						<li><a href="#" class="footer__link">Лечение десен</a></li>
+						<li><a href="#" class="footer__link">Чистка зубов</a></li>
 					</ul>
 				</div>
 			</div>
@@ -28,14 +28,14 @@
 				<div class="footer__section">
 					<h3 class="footer__title footer__title--empty"></h3>
 					<ul class="footer__list">
-						<li><a href="#" class="footer__link">Протезирование зубов</a></li>
-						<li><a href="#" class="footer__link">Съемные протезы</a></li>
-						<li><a href="#" class="footer__link">Имплантация под ключ</a></li>
-						<li><a href="#" class="footer__link">Одноэтапная имплантация</a></li>
-						<li><a href="#" class="footer__link">Классическая имплантация</a></li>
-						<li><a href="#" class="footer__link">Одномоментная имплантация</a></li>
-						<li><a href="#" class="footer__link">All-on-4</a></li>
-						<li><a href="#" class="footer__link">All-on-6</a></li>
+						<li><a href="#" class="footer__link">Все зубы за 1 день All-on-4</a></li>
+						<li><a href="#" class="footer__link">Имплантация All-on-6</a></li>
+						<li><a href="#" class="footer__link">Несъёмные протезы</a></li>
+						<li><a href="#" class="footer__link">Съёмные протезы</a></li>
+						<li><a href="#" class="footer__link">Виниры на зубы</a></li>
+						<li><a href="#" class="footer__link">Брекеты</a></li>
+						<li><a href="#" class="footer__link">Отбеливание зубов</a></li>
+						<li><a href="#" class="footer__link">Чистка Air Flow</a></li>
 					</ul>
 				</div>
 			</div>
@@ -77,7 +77,18 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-12 col-lg-12">
-				<p class="footer__copyright">© <?php echo date('Y'); ?> Mokrenko</p>
+				<div class="footer__copyright">
+					<div class="footer__copyright-left">
+						<p>ООО «Стоматологическая клиника Елены Мокренко»</p>
+						<p>ИНН: 7702421620     ОГРН: 1177746857320</p>
+					</div>
+					<div class="footer__copyright-right">
+						<a href="https://mokrenko-msk.ru/privacy.pdf" target="_blank" rel="noopener noreferrer" class="footer__privacy-link">Политика конфиденциальности</a>
+					</div>
+				</div>
+				<div class="footer__disclaimer">
+					<p>Имеются противопоказания. Необходима консультация специалиста</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -94,23 +105,13 @@
 			подскажем подходящие варианты имплантации и запишем на консультацию, если захотите.
 		</p>
 
-		<form class="popup-form" method="post">
-			<input type="text" name="name" class="popup-field" placeholder="Ваше имя" autocomplete="name" required>
-			<input type="tel" name="phone" class="popup-field" placeholder="+7 (___) ___-__-__" inputmode="numeric" autocomplete="tel" required>
-			
-			<button type="submit" class="popup-cta">Отправить заявку</button>
-			
-			<a href="https://wa.me/79000000000" class="popup-whatsapp" target="_blank" rel="noopener">
-				<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-					<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
-				</svg>
-				Написать в WhatsApp
-			</a>
-			
-			<p class="popup-policy">
-				Нажимая кнопку, вы соглашаетесь с <a href="#" target="_blank" rel="noopener">политикой конфиденциальности</a>
-			</p>
-		</form>
+		<?php echo do_shortcode('[contact-form-7 id="0f28481" title="Контактная форма 1"]'); ?>
+		<div class="form-consent">
+			<label class="form-consent__label">
+				<input type="checkbox" class="form-consent__checkbox" checked required>
+				<span class="form-consent__text">Я даю согласие на обработку <a href="https://mokrenko-msk.ru/privacy.pdf" target="_blank" rel="noopener" class="form-consent__link">персональных данных</a></span>
+			</label>
+		</div>
 	</div>
 </div>
 
@@ -125,23 +126,13 @@
 			подскажем подходящие варианты имплантации и запишем на консультацию, если захотите.
 		</p>
 
-		<form class="popup-form" method="post">
-			<input type="text" name="name" class="popup-field" placeholder="Ваше имя" autocomplete="name" required>
-			<input type="tel" name="phone" class="popup-field" placeholder="+7 (___) ___-__-__" inputmode="numeric" autocomplete="tel" required>
-			
-			<button type="submit" class="popup-cta">Отправить заявку</button>
-			
-			<a href="https://wa.me/79000000000" class="popup-whatsapp" target="_blank" rel="noopener">
-				<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-					<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
-				</svg>
-				Написать в WhatsApp
-			</a>
-			
-			<p class="popup-policy">
-				Нажимая кнопку, вы соглашаетесь с <a href="#" target="_blank" rel="noopener">политикой конфиденциальности</a>
-			</p>
-		</form>
+		<?php echo do_shortcode('[contact-form-7 id="0f28481" title="Контактная форма 1"]'); ?>
+		<div class="form-consent">
+			<label class="form-consent__label">
+				<input type="checkbox" class="form-consent__checkbox" checked required>
+				<span class="form-consent__text">Я даю согласие на обработку <a href="https://mokrenko-msk.ru/privacy.pdf" target="_blank" rel="noopener" class="form-consent__link">персональных данных</a></span>
+			</label>
+		</div>
 	</div>
 </div>
 

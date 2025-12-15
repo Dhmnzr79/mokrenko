@@ -252,65 +252,65 @@ get_header();
 							<div class="slider__slide slider__slide--active">
 								<article class="proof-card">
 									<header class="proof-card__header">
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_02.jpg" alt="Аватар" class="proof-card__avatar">
+										<img src="<?php echo get_template_directory_uri(); ?>/assets/images/review-avatar-01.jpg" alt="Аватар" class="proof-card__avatar">
 										<div class="proof-card__meta">
-											<h3 class="proof-card__name">Татьяна Палий</h3>
-											<p class="proof-card__level">Знаток города 10 уровня</p>
+											<h3 class="proof-card__name">Елена К.</h3>
+											<p class="proof-card__level">Знаток города 8 уровня</p>
 										</div>
 									</header>
 									<div class="proof-card__rating">
 										<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Оценка 5 из 5" class="proof-card__stars">
-										<span class="proof-card__date">12 марта</span>
+										<span class="proof-card__date">15 марта</span>
 									</div>
-									<p class="proof-card__text">Хочу выразить огромную благодарность хирургу стоматологу Богдану Владимировичу за профессионализм и доброжелательное отношение. Внимательное отношение к своим пациентам.</p>
+									<p class="proof-card__text">Прекрасное отношение к пациентам, врачи-профи, уже несколько лет только сюда, ставила пломбы, импланты - все в прекрасном состоянии, идеальные зубки:) Дети очень любят своего доктора - Надежду Семеновну Дугинец, дочь даже спрашивает - когда уже зубы пойдем лечить, так ей врач нравится. Успехов клинике и благодарность всем специалистам!</p>
 								</article>
 							</div>
 							<div class="slider__slide">
 								<article class="proof-card">
 									<header class="proof-card__header">
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_03.jpg" alt="Аватар" class="proof-card__avatar">
+										<img src="<?php echo get_template_directory_uri(); ?>/assets/images/review-avatar-02.jpg" alt="Аватар" class="proof-card__avatar">
 										<div class="proof-card__meta">
-											<h3 class="proof-card__name">Мария Петрова</h3>
-											<p class="proof-card__level">Знаток города 10 уровня</p>
+											<h3 class="proof-card__name">Василий К.</h3>
+											<p class="proof-card__level">Знаток города 9 уровня</p>
 										</div>
 									</header>
 									<div class="proof-card__rating">
 										<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Оценка 5 из 5" class="proof-card__stars">
-										<span class="proof-card__date">12 марта</span>
+										<span class="proof-card__date">22 февраля</span>
 									</div>
-									<p class="proof-card__text">Выражаю благодарность врачу Богдану Владимировичу за профессионализм и внимательное отношение. Рекомендую клинику.</p>
+									<p class="proof-card__text">Хочу выразить благодарность клинике и в частности хирургу Аросяну Андранику Владимировичу за отличную работу. Ставил импланты — все прошло спокойно и безболезненно. От первой консультации до установки прошло меньше недели, всё организовано очень чётко. Отдельное спасибо менеджеру Элеоноре за внимательное отношение и помощь.</p>
 								</article>
 							</div>
 							<div class="slider__slide">
 								<article class="proof-card">
 									<header class="proof-card__header">
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_02.jpg" alt="Аватар" class="proof-card__avatar">
+										<img src="<?php echo get_template_directory_uri(); ?>/assets/images/review-avatar-03.jpg" alt="Аватар" class="proof-card__avatar">
 										<div class="proof-card__meta">
-											<h3 class="proof-card__name">Иван Палий</h3>
-											<p class="proof-card__level">Знаток города 10 уровня</p>
+											<h3 class="proof-card__name">Дина Хизбуллина</h3>
+											<p class="proof-card__level">Знаток города 7 уровня</p>
 										</div>
 									</header>
 									<div class="proof-card__rating">
 										<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Оценка 5 из 5" class="proof-card__stars">
-										<span class="proof-card__date">12 марта</span>
+										<span class="proof-card__date">5 апреля</span>
 									</div>
-									<p class="proof-card__text">Хочу выразить огромную благодарность хирургу стоматологу Богдану Владимировичу за профессионализм и доброжелательное отношение. Внимательное отношение к своим пациентам.</p>
+									<p class="proof-card__text">Хочу выразить огромную благодарность всему коллективу стоматологической клиники Елены Мокренко! Врачи здесь настоящие профессионалы, всегда внимательные и заботливые. Подробно объясняли каждую процедуру и отвечали на все мои вопросы. Это создало атмосферу доверия и спокойствия.</p>
 								</article>
 							</div>
 							<div class="slider__slide">
 								<article class="proof-card">
 									<header class="proof-card__header">
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_03.jpg" alt="Аватар" class="proof-card__avatar">
+										<img src="<?php echo get_template_directory_uri(); ?>/assets/images/review-avatar-04.jpg" alt="Аватар" class="proof-card__avatar">
 										<div class="proof-card__meta">
-											<h3 class="proof-card__name">Петр Сидоров</h3>
+											<h3 class="proof-card__name">Наталья Разинкова</h3>
 											<p class="proof-card__level">Знаток города 10 уровня</p>
 										</div>
 									</header>
 									<div class="proof-card__rating">
 										<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Оценка 5 из 5" class="proof-card__stars">
-										<span class="proof-card__date">12 марта</span>
+										<span class="proof-card__date">18 марта</span>
 									</div>
-									<p class="proof-card__text">Выражаю благодарность врачу Богдану Владимировичу за профессионализм и внимательное отношение. Рекомендую клинику.</p>
+									<p class="proof-card__text">Выражаю огромную благодарность врачам стоматологической клиники Елены Мокренко, а именно хирургу Васильеву Богдану Владимировичу и ортопеду Сейфуллину Альберту Шамильевичу, за их золотые руки, выскокий профессионализм и заботу о пациентах! Также хочу отметить мед.персонал данной клиники, все очень вежливые и внимательные!</p>
 								</article>
 							</div>
 						</div>
