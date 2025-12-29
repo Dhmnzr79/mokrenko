@@ -1,0 +1,670 @@
+/* ========================================
+   Service Pages Styles
+   ======================================== */
+
+/* Service Hero Section */
+.section--service-hero {
+    padding: 0;
+}
+
+.service-hero__box {
+    border-radius: 16px;
+    padding: 16px;
+    position: relative;
+    background: linear-gradient(94.24deg, #84EBDA -5.47%, #B7D8F8 114.07%);
+}
+
+.service-hero__layout {
+    display: flex;
+    align-items: stretch;
+    gap: 30px;
+    padding: 40px;
+}
+
+.service-hero__content {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.service-hero__content h1 {
+    margin: 0;
+    font-size: 54px;
+    padding-right: 110px;
+}
+
+.service-hero__subtitle {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+.service-hero__benefits {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.service-hero__benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    flex-direction: column;
+    flex: 1;
+}
+
+.service-hero__benefit-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.service-hero__benefit-item p {
+    margin: 0;
+}
+
+.service-hero__cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    margin-top: 60px;
+}
+
+.service-hero__info-wrapper {
+    position: relative;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 20px;
+}
+
+.service-hero__image {
+    width: 100%;
+    max-width: 370px;
+    margin-left: auto;
+}
+
+.service-hero__img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.service-hero__info {
+    background: #ffffff4a;
+    border-radius: 15px;
+    padding: 20px;
+    border-left: 1px solid white;
+    border-top: 1px solid white;
+    backdrop-filter: blur(4.5px);
+    max-width: 350px;
+    margin-left: auto;
+}
+
+.service-hero__info h4 {
+    margin: 0 0 8px 0;
+}
+
+.service-hero__info p {
+    margin: 0;
+    font-size: 16px;
+}
+
+/* Service Benefits Section */
+.section--service-benefits {
+    padding-block: 48px;
+}
+
+.service-benefits__card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    height: 100%;
+    padding: 30px;
+    border-radius: 20px;
+    background-color: var(--color-bg, #f5f5f5);
+}
+
+.service-benefits__icon {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 80px;
+}
+
+.service-benefits__icon-img {
+    max-width: 80px;
+    max-height: 80px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+.service-benefits__title {
+    margin: 0 0 12px 0;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.service-benefits__text {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+}
+
+/* Service Clinic Benefits Section */
+.section--service-clinic-benefits {
+    padding-block: 48px;
+}
+
+.service-clinic-benefits__header {
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.service-clinic-benefits__title {
+    margin: 0 0 12px 0;
+    font-size: 44px;
+    line-height: 1.2;
+}
+
+.service-clinic-benefits__subtitle {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+.service-clinic-benefits__card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    height: 100%;
+    padding: 30px;
+    border-radius: 20px;
+    background-color: var(--color-bg, #f5f5f5);
+}
+
+.service-clinic-benefits__card-icon {
+    margin-bottom: 20px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.service-clinic-benefits__card-icon-img {
+    max-width: 80px;
+    max-height: 80px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+.service-clinic-benefits__card-title {
+    margin: 0 0 12px 0;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.service-clinic-benefits__card-text {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.service-clinic-benefits__feature-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    height: 100%;
+    padding: 40px;
+    border-radius: 20px;
+    background-color: var(--color-bg, #f5f5f5);
+}
+
+.service-clinic-benefits__feature-icon {
+    margin-bottom: 20px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.service-clinic-benefits__feature-icon-img {
+    max-width: 80px;
+    max-height: 80px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+.service-clinic-benefits__feature-title {
+    margin: 0 0 12px 0;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.service-clinic-benefits__feature-text {
+    margin: 0 0 24px 0;
+    font-size: 16px;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+.service-clinic-benefits__feature-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    margin-top: auto;
+}
+
+/* Service CTA Section */
+.section--service-cta {
+    padding-block: 48px;
+}
+
+.service-cta__content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.service-cta__title {
+    margin: 0;
+    font-size: 44px;
+    line-height: 1.2;
+}
+
+.service-cta__subtitle {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+.service-cta__card {
+    padding: 30px;
+    border-radius: 20px;
+    background-color: var(--color-bg, #f5f5f5);
+    height: 100%;
+}
+
+.service-cta__card-text {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.service-cta__form-wrapper {
+    margin-top: 48px;
+    padding: 40px;
+    border-radius: 20px;
+    background-color: var(--color-bg, #f5f5f5);
+    text-align: center;
+}
+
+.service-cta__form-title {
+    margin: 0 0 12px 0;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.service-cta__form-subtitle {
+    margin: 0 0 30px 0;
+    font-size: 18px;
+    color: #666;
+}
+
+/* Service Work Stages Section */
+.section--service-work-stages {
+    padding-block: 48px;
+}
+
+.service-work-stages__header {
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.service-work-stages__title {
+    margin: 0 0 12px 0;
+    font-size: 44px;
+    line-height: 1.2;
+}
+
+.service-work-stages__subtitle {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+.service-work-stages__stage {
+    margin-bottom: 60px;
+    align-items: center;
+}
+
+.service-work-stages__stage:last-child {
+    margin-bottom: 0;
+}
+
+.service-work-stages__content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.service-work-stages__stage-title {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.service-work-stages__checklist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.service-work-stages__checklist-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.service-work-stages__checklist-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.service-work-stages__checklist-description {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+}
+
+.service-work-stages__image {
+    width: 100%;
+    height: auto;
+}
+
+.service-work-stages__img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+}
+
+
+/* ========================================
+   Media Queries
+   ======================================== */
+
+/* Tablet: max-width 991.98px */
+@media (max-width: 991.98px) {
+    /* Service Hero */
+    .service-hero__layout {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .service-hero__content {
+        width: 100%;
+    }
+    
+    .service-hero__content h1 {
+        padding-right: 0;
+        font-size: 42px;
+    }
+    
+    .service-hero__benefits {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .service-hero__benefit-item {
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .service-hero__info-wrapper {
+        width: 100%;
+        align-items: stretch;
+    }
+    
+    .service-hero__image {
+        max-width: 100%;
+        margin-left: 0;
+    }
+    
+    .service-hero__info {
+        max-width: 100%;
+        margin-left: 0;
+    }
+    
+    /* Service Clinic Benefits */
+    .service-clinic-benefits__header {
+        margin-bottom: 30px;
+    }
+    
+    .service-clinic-benefits__title {
+        font-size: 36px;
+    }
+    
+    .service-clinic-benefits__subtitle {
+        font-size: 18px;
+    }
+
+    .service-cta__title {
+        font-size: 36px;
+    }
+    
+    .service-cta__subtitle {
+        font-size: 18px;
+    }
+
+    .service-work-stages__header {
+        margin-bottom: 30px;
+    }
+    
+    .service-work-stages__title {
+        font-size: 36px;
+    }
+    
+    .service-work-stages__subtitle {
+        font-size: 18px;
+    }
+    
+    .service-work-stages__stage {
+        margin-bottom: 40px;
+    }
+    
+    .service-work-stages__content {
+        gap: 20px;
+    }
+    
+    .service-work-stages__stage-title {
+        font-size: 28px;
+    }
+}
+
+/* Mobile: max-width 767.98px */
+@media (max-width: 767.98px) {
+    /* Service Hero */
+    .service-hero__layout {
+        padding: 20px;
+    }
+    
+    .service-hero__content h1 {
+        font-size: 36px;
+    }
+    
+    .service-hero__subtitle {
+        font-size: 18px;
+    }
+    
+    .service-hero__cta-btn {
+        margin-top: 30px;
+    }
+    
+    /* Service Benefits */
+    .section--service-benefits {
+        padding-block: 32px;
+    }
+    
+    .service-benefits__card {
+        padding: 20px;
+    }
+    
+    .service-benefits__icon {
+        height: 60px;
+        margin-bottom: 15px;
+    }
+    
+    .service-benefits__icon-img {
+        max-width: 60px;
+        max-height: 60px;
+    }
+    
+    .service-benefits__title {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    
+    .service-benefits__text {
+        font-size: 15px;
+    }
+    
+    /* Service Clinic Benefits */
+    .section--service-clinic-benefits {
+        padding-block: 32px;
+    }
+    
+    .service-clinic-benefits__header {
+        margin-bottom: 24px;
+    }
+    
+    .service-clinic-benefits__title {
+        font-size: 32px;
+    }
+    
+    .service-clinic-benefits__card,
+    .service-clinic-benefits__feature-card {
+        padding: 20px;
+    }
+    
+    .service-clinic-benefits__card-icon,
+    .service-clinic-benefits__feature-icon {
+        height: 60px;
+        margin-bottom: 15px;
+    }
+    
+    .service-clinic-benefits__card-icon-img,
+    .service-clinic-benefits__feature-icon-img {
+        max-width: 60px;
+        max-height: 60px;
+    }
+    
+    .service-clinic-benefits__card-title,
+    .service-clinic-benefits__feature-title {
+        font-size: 20px;
+    }
+    
+    .service-clinic-benefits__card-text,
+    .service-clinic-benefits__feature-text {
+        font-size: 15px;
+    }
+
+    .section--service-cta {
+        padding-block: 32px;
+    }
+    
+    .service-cta__content {
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+    
+    .service-cta__title {
+        font-size: 32px;
+    }
+    
+    .service-cta__subtitle {
+        font-size: 16px;
+    }
+    
+    .service-cta__card {
+        padding: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .service-cta__form-wrapper {
+        margin-top: 32px;
+        padding: 30px 20px;
+    }
+    
+    .service-cta__form-title {
+        font-size: 28px;
+    }
+    
+    .service-cta__form-subtitle {
+        font-size: 16px;
+    }
+
+    .section--service-work-stages {
+        padding-block: 32px;
+    }
+    
+    .service-work-stages__header {
+        margin-bottom: 24px;
+    }
+    
+    .service-work-stages__title {
+        font-size: 32px;
+    }
+    
+    .service-work-stages__subtitle {
+        font-size: 16px;
+    }
+    
+    .service-work-stages__stage {
+        margin-bottom: 32px;
+    }
+    
+    .service-work-stages__content {
+        gap: 16px;
+        margin-bottom: 20px;
+    }
+    
+    .service-work-stages__stage-title {
+        font-size: 24px;
+    }
+    
+    .service-work-stages__checklist {
+        gap: 16px;
+    }
+    
+    .service-work-stages__checklist-title {
+        font-size: 18px;
+    }
+    
+    .service-work-stages__checklist-description {
+        font-size: 15px;
+    }
+}
+

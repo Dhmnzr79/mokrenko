@@ -249,6 +249,28 @@ document.addEventListener('DOMContentLoaded', () => {
             openPopup('popup-2');
         });
     });
+    
+    // Обработка успешной отправки CF7 формы
+    document.addEventListener('wpcf7mailsent', function(event) {
+        const form = event.target;
+        const popup = form.closest('.popup-overlay');
+        
+        // Получаем URL страницы благодарности из data-атрибута или используем дефолтный
+        const thankYouUrl = document.body.dataset.thankYouUrl || '/thank-you/';
+        
+        if (popup) {
+            // Если форма в попапе - закрываем попап и делаем редирект
+            setTimeout(() => {
+                closePopup();
+                window.location.href = thankYouUrl;
+            }, 1000);
+        } else {
+            // Если форма не в попапе (на странице) - просто делаем редирект
+            setTimeout(() => {
+                window.location.href = thankYouUrl;
+            }, 1000);
+        }
+    }, false);
 });
 
 // Экспорт функций для использования в HTML

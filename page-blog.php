@@ -25,7 +25,7 @@ get_header();
 				<p>Как сохранить зубы здоровыми, а визиты к стоматологу — редкими и спокойными.</p>
 			</div>
 		</div>
-		<button class="btn page-intro-mobile__cta-btn">
+		<button class="btn page-intro-mobile__cta-btn" data-popup="open">
 			Записаться на консультацию
 			<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
 		</button>
@@ -75,7 +75,7 @@ get_header();
 							<p>Как сохранить зубы здоровыми, а визиты к стоматологу — редкими и спокойными.</p>
 						</div>
 					</div>
-					<button class="btn page-intro__cta-btn">
+					<button class="btn page-intro__cta-btn" data-popup="open">
 						Записаться на консультацию
 						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
 					</button>

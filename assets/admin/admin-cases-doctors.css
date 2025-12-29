@@ -24,14 +24,52 @@
 
 #certs-preview {
     margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-#certs-preview img {
-    max-width: 100px;
-    height: auto;
-    margin: 5px;
+.cert-item {
+    position: relative;
+    display: inline-block;
     border: 1px solid #ddd;
     border-radius: 3px;
+    padding: 5px;
+    background: #fff;
+}
+
+.cert-item img {
+    max-width: 100px;
+    height: auto;
+    display: block;
+}
+
+.cert-item-remove {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background: #dc3232;
+    color: #fff;
+    font-size: 18px;
+    line-height: 20px;
+    cursor: pointer;
+    padding: 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: background 0.2s;
+}
+
+.cert-item-remove:hover {
+    background: #a00;
+}
+
+.cert-item-remove:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #0073aa;
 }
 
 /* Селекторы изображений */

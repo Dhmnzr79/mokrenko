@@ -38,53 +38,117 @@
 
             certsFrame.on('select', function() {
                 var attachments = certsFrame.state().get('selection').toJSON();
-                var ids = attachments.map(function(attachment) {
+                var newIds = attachments.map(function(attachment) {
                     return attachment.id;
                 });
                 
-                updateCertsPreview(attachments);
-                $('#doctor_certs_json').val(JSON.stringify(ids));
+                // Получаем текущие ID сертификатов
+                var currentIds = getCurrentCertIds();
+                
+                // Объединяем существующие и новые ID (убираем дубликаты)
+                var allIds = currentIds.concat(newIds);
+                allIds = allIds.filter(function(id, index) {
+                    return allIds.indexOf(id) === index;
+                });
+                
+                // Сохраняем обновленный список
+                $('#doctor_certs_json').val(JSON.stringify(allIds));
+                
+                // Обновляем превью
+                renderCertsPreview(allIds);
             });
 
             certsFrame.open();
         });
-    }
-
-    // Обновление превью сертификатов
-    function updateCertsPreview(attachments) {
-        var preview = $('#certs-preview');
-        preview.empty();
         
-        attachments.forEach(function(attachment) {
-            var img = $('<img>').attr({
-                src: attachment.sizes.thumbnail ? attachment.sizes.thumbnail.url : attachment.url,
-                alt: attachment.alt || attachment.title
-            });
-            preview.append(img);
+        // Обработчик удаления сертификата
+        $(document).on('click', '.cert-item-remove', function(e) {
+            e.preventDefault();
+            var $item = $(this).closest('.cert-item');
+            var certId = parseInt($item.data('cert-id'));
+            
+            // Удаляем элемент из DOM
+            $item.remove();
+            
+            // Обновляем JSON
+            updateCertsJson();
         });
     }
 
-    // Загрузка существующих сертификатов при открытии страницы
-    function loadExistingCerts() {
+    // Получение текущих ID сертификатов из JSON
+    function getCurrentCertIds() {
         var certsJson = $('#doctor_certs_json').val();
         if (certsJson) {
             try {
                 var certIds = JSON.parse(certsJson);
-                if (Array.isArray(certIds) && certIds.length > 0) {
-                    certIds.forEach(function(certId) {
-                        var attachment = wp.media.attachment(certId);
-                        attachment.fetch().done(function() {
-                            var img = $('<img>').attr({
-                                src: attachment.attributes.sizes && attachment.attributes.sizes.thumbnail ? attachment.attributes.sizes.thumbnail.url : attachment.attributes.url,
-                                alt: attachment.attributes.alt || attachment.attributes.title
-                            });
-                            $('#certs-preview').append(img);
-                        });
-                    });
+                if (Array.isArray(certIds)) {
+                    return certIds;
                 }
             } catch(e) {
                 console.error('Error parsing certs JSON:', e);
             }
+        }
+        return [];
+    }
+
+    // Обновление JSON на основе текущих сертификатов в DOM
+    function updateCertsJson() {
+        var certIds = [];
+        $('#certs-preview .cert-item').each(function() {
+            var certId = parseInt($(this).data('cert-id'));
+            if (certId) {
+                certIds.push(certId);
+            }
+        });
+        $('#doctor_certs_json').val(JSON.stringify(certIds));
+    }
+
+    // Отрисовка превью сертификатов
+    function renderCertsPreview(certIds) {
+        var preview = $('#certs-preview');
+        preview.empty();
+        
+        if (!Array.isArray(certIds) || certIds.length === 0) {
+            return;
+        }
+        
+        // Загружаем все сертификаты
+        certIds.forEach(function(certId) {
+            var attachment = wp.media.attachment(certId);
+            attachment.fetch().done(function() {
+                var certItem = createCertItem(certId, attachment);
+                preview.append(certItem);
+            });
+        });
+    }
+
+    // Создание элемента сертификата с кнопкой удаления
+    function createCertItem(certId, attachment) {
+        var $item = $('<div>').addClass('cert-item').attr('data-cert-id', certId);
+        var imgUrl = attachment.attributes.sizes && attachment.attributes.sizes.thumbnail 
+            ? attachment.attributes.sizes.thumbnail.url 
+            : attachment.attributes.url;
+        
+        var $img = $('<img>').attr({
+            src: imgUrl,
+            alt: attachment.attributes.alt || attachment.attributes.title || 'Сертификат'
+        });
+        
+        var $removeBtn = $('<button>')
+            .addClass('cert-item-remove')
+            .attr('type', 'button')
+            .attr('title', 'Удалить сертификат')
+            .html('×');
+        
+        $item.append($img).append($removeBtn);
+        return $item;
+    }
+
+    // Загрузка существующих сертификатов при открытии страницы
+    function loadExistingCerts() {
+        var certIds = getCurrentCertIds();
+        if (certIds.length > 0) {
+            renderCertsPreview(certIds);
         }
     }
 

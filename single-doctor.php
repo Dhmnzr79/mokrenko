@@ -16,6 +16,7 @@ get_header();
 	$education = get_post_meta($doctor_id, 'doctor_education', true);
 	$qualification = get_post_meta($doctor_id, 'doctor_qualification', true);
 	$certs_json = get_post_meta($doctor_id, 'doctor_certs_json', true);
+	$certs_ids = [];
 	$content = get_the_content();
 	
 	$certs = [];
@@ -29,14 +30,6 @@ get_header();
 				}
 			}
 		}
-	}
-	
-	// Временная отладка
-	if (current_user_can('manage_options')) {
-		echo '<!-- DEBUG: certs_json = ' . esc_html($certs_json) . ' -->';
-		echo '<!-- DEBUG: certs_ids = ' . print_r($certs_ids, true) . ' -->';
-		echo '<!-- DEBUG: certs count = ' . count($certs) . ' -->';
-		echo '<!-- DEBUG: certs = ' . print_r($certs, true) . ' -->';
 	}
 ?>
 

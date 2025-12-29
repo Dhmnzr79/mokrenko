@@ -25,7 +25,7 @@ get_header();
 				<p>Честные цены без накруток и скрытых<br>платежей</p>
 			</div>
 		</div>
-		<button class="btn page-intro-mobile__cta-btn">
+		<button class="btn page-intro-mobile__cta-btn" data-popup="open">
 			Записаться на консультацию
 			<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
 		</button>
@@ -75,7 +75,7 @@ get_header();
 							<p>Честные цены без накруток и скрытых<br>платежей</p>
 						</div>
 					</div>
-					<button class="btn page-intro__cta-btn">
+					<button class="btn page-intro__cta-btn" data-popup="open">
 						Записаться на консультацию
 						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
 					</button>
@@ -168,209 +168,11 @@ get_header();
 	</div>
 </section>
 
-<section class="section section--gallery gallery">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-12 col-lg-12">
-				<h2>Мы всегда <span class="text-accent">рады вас видеть</span></h2>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12 col-lg-12">
-				<div class="gallery__grid">
-					<?php 
-					$gallery_order = [1, 2, 3, 5, 4, 6, 7, 8, 9, 10, 11, 12];
-					foreach($gallery_order as $i): 
-					?>
-					<a href="<?php echo get_template_directory_uri(); ?>/assets/images/gallery/gallery<?php echo str_pad($i, 2, '0', STR_PAD_LEFT); ?>.jpg" class="gallery__item" data-lightbox="gallery">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/gallery/gallery<?php echo str_pad($i, 2, '0', STR_PAD_LEFT); ?>.jpg" alt="Галерея <?php echo $i; ?>" class="gallery__image">
-					</a>
-					<?php endforeach; ?>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+<?php get_template_part('template-parts/section/gallery'); ?>
 
-<section class="section section--social-proof social-proof">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-12 col-lg-12">
-				<div class="social-proof__header visually-hidden">Отзывы из внешних источников</div>
-			</div>
-		</div>
+<?php get_template_part('template-parts/section/social-proof'); ?>
 
-		<div class="row">
-			<div class="col-sm-12 col-lg-6">
-				<div class="social-proof__intro">
-					<h2>Более <span class="text-accent">25 000</span> улыбок мы подарили нашим клиентам за <span class="text-contrast">20 лет работы</span></h2>
-					<div class="reviews__stats">
-					<div class="reviews__faces">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_01.jpg" alt="Фото пациента 1" class="reviews__face">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_06.jpg" alt="Фото пациента 2" class="reviews__face">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_07.jpg" alt="Фото пациента 3" class="reviews__face">
-					</div>
-					<div class="reviews__rating">
-						<p class="reviews__rating-text">96% процентов пациентов приходят по рекомендации от своих друзей и близких.</p>
-					</div>
-				</div>
-				</div>
-			</div>
-			<div class="col-sm-12 col-lg-6">
-				<div class="slider slider--social">
-					<div class="slider__container">
-						<div class="slider__track">
-							<div class="slider__slide slider__slide--active">
-								<article class="proof-card">
-									<header class="proof-card__header">
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_02.jpg" alt="Аватар" class="proof-card__avatar">
-										<div class="proof-card__meta">
-											<h3 class="proof-card__name">Татьяна Палий</h3>
-											<p class="proof-card__level">Знаток города 10 уровня</p>
-										</div>
-									</header>
-									<div class="proof-card__rating">
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Оценка 5 из 5" class="proof-card__stars">
-										<span class="proof-card__date">12 марта</span>
-									</div>
-									<p class="proof-card__text">Хочу выразить огромную благодарность хирургу стоматологу Богдану Владимировичу за профессионализм и доброжелательное отношение. Внимательное отношение к своим пациентам.</p>
-								</article>
-							</div>
-							<div class="slider__slide">
-								<article class="proof-card">
-									<header class="proof-card__header">
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_03.jpg" alt="Аватар" class="proof-card__avatar">
-										<div class="proof-card__meta">
-											<h3 class="proof-card__name">Мария Петрова</h3>
-											<p class="proof-card__level">Знаток города 10 уровня</p>
-										</div>
-									</header>
-									<div class="proof-card__rating">
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Оценка 5 из 5" class="proof-card__stars">
-										<span class="proof-card__date">12 марта</span>
-									</div>
-									<p class="proof-card__text">Выражаю благодарность врачу Богдану Владимировичу за профессионализм и внимательное отношение. Рекомендую клинику.</p>
-								</article>
-							</div>
-							<div class="slider__slide">
-								<article class="proof-card">
-									<header class="proof-card__header">
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_02.jpg" alt="Аватар" class="proof-card__avatar">
-										<div class="proof-card__meta">
-											<h3 class="proof-card__name">Иван Палий</h3>
-											<p class="proof-card__level">Знаток города 10 уровня</p>
-										</div>
-									</header>
-									<div class="proof-card__rating">
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Оценка 5 из 5" class="proof-card__stars">
-										<span class="proof-card__date">12 марта</span>
-									</div>
-									<p class="proof-card__text">Хочу выразить огромную благодарность хирургу стоматологу Богдану Владимировичу за профессионализм и доброжелательное отношение. Внимательное отношение к своим пациентам.</p>
-								</article>
-							</div>
-							<div class="slider__slide">
-								<article class="proof-card">
-									<header class="proof-card__header">
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_03.jpg" alt="Аватар" class="proof-card__avatar">
-										<div class="proof-card__meta">
-											<h3 class="proof-card__name">Петр Сидоров</h3>
-											<p class="proof-card__level">Знаток города 10 уровня</p>
-										</div>
-									</header>
-									<div class="proof-card__rating">
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Оценка 5 из 5" class="proof-card__stars">
-										<span class="proof-card__date">12 марта</span>
-									</div>
-									<p class="proof-card__text">Выражаю благодарность врачу Богдану Владимировичу за профессионализм и внимательное отношение. Рекомендую клинику.</p>
-								</article>
-							</div>
-						</div>
-					</div>
-					<div class="slider__nav">
-						<button class="slider__prev" type="button">←</button>
-						<button class="slider__next" type="button">→</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<section class="section section--awards awards">
-	<div class="container">
-		<div class="row awards__grid">
-			<div class="col-sm-6 col-lg-3">
-				<div class="award-card award-card--header">
-					<h2>Наши <span class="award-card__highlight">награды</span></h2>
-					<p>Нажмите на иконку, чтобы перейти на портал и прочитать все отзывы</p>
-				</div>
-			</div>
-			<div class="col-sm-6 col-lg-3">
-				<div class="award-card award-card--ratings">
-					<div class="award-card__rating-item">
-						<div class="award-card__logo">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/уandex_logo.svg" alt="Яндекс">
-						</div>
-						<div class="award-card__rating">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/like.svg" alt="Like" class="award-card__rating-icon">
-							<span>Рейтинг 4,7 из 5</span>
-						</div>
-					</div>
-					<div class="award-card__rating-item">
-						<div class="award-card__logo">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/google_logo.svg" alt="Google">
-						</div>
-						<div class="award-card__rating">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/like.svg" alt="Like" class="award-card__rating-icon">
-							<span>Рейтинг 4,8 из 5</span>
-						</div>
-					</div>
-					<div class="award-card__rating-item">
-						<div class="award-card__logo">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/zoon_logo.svg" alt="Zoon">
-						</div>
-						<div class="award-card__rating">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/like.svg" alt="Like" class="award-card__rating-icon">
-							<span>Рейтинг 4,9 из 5</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-lg-3">
-				<div class="award-card">
-					<div class="award-card__content">
-						<div class="award-card__icon">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/ya_logo.svg" alt="Яндекс">
-						</div>
-						
-						<p>Выбор пользователей Яндекса</p>
-					</div>
-					<div class="award-card__link">
-						<a href="#" class="award-card__link-item">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/link_arrow_1.svg" alt="Ссылка">
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-lg-3">
-				<div class="award-card">
-					<div class="award-card__content">
-						<div class="award-card__icon">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/30_index.svg" alt="30 Index">
-						</div>
-					
-						<p>Входим в Топ-30 частных стоматологии Москвы на ноябрь 2022</p>
-					</div>
-					<div class="award-card__link">
-						<a href="#" class="award-card__link-item">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/link_arrow_2.svg" alt="Ссылка">
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+<?php get_template_part('template-parts/section/awards'); ?>
 
 <section class="section section--reviews reviews">
 	<div class="container">
@@ -509,37 +311,7 @@ get_header();
 </section>
 
 <!-- Contacts Section -->
-<section class="section section--contacts contacts">
-	<div class="container">
-		<div class="contacts__box">
-			<img src="<?php echo get_template_directory_uri(); ?>/assets/images/mokrenko_first.png" alt="Врач" class="contacts__bg">
-			<div class="row">
-				<div class="col-sm-12 col-lg-6">
-					<!-- Пустая колонка для фото -->
-				</div>
-				<div class="col-sm-12 col-lg-6">
-					<div class="contacts__content-block">
-						<h2>Контакты</h2>
-						<ul class="contacts__list">
-							<li data-emoji="📍">г. Москва, проспект Мира, д. 57, корп. 2</li>
-							<li data-emoji="📞">+7 (495) 123-45-67</li>
-							<li data-emoji="✉️">info@mokrenko.ru</li>
-							<li data-emoji="🕒">Пн-Пт: 9:00 - 21:00<br>Сб-Вс: 10:00 - 18:00</li>
-						</ul>
-						<div class="contacts__question">
-							<h3>Остались вопросы?</h3>
-							<p>Задайте свой вопрос, и мы бесплатно проконсультируем Вас в течении 5 минут</p>
-						</div>
-						<button class="btn contacts__cta-btn">
-							Записаться на приём
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка" class="contacts__cta-arrow">
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+<?php get_template_part('template-parts/section/contacts'); ?>
 
 <?php get_footer(); ?>
 

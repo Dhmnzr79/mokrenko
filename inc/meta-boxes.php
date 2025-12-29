@@ -142,7 +142,6 @@ function theme_doctor_meta_box_callback($post) {
     <style>
     .education-item { margin-bottom: 10px; padding: 10px; border: 1px solid #ddd; }
     .education-item input { margin-right: 10px; }
-    #certs-preview img { max-width: 100px; margin: 5px; }
     </style>
     <?php
 }
@@ -480,11 +479,12 @@ function theme_save_doctor_meta($post_id) {
     // Сохранение сертификатов (JSON) - ДО обновления поста, чтобы избежать рекурсии
     if (isset($_POST['doctor_certs_json'])) {
         $certs_json_value = trim($_POST['doctor_certs_json']);
-        if (!empty($certs_json_value)) {
+        if ($certs_json_value !== '') {
             $certs = json_decode($certs_json_value, true);
-            if (is_array($certs) && !empty($certs)) {
+            if (is_array($certs)) {
                 $certs = array_map('absint', $certs);
                 $certs = array_filter($certs); // Удаляем пустые значения
+                $certs = array_values($certs); // Перенумеровываем индексы
                 if (!empty($certs)) {
                     update_post_meta($post_id, 'doctor_certs_json', json_encode($certs));
                 } else {
@@ -493,6 +493,9 @@ function theme_save_doctor_meta($post_id) {
             } else {
                 delete_post_meta($post_id, 'doctor_certs_json');
             }
+        } else {
+            // Если поле пустое, удаляем метаполе
+            delete_post_meta($post_id, 'doctor_certs_json');
         }
     }
 

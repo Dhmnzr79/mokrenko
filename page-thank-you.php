@@ -2,8 +2,14 @@
 /**
  * Template Name: Благодарность
  */
-get_header();
-?>
+?><!doctype html>
+<html <?php language_attributes(); ?>>
+<head>
+	<meta charset="<?php bloginfo('charset'); ?>" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<?php wp_head(); ?>
+</head>
+<body <?php body_class('page-thank-you-fullscreen'); ?>>
 
 <section class="section section--thank-you thank-you">
 	<div class="container">
@@ -32,7 +38,10 @@ get_header();
 	</div>
 </section>
 
-<?php
-get_footer();
-?>
+<?php wp_footer(); ?>
+</body>
+</html>
+
+
+
 

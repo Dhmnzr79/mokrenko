@@ -25,7 +25,9 @@
 			<div class="col-sm-6 col-lg-3 header__contact">
 				<div class="header__info">
 					<div class="header__contact-item">
-						<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/svg/whatsapp.svg" alt="WhatsApp" class="header__contact-icon">
+						<a href="https://wa.me/79850549339" target="_blank" rel="noopener noreferrer" class="header__contact-icon-link">
+							<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/svg/whatsapp.svg" alt="WhatsApp" class="header__contact-icon">
+						</a>
 						<a href="tel:+74950035476" class="header__contact-phone">+7 (495) 003-54-76</a>
 					</div>
 				</div>

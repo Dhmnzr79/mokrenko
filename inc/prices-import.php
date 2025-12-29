@@ -393,6 +393,33 @@ function process_price_import() {
 }
 
 /**
+ * Функция форматирования цены
+ * Извлекает число из строки, форматирует с пробелами между тысячами и добавляет " руб."
+ * 
+ * @param string $price_raw Сырая строка с ценой (может быть "15800", "15800 руб.", "15 800 руб." и т.д.)
+ * @return string Отформатированная цена (например: "15 800 руб.")
+ */
+function format_price($price_raw) {
+	if (empty($price_raw)) {
+		return '';
+	}
+	
+	// Удаляем все пробелы и извлекаем только цифры
+	$price_clean = preg_replace('/[^\d]/', '', $price_raw);
+	
+	// Если не нашли цифры, возвращаем исходную строку
+	if (empty($price_clean)) {
+		return $price_raw;
+	}
+	
+	// Форматируем число с пробелами между тысячами
+	$price_formatted = number_format((int)$price_clean, 0, '', ' ');
+	
+	// Добавляем " руб." в конце
+	return $price_formatted . ' руб.';
+}
+
+/**
  * Регистрация shortcode для вывода прайса
  */
 add_shortcode('clinic_prices', 'render_clinic_prices');
@@ -485,10 +512,14 @@ function render_clinic_prices($atts) {
 						<?php while ($services->have_posts()) : $services->the_post(); ?>
 							<?php
 							$post_count++;
-							$price = get_post_meta(get_the_ID(), '_price', true);
-							$old_price = get_post_meta(get_the_ID(), '_old_price', true);
-							$has_discount = !empty($old_price);
+							$price_raw = get_post_meta(get_the_ID(), '_price', true);
+							$old_price_raw = get_post_meta(get_the_ID(), '_old_price', true);
+							$has_discount = !empty($old_price_raw);
 							$is_last = ($post_count === $total_posts);
+							
+							// Форматируем цены
+							$price = format_price($price_raw);
+							$old_price = !empty($old_price_raw) ? format_price($old_price_raw) : '';
 							?>
 							<div class="prices__item<?php echo $is_last ? ' prices__item--last' : ''; ?>">
 								<div class="prices__service"><?php echo esc_html(get_the_title()); ?></div>
