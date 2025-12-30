@@ -100,6 +100,7 @@ require_once get_template_directory() . '/inc/custom-types.php';
 require_once get_template_directory() . '/inc/meta-boxes.php';
 require_once get_template_directory() . '/inc/shortcodes.php';
 require_once get_template_directory() . '/inc/prices-import.php';
+require_once get_template_directory() . '/inc/svg-upload.php';
 
 // Подключение файлов системы услуг
 require_once get_template_directory() . '/inc/services/post-type.php';

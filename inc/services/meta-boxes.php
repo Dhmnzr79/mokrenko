@@ -184,6 +184,7 @@ function render_service_hero_meta_box($post) {
     $hero_image = get_post_meta($post->ID, '_service_hero_image', true);
     $hero_info_title = get_post_meta($post->ID, '_service_hero_info_title', true);
     $hero_info_text = get_post_meta($post->ID, '_service_hero_info_text', true);
+    $hero_extra_line = get_post_meta($post->ID, '_service_hero_extra_line', true);
     $hero_button_text = get_post_meta($post->ID, '_service_hero_button_text', true);
     $hero_button_link = get_post_meta($post->ID, '_service_hero_button_link', true);
     
@@ -272,6 +273,16 @@ function render_service_hero_meta_box($post) {
             </tr>
         </table>
         
+        <h3><?php _e('Дополнительная строка (между индексами и кнопкой)', 'mokrenko'); ?></h3>
+        <table class="form-table">
+            <tr>
+                <th><label for="service_hero_extra_line"><?php _e('Текст строки', 'mokrenko'); ?></label></th>
+                <td>
+                    <input type="text" id="service_hero_extra_line" name="service_hero_extra_line" value="<?php echo esc_attr($hero_extra_line); ?>" style="width: 100%;" />
+                </td>
+            </tr>
+        </table>
+
         <h3><?php _e('Кнопка', 'mokrenko'); ?></h3>
         <table class="form-table">
             <tr>
@@ -349,6 +360,10 @@ function save_service_hero_meta_box($post_id) {
     
     if (isset($_POST['service_hero_info_text'])) {
         update_post_meta($post_id, '_service_hero_info_text', sanitize_textarea_field($_POST['service_hero_info_text']));
+    }
+
+    if (isset($_POST['service_hero_extra_line'])) {
+        update_post_meta($post_id, '_service_hero_extra_line', sanitize_text_field($_POST['service_hero_extra_line']));
     }
     
     if (isset($_POST['service_hero_button_text'])) {

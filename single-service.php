@@ -9,20 +9,7 @@
 
 // Принудительно проверяем, что это услуга
 if (get_post_type() !== 'service') {
-    // Если это не услуга, используем стандартный single.php
-    // Но сначала покажем предупреждение для админов
-    if (current_user_can('manage_options')) {
-        get_header();
-        echo '<div style="background: #f8d7da; padding: 20px; margin: 20px; border: 2px solid #dc3545;">';
-        echo '<h2>⚠️ Ошибка: Это не услуга!</h2>';
-        echo '<p><strong>Текущий тип:</strong> ' . get_post_type() . '</p>';
-        echo '<p><strong>Нужный тип:</strong> service</p>';
-        echo '<p>Создайте услугу через: <strong>Услуги → Добавить новую</strong></p>';
-        echo '</div>';
-        get_footer();
-        return;
-    }
-    // Для обычных пользователей - редирект на стандартный шаблон
+    // Для любых других типов используем стандартный single.php без вывода отладки
     locate_template('single.php', true);
     return;
 }
@@ -37,40 +24,9 @@ if (have_posts()) : while (have_posts()) : the_post();
     $sections_config = get_service_sections_config();
     $sections_order = get_service_sections_order();
 
-// Отладочная информация для Этапа 2 (всегда показываем админам)
-if (current_user_can('manage_options')) {
-    echo '<div style="background: #fff3cd; padding: 15px; margin: 20px; border: 2px solid #ffc107; position: relative; z-index: 9999;">';
-    echo '<h3>🔍 Отладка секций (Этап 2)</h3>';
-    echo '<p><strong>Post ID:</strong> ' . esc_html($post_id) . '</p>';
-    echo '<p><strong>Post Type:</strong> ' . esc_html(get_post_type()) . '</p>';
-    echo '<p><strong>Включенные секции:</strong> ' . (empty($enabled_sections) ? '<span style="color: red;">НЕТ (это проблема!)</span>' : '<span style="color: green;">' . implode(', ', $enabled_sections) . '</span>') . '</p>';
-    echo '<p><strong>Порядок секций:</strong> ' . implode(' → ', $sections_order) . '</p>';
-    echo '<p><strong>Всего секций в реестре:</strong> ' . count($sections_config) . '</p>';
-    
-    // Проверяем meta напрямую
-    $meta_direct = get_post_meta($post_id, '_service_sections_enabled', true);
-    echo '<p><strong>Meta напрямую:</strong> ';
-    if (empty($meta_direct)) {
-        echo '<span style="color: red;">ПУСТО (секции не сохранены!)</span>';
-    } else {
-        echo '<pre>' . print_r($meta_direct, true) . '</pre>';
-    }
-    echo '</p>';
-    
-    echo '<p><strong>Секции, которые должны отобразиться:</strong> ';
-    $to_render = [];
-    foreach ($sections_order as $section_slug) {
-        if (in_array($section_slug, $enabled_sections)) {
-            $to_render[] = $section_slug;
-        }
-    }
-    echo empty($to_render) ? '<span style="color: red;">НИ ОДНОЙ</span>' : implode(', ', $to_render);
-    echo '</p>';
-    echo '</div>';
-}
-
 // Рендерим только включенные секции в фиксированном порядке
 $rendered_count = 0;
+$after_indications_inserted = false;
 foreach ($sections_order as $section_slug) {
     // Проверяем, включена ли секция
     if (!in_array($section_slug, $enabled_sections)) {
@@ -80,11 +36,6 @@ foreach ($sections_order as $section_slug) {
     // Проверяем, существует ли конфигурация секции
     $section_config = $sections_config[$section_slug] ?? null;
     if (!$section_config) {
-        if (current_user_can('manage_options')) {
-            echo '<div style="background: #f8d7da; padding: 10px; margin: 10px; border: 1px solid #dc3545;">';
-            echo '⚠️ Секция "' . esc_html($section_slug) . '" не найдена в реестре!';
-            echo '</div>';
-        }
         continue;
     }
     
@@ -97,16 +48,6 @@ foreach ($sections_order as $section_slug) {
     // Рендерим секцию
     $template_path = "template-parts/services/blocks/{$section_config['template']}";
     
-    if (current_user_can('manage_options')) {
-        $section_data_debug = get_service_section_data($post_id, $section_slug);
-        echo '<div style="background: #d1ecf1; padding: 5px; margin: 5px 0; border-left: 3px solid #0c5460; font-size: 12px;">';
-        echo '🔄 Рендерим секцию: ' . esc_html($section_slug) . ' → ' . esc_html($template_path);
-        if ($section_slug === 'hero' && !empty($section_data_debug)) {
-            echo '<br>📊 Данные Hero: ' . count($section_data_debug) . ' полей';
-        }
-        echo '</div>';
-    }
-    
     get_template_part($template_path, null, [
         'post_id' => $post_id,
         'section_slug' => $section_slug,
@@ -115,20 +56,18 @@ foreach ($sections_order as $section_slug) {
     ]);
     
     $rendered_count++;
+
+    // После блока "Противопоказания" (indications) добавляем общие template-parts в заданном порядке
+    if ($section_slug === 'indications' && !$after_indications_inserted) {
+        get_template_part('template-parts/section/social-proof');
+        get_template_part('template-parts/section/awards');
+        get_template_part('template-parts/section/location');
+        get_template_part('template-parts/section/contacts');
+        $after_indications_inserted = true;
+    }
 }
 
-// Если ничего не отрендерилось
-if ($rendered_count === 0 && current_user_can('manage_options')) {
-    echo '<div style="background: #f8d7da; padding: 20px; margin: 20px; border: 2px solid #dc3545;">';
-    echo '<h3>❌ Проблема: Ни одна секция не отрендерилась!</h3>';
-    echo '<p>Возможные причины:</p>';
-    echo '<ul>';
-    echo '<li>Секции не включены (проверь чекбоксы в админке)</li>';
-    echo '<li>Секции не сохранились (попробуй сохранить услугу заново)</li>';
-    echo '<li>Проблема с загрузкой meta-данных</li>';
-    echo '</ul>';
-    echo '</div>';
-}
+// Если ничего не отрендерилось — просто ничего не выводим (без отладки)
 
 endwhile; endif;
 

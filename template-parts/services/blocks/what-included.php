@@ -31,14 +31,22 @@ if (empty($items)) {
 <section class="section section--service-what-included service-what-included">
     <div class="container">
         <div class="row">
-            <!-- Левая часть: тут позже будет общий графический декор (одинаковый для всех услуг) -->
+            <!-- Левая часть: заголовок + блок со "статистикой" (лица + текст) -->
             <div class="col-sm-12 col-lg-6">
                 <div class="service-what-included__left">
                     <?php if ($left_title) : ?>
                         <h2 class="service-what-included__title"><?php echo esc_html($left_title); ?></h2>
                     <?php endif; ?>
-                    <div class="service-what-included__decor">
-                        <!-- TODO: сюда вставишь общий набор графических элементов -->
+
+                    <div class="service-what-included__stats reviews__stats">
+                        <div class="reviews__faces" aria-hidden="true">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_01.jpg" alt="" class="reviews__face">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_06.jpg" alt="" class="reviews__face">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_07.jpg" alt="" class="reviews__face">
+                        </div>
+                        <div class="service-what-included__stats-text-wrap">
+                            <p class="service-what-included__stats-text">96% процентов пациентов приходят по рекомендации от своих друзей и близких.</p>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -22,26 +22,15 @@ if (!is_array($benefits)) $benefits = [];
 $image_id = $section_data['image'] ?? 0;
 $info_title = $section_data['info_title'] ?? '';
 $info_text = $section_data['info_text'] ?? '';
+$extra_line = $section_data['extra_line'] ?? '';
 $button_text = $section_data['button_text'] ?? '';
 $button_link = $section_data['button_link'] ?? '';
 
-// Отладочная информация для админов
-if (current_user_can('manage_options') && isset($_GET['debug_hero'])) {
-    echo '<div style="background: #fff3cd; padding: 15px; margin: 20px; border: 2px solid #ffc107;">';
-    echo '<h3>🔍 Отладка Hero секции</h3>';
-    echo '<p><strong>Section Data:</strong></p>';
-    echo '<pre>' . print_r($section_data, true) . '</pre>';
-    echo '<p><strong>Title:</strong> ' . esc_html($title) . '</p>';
-    echo '<p><strong>Subtitle:</strong> ' . esc_html($subtitle) . '</p>';
-    echo '<p><strong>Benefits:</strong> ' . (empty($benefits) ? 'Нет' : count($benefits)) . '</p>';
-    echo '<p><strong>Image ID:</strong> ' . esc_html($image_id) . '</p>';
-    echo '</div>';
-}
 ?>
 <section class="section section--service-hero service-hero">
 	<div class="container">
 		<div class="service-hero__box bg-gradient-brand">
-			<?php get_template_part('template-parts/page-top'); ?>
+			<?php get_template_part('template-parts/page-top-menu'); ?>
 			
 			<div class="service-hero__layout">
 				<div class="service-hero__content">
@@ -69,6 +58,10 @@ if (current_user_can('manage_options') && isset($_GET['debug_hero'])) {
 								</div>
 							<?php endforeach; ?>
 						</div>
+					<?php endif; ?>
+
+					<?php if ($extra_line) : ?>
+						<p class="service-hero__extra-line"><?php echo esc_html($extra_line); ?></p>
 					<?php endif; ?>
 					
 					<?php if ($button_text) : ?>

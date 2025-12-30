@@ -65,6 +65,12 @@ function register_service_meta_fields() {
             'show_in_rest' => true,
             'single' => true
         ],
+          '_service_hero_extra_line' => [
+              'type' => 'string',
+              'sanitize_callback' => 'sanitize_text_field',
+              'show_in_rest' => true,
+              'single' => true
+          ],
     ];
     
     foreach ($hero_fields as $field => $args) {
