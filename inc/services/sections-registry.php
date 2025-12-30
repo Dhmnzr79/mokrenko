@@ -49,6 +49,21 @@ function get_service_sections_config() {
             'type' => 'common',
             'template' => 'work-stages'
         ],
+        'what-included' => [
+            'label' => 'Что входит в услугу',
+            'type' => 'common',
+            'template' => 'what-included'
+        ],
+        'info-blocks' => [
+            'label' => 'Инфо-блоки (картинка + текст + чек-лист)',
+            'type' => 'common',
+            'template' => 'info-blocks'
+        ],
+        'indications' => [
+            'label' => 'Показания и противопоказания',
+            'type' => 'common',
+            'template' => 'indications'
+        ],
         
         // Уникальные секции (будут добавляться по мере необходимости)
         // Пример:
@@ -73,6 +88,9 @@ function get_service_sections_order() {
         'description',
         'cta',
         'work-stages',
+        'what-included',
+        'info-blocks',
+        'indications',
         'reviews'
     ];
 }

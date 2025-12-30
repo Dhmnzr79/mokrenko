@@ -64,6 +64,36 @@ function add_service_meta_boxes() {
         'normal',
         'high'
     );
+
+    // Метабокс для секции "Что входит в услугу"
+    add_meta_box(
+        'service_what_included',
+        __('Что входит в услугу', 'mokrenko'),
+        'render_service_what_included_meta_box',
+        'service',
+        'normal',
+        'high'
+    );
+
+    // Метабокс для секции "Инфо-блоки"
+    add_meta_box(
+        'service_info_blocks',
+        __('Инфо-блоки', 'mokrenko'),
+        'render_service_info_blocks_meta_box',
+        'service',
+        'normal',
+        'high'
+    );
+
+    // Метабокс для секции "Показания и противопоказания"
+    add_meta_box(
+        'service_indications',
+        __('Показания и противопоказания', 'mokrenko'),
+        'render_service_indications_meta_box',
+        'service',
+        'normal',
+        'high'
+    );
 }
 
 /**
@@ -917,5 +947,388 @@ function save_service_work_stages_meta_box($post_id) {
         
         update_post_meta($post_id, '_service_work_stages_stage_2', $stage_2);
     }
+}
+
+/**
+ * Рендер метабокса секции "Что входит в услугу"
+ */
+function render_service_what_included_meta_box($post) {
+    wp_nonce_field('service_what_included_nonce', 'service_what_included_nonce');
+
+    $section_title = get_post_meta($post->ID, '_service_what_included_title', true);
+
+    $items = get_post_meta($post->ID, '_service_what_included_items', true);
+    $items = $items ? (is_array($items) ? $items : json_decode($items, true)) : [];
+    if (!is_array($items)) {
+        $items = [];
+    }
+
+    // Заполняем пустые слоты (чтобы контент-менеджеру было проще)
+    while (count($items) < 6) {
+        $items[] = ['title' => '', 'description' => ''];
+    }
+
+    ?>
+    <div class="service-what-included-meta-box">
+        <p class="description">
+            <?php _e('Заполните заголовок (слева) и пункты: каждый пункт — заголовок + описание.', 'mokrenko'); ?>
+        </p>
+
+        <table class="form-table">
+            <tr>
+                <th><label for="service_what_included_title"><?php _e('Заголовок слева', 'mokrenko'); ?></label></th>
+                <td>
+                    <input type="text" id="service_what_included_title" name="service_what_included_title" value="<?php echo esc_attr($section_title); ?>" style="width: 100%;" />
+                    <p class="description"><?php _e('Выводится в левой колонке блока (может отличаться у разных услуг).', 'mokrenko'); ?></p>
+                </td>
+            </tr>
+            <?php for ($i = 0; $i < 6; $i++) :
+                $item = isset($items[$i]) && is_array($items[$i]) ? $items[$i] : ['title' => '', 'description' => ''];
+                $item_title = isset($item['title']) ? $item['title'] : '';
+                $item_description = isset($item['description']) ? $item['description'] : '';
+            ?>
+                <tr>
+                    <th><label><?php printf(__('Пункт %d', 'mokrenko'), $i + 1); ?></label></th>
+                    <td>
+                        <div style="border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 4px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: 600;"><?php _e('Заголовок', 'mokrenko'); ?></label>
+                            <input
+                                type="text"
+                                name="service_what_included_items[<?php echo $i; ?>][title]"
+                                value="<?php echo esc_attr($item_title); ?>"
+                                style="width: 100%; margin-bottom: 10px;"
+                                placeholder="<?php _e('Заголовок пункта...', 'mokrenko'); ?>"
+                            />
+
+                            <label style="display: block; margin-bottom: 5px; font-weight: 600;"><?php _e('Описание', 'mokrenko'); ?></label>
+                            <textarea
+                                name="service_what_included_items[<?php echo $i; ?>][description]"
+                                rows="3"
+                                style="width: 100%;"
+                                placeholder="<?php _e('Описание пункта...', 'mokrenko'); ?>"
+                            ><?php echo esc_textarea($item_description); ?></textarea>
+                        </div>
+                    </td>
+                </tr>
+            <?php endfor; ?>
+        </table>
+    </div>
+    <?php
+}
+
+/**
+ * Сохранение метабокса секции "Что входит в услугу"
+ */
+add_action('save_post_service', 'save_service_what_included_meta_box');
+
+function save_service_what_included_meta_box($post_id) {
+    if (!isset($_POST['service_what_included_nonce']) ||
+        !wp_verify_nonce($_POST['service_what_included_nonce'], 'service_what_included_nonce')) {
+        return;
+    }
+
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    if (isset($_POST['service_what_included_title'])) {
+        update_post_meta($post_id, '_service_what_included_title', sanitize_text_field($_POST['service_what_included_title']));
+    }
+
+    if (isset($_POST['service_what_included_items']) && is_array($_POST['service_what_included_items'])) {
+        $items = [];
+        foreach ($_POST['service_what_included_items'] as $item) {
+            if (!is_array($item)) {
+                continue;
+            }
+
+            $title = isset($item['title']) ? sanitize_text_field($item['title']) : '';
+            $description = isset($item['description']) ? sanitize_textarea_field($item['description']) : '';
+
+            if ($title === '' && $description === '') {
+                continue;
+            }
+
+            $items[] = [
+                'title' => $title,
+                'description' => $description,
+            ];
+        }
+
+        update_post_meta($post_id, '_service_what_included_items', $items);
+    } else {
+        delete_post_meta($post_id, '_service_what_included_items');
+    }
+}
+
+/**
+ * Рендер метабокса секции "Инфо-блоки"
+ * Два блока на страницу (Block 1 и Block 2), каждый может быть "reverse".
+ */
+function render_service_info_blocks_meta_box($post) {
+    wp_nonce_field('service_info_blocks_nonce', 'service_info_blocks_nonce');
+
+    $blocks = get_post_meta($post->ID, '_service_info_blocks_blocks', true);
+    $blocks = $blocks ? (is_array($blocks) ? $blocks : json_decode($blocks, true)) : [];
+    if (!is_array($blocks)) {
+        $blocks = [];
+    }
+
+    // Ровно 2 блока
+    while (count($blocks) < 2) {
+        $blocks[] = [
+            'image' => 0,
+            'title' => '',
+            'subtitle' => '',
+            'reverse' => 0,
+            'items' => [],
+        ];
+    }
+
+    ?>
+    <div class="service-info-blocks-meta-box">
+        <p class="description">
+            <?php _e('Два блока на страницу. Для каждого: картинка, заголовок, расшифровка и чек-лист. Вариант 2 — просто включите "Сетка наоборот".', 'mokrenko'); ?>
+        </p>
+
+        <?php for ($b = 0; $b < 2; $b++) :
+            $block = isset($blocks[$b]) && is_array($blocks[$b]) ? $blocks[$b] : [];
+            $image = isset($block['image']) ? absint($block['image']) : 0;
+            $title = isset($block['title']) ? $block['title'] : '';
+            $subtitle = isset($block['subtitle']) ? $block['subtitle'] : '';
+            $reverse = !empty($block['reverse']) ? 1 : 0;
+
+            $items = isset($block['items']) && is_array($block['items']) ? $block['items'] : [];
+            if (!is_array($items)) $items = [];
+            while (count($items) < 6) {
+                $items[] = ['text' => ''];
+            }
+        ?>
+            <hr style="margin: 24px 0;">
+            <h3 style="margin: 0 0 12px;"><?php echo esc_html(sprintf(__('Блок %d', 'mokrenko'), $b + 1)); ?></h3>
+
+            <table class="form-table">
+                <tr>
+                    <th><label><?php _e('Сетка наоборот', 'mokrenko'); ?></label></th>
+                    <td>
+                        <label>
+                            <input type="checkbox" name="service_info_blocks_blocks[<?php echo $b; ?>][reverse]" value="1" <?php checked($reverse, 1); ?> />
+                            <?php _e('Поменять местами картинку и контент', 'mokrenko'); ?>
+                        </label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th><label><?php _e('Картинка', 'mokrenko'); ?></label></th>
+                    <td>
+                        <button type="button" class="button select-info-block-image" data-block="<?php echo $b; ?>">
+                            <?php _e('Выбрать изображение', 'mokrenko'); ?>
+                        </button>
+                        <div class="info-block-image-preview" data-block="<?php echo $b; ?>" style="margin-top: 10px;">
+                            <?php if ($image) : ?>
+                                <?php echo wp_get_attachment_image($image, 'medium'); ?>
+                                <button type="button" class="button remove-info-block-image" data-block="<?php echo $b; ?>" style="margin-top: 5px;"><?php _e('Удалить', 'mokrenko'); ?></button>
+                            <?php endif; ?>
+                        </div>
+                        <input type="hidden" name="service_info_blocks_blocks[<?php echo $b; ?>][image]" class="info-block-image-input" data-block="<?php echo $b; ?>" value="<?php echo esc_attr($image); ?>" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <th><label><?php _e('Заголовок', 'mokrenko'); ?></label></th>
+                    <td>
+                        <input type="text" name="service_info_blocks_blocks[<?php echo $b; ?>][title]" value="<?php echo esc_attr($title); ?>" style="width: 100%;" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <th><label><?php _e('Расшифровка заголовка', 'mokrenko'); ?></label></th>
+                    <td>
+                        <textarea name="service_info_blocks_blocks[<?php echo $b; ?>][subtitle]" rows="3" style="width: 100%;"><?php echo esc_textarea($subtitle); ?></textarea>
+                    </td>
+                </tr>
+            </table>
+
+            <h4 style="margin: 16px 0 8px;"><?php _e('Чек-лист (6 пунктов)', 'mokrenko'); ?></h4>
+            <table class="form-table">
+                <?php for ($i = 0; $i < 6; $i++) :
+                    $text = isset($items[$i]['text']) ? $items[$i]['text'] : '';
+                ?>
+                    <tr>
+                        <th><label><?php echo esc_html(sprintf(__('Пункт %d', 'mokrenko'), $i + 1)); ?></label></th>
+                        <td>
+                            <input type="text" name="service_info_blocks_blocks[<?php echo $b; ?>][items][<?php echo $i; ?>][text]" value="<?php echo esc_attr($text); ?>" style="width: 100%;" placeholder="<?php _e('Текст пункта...', 'mokrenko'); ?>" />
+                        </td>
+                    </tr>
+                <?php endfor; ?>
+            </table>
+        <?php endfor; ?>
+    </div>
+    <?php
+}
+
+/**
+ * Сохранение метабокса секции "Инфо-блоки"
+ */
+add_action('save_post_service', 'save_service_info_blocks_meta_box');
+
+function save_service_info_blocks_meta_box($post_id) {
+    if (!isset($_POST['service_info_blocks_nonce']) ||
+        !wp_verify_nonce($_POST['service_info_blocks_nonce'], 'service_info_blocks_nonce')) {
+        return;
+    }
+
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    if (isset($_POST['service_info_blocks_blocks']) && is_array($_POST['service_info_blocks_blocks'])) {
+        $blocks = [];
+
+        foreach ($_POST['service_info_blocks_blocks'] as $block) {
+            if (!is_array($block)) {
+                continue;
+            }
+
+            $image = isset($block['image']) ? absint($block['image']) : 0;
+            $title = isset($block['title']) ? sanitize_text_field($block['title']) : '';
+            $subtitle = isset($block['subtitle']) ? sanitize_textarea_field($block['subtitle']) : '';
+            $reverse = !empty($block['reverse']) ? 1 : 0;
+
+            $items = [];
+            if (isset($block['items']) && is_array($block['items'])) {
+                foreach ($block['items'] as $item) {
+                    if (!is_array($item)) {
+                        continue;
+                    }
+                    $text = isset($item['text']) ? sanitize_text_field($item['text']) : '';
+                    if ($text === '') {
+                        continue;
+                    }
+                    $items[] = ['text' => $text];
+                }
+            }
+
+            if ($image === 0 && $title === '' && $subtitle === '' && empty($items)) {
+                continue;
+            }
+
+            $blocks[] = [
+                'image' => $image,
+                'title' => $title,
+                'subtitle' => $subtitle,
+                'reverse' => $reverse,
+                'items' => $items,
+            ];
+        }
+
+        update_post_meta($post_id, '_service_info_blocks_blocks', $blocks);
+    } else {
+        delete_post_meta($post_id, '_service_info_blocks_blocks');
+    }
+}
+
+/**
+ * Рендер метабокса секции "Показания и противопоказания"
+ */
+function render_service_indications_meta_box($post) {
+    wp_nonce_field('service_indications_nonce', 'service_indications_nonce');
+
+    $left_title = get_post_meta($post->ID, '_service_indications_left_title', true);
+    $right_title = get_post_meta($post->ID, '_service_indications_right_title', true);
+
+    $left_items = get_post_meta($post->ID, '_service_indications_left_items', true);
+    if (!is_array($left_items)) $left_items = [];
+    $right_items = get_post_meta($post->ID, '_service_indications_right_items', true);
+    if (!is_array($right_items)) $right_items = [];
+
+    $left_items_text = implode("\n", $left_items);
+    $right_items_text = implode("\n", $right_items);
+    ?>
+    <div class="service-indications-meta-box">
+        <p class="description">
+            <?php _e('Каждая строка в списке — отдельный пункт. На фронтенде выводится с "—" в начале строки через CSS.', 'mokrenko'); ?>
+        </p>
+
+        <table class="form-table">
+            <tr>
+                <th><label for="service_indications_left_title"><?php _e('Заголовок слева (показания)', 'mokrenko'); ?></label></th>
+                <td><input type="text" id="service_indications_left_title" name="service_indications_left_title" value="<?php echo esc_attr($left_title); ?>" style="width: 100%;" /></td>
+            </tr>
+            <tr>
+                <th><label for="service_indications_left_items"><?php _e('Список слева (каждая строка = пункт)', 'mokrenko'); ?></label></th>
+                <td><textarea id="service_indications_left_items" name="service_indications_left_items" rows="8" style="width: 100%;"><?php echo esc_textarea($left_items_text); ?></textarea></td>
+            </tr>
+
+            <tr>
+                <th><label for="service_indications_right_title"><?php _e('Заголовок справа (противопоказания)', 'mokrenko'); ?></label></th>
+                <td><input type="text" id="service_indications_right_title" name="service_indications_right_title" value="<?php echo esc_attr($right_title); ?>" style="width: 100%;" /></td>
+            </tr>
+            <tr>
+                <th><label for="service_indications_right_items"><?php _e('Список справа (каждая строка = пункт)', 'mokrenko'); ?></label></th>
+                <td><textarea id="service_indications_right_items" name="service_indications_right_items" rows="8" style="width: 100%;"><?php echo esc_textarea($right_items_text); ?></textarea></td>
+            </tr>
+        </table>
+    </div>
+    <?php
+}
+
+/**
+ * Сохранение метабокса секции "Показания и противопоказания"
+ */
+add_action('save_post_service', 'save_service_indications_meta_box');
+
+function save_service_indications_meta_box($post_id) {
+    if (!isset($_POST['service_indications_nonce']) ||
+        !wp_verify_nonce($_POST['service_indications_nonce'], 'service_indications_nonce')) {
+        return;
+    }
+
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    if (isset($_POST['service_indications_left_title'])) {
+        update_post_meta($post_id, '_service_indications_left_title', sanitize_text_field($_POST['service_indications_left_title']));
+    }
+    if (isset($_POST['service_indications_right_title'])) {
+        update_post_meta($post_id, '_service_indications_right_title', sanitize_text_field($_POST['service_indications_right_title']));
+    }
+
+    $left_items = [];
+    if (isset($_POST['service_indications_left_items'])) {
+        $lines = preg_split("/\r\n|\r|\n/", (string)$_POST['service_indications_left_items']);
+        foreach ($lines as $line) {
+            $line = sanitize_text_field($line);
+            if ($line !== '') {
+                $left_items[] = $line;
+            }
+        }
+    }
+    update_post_meta($post_id, '_service_indications_left_items', $left_items);
+
+    $right_items = [];
+    if (isset($_POST['service_indications_right_items'])) {
+        $lines = preg_split("/\r\n|\r|\n/", (string)$_POST['service_indications_right_items']);
+        foreach ($lines as $line) {
+            $line = sanitize_text_field($line);
+            if ($line !== '') {
+                $right_items[] = $line;
+            }
+        }
+    }
+    update_post_meta($post_id, '_service_indications_right_items', $right_items);
 }
 

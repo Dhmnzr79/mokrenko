@@ -162,6 +162,59 @@ function register_service_meta_fields() {
         'default' => [],
     ]);
 
+    // Поля секции "Что входит в услугу"
+    register_post_meta('service', '_service_what_included_title', [
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'show_in_rest' => true,
+        'single' => true,
+    ]);
+
+    register_post_meta('service', '_service_what_included_items', [
+        'type' => 'array',
+        'sanitize_callback' => 'sanitize_service_what_included_items',
+        'show_in_rest' => true,
+        'single' => true,
+        'default' => [],
+    ]);
+
+    // Поля секции "Инфо-блоки"
+    register_post_meta('service', '_service_info_blocks_blocks', [
+        'type' => 'array',
+        'sanitize_callback' => 'sanitize_service_info_blocks_blocks',
+        'show_in_rest' => true,
+        'single' => true,
+        'default' => [],
+    ]);
+
+    // Поля секции "Показания и противопоказания"
+    register_post_meta('service', '_service_indications_left_title', [
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'show_in_rest' => true,
+        'single' => true,
+    ]);
+    register_post_meta('service', '_service_indications_left_items', [
+        'type' => 'array',
+        'sanitize_callback' => 'sanitize_service_indications_items',
+        'show_in_rest' => true,
+        'single' => true,
+        'default' => [],
+    ]);
+    register_post_meta('service', '_service_indications_right_title', [
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'show_in_rest' => true,
+        'single' => true,
+    ]);
+    register_post_meta('service', '_service_indications_right_items', [
+        'type' => 'array',
+        'sanitize_callback' => 'sanitize_service_indications_items',
+        'show_in_rest' => true,
+        'single' => true,
+        'default' => [],
+    ]);
+
 }
 
 /**
@@ -298,6 +351,121 @@ function sanitize_service_work_stages_stage($value) {
         }
     }
     
+    return $sanitized;
+}
+
+/**
+ * Санитизация массива пунктов секции "Что входит в услугу"
+ *
+ * @param mixed $value
+ * @return array
+ */
+function sanitize_service_what_included_items($value) {
+    if (!is_array($value)) {
+        return [];
+    }
+
+    $sanitized = [];
+    foreach ($value as $item) {
+        if (!is_array($item)) {
+            continue;
+        }
+
+        $title = isset($item['title']) ? sanitize_text_field($item['title']) : '';
+        $description = isset($item['description']) ? sanitize_textarea_field($item['description']) : '';
+
+        if ($title === '' && $description === '') {
+            continue;
+        }
+
+        $sanitized[] = [
+            'title' => $title,
+            'description' => $description,
+        ];
+    }
+
+    return $sanitized;
+}
+
+/**
+ * Санитизация массива блоков секции "Инфо-блоки"
+ *
+ * @param mixed $value
+ * @return array
+ */
+function sanitize_service_info_blocks_blocks($value) {
+    if (!is_array($value)) {
+        return [];
+    }
+
+    $sanitized_blocks = [];
+
+    foreach ($value as $block) {
+        if (!is_array($block)) {
+            continue;
+        }
+
+        $image = isset($block['image']) ? absint($block['image']) : 0;
+        $title = isset($block['title']) ? sanitize_text_field($block['title']) : '';
+        $subtitle = isset($block['subtitle']) ? sanitize_textarea_field($block['subtitle']) : '';
+        $reverse = !empty($block['reverse']) ? 1 : 0;
+
+        $items = [];
+        if (isset($block['items']) && is_array($block['items'])) {
+            foreach ($block['items'] as $item) {
+                if (!is_array($item)) {
+                    continue;
+                }
+
+                $text = isset($item['text']) ? sanitize_text_field($item['text']) : '';
+                if ($text === '') {
+                    continue;
+                }
+
+                $items[] = ['text' => $text];
+            }
+        }
+
+        // Не добавляем полностью пустые блоки
+        if ($image === 0 && $title === '' && $subtitle === '' && empty($items)) {
+            continue;
+        }
+
+        $sanitized_blocks[] = [
+            'image' => $image,
+            'title' => $title,
+            'subtitle' => $subtitle,
+            'reverse' => $reverse,
+            'items' => $items,
+        ];
+    }
+
+    return $sanitized_blocks;
+}
+
+/**
+ * Санитизация списка пунктов (массив строк)
+ *
+ * @param mixed $value
+ * @return array
+ */
+function sanitize_service_indications_items($value) {
+    if (!is_array($value)) {
+        return [];
+    }
+
+    $sanitized = [];
+    foreach ($value as $item) {
+        if (!is_string($item)) {
+            continue;
+        }
+        $text = sanitize_text_field($item);
+        if ($text === '') {
+            continue;
+        }
+        $sanitized[] = $text;
+    }
+
     return $sanitized;
 }
 

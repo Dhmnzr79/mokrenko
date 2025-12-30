@@ -12,6 +12,7 @@
         initBenefitsIcons();
         initClinicBenefitsIcons();
         initWorkStagesImages();
+        initInfoBlocksImages();
     });
 
     // Выбор изображения для Hero
@@ -338,6 +339,56 @@
             e.preventDefault();
             $('.work-stages-stage-2-image-input').val('');
             $('.work-stages-stage-2-image-preview').html('');
+        });
+    }
+
+    // Выбор изображений для секции "Инфо-блоки" (2 блока)
+    function initInfoBlocksImages() {
+        var frames = {};
+
+        $(document).on('click', '.select-info-block-image', function(e) {
+            e.preventDefault();
+
+            var blockIndex = $(this).data('block');
+            var key = 'info_block_' + blockIndex;
+
+            if (frames[key]) {
+                frames[key].open();
+                return;
+            }
+
+            frames[key] = wp.media({
+                title: 'Выберите изображение для инфо-блока ' + (parseInt(blockIndex, 10) + 1),
+                button: { text: 'Выбрать' },
+                multiple: false,
+                library: { type: 'image' }
+            });
+
+            frames[key].on('select', function() {
+                var attachment = frames[key].state().get('selection').first().toJSON();
+
+                var $input = $('.info-block-image-input[data-block="' + blockIndex + '"]');
+                var $preview = $('.info-block-image-preview[data-block="' + blockIndex + '"]');
+
+                $input.val(attachment.id);
+                $preview.html(
+                    '<img src="' + attachment.url + '" style="max-width: 300px; height: auto;" />' +
+                    '<br><button type="button" class="button remove-info-block-image" data-block="' + blockIndex + '" style="margin-top: 5px;">Удалить</button>'
+                );
+            });
+
+            frames[key].open();
+        });
+
+        $(document).on('click', '.remove-info-block-image', function(e) {
+            e.preventDefault();
+
+            var blockIndex = $(this).data('block');
+            var $input = $('.info-block-image-input[data-block="' + blockIndex + '"]');
+            var $preview = $('.info-block-image-preview[data-block="' + blockIndex + '"]');
+
+            $input.val('');
+            $preview.html('');
         });
     }
 })(jQuery);
