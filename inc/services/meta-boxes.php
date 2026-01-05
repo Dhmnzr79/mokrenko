@@ -44,6 +44,16 @@ function add_service_meta_boxes() {
         'normal',
         'high'
     );
+
+    // Метабокс для секции "Цены"
+    add_meta_box(
+        'service_prices',
+        __('Цены', 'mokrenko'),
+        'render_service_prices_meta_box',
+        'service',
+        'normal',
+        'high'
+    );
     
     // Метабокс для CTA секции
     add_meta_box(
@@ -661,6 +671,114 @@ function save_service_clinic_benefits_meta_box($post_id) {
         update_post_meta($post_id, '_service_clinic_benefits_feature_card', $feature_card);
     } else {
         delete_post_meta($post_id, '_service_clinic_benefits_feature_card');
+    }
+}
+
+function render_service_prices_meta_box($post) {
+    wp_nonce_field('service_prices_nonce', 'service_prices_nonce');
+    
+    $title = get_post_meta($post->ID, '_service_prices_title', true);
+    $items = get_post_meta($post->ID, '_service_prices_items', true);
+    $items = $items ? (is_array($items) ? $items : json_decode($items, true)) : [];
+    if (!is_array($items)) $items = [];
+    
+    ?>
+    <div class="service-prices-meta-box">
+        <table class="form-table">
+            <tr>
+                <th><label for="service_prices_title"><?php _e('Заголовок секции', 'mokrenko'); ?></label></th>
+                <td>
+                    <input type="text" id="service_prices_title" name="service_prices_title" value="<?php echo esc_attr($title); ?>" placeholder="<?php _e('Цены', 'mokrenko'); ?>" style="width: 100%;" />
+                </td>
+            </tr>
+        </table>
+        
+        <h3><?php _e('Позиции', 'mokrenko'); ?></h3>
+        <div id="service-prices-items" data-next-index="<?php echo esc_attr(count($items)); ?>">
+            <?php foreach ($items as $i => $item) :
+                $item_name = isset($item['name']) ? $item['name'] : '';
+                $item_price = isset($item['price']) ? $item['price'] : '';
+                $item_old_price = isset($item['old_price']) ? $item['old_price'] : '';
+            ?>
+                <div class="service-prices-item" style="border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 4px;">
+                    <div style="display: flex; gap: 10px; align-items: flex-start;">
+                        <div style="flex: 1; min-width: 0;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: 600;"><?php _e('Название', 'mokrenko'); ?></label>
+                            <input type="text" name="service_prices_items[<?php echo esc_attr($i); ?>][name]" value="<?php echo esc_attr($item_name); ?>" style="width: 100%;" />
+                        </div>
+                        <div style="flex: 0 0 160px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: 600;"><?php _e('Цена', 'mokrenko'); ?></label>
+                            <input type="text" name="service_prices_items[<?php echo esc_attr($i); ?>][price]" value="<?php echo esc_attr($item_price); ?>" style="width: 100%;" />
+                        </div>
+                        <div style="flex: 0 0 160px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: 600;"><?php _e('Старая цена', 'mokrenko'); ?></label>
+                            <input type="text" name="service_prices_items[<?php echo esc_attr($i); ?>][old_price]" value="<?php echo esc_attr($item_old_price); ?>" style="width: 100%;" />
+                        </div>
+                        <div style="flex: 0 0 120px; padding-top: 24px;">
+                            <button type="button" class="button service-prices-remove"><?php _e('Удалить', 'mokrenko'); ?></button>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        
+        <p>
+            <button type="button" class="button button-secondary service-prices-add"><?php _e('Добавить цену', 'mokrenko'); ?></button>
+        </p>
+    </div>
+    <?php
+}
+
+add_action('save_post_service', 'save_service_prices_meta_box');
+
+function save_service_prices_meta_box($post_id) {
+    if (!isset($_POST['service_prices_nonce']) ||
+        !wp_verify_nonce($_POST['service_prices_nonce'], 'service_prices_nonce')) {
+        return;
+    }
+    
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+    
+    if (isset($_POST['service_prices_title'])) {
+        update_post_meta($post_id, '_service_prices_title', sanitize_text_field($_POST['service_prices_title']));
+    }
+    
+    if (isset($_POST['service_prices_items']) && is_array($_POST['service_prices_items'])) {
+        $items = [];
+        
+        foreach ($_POST['service_prices_items'] as $item) {
+            if (!is_array($item)) {
+                continue;
+            }
+            
+            $name = isset($item['name']) ? sanitize_text_field($item['name']) : '';
+            $price = isset($item['price']) ? sanitize_text_field($item['price']) : '';
+            $old_price = isset($item['old_price']) ? sanitize_text_field($item['old_price']) : '';
+            
+            if ($name === '' && $price === '' && $old_price === '') {
+                continue;
+            }
+            
+            $items[] = [
+                'name' => $name,
+                'price' => $price,
+                'old_price' => $old_price,
+            ];
+        }
+        
+        if (!empty($items)) {
+            update_post_meta($post_id, '_service_prices_items', $items);
+        } else {
+            delete_post_meta($post_id, '_service_prices_items');
+        }
+    } else {
+        delete_post_meta($post_id, '_service_prices_items');
     }
 }
 

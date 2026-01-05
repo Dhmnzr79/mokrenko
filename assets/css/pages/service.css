@@ -297,6 +297,11 @@
     padding-block: 48px;
 }
 
+/* Service Prices Section */
+.section--service-prices {
+    padding-block: 48px;
+}
+
 .service-cta__content {
     display: flex;
     flex-direction: column;
@@ -561,6 +566,9 @@
     line-height: 1.3;
 }
 
+.service-what-included__stats .reviews__face:nth-child(2), .service-what-included__stats .reviews__face:nth-child(3) {
+    outline: 3px solid var(--color-bg);
+}
 
 /* Service Info Blocks */
 .section--service-info-blocks {
@@ -884,6 +892,10 @@
     }
 
     .section--service-cta {
+        padding-block: 32px;
+    }
+
+    .section--service-prices {
         padding-block: 32px;
     }
     

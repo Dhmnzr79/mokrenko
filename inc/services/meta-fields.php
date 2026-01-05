@@ -137,6 +137,22 @@ function register_service_meta_fields() {
         'default' => [],
     ]);
 
+    // Поля секции "Цены"
+    register_post_meta('service', '_service_prices_title', [
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'show_in_rest' => true,
+        'single' => true,
+    ]);
+
+    register_post_meta('service', '_service_prices_items', [
+        'type' => 'array',
+        'sanitize_callback' => 'sanitize_service_prices_items',
+        'show_in_rest' => true,
+        'single' => true,
+        'default' => [],
+    ]);
+
     // Поля Work Stages секции
     register_post_meta('service', '_service_work_stages_title', [
         'type' => 'string',
@@ -324,6 +340,36 @@ function sanitize_service_cta_cards($value) {
                 'text' => sanitize_textarea_field($card['text']),
             ];
         }
+    }
+    
+    return $sanitized;
+}
+
+function sanitize_service_prices_items($value) {
+    if (!is_array($value)) {
+        return [];
+    }
+    
+    $sanitized = [];
+    
+    foreach ($value as $item) {
+        if (!is_array($item)) {
+            continue;
+        }
+        
+        $name = isset($item['name']) ? sanitize_text_field($item['name']) : '';
+        $price = isset($item['price']) ? sanitize_text_field($item['price']) : '';
+        $old_price = isset($item['old_price']) ? sanitize_text_field($item['old_price']) : '';
+        
+        if ($name === '' && $price === '' && $old_price === '') {
+            continue;
+        }
+        
+        $sanitized[] = [
+            'name' => $name,
+            'price' => $price,
+            'old_price' => $old_price,
+        ];
     }
     
     return $sanitized;

@@ -34,6 +34,11 @@ function get_service_sections_config() {
             'type' => 'common',
             'template' => 'description'
         ],
+        'prices' => [
+            'label' => 'Цены',
+            'type' => 'common',
+            'template' => 'prices'
+        ],
         'cta' => [
             'label' => 'Призыв к действию',
             'type' => 'common',
@@ -90,6 +95,7 @@ function get_service_sections_order() {
         'work-stages',
         'what-included',
         'info-blocks',
+        'prices',
         'indications',
         'reviews'
     ];

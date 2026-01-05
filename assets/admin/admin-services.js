@@ -13,6 +13,7 @@
         initClinicBenefitsIcons();
         initWorkStagesImages();
         initInfoBlocksImages();
+        initPricesRepeater();
     });
 
     // Выбор изображения для Hero
@@ -389,6 +390,68 @@
 
             $input.val('');
             $preview.html('');
+        });
+    }
+
+    function initPricesRepeater() {
+        var $box = $('.service-prices-meta-box');
+        if (!$box.length) return;
+        
+        var $items = $box.find('#service-prices-items');
+        
+        function rebuildIndexes() {
+            $items.find('.service-prices-item').each(function(idx) {
+                var $row = $(this);
+                $row.find('input').each(function() {
+                    var $input = $(this);
+                    var name = $input.attr('name');
+                    if (!name) return;
+                    
+                    name = name.replace(/service_prices_items\[\d+\]/, 'service_prices_items[' + idx + ']');
+                    $input.attr('name', name);
+                });
+            });
+            $items.attr('data-next-index', $items.find('.service-prices-item').length);
+        }
+        
+        function addRow() {
+            var index = parseInt($items.attr('data-next-index'), 10);
+            if (isNaN(index)) index = $items.find('.service-prices-item').length;
+            
+            var html =
+                '<div class="service-prices-item" style="border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 4px;">' +
+                    '<div style="display: flex; gap: 10px; align-items: flex-start;">' +
+                        '<div style="flex: 1; min-width: 0;">' +
+                            '<label style="display: block; margin-bottom: 5px; font-weight: 600;">Название</label>' +
+                            '<input type="text" name="service_prices_items[' + index + '][name]" value="" style="width: 100%;" />' +
+                        '</div>' +
+                        '<div style="flex: 0 0 160px;">' +
+                            '<label style="display: block; margin-bottom: 5px; font-weight: 600;">Цена</label>' +
+                            '<input type="text" name="service_prices_items[' + index + '][price]" value="" style="width: 100%;" />' +
+                        '</div>' +
+                        '<div style="flex: 0 0 160px;">' +
+                            '<label style="display: block; margin-bottom: 5px; font-weight: 600;">Старая цена</label>' +
+                            '<input type="text" name="service_prices_items[' + index + '][old_price]" value="" style="width: 100%;" />' +
+                        '</div>' +
+                        '<div style="flex: 0 0 120px; padding-top: 24px;">' +
+                            '<button type="button" class="button service-prices-remove">Удалить</button>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>';
+            
+            $items.append(html);
+            rebuildIndexes();
+        }
+        
+        $box.on('click', '.service-prices-add', function(e) {
+            e.preventDefault();
+            addRow();
+        });
+        
+        $box.on('click', '.service-prices-remove', function(e) {
+            e.preventDefault();
+            $(this).closest('.service-prices-item').remove();
+            rebuildIndexes();
         });
     }
 })(jQuery);

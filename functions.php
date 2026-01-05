@@ -121,28 +121,33 @@ function theme_admin_scripts($hook) {
         
         // Для врачей и кейсов
         if (in_array($post_type, ['doctor', 'case'])) {
-            wp_enqueue_script('theme-admin-cases-doctors', get_stylesheet_directory_uri() . '/assets/admin/admin-cases-doctors.js', ['jquery'], wp_get_theme()->get('Version'), true);
-            wp_enqueue_style('theme-admin-cases-doctors', get_stylesheet_directory_uri() . '/assets/admin/admin-cases-doctors.css', [], wp_get_theme()->get('Version'));
+            $admin_cd_js = get_stylesheet_directory() . '/assets/admin/admin-cases-doctors.js';
+            $admin_cd_css = get_stylesheet_directory() . '/assets/admin/admin-cases-doctors.css';
+            wp_enqueue_script('theme-admin-cases-doctors', get_stylesheet_directory_uri() . '/assets/admin/admin-cases-doctors.js', ['jquery'], file_exists($admin_cd_js) ? filemtime($admin_cd_js) : wp_get_theme()->get('Version'), true);
+            wp_enqueue_style('theme-admin-cases-doctors', get_stylesheet_directory_uri() . '/assets/admin/admin-cases-doctors.css', [], file_exists($admin_cd_css) ? filemtime($admin_cd_css) : wp_get_theme()->get('Version'));
         }
         
         // Для услуг
         if ($post_type === 'service') {
-            wp_enqueue_script('theme-admin-services', get_stylesheet_directory_uri() . '/assets/admin/admin-services.js', ['jquery'], wp_get_theme()->get('Version'), true);
+            $admin_services_js = get_stylesheet_directory() . '/assets/admin/admin-services.js';
+            wp_enqueue_script('theme-admin-services', get_stylesheet_directory_uri() . '/assets/admin/admin-services.js', ['jquery'], file_exists($admin_services_js) ? filemtime($admin_services_js) : wp_get_theme()->get('Version'), true);
         }
         
         // Локализация для JS
-        wp_localize_script('theme-admin-cases-doctors', 'theme_admin', [
-            'strings' => [
-                'year' => __('Год', 'mokrenko'),
-                'desc' => __('Описание', 'mokrenko'),
-                'remove' => __('Удалить', 'mokrenko'),
-                'select' => __('Выбрать', 'mokrenko'),
-                'selectCerts' => __('Выберите сертификаты', 'mokrenko'),
-                'selectBeforeImage' => __('Выберите фото "До"', 'mokrenko'),
-                'selectAfterImage' => __('Выберите фото "После"', 'mokrenko'),
-                'selectDoctorPhoto2' => __('Выберите второе фото врача', 'mokrenko')
-            ]
-        ]);
+        if (in_array($post_type, ['doctor', 'case'])) {
+            wp_localize_script('theme-admin-cases-doctors', 'theme_admin', [
+                'strings' => [
+                    'year' => __('Год', 'mokrenko'),
+                    'desc' => __('Описание', 'mokrenko'),
+                    'remove' => __('Удалить', 'mokrenko'),
+                    'select' => __('Выбрать', 'mokrenko'),
+                    'selectCerts' => __('Выберите сертификаты', 'mokrenko'),
+                    'selectBeforeImage' => __('Выберите фото "До"', 'mokrenko'),
+                    'selectAfterImage' => __('Выберите фото "После"', 'mokrenko'),
+                    'selectDoctorPhoto2' => __('Выберите второе фото врача', 'mokrenko')
+                ]
+            ]);
+        }
     }
 }
 
