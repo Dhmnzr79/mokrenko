@@ -162,58 +162,6 @@
 	background-size: auto;
 }
 
-/* Form consent */
-.form-consent {
-	margin-top: 20px;
-}
-
-.form-consent__label {
-	display: flex;
-	align-items: flex-start;
-	gap: 10px;
-	cursor: pointer;
-}
-
-.form-consent__checkbox {
-	width: 20px;
-	height: 20px;
-	flex-shrink: 0;
-	margin-top: 2px;
-	cursor: pointer;
-	appearance: none;
-	border: 2px solid var(--color-accent);
-	border-radius: 4px;
-	background-color: transparent;
-	position: relative;
-}
-
-.form-consent__checkbox:checked {
-	background-color: var(--color-accent);
-	border-color: var(--color-accent);
-}
-
-.form-consent__checkbox:checked::after {
-	content: '✓';
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	color: #fff;
-	font-size: 14px;
-	font-weight: bold;
-	line-height: 1;
-}
-
-.form-consent__text {
-	font-size: 14px;
-	line-height: 1.4;
-}
-
-.form-consent__link {
-	color: #000;
-	text-decoration: underline;
-}
-
 .doctor-question__box .reviews__faces .reviews__face:nth-child(2),
 .doctor-question__box .reviews__faces .reviews__face:nth-child(3) {
 	outline: 3px solid #8be8de;

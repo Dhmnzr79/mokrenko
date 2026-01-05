@@ -51,7 +51,7 @@ if (empty($title) && empty($subtitle) && empty($stage_1) && empty($stage_2)) {
 		<?php endif; ?>
 		
 		<?php if (!empty($stage_1['title']) || !empty($stage_1['image']) || !empty($stage_1_checklist)) : ?>
-			<!-- Этап 1: левая часть - контент, правая - картинка -->
+
 			<div class="row service-work-stages__stage">
 				<div class="col-sm-12 col-lg-6">
 					<div class="service-work-stages__content">
@@ -80,7 +80,7 @@ if (empty($title) && empty($subtitle) && empty($stage_1) && empty($stage_2)) {
 				</div>
 				
 				<?php if (!empty($stage_1['image'])) : ?>
-					<div class="col-sm-12 col-lg-6">
+					<div class="col-sm-12 col-lg-6 service-work-stages__col-image">
 						<div class="service-work-stages__image">
 							<?php echo wp_get_attachment_image($stage_1['image'], 'large', false, ['class' => 'service-work-stages__img']); ?>
 						</div>
@@ -90,10 +90,10 @@ if (empty($title) && empty($subtitle) && empty($stage_1) && empty($stage_2)) {
 		<?php endif; ?>
 		
 		<?php if (!empty($stage_2['title']) || !empty($stage_2['image']) || !empty($stage_2_checklist)) : ?>
-			<!-- Этап 2: левая часть - картинка, правая - контент (зеркально) -->
+	
 			<div class="row service-work-stages__stage service-work-stages__stage--reversed">
 				<?php if (!empty($stage_2['image'])) : ?>
-					<div class="col-sm-12 col-lg-6">
+					<div class="col-sm-12 col-lg-6 service-work-stages__col-image">
 						<div class="service-work-stages__image">
 							<?php echo wp_get_attachment_image($stage_2['image'], 'large', false, ['class' => 'service-work-stages__img']); ?>
 						</div>

@@ -34,49 +34,53 @@ $button_link = $section_data['button_link'] ?? '';
 			
 			<div class="service-hero__layout">
 				<div class="service-hero__content">
-					<?php if ($title) : ?>
-						<h1><?php echo esc_html($title); ?></h1>
-					<?php endif; ?>
-					
-					<?php if ($subtitle) : ?>
-						<p class="service-hero__subtitle"><?php echo esc_html($subtitle); ?></p>
-					<?php endif; ?>
-					
-					<?php if (!empty($benefits)) : ?>
-						<div class="service-hero__benefits">
-							<?php foreach ($benefits as $benefit) : 
-								if (empty($benefit['text'])) continue;
-								$icon_id = isset($benefit['icon']) ? absint($benefit['icon']) : 0;
-							?>
-								<div class="service-hero__benefit-item">
-									<?php if ($icon_id) : ?>
-										<?php echo wp_get_attachment_image($icon_id, 'thumbnail', false, ['class' => 'service-hero__benefit-icon']); ?>
-									<?php else : ?>
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="service-hero__benefit-icon">
-									<?php endif; ?>
-									<p><?php echo esc_html($benefit['text']); ?></p>
-								</div>
-							<?php endforeach; ?>
-						</div>
-					<?php endif; ?>
-
-					<?php if ($extra_line) : ?>
-						<p class="service-hero__extra-line"><?php echo esc_html($extra_line); ?></p>
-					<?php endif; ?>
-					
-					<?php if ($button_text) : ?>
-						<?php if ($button_link) : ?>
-							<a href="<?php echo esc_url($button_link); ?>" class="btn service-hero__cta-btn">
-								<?php echo esc_html($button_text); ?>
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
-							</a>
-						<?php else : ?>
-							<button class="btn service-hero__cta-btn" data-popup="open">
-								<?php echo esc_html($button_text); ?>
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
-							</button>
+					<div class="service-hero__content-top">
+						<?php if ($title) : ?>
+							<h1><?php echo esc_html($title); ?></h1>
 						<?php endif; ?>
-					<?php endif; ?>
+						
+						<?php if ($subtitle) : ?>
+							<p class="service-hero__subtitle"><?php echo esc_html($subtitle); ?></p>
+						<?php endif; ?>
+						
+						<?php if (!empty($benefits)) : ?>
+							<div class="service-hero__benefits">
+								<?php foreach ($benefits as $benefit) : 
+									if (empty($benefit['text'])) continue;
+									$icon_id = isset($benefit['icon']) ? absint($benefit['icon']) : 0;
+								?>
+									<div class="service-hero__benefit-item">
+										<?php if ($icon_id) : ?>
+											<?php echo wp_get_attachment_image($icon_id, 'thumbnail', false, ['class' => 'service-hero__benefit-icon']); ?>
+										<?php else : ?>
+											<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="service-hero__benefit-icon">
+										<?php endif; ?>
+										<p><?php echo esc_html($benefit['text']); ?></p>
+									</div>
+								<?php endforeach; ?>
+							</div>
+						<?php endif; ?>
+					</div>
+
+					<div class="service-hero__content-bottom">
+						<?php if ($extra_line) : ?>
+							<p class="service-hero__extra-line"><?php echo esc_html($extra_line); ?></p>
+						<?php endif; ?>
+						
+						<?php if ($button_text) : ?>
+							<?php if ($button_link) : ?>
+								<a href="<?php echo esc_url($button_link); ?>" class="btn service-hero__cta-btn">
+									<?php echo esc_html($button_text); ?>
+									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
+								</a>
+							<?php else : ?>
+								<button class="btn service-hero__cta-btn" data-popup="open">
+									<?php echo esc_html($button_text); ?>
+									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
+								</button>
+							<?php endif; ?>
+						<?php endif; ?>
+					</div>
 				</div>
 				
 				<?php if ($image_id || $info_title || $info_text) : ?>

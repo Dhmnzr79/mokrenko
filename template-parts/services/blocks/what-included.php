@@ -31,7 +31,6 @@ if (empty($items)) {
 <section class="section section--service-what-included service-what-included">
     <div class="container">
         <div class="row">
-            <!-- Левая часть: заголовок + блок со "статистикой" (лица + текст) -->
             <div class="col-sm-12 col-lg-6">
                 <div class="service-what-included__left">
                     <?php if ($left_title) : ?>
@@ -51,7 +50,7 @@ if (empty($items)) {
                 </div>
             </div>
 
-            <!-- Правая часть: чек-лист -->
+
             <div class="col-sm-12 col-lg-6">
                 <div class="service-what-included__right">
                     <ul class="service-what-included__list">

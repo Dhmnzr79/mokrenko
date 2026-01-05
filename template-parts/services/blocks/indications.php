@@ -29,7 +29,7 @@ if (!$left_title && !$right_title && empty($left_items) && empty($right_items)) 
 <section class="section section--service-indications service-indications">
     <div class="container">
         <div class="row">
-            <!-- Слева: показания -->
+    
             <div class="col-sm-12 col-lg-6">
                 <div class="service-indications__col service-indications__col--left">
                     <?php if ($left_title) : ?>
@@ -46,7 +46,7 @@ if (!$left_title && !$right_title && empty($left_items) && empty($right_items)) 
                 </div>
             </div>
 
-            <!-- Справа: противопоказания -->
+     
             <div class="col-sm-12 col-lg-6">
                 <div class="service-indications__col service-indications__col--right">
                     <?php if ($right_title) : ?>

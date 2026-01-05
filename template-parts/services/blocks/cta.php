@@ -18,7 +18,6 @@ if (empty($title) && empty($subtitle) && empty($cards)) {
 ?>
 <section class="section section--service-cta service-cta">
     <div class="container">
-        <!-- Первая часть: 6/6 -->
         <div class="row">
             <?php if ($title || $subtitle) : ?>
                 <div class="col-sm-12 col-lg-6">
@@ -50,13 +49,19 @@ if (empty($title) && empty($subtitle) && empty($cards)) {
             <?php endif; ?>
         </div>
         
-        <!-- Вторая часть: форма (12 колонок) -->
+
         <div class="row">
             <div class="col-sm-12">
                 <div class="service-cta__form-wrapper">
                     <h3 class="service-cta__form-title">Оставьте заявку</h3>
                     <p class="service-cta__form-subtitle">И мы свяжемся с вами в ближайшее время</p>
                     <?php echo do_shortcode('[contact-form-7 id="7615b47" title="Контактная форма CTA"]'); ?>
+                    <div class="form-consent">
+                        <label class="form-consent__label">
+                            <input type="checkbox" class="form-consent__checkbox" checked required>
+                            <span class="form-consent__text">Я даю согласие на обработку <a href="https://mokrenko-msk.ru/privacy.pdf" target="_blank" rel="noopener" class="form-consent__link">персональных данных</a></span>
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>

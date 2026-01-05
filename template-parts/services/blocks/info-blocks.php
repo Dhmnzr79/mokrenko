@@ -40,7 +40,7 @@ if (empty($blocks)) return;
       <div class="service-info-blocks__block <?php echo $reverse ? 'service-info-blocks__block--reverse' : ''; ?>">
         <div class="row">
           <?php if (!$reverse) : ?>
-            <div class="col-sm-12 col-lg-6">
+            <div class="col-sm-12 col-lg-6 service-info-blocks__col-image">
               <?php if ($image_id) : ?>
                 <div class="service-info-blocks__image">
                   <?php echo wp_get_attachment_image($image_id, 'large', false, ['class' => 'service-info-blocks__img']); ?>
@@ -78,7 +78,7 @@ if (empty($blocks)) return;
               </div>
             </div>
 
-            <div class="col-sm-12 col-lg-6">
+            <div class="col-sm-12 col-lg-6 service-info-blocks__col-image">
               <?php if ($image_id) : ?>
                 <div class="service-info-blocks__image">
                   <?php echo wp_get_attachment_image($image_id, 'large', false, ['class' => 'service-info-blocks__img']); ?>
