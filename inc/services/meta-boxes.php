@@ -1200,7 +1200,6 @@ function save_service_what_included_meta_box($post_id) {
 
 /**
  * Рендер метабокса секции "Инфо-блоки"
- * Два блока на страницу (Block 1 и Block 2), каждый может быть "reverse".
  */
 function render_service_info_blocks_meta_box($post) {
     wp_nonce_field('service_info_blocks_nonce', 'service_info_blocks_nonce');
@@ -1210,96 +1209,135 @@ function render_service_info_blocks_meta_box($post) {
     if (!is_array($blocks)) {
         $blocks = [];
     }
-
-    // Ровно 2 блока
-    while (count($blocks) < 2) {
-        $blocks[] = [
-            'image' => 0,
-            'title' => '',
-            'subtitle' => '',
-            'reverse' => 0,
-            'items' => [],
-        ];
-    }
+    
+    $positions = [
+        'after_hero' => 'После Hero',
+        'after_benefits' => 'После Преимуществ',
+        'after_clinic-benefits' => 'После Общих плюсов клиники',
+        'after_description' => 'После Описания',
+        'after_prices' => 'После Цен',
+        'after_cta' => 'После CTA',
+        'after_work-stages' => 'После Этапов работ',
+        'after_what-included' => 'После Что входит',
+        'after_indications' => 'После Показаний',
+        'after_reviews' => 'После Отзывов',
+    ];
 
     ?>
     <div class="service-info-blocks-meta-box">
-        <p class="description">
-            <?php _e('Два блока на страницу. Для каждого: картинка, заголовок, расшифровка и чек-лист. Вариант 2 — просто включите "Сетка наоборот".', 'mokrenko'); ?>
+        <div id="service-info-blocks" data-next-index="<?php echo esc_attr(count($blocks)); ?>">
+            <?php foreach ($blocks as $b => $block) :
+                if (!is_array($block)) continue;
+                $image = isset($block['image']) ? absint($block['image']) : 0;
+                $title = isset($block['title']) ? (string)$block['title'] : '';
+                $subtitle = isset($block['subtitle']) ? (string)$block['subtitle'] : '';
+                $footer_text = isset($block['footer_text']) ? (string)$block['footer_text'] : '';
+                $button_text = isset($block['button_text']) ? (string)$block['button_text'] : '';
+                $button_link = isset($block['button_link']) ? (string)$block['button_link'] : '';
+                $reverse = !empty($block['reverse']) ? 1 : 0;
+                $position = isset($block['position']) ? (string)$block['position'] : '';
+                if ($position === '' || !isset($positions[$position])) $position = 'after_what-included';
+
+                $items = isset($block['items']) && is_array($block['items']) ? $block['items'] : [];
+                if (!is_array($items)) $items = [];
+            ?>
+                <div class="service-info-blocks-item" style="border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 4px;">
+                    <div style="display:flex; justify-content: space-between; align-items: center; gap: 10px;">
+                        <h3 style="margin: 0;"><?php echo esc_html(sprintf(__('Инфо-блок %d', 'mokrenko'), $b + 1)); ?></h3>
+                        <button type="button" class="button service-info-blocks-remove"><?php _e('Удалить блок', 'mokrenko'); ?></button>
+                    </div>
+
+                    <table class="form-table">
+                        <tr>
+                            <th><label><?php _e('Позиция', 'mokrenko'); ?></label></th>
+                            <td>
+                                <select name="service_info_blocks_blocks[<?php echo esc_attr($b); ?>][position]" style="width: 100%;">
+                                    <?php foreach ($positions as $val => $label) : ?>
+                                        <option value="<?php echo esc_attr($val); ?>" <?php selected($position, $val); ?>><?php echo esc_html($label); ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label><?php _e('Картинка справа', 'mokrenko'); ?></label></th>
+                            <td>
+                                <label>
+                                    <input type="checkbox" name="service_info_blocks_blocks[<?php echo esc_attr($b); ?>][reverse]" value="1" <?php checked($reverse, 1); ?> />
+                                    <?php _e('Поменять местами картинку и контент', 'mokrenko'); ?>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label><?php _e('Картинка', 'mokrenko'); ?></label></th>
+                            <td>
+                                <button type="button" class="button select-info-block-image" data-block="<?php echo esc_attr($b); ?>">
+                                    <?php _e('Выбрать изображение', 'mokrenko'); ?>
+                                </button>
+                                <div class="info-block-image-preview" data-block="<?php echo esc_attr($b); ?>" style="margin-top: 10px;">
+                                    <?php if ($image) : ?>
+                                        <?php echo wp_get_attachment_image($image, 'medium'); ?>
+                                        <button type="button" class="button remove-info-block-image" data-block="<?php echo esc_attr($b); ?>" style="margin-top: 5px;"><?php _e('Удалить', 'mokrenko'); ?></button>
+                                    <?php endif; ?>
+                                </div>
+                                <input type="hidden" name="service_info_blocks_blocks[<?php echo esc_attr($b); ?>][image]" class="info-block-image-input" data-block="<?php echo esc_attr($b); ?>" value="<?php echo esc_attr($image); ?>" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label><?php _e('Заголовок', 'mokrenko'); ?></label></th>
+                            <td>
+                                <input type="text" name="service_info_blocks_blocks[<?php echo esc_attr($b); ?>][title]" value="<?php echo esc_attr($title); ?>" style="width: 100%;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label><?php _e('Расшифровка', 'mokrenko'); ?></label></th>
+                            <td>
+                                <textarea name="service_info_blocks_blocks[<?php echo esc_attr($b); ?>][subtitle]" rows="3" style="width: 100%;"><?php echo esc_textarea($subtitle); ?></textarea>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <h4 style="margin: 16px 0 8px;"><?php _e('Чек-лист', 'mokrenko'); ?></h4>
+                    <div class="service-info-blocks-checklist" data-block="<?php echo esc_attr($b); ?>">
+                        <?php foreach ($items as $i => $item) :
+                            $text = is_array($item) && isset($item['text']) ? (string)$item['text'] : '';
+                        ?>
+                            <div class="service-info-blocks-checklist-item" style="display:flex; gap:10px; margin-bottom:10px;">
+                                <input type="text" name="service_info_blocks_blocks[<?php echo esc_attr($b); ?>][items][<?php echo esc_attr($i); ?>][text]" value="<?php echo esc_attr($text); ?>" style="width: 100%;" placeholder="<?php _e('Текст пункта...', 'mokrenko'); ?>" />
+                                <button type="button" class="button service-info-blocks-checklist-remove"><?php _e('Удалить', 'mokrenko'); ?></button>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <p style="margin: 0 0 12px;">
+                        <button type="button" class="button button-secondary service-info-blocks-checklist-add" data-block="<?php echo esc_attr($b); ?>"><?php _e('Добавить пункт', 'mokrenko'); ?></button>
+                    </p>
+
+                    <table class="form-table">
+                        <tr>
+                            <th><label><?php _e('Завершающий текст', 'mokrenko'); ?></label></th>
+                            <td>
+                                <textarea name="service_info_blocks_blocks[<?php echo esc_attr($b); ?>][footer_text]" rows="2" style="width: 100%;"><?php echo esc_textarea($footer_text); ?></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label><?php _e('Текст кнопки', 'mokrenko'); ?></label></th>
+                            <td>
+                                <input type="text" name="service_info_blocks_blocks[<?php echo esc_attr($b); ?>][button_text]" value="<?php echo esc_attr($button_text); ?>" style="width: 100%;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label><?php _e('Ссылка кнопки', 'mokrenko'); ?></label></th>
+                            <td>
+                                <input type="text" name="service_info_blocks_blocks[<?php echo esc_attr($b); ?>][button_link]" value="<?php echo esc_attr($button_link); ?>" style="width: 100%;" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            <?php endforeach; ?>
+        </div>
+
+        <p style="margin: 0;">
+            <button type="button" class="button button-secondary service-info-blocks-add"><?php _e('Добавить инфо-блок', 'mokrenko'); ?></button>
         </p>
-
-        <?php for ($b = 0; $b < 2; $b++) :
-            $block = isset($blocks[$b]) && is_array($blocks[$b]) ? $blocks[$b] : [];
-            $image = isset($block['image']) ? absint($block['image']) : 0;
-            $title = isset($block['title']) ? $block['title'] : '';
-            $subtitle = isset($block['subtitle']) ? $block['subtitle'] : '';
-            $reverse = !empty($block['reverse']) ? 1 : 0;
-
-            $items = isset($block['items']) && is_array($block['items']) ? $block['items'] : [];
-            if (!is_array($items)) $items = [];
-            while (count($items) < 6) {
-                $items[] = ['text' => ''];
-            }
-        ?>
-            <hr style="margin: 24px 0;">
-            <h3 style="margin: 0 0 12px;"><?php echo esc_html(sprintf(__('Блок %d', 'mokrenko'), $b + 1)); ?></h3>
-
-            <table class="form-table">
-                <tr>
-                    <th><label><?php _e('Сетка наоборот', 'mokrenko'); ?></label></th>
-                    <td>
-                        <label>
-                            <input type="checkbox" name="service_info_blocks_blocks[<?php echo $b; ?>][reverse]" value="1" <?php checked($reverse, 1); ?> />
-                            <?php _e('Поменять местами картинку и контент', 'mokrenko'); ?>
-                        </label>
-                    </td>
-                </tr>
-
-                <tr>
-                    <th><label><?php _e('Картинка', 'mokrenko'); ?></label></th>
-                    <td>
-                        <button type="button" class="button select-info-block-image" data-block="<?php echo $b; ?>">
-                            <?php _e('Выбрать изображение', 'mokrenko'); ?>
-                        </button>
-                        <div class="info-block-image-preview" data-block="<?php echo $b; ?>" style="margin-top: 10px;">
-                            <?php if ($image) : ?>
-                                <?php echo wp_get_attachment_image($image, 'medium'); ?>
-                                <button type="button" class="button remove-info-block-image" data-block="<?php echo $b; ?>" style="margin-top: 5px;"><?php _e('Удалить', 'mokrenko'); ?></button>
-                            <?php endif; ?>
-                        </div>
-                        <input type="hidden" name="service_info_blocks_blocks[<?php echo $b; ?>][image]" class="info-block-image-input" data-block="<?php echo $b; ?>" value="<?php echo esc_attr($image); ?>" />
-                    </td>
-                </tr>
-
-                <tr>
-                    <th><label><?php _e('Заголовок', 'mokrenko'); ?></label></th>
-                    <td>
-                        <input type="text" name="service_info_blocks_blocks[<?php echo $b; ?>][title]" value="<?php echo esc_attr($title); ?>" style="width: 100%;" />
-                    </td>
-                </tr>
-
-                <tr>
-                    <th><label><?php _e('Расшифровка заголовка', 'mokrenko'); ?></label></th>
-                    <td>
-                        <textarea name="service_info_blocks_blocks[<?php echo $b; ?>][subtitle]" rows="3" style="width: 100%;"><?php echo esc_textarea($subtitle); ?></textarea>
-                    </td>
-                </tr>
-            </table>
-
-            <h4 style="margin: 16px 0 8px;"><?php _e('Чек-лист (6 пунктов)', 'mokrenko'); ?></h4>
-            <table class="form-table">
-                <?php for ($i = 0; $i < 6; $i++) :
-                    $text = isset($items[$i]['text']) ? $items[$i]['text'] : '';
-                ?>
-                    <tr>
-                        <th><label><?php echo esc_html(sprintf(__('Пункт %d', 'mokrenko'), $i + 1)); ?></label></th>
-                        <td>
-                            <input type="text" name="service_info_blocks_blocks[<?php echo $b; ?>][items][<?php echo $i; ?>][text]" value="<?php echo esc_attr($text); ?>" style="width: 100%;" placeholder="<?php _e('Текст пункта...', 'mokrenko'); ?>" />
-                        </td>
-                    </tr>
-                <?php endfor; ?>
-            </table>
-        <?php endfor; ?>
     </div>
     <?php
 }
@@ -1334,7 +1372,12 @@ function save_service_info_blocks_meta_box($post_id) {
             $image = isset($block['image']) ? absint($block['image']) : 0;
             $title = isset($block['title']) ? sanitize_text_field($block['title']) : '';
             $subtitle = isset($block['subtitle']) ? sanitize_textarea_field($block['subtitle']) : '';
+            $footer_text = isset($block['footer_text']) ? sanitize_textarea_field($block['footer_text']) : '';
+            $button_text = isset($block['button_text']) ? sanitize_text_field($block['button_text']) : '';
+            $button_link = isset($block['button_link']) ? esc_url_raw($block['button_link']) : '';
             $reverse = !empty($block['reverse']) ? 1 : 0;
+            $position = isset($block['position']) ? sanitize_text_field($block['position']) : '';
+            if ($position === '') $position = 'after_what-included';
 
             $items = [];
             if (isset($block['items']) && is_array($block['items'])) {
@@ -1350,7 +1393,7 @@ function save_service_info_blocks_meta_box($post_id) {
                 }
             }
 
-            if ($image === 0 && $title === '' && $subtitle === '' && empty($items)) {
+            if ($image === 0 && $title === '' && $subtitle === '' && empty($items) && $footer_text === '' && $button_text === '' && $button_link === '') {
                 continue;
             }
 
@@ -1360,6 +1403,10 @@ function save_service_info_blocks_meta_box($post_id) {
                 'subtitle' => $subtitle,
                 'reverse' => $reverse,
                 'items' => $items,
+                'footer_text' => $footer_text,
+                'button_text' => $button_text,
+                'button_link' => $button_link,
+                'position' => $position,
             ];
         }
 

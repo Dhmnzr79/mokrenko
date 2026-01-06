@@ -57,6 +57,28 @@ foreach ($sections_order as $section_slug) {
     
     $rendered_count++;
 
+    if (in_array('info-blocks', $enabled_sections)) {
+        $info_blocks_data = get_service_section_data($post_id, 'info-blocks');
+        $all_blocks = isset($info_blocks_data['blocks']) && is_array($info_blocks_data['blocks']) ? $info_blocks_data['blocks'] : [];
+        $position = 'after_' . $section_slug;
+
+        $blocks_for_position = array_values(array_filter($all_blocks, function($block) use ($position) {
+            if (!is_array($block)) return false;
+            $block_position = isset($block['position']) ? (string)$block['position'] : '';
+            if ($block_position === '') $block_position = 'after_what-included';
+            return $block_position === $position;
+        }));
+
+        if (!empty($blocks_for_position)) {
+            get_template_part('template-parts/services/blocks/info-blocks', null, [
+                'post_id' => $post_id,
+                'section_slug' => 'info-blocks',
+                'meta' => get_service_meta($post_id),
+                'section_data' => ['blocks' => $blocks_for_position]
+            ]);
+        }
+    }
+
     // После блока "Противопоказания" (indications) добавляем общие template-parts в заданном порядке
     if ($section_slug === 'indications' && !$after_indications_inserted) {
         get_template_part('template-parts/section/social-proof');

@@ -91,11 +91,10 @@ function get_service_sections_order() {
         'benefits',
         'clinic-benefits',
         'description',
+        'prices',
         'cta',
         'work-stages',
         'what-included',
-        'info-blocks',
-        'prices',
         'indications',
         'reviews'
     ];

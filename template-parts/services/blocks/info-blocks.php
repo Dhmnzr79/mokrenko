@@ -23,6 +23,9 @@ if (empty($blocks)) return;
       $title    = isset($block['title']) ? $block['title'] : '';
       $subtitle = isset($block['subtitle']) ? $block['subtitle'] : '';
       $reverse  = !empty($block['reverse']);
+      $footer_text = isset($block['footer_text']) ? (string)$block['footer_text'] : '';
+      $button_text = isset($block['button_text']) ? (string)$block['button_text'] : '';
+      $button_link = isset($block['button_link']) ? (string)$block['button_link'] : '';
 
       $items = isset($block['items']) && is_array($block['items']) ? $block['items'] : [];
 
@@ -48,7 +51,7 @@ if (empty($blocks)) return;
               <?php endif; ?>
             </div>
 
-            <div class="col-sm-12 col-lg-6">
+            <div class="col-sm-12 col-lg-6 service-info-blocks__col-content">
               <div class="service-info-blocks__content">
                 <?php if ($title) : ?><h2 class="service-info-blocks__title"><?php echo esc_html($title); ?></h2><?php endif; ?>
                 <?php if ($subtitle) : ?><p class="service-info-blocks__subtitle"><?php echo esc_html($subtitle); ?></p><?php endif; ?>
@@ -60,10 +63,28 @@ if (empty($blocks)) return;
                     <?php endforeach; ?>
                   </ul>
                 <?php endif; ?>
+
+                <?php if ($footer_text) : ?>
+                  <p class="service-info-blocks__footer"><?php echo esc_html($footer_text); ?></p>
+                <?php endif; ?>
+
+                <?php if ($button_text) : ?>
+                  <?php if ($button_link) : ?>
+                    <a href="<?php echo esc_url($button_link); ?>" class="btn service-info-blocks__btn">
+                      <?php echo esc_html($button_text); ?>
+                      <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
+                    </a>
+                  <?php else : ?>
+                    <button class="btn service-info-blocks__btn" data-popup="open">
+                      <?php echo esc_html($button_text); ?>
+                      <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
+                    </button>
+                  <?php endif; ?>
+                <?php endif; ?>
               </div>
             </div>
           <?php else : ?>
-            <div class="col-sm-12 col-lg-6">
+            <div class="col-sm-12 col-lg-6 service-info-blocks__col-content">
               <div class="service-info-blocks__content">
                 <?php if ($title) : ?><h2 class="service-info-blocks__title"><?php echo esc_html($title); ?></h2><?php endif; ?>
                 <?php if ($subtitle) : ?><p class="service-info-blocks__subtitle"><?php echo esc_html($subtitle); ?></p><?php endif; ?>
@@ -74,6 +95,24 @@ if (empty($blocks)) return;
                       <li class="service-info-blocks__item"><?php echo esc_html($text); ?></li>
                     <?php endforeach; ?>
                   </ul>
+                <?php endif; ?>
+
+                <?php if ($footer_text) : ?>
+                  <p class="service-info-blocks__footer"><?php echo esc_html($footer_text); ?></p>
+                <?php endif; ?>
+
+                <?php if ($button_text) : ?>
+                  <?php if ($button_link) : ?>
+                    <a href="<?php echo esc_url($button_link); ?>" class="btn service-info-blocks__btn">
+                      <?php echo esc_html($button_text); ?>
+                      <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
+                    </a>
+                  <?php else : ?>
+                    <button class="btn service-info-blocks__btn" data-popup="open">
+                      <?php echo esc_html($button_text); ?>
+                      <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
+                    </button>
+                  <?php endif; ?>
                 <?php endif; ?>
               </div>
             </div>

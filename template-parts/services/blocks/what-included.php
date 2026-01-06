@@ -31,7 +31,7 @@ if (empty($items)) {
 <section class="section section--service-what-included service-what-included">
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 col-lg-6">
+            <div class="col-sm-12 col-lg-4">
                 <div class="service-what-included__left">
                     <?php if ($left_title) : ?>
                         <h2 class="service-what-included__title"><?php echo esc_html($left_title); ?></h2>
@@ -51,7 +51,7 @@ if (empty($items)) {
             </div>
 
 
-            <div class="col-sm-12 col-lg-6">
+            <div class="col-sm-12 col-lg-8">
                 <div class="service-what-included__right">
                     <ul class="service-what-included__list">
                         <?php foreach ($items as $item) :

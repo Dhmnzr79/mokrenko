@@ -13,6 +13,7 @@
         initClinicBenefitsIcons();
         initWorkStagesImages();
         initInfoBlocksImages();
+        initInfoBlocksRepeater();
         initPricesRepeater();
     });
 
@@ -391,6 +392,145 @@
             $input.val('');
             $preview.html('');
         });
+    }
+
+    function initInfoBlocksRepeater() {
+        var $box = $('.service-info-blocks-meta-box');
+        if (!$box.length) return;
+
+        var $list = $box.find('#service-info-blocks');
+
+        function rebuildIndexes() {
+            $list.find('.service-info-blocks-item').each(function(blockIndex) {
+                var $block = $(this);
+
+                $block.find('[name]').each(function() {
+                    var $el = $(this);
+                    var name = $el.attr('name');
+                    if (!name) return;
+                    name = name.replace(/service_info_blocks_blocks\[\d+\]/, 'service_info_blocks_blocks[' + blockIndex + ']');
+                    $el.attr('name', name);
+                });
+
+                $block.find('[data-block]').each(function() {
+                    $(this).attr('data-block', blockIndex);
+                });
+            });
+            $list.attr('data-next-index', $list.find('.service-info-blocks-item').length);
+        }
+
+        function addChecklistItem(blockIndex) {
+            var $block = $list.find('.service-info-blocks-item').eq(blockIndex);
+            var $checklist = $block.find('.service-info-blocks-checklist');
+            var itemIndex = $checklist.find('.service-info-blocks-checklist-item').length;
+
+            var html =
+                '<div class="service-info-blocks-checklist-item" style="display:flex; gap:10px; margin-bottom:10px;">' +
+                    '<input type="text" name="service_info_blocks_blocks[' + blockIndex + '][items][' + itemIndex + '][text]" value="" style="width: 100%;" placeholder="Текст пункта..." />' +
+                    '<button type="button" class="button service-info-blocks-checklist-remove">Удалить</button>' +
+                '</div>';
+
+            $checklist.append(html);
+        }
+
+        function addBlock() {
+            var index = parseInt($list.attr('data-next-index'), 10);
+            if (isNaN(index)) index = $list.find('.service-info-blocks-item').length;
+
+            var html =
+                '<div class="service-info-blocks-item" style="border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 4px;">' +
+                    '<div style="display:flex; justify-content: space-between; align-items: center; gap: 10px;">' +
+                        '<h3 style="margin: 0;">Инфо-блок</h3>' +
+                        '<button type="button" class="button service-info-blocks-remove">Удалить блок</button>' +
+                    '</div>' +
+                    '<table class="form-table">' +
+                        '<tr>' +
+                            '<th><label>Позиция</label></th>' +
+                            '<td>' +
+                                '<select name="service_info_blocks_blocks[' + index + '][position]" style="width: 100%;">' +
+                                    '<option value="after_hero">После Hero</option>' +
+                                    '<option value="after_benefits">После Преимуществ</option>' +
+                                    '<option value="after_clinic-benefits">После Общих плюсов клиники</option>' +
+                                    '<option value="after_description">После Описания</option>' +
+                                    '<option value="after_prices">После Цен</option>' +
+                                    '<option value="after_cta">После CTA</option>' +
+                                    '<option value="after_work-stages">После Этапов работ</option>' +
+                                    '<option value="after_what-included" selected>После Что входит</option>' +
+                                    '<option value="after_indications">После Показаний</option>' +
+                                    '<option value="after_reviews">После Отзывов</option>' +
+                                '</select>' +
+                            '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                            '<th><label>Картинка справа</label></th>' +
+                            '<td><label><input type="checkbox" name="service_info_blocks_blocks[' + index + '][reverse]" value="1" /> Поменять местами картинку и контент</label></td>' +
+                        '</tr>' +
+                        '<tr>' +
+                            '<th><label>Картинка</label></th>' +
+                            '<td>' +
+                                '<button type="button" class="button select-info-block-image" data-block="' + index + '">Выбрать изображение</button>' +
+                                '<div class="info-block-image-preview" data-block="' + index + '" style="margin-top: 10px;"></div>' +
+                                '<input type="hidden" name="service_info_blocks_blocks[' + index + '][image]" class="info-block-image-input" data-block="' + index + '" value="0" />' +
+                            '</td>' +
+                        '</tr>' +
+                        '<tr>' +
+                            '<th><label>Заголовок</label></th>' +
+                            '<td><input type="text" name="service_info_blocks_blocks[' + index + '][title]" value="" style="width: 100%;" /></td>' +
+                        '</tr>' +
+                        '<tr>' +
+                            '<th><label>Расшифровка</label></th>' +
+                            '<td><textarea name="service_info_blocks_blocks[' + index + '][subtitle]" rows="3" style="width: 100%;"></textarea></td>' +
+                        '</tr>' +
+                    '</table>' +
+                    '<h4 style="margin: 16px 0 8px;">Чек-лист</h4>' +
+                    '<div class="service-info-blocks-checklist" data-block="' + index + '"></div>' +
+                    '<p style="margin: 0 0 12px;"><button type="button" class="button button-secondary service-info-blocks-checklist-add" data-block="' + index + '">Добавить пункт</button></p>' +
+                    '<table class="form-table">' +
+                        '<tr>' +
+                            '<th><label>Завершающий текст</label></th>' +
+                            '<td><textarea name="service_info_blocks_blocks[' + index + '][footer_text]" rows="2" style="width: 100%;"></textarea></td>' +
+                        '</tr>' +
+                        '<tr>' +
+                            '<th><label>Текст кнопки</label></th>' +
+                            '<td><input type="text" name="service_info_blocks_blocks[' + index + '][button_text]" value="" style="width: 100%;" /></td>' +
+                        '</tr>' +
+                        '<tr>' +
+                            '<th><label>Ссылка кнопки</label></th>' +
+                            '<td><input type="text" name="service_info_blocks_blocks[' + index + '][button_link]" value="" style="width: 100%;" /></td>' +
+                        '</tr>' +
+                    '</table>' +
+                '</div>';
+
+            $list.append(html);
+            rebuildIndexes();
+        }
+
+        $box.on('click', '.service-info-blocks-add', function(e) {
+            e.preventDefault();
+            addBlock();
+        });
+
+        $box.on('click', '.service-info-blocks-remove', function(e) {
+            e.preventDefault();
+            $(this).closest('.service-info-blocks-item').remove();
+            rebuildIndexes();
+        });
+
+        $box.on('click', '.service-info-blocks-checklist-add', function(e) {
+            e.preventDefault();
+            var blockIndex = parseInt($(this).attr('data-block'), 10);
+            if (isNaN(blockIndex)) return;
+            addChecklistItem(blockIndex);
+            rebuildIndexes();
+        });
+
+        $box.on('click', '.service-info-blocks-checklist-remove', function(e) {
+            e.preventDefault();
+            $(this).closest('.service-info-blocks-checklist-item').remove();
+            rebuildIndexes();
+        });
+
+        rebuildIndexes();
     }
 
     function initPricesRepeater() {

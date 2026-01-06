@@ -461,6 +461,11 @@ function sanitize_service_info_blocks_blocks($value) {
         $title = isset($block['title']) ? sanitize_text_field($block['title']) : '';
         $subtitle = isset($block['subtitle']) ? sanitize_textarea_field($block['subtitle']) : '';
         $reverse = !empty($block['reverse']) ? 1 : 0;
+        $position = isset($block['position']) ? sanitize_text_field($block['position']) : '';
+        if ($position === '') $position = 'after_what-included';
+        $footer_text = isset($block['footer_text']) ? sanitize_textarea_field($block['footer_text']) : '';
+        $button_text = isset($block['button_text']) ? sanitize_text_field($block['button_text']) : '';
+        $button_link = isset($block['button_link']) ? esc_url_raw($block['button_link']) : '';
 
         $items = [];
         if (isset($block['items']) && is_array($block['items'])) {
@@ -479,7 +484,7 @@ function sanitize_service_info_blocks_blocks($value) {
         }
 
         // Не добавляем полностью пустые блоки
-        if ($image === 0 && $title === '' && $subtitle === '' && empty($items)) {
+        if ($image === 0 && $title === '' && $subtitle === '' && empty($items) && $footer_text === '' && $button_text === '' && $button_link === '') {
             continue;
         }
 
@@ -489,6 +494,10 @@ function sanitize_service_info_blocks_blocks($value) {
             'subtitle' => $subtitle,
             'reverse' => $reverse,
             'items' => $items,
+            'position' => $position,
+            'footer_text' => $footer_text,
+            'button_text' => $button_text,
+            'button_link' => $button_link,
         ];
     }
 
