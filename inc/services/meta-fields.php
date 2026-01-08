@@ -137,6 +137,35 @@ function register_service_meta_fields() {
         'default' => [],
     ]);
 
+    // Поля CTA-2 секции
+    register_post_meta('service', '_service_cta_2_title', [
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'show_in_rest' => true,
+        'single' => true,
+    ]);
+
+    register_post_meta('service', '_service_cta_2_subtitle', [
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'show_in_rest' => true,
+        'single' => true,
+    ]);
+
+    register_post_meta('service', '_service_cta_2_button_text', [
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'show_in_rest' => true,
+        'single' => true,
+    ]);
+
+    register_post_meta('service', '_service_cta_2_button_link', [
+        'type' => 'string',
+        'sanitize_callback' => 'esc_url_raw',
+        'show_in_rest' => true,
+        'single' => true,
+    ]);
+
     // Поля секции "Цены"
     register_post_meta('service', '_service_prices_title', [
         'type' => 'string',

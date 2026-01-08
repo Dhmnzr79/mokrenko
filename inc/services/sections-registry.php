@@ -44,6 +44,11 @@ function get_service_sections_config() {
             'type' => 'common',
             'template' => 'cta'
         ],
+        'cta-2' => [
+            'label' => 'CTA-2',
+            'type' => 'common',
+            'template' => 'cta-2'
+        ],
         'reviews' => [
             'label' => 'Отзывы',
             'type' => 'common',
@@ -91,10 +96,11 @@ function get_service_sections_order() {
         'benefits',
         'clinic-benefits',
         'description',
-        'prices',
         'cta',
         'work-stages',
         'what-included',
+        'prices',
+        'cta-2',
         'indications',
         'reviews'
     ];

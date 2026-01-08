@@ -54,7 +54,7 @@ if (empty($title) && empty($subtitle) && empty($cards)) {
             <div class="col-sm-12">
                 <div class="service-cta__form-wrapper">
                     <h3 class="service-cta__form-title">Оставьте заявку</h3>
-                    <p class="service-cta__form-subtitle">И мы свяжемся с вами в ближайшее время</p>
+                    <p class="service-cta__form-subtitle">Мы перезвоним вам, разберём вашу ситуацию, подскажем подходящие варианты и запишем на консультацию в удобное для Вас время</p>
                     <?php echo do_shortcode('[contact-form-7 id="7615b47" title="Контактная форма CTA"]'); ?>
                     <div class="form-consent">
                         <label class="form-consent__label">

@@ -64,6 +64,16 @@ function add_service_meta_boxes() {
         'normal',
         'high'
     );
+
+    // Метабокс для CTA-2 секции
+    add_meta_box(
+        'service_cta_2',
+        __('CTA-2', 'mokrenko'),
+        'render_service_cta_2_meta_box',
+        'service',
+        'normal',
+        'high'
+    );
     
     // Метабокс для Work Stages секции
     add_meta_box(
@@ -877,6 +887,73 @@ function save_service_cta_meta_box($post_id) {
         update_post_meta($post_id, '_service_cta_cards', $cards);
     } else {
         delete_post_meta($post_id, '_service_cta_cards');
+    }
+}
+
+function render_service_cta_2_meta_box($post) {
+    wp_nonce_field('service_cta_2_nonce', 'service_cta_2_nonce');
+    
+    $title = get_post_meta($post->ID, '_service_cta_2_title', true);
+    $subtitle = get_post_meta($post->ID, '_service_cta_2_subtitle', true);
+    $button_text = get_post_meta($post->ID, '_service_cta_2_button_text', true);
+    $button_link = get_post_meta($post->ID, '_service_cta_2_button_link', true);
+    ?>
+    <div class="service-cta-2-meta-box">
+        <table class="form-table">
+            <tr>
+                <th><label for="service_cta_2_title"><?php _e('Заголовок', 'mokrenko'); ?></label></th>
+                <td><input type="text" id="service_cta_2_title" name="service_cta_2_title" value="<?php echo esc_attr($title); ?>" style="width: 100%;" /></td>
+            </tr>
+            <tr>
+                <th><label for="service_cta_2_subtitle"><?php _e('Расшифровка', 'mokrenko'); ?></label></th>
+                <td><textarea id="service_cta_2_subtitle" name="service_cta_2_subtitle" rows="3" style="width: 100%;"><?php echo esc_textarea($subtitle); ?></textarea></td>
+            </tr>
+            <tr>
+                <th><label for="service_cta_2_button_text"><?php _e('Текст кнопки', 'mokrenko'); ?></label></th>
+                <td><input type="text" id="service_cta_2_button_text" name="service_cta_2_button_text" value="<?php echo esc_attr($button_text); ?>" style="width: 100%;" /></td>
+            </tr>
+            <tr>
+                <th><label for="service_cta_2_button_link"><?php _e('Ссылка кнопки', 'mokrenko'); ?></label></th>
+                <td><input type="text" id="service_cta_2_button_link" name="service_cta_2_button_link" value="<?php echo esc_attr($button_link); ?>" placeholder="https://..." style="width: 100%;" /></td>
+            </tr>
+        </table>
+        <p class="description">
+            <?php _e('Если ссылка не указана — кнопка будет открывать попап.', 'mokrenko'); ?>
+        </p>
+    </div>
+    <?php
+}
+
+add_action('save_post_service', 'save_service_cta_2_meta_box');
+
+function save_service_cta_2_meta_box($post_id) {
+    if (!isset($_POST['service_cta_2_nonce']) ||
+        !wp_verify_nonce($_POST['service_cta_2_nonce'], 'service_cta_2_nonce')) {
+        return;
+    }
+    
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+    
+    if (isset($_POST['service_cta_2_title'])) {
+        update_post_meta($post_id, '_service_cta_2_title', sanitize_text_field($_POST['service_cta_2_title']));
+    }
+    
+    if (isset($_POST['service_cta_2_subtitle'])) {
+        update_post_meta($post_id, '_service_cta_2_subtitle', sanitize_textarea_field($_POST['service_cta_2_subtitle']));
+    }
+    
+    if (isset($_POST['service_cta_2_button_text'])) {
+        update_post_meta($post_id, '_service_cta_2_button_text', sanitize_text_field($_POST['service_cta_2_button_text']));
+    }
+    
+    if (isset($_POST['service_cta_2_button_link'])) {
+        update_post_meta($post_id, '_service_cta_2_button_link', esc_url_raw($_POST['service_cta_2_button_link']));
     }
 }
 
