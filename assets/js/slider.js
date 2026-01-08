@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!track || !slides.length || !prevBtn || !nextBtn) return;
         
         const isCarousel = slider.classList.contains('slider--two') || slider.classList.contains('slider--social') || slider.classList.contains('slider--certs');
+        const isReviewsMobile = !!slider.closest('.reviews__mobile');
         let currentSlide = 0;
         const totalSlides = slides.length;
         
@@ -22,12 +23,14 @@ document.addEventListener('DOMContentLoaded', function() {
         let visibleSlides = 1;
         if (isCarousel) {
             if (slider.classList.contains('slider--two')) {
-                visibleSlides = window.innerWidth >= 768 ? 3 : 1;
+                visibleSlides = window.innerWidth >= 992 ? 3 : (window.innerWidth >= 768 ? 2 : 1);
             } else if (slider.classList.contains('slider--social')) {
                 visibleSlides = window.innerWidth >= 768 ? 2 : 1;
             } else if (slider.classList.contains('slider--certs')) {
                 visibleSlides = window.innerWidth >= 768 ? 3 : 2;
             }
+        } else if (isReviewsMobile) {
+            visibleSlides = window.innerWidth >= 768 ? 2 : 1;
         }
         
         // Update slider state
@@ -41,6 +44,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 track.style.transform = `translateX(-${offset}px)`;
                 
                 // Update button states
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide >= totalSlides - visibleSlides;
+            } else if (isReviewsMobile && visibleSlides > 1) {
+                slides.forEach((slide, index) => {
+                    slide.classList.toggle('slider__slide--active', index >= currentSlide && index < currentSlide + visibleSlides);
+                });
+                
                 prevBtn.disabled = currentSlide === 0;
                 nextBtn.disabled = currentSlide >= totalSlides - visibleSlides;
             } else {
@@ -65,7 +75,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Next slide
         nextBtn.addEventListener('click', function() {
-            if (currentSlide < totalSlides - 1) {
+            const maxIndex = (isCarousel || isReviewsMobile) ? (totalSlides - visibleSlides) : (totalSlides - 1);
+            if (currentSlide < maxIndex) {
                 currentSlide++;
                 updateSlider();
             }
@@ -117,7 +128,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Only trigger if horizontal swipe is greater than vertical
             if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
-                if (diffX > 0 && currentSlide < totalSlides - 1) {
+                const maxIndex = (isCarousel || isReviewsMobile) ? (totalSlides - visibleSlides) : (totalSlides - 1);
+                if (diffX > 0 && currentSlide < maxIndex) {
                     // Swipe left - next slide
                     currentSlide++;
                     updateSlider();
@@ -132,15 +144,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }, {passive: true});
         
         // Пересчитываем при изменении размера окна (для карусели)
-        if (isCarousel) {
+        if (isCarousel || isReviewsMobile) {
             window.addEventListener('resize', function() {
                 let newVisibleSlides = 1;
                 if (slider.classList.contains('slider--two')) {
-                    newVisibleSlides = window.innerWidth >= 768 ? 3 : 1;
+                    newVisibleSlides = window.innerWidth >= 992 ? 3 : (window.innerWidth >= 768 ? 2 : 1);
                 } else if (slider.classList.contains('slider--social')) {
                     newVisibleSlides = window.innerWidth >= 768 ? 2 : 1;
                 } else if (slider.classList.contains('slider--certs')) {
                     newVisibleSlides = window.innerWidth >= 768 ? 3 : 2;
+                } else if (isReviewsMobile) {
+                    newVisibleSlides = window.innerWidth >= 768 ? 2 : 1;
                 }
                 
                 if (newVisibleSlides !== visibleSlides) {

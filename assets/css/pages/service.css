@@ -210,7 +210,6 @@
 
 .service-clinic-benefits__title {
     margin: 0 0 12px 0;
-    font-size: 44px;
     line-height: 1.2;
 }
 
@@ -378,12 +377,6 @@
     line-height: 1.15;
 }
 
-.service-cta-2__subtitle {
-    margin: 0;
-    font-size: 18px;
-    line-height: 1.4;
-}
-
 .service-cta__content {
     display: flex;
     flex-direction: column;
@@ -392,7 +385,6 @@
 
 .service-cta__title {
     margin: 0;
-    font-size: 44px;
     line-height: 1.2;
 }
 
@@ -517,8 +509,6 @@
 
 .service-work-stages__title {
     margin: 0 0 12px 0;
-    font-size: 44px;
-    line-height: 1.2;
 }
 
 .service-work-stages__subtitle {
@@ -619,8 +609,6 @@
 
 .service-what-included__title {
     margin: 0;
-    font-size: 44px;
-    line-height: 1.2;
     text-align: left;
 }
 
@@ -712,8 +700,6 @@
   
   .service-info-blocks__title {
     margin: 0 0 12px 0;
-    font-size: 44px;
-    line-height: 1.2;
   }
   
   .service-info-blocks__subtitle {
@@ -758,8 +744,6 @@
 
 .service-indications__title {
     margin: 0 0 16px 0;
-    font-size: 32px;
-    line-height: 1.2;
 }
 
 .service-indications__list {
@@ -842,18 +826,10 @@
         margin-bottom: 30px;
     }
     
-    .service-clinic-benefits__title {
-        font-size: 36px;
-    }
-    
     .service-clinic-benefits__subtitle {
         font-size: 18px;
     }
 
-    .service-cta__title {
-        font-size: 36px;
-    }
-    
     .service-cta__subtitle {
         font-size: 18px;
     }
@@ -862,9 +838,6 @@
         margin-bottom: 30px;
     }
     
-    .service-work-stages__title {
-        font-size: 36px;
-    }
     
     .service-work-stages__subtitle {
         font-size: 18px;
@@ -882,24 +855,12 @@
         font-size: 28px;
     }
 
-    .service-what-included__title {
-        font-size: 36px;
-    }
-
-    .service-info-blocks__title { 
-        font-size: 36px; 
-    }
-
    .service-info-blocks__subtitle { 
         font-size: 18px;
     }
 
    .service-indications__col--right {
         margin-top: 24px;
-    }
-
-    .service-indications__title {
-        font-size: 36px;
     }
 
     .service-indications__list {
@@ -911,11 +872,41 @@
 @media (max-width: 767.98px) {
     /* Service Hero */
     .service-hero__layout {
-        padding: 20px;
+        padding: 0px;
+    }
+
+    .service-hero__content {
+        padding-right: 0px;
+        gap: 20px;
+    }
+
+    .service-hero__content-top {
+        gap: 10px;
+    }
+
+    .service-hero__img {
+        height: auto;
+        object-fit: contain;
+        max-height: 300px;
+    }
+
+    .service-hero__image::after {
+        display: none;
+    }
+
+    .service-hero__image::before {
+        right: 0;
+        width: 90px;
+        height: 90px;
+    }
+
+    .service-hero__info {
+        bottom: 20px;
+        left: 0;
     }
     
     .service-hero__content h1 {
-        font-size: 36px;
+        font-size: 30px;
     }
     
     .service-hero__subtitle {
@@ -926,13 +917,9 @@
     .section--service-benefits {
         padding-block: 32px;
     }
-    
-    .service-benefits__card {
-        padding: 20px;
-    }
-    
+       
     .service-benefits__icon {
-        height: 60px;
+        height: 30px;
         margin-bottom: 15px;
     }
     
@@ -957,12 +944,8 @@
     
     .service-clinic-benefits__header {
         margin-bottom: 24px;
-    }
-    
-    .service-clinic-benefits__title {
-        font-size: 32px;
-    }
-    
+    }    
+  
     .service-clinic-benefits__card,
     .service-clinic-benefits__feature-card {
         padding: 20px;
@@ -1004,7 +987,7 @@
     }
 
     .section--service-cta-2 {
-        padding-block: 32px;
+        padding-block: 0;
     }
 
     .service-cta-2__box {
@@ -1021,17 +1004,21 @@
         gap: 16px;
     }
 
+    .service-cta-2__title {
+        font-size: 22px;
+    }
+
     .section--service-prices {
-        padding-block: 32px;
+        padding: 32px 0 0;
+    }
+
+    .prices__service {
+        font-size: 15px;
     }
     
     .service-cta__content {
         gap: 15px;
         margin-bottom: 30px;
-    }
-    
-    .service-cta__title {
-        font-size: 32px;
     }
     
     .service-cta__subtitle {
@@ -1048,29 +1035,26 @@
         padding: 30px 20px;
     }
 
+    .service-cta__form-title {
+        font-size: 26px;
+    }
+
     .service-cta__form-wrapper .cf7-row {
         flex-direction: column;
         gap: 12px;
     }
     
-    .service-cta__form-title {
-        font-size: 28px;
-    }
     
     .service-cta__form-subtitle {
         font-size: 16px;
     }
-
-    .section--service-work-stages {
-        padding-block: 32px;
-    }
     
+    .section--service-work-stages {
+        padding: 48px 0;
+    }
+
     .service-work-stages__header {
         margin-bottom: 24px;
-    }
-    
-    .service-work-stages__title {
-        font-size: 32px;
     }
     
     .service-work-stages__subtitle {
@@ -1121,10 +1105,7 @@
 
     .service-what-included__item-desc {
         font-size: 15px;
-    }
-
-    .service-what-included__title {
-        font-size: 32px;
+        margin-bottom: 5px;
     }
 
     .section--service-info-blocks { 
@@ -1139,10 +1120,6 @@
         width: 100%;
     }
 
-    .service-info-blocks__title { 
-        font-size: 32px; 
-    }
-
     .service-info-blocks__subtitle { 
         font-size: 16px; 
     }
@@ -1151,20 +1128,12 @@
         gap: 12px; 
     }
 
-    .service-info-blocks__item { 
-        font-size: 15px; 
-    }
-
     .service-info-blocks__item::before { 
         width: 16px; height: 16px; 
     }
 
     .section--service-indications {
-        padding-block: 32px;
-    }
-
-    .service-indications__title {
-        font-size: 28px;
+        padding-block: 48px;
     }
 
     .service-indications__item {

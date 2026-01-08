@@ -80,6 +80,12 @@
     min-width: 0;
 }
 
+@media (max-width: 991.98px) {
+    .slider--two .slider__slide {
+        flex: 0 0 calc((100% - 30px) / 2);
+    }
+}
+
 /* Слайдер social proof: карусель с шагом 1 карточка, показ 2 на десктопе */
 .slider--social .slider__container {
     overflow: hidden;
@@ -1457,79 +1463,7 @@
    Media Queries
    ======================================== */
 
-/* Mobile: max-width 767.98px */
-@media (max-width: 767.98px) {
-    .section--hero {
-        display: none;
-    }
-    
-    /* Slider врачей */
-    .slider--two .slider__track {
-        gap: 12px;
-    }
-    
-    .slider--two .slider__slide {
-        flex: 0 0 100%;
-        min-width: 100%;
-    }
-    
-    /* Slider social proof */
-    .slider--social .slider__track {
-        gap: 12px;
-    }
-    
-    .slider--social .slider__slide {
-        flex: 0 0 100%;
-        min-width: 100%;
-    }
-    
-    /* Slider сертификатов */
-    .slider--certs .slider__track {
-        gap: 12px;
-    }
-    
-    .slider--certs .slider__slide {
-        flex: 0 0 calc((100% - 12px) / 2);
-        min-width: 0;
-    }
-    
-    /* Slider общие */
-    .slider__slide .row {
-        flex-direction: column;
-        gap: 12px;
-    }
-    
-    .slider__slide .row > [class*="col-"] {
-        flex: 0 0 100%;
-    }
-    
-    
-    /* Lightbox */
-    .lightbox__video {
-        width: 95vw;
-    }
-    
-    /* Awards */
-    .awards {
-        padding: 24px 0;
-    }
-    
-    .award-card {
-        padding: 20px;
-    }
-    
-    .award-card--header h2 {
-        font-size: 24px;
-    }
-    
-    .award-icon {
-        font-size: 40px;
-    }
-    
-    .section--contacts .contacts__question h3 {
-        font-size: 24px;
-    }
-}
+
 
 /* Tablet and up: min-width 768px */
 @media (min-width: 768px) {
@@ -1696,7 +1630,11 @@
     }
     
     .section--consult .consult__row--cards {
-        flex-direction: column;
+        flex-direction: row;
+    }
+
+    .hero-mobile__image {
+        max-width: 30%;
     }
     
     .reviews__stats {
@@ -1730,9 +1668,7 @@
         padding: 40px 15px 15px;
     }
     
-    .section--consult .consult__row--cards {
-        flex-direction: column;
-    }
+
     
     .section--consult .consult__row--cta {
         margin-top: 10px;
@@ -1760,6 +1696,43 @@
     
     .contacts__map {
         height: 400px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+    .reviews__mobile .slider__slide {
+        grid-column: span 6;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .hero-mobile__image {
+        max-width: 15%;
+    }
+
+    .hero-mobile__features {
+        display: flex;
+    }
+
+    .benefits__card--image {
+        display: none;
+    }
+
+    .section--contacts .contacts__bg {
+        max-width: 330px;
+        left: 55%;
+    }
+
+    .chief-doctor__photo {
+        padding: 20px;
+        background-color: #cfeded;
+        background-size: contain;
+        background-position: right top;
+    }
+
+    .section--consult .consult__bg {
+        max-width: 230px;
+        z-index: 10;
     }
 }
 
@@ -1795,5 +1768,83 @@
     }
 }
 
+/* Mobile: max-width 767.98px */
+@media (max-width: 767.98px) { 
+    .section--reviews {
+        padding-bottom: 20px;
+    }
 
+    .section--hero {
+        display: none;
+    }
+    
+    .section--consult .consult__row--cards {
+        flex-direction: column;
+    }
+
+    /* Slider врачей */
+    .slider--two .slider__track {
+        gap: 12px;
+    }
+    
+    .slider--two .slider__slide {
+        flex: 0 0 100%;
+        min-width: 100%;
+    }
+    
+    /* Slider social proof */
+    .slider--social .slider__track {
+        gap: 12px;
+    }
+    
+    .slider--social .slider__slide {
+        flex: 0 0 100%;
+        min-width: 100%;
+    }
+    
+    /* Slider сертификатов */
+    .slider--certs .slider__track {
+        gap: 12px;
+    }
+    
+
+    
+    .slider--certs .slider__slide {
+        flex: 0 0 calc((100% - 12px) / 2);
+        min-width: 0;
+    }
+    
+    /* Slider общие */
+    .slider__slide .row {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .slider__slide .row > [class*="col-"] {
+        flex: 0 0 100%;
+    }
+    
+    
+    /* Lightbox */
+    .lightbox__video {
+        width: 95vw;
+    }
+    
+    /* Awards */
+    .awards {
+        padding: 24px 0;
+    }
+    
+    .award-card--header h2 {
+        font-size: 24px;
+    }
+    
+    .award-icon {
+        font-size: 40px;
+    }
+    
+    .section--contacts .contacts__question h3 {
+        font-size: 24px;
+    }
+}
 
