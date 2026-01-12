@@ -110,6 +110,26 @@ require_once get_template_directory() . '/inc/services/sections-registry.php';
 require_once get_template_directory() . '/inc/services/meta-fields.php';
 require_once get_template_directory() . '/inc/services/meta-boxes.php';
 
+add_action('init', function () {
+	if (!taxonomy_exists('service_category')) {
+		return;
+	}
+
+	$default_terms = [
+		['name' => 'Имплантация зубов', 'slug' => 'implantation'],
+		['name' => 'Протезирование', 'slug' => 'prosthetics'],
+		['name' => 'Реставрация', 'slug' => 'restoration'],
+	];
+
+	foreach ($default_terms as $t) {
+		if (term_exists($t['slug'], 'service_category')) {
+			continue;
+		}
+
+		wp_insert_term($t['name'], 'service_category', ['slug' => $t['slug']]);
+	}
+}, 20);
+
 // Подключение админских скриптов и стилей
 add_action('admin_enqueue_scripts', 'theme_admin_scripts');
 function theme_admin_scripts($hook) {
@@ -259,6 +279,7 @@ add_action('wp_enqueue_scripts', function(){
 	
 	// Enqueue search script
 	wp_enqueue_script('theme-search', get_stylesheet_directory_uri() . '/assets/js/search.js', [], $ver, true);
+	wp_enqueue_script('theme-services-menu', get_stylesheet_directory_uri() . '/assets/js/services-menu.js', [], $ver, true);
 	
 	// Enqueue popup script
 	wp_enqueue_script('theme-popup', get_stylesheet_directory_uri() . '/assets/js/popup.js', [], $ver, true);

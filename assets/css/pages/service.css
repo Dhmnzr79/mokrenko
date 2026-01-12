@@ -33,7 +33,7 @@
 .service-hero__content-top {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
 }
 
 .service-hero__content-bottom {
@@ -46,13 +46,13 @@
 .service-hero__content h1 {
     margin: 0;
     font-size: 54px;
-    padding-right: 110px;
+    padding-right: 50px;
 }
 
 .service-hero__subtitle {
     margin: 0;
-    font-size: 20px;
-    line-height: 1.4;
+    font-size: 18px;
+    line-height: 1.5;
 }
 
 .service-hero__benefits {
@@ -910,7 +910,7 @@
     }
     
     .service-hero__subtitle {
-        font-size: 18px;
+        font-size: 17px;
     }
     
     /* Service Benefits */

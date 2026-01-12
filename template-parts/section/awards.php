@@ -21,7 +21,7 @@
 						</div>
 						<div class="award-card__rating">
 							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/like.svg" alt="Like" class="award-card__rating-icon">
-							<span>Рейтинг 4,7 из 5</span>
+							<span>Рейтинг 4,9 из 5</span>
 						</div>
 					</div>
 					<div class="award-card__rating-item">
@@ -30,7 +30,7 @@
 						</div>
 						<div class="award-card__rating">
 							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/like.svg" alt="Like" class="award-card__rating-icon">
-							<span>Рейтинг 4,8 из 5</span>
+							<span>Рейтинг 4,9 из 5</span>
 						</div>
 					</div>
 					<div class="award-card__rating-item">
@@ -79,6 +79,8 @@
 		</div>
 	</div>
 </section>
+
+
 
 
 
