@@ -1014,8 +1014,8 @@ body.popup-open {
    MEDIA QUERIES
    ============================================ */
 
-/* Mobile + Tablet: max-width 991.98px */
-@media (max-width: 991.98px) {
+/* Mobile and Small tablet: max-width 991px */
+@media (max-width: 991px) {
     /* Header */
     .site-header:not(.site-header--mobile) {
         display: none;
@@ -1077,6 +1077,39 @@ body.popup-open {
     .header__mobile-icon {
         width: 20px;
         height: 20px;
+    }
+}
+
+/* Tablet/MacBook and Desktop: min-width 992px */
+@media (min-width: 992px) {
+    /* Header */
+    .site-header:not(.site-header--mobile) {
+        display: block;
+    }
+    
+    .site-header--mobile {
+        display: none;
+    }
+    
+    /* Desktop menu on */
+    .hero__menu {
+        display: flex;
+    }
+}
+
+/* Tablet/MacBook: min-width 992px and max-width 1279px */
+@media (min-width: 992px) and (max-width: 1279px) {
+    /* Header row: 4 колонки (3/3/3/3) как на десктопе */
+    .header__row .col-sm-6.col-lg-3 {
+        grid-column: span 3;
+    }
+    
+    .header__info-text {
+        font-size: 14px;
+    }
+    
+    .header__logo img {
+        max-width: 220px;
     }
 }
 

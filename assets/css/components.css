@@ -1477,8 +1477,8 @@
     }
 }
 
-/* Below desktop: max-width 1279px */
-@media (max-width: 1279px) {
+/* Mobile and Small tablet: max-width 991px */
+@media (max-width: 991px) {
     .reviews__desktop {
         display: none;
     }
@@ -1486,7 +1486,26 @@
     .reviews__mobile {
         display: block;
     }
+}
+
+/* Tablet/MacBook: min-width 992px and max-width 1279px */
+@media (min-width: 992px) and (max-width: 1279px) {
+    .reviews__desktop {
+        display: block;
+    }
     
+    .reviews__mobile {
+        display: none;
+    }
+    
+    /* 3 карточки в ряд (каждая по 4 колонки) */
+    .reviews__desktop .col-lg-4 {
+        grid-column: span 4;
+    }
+}
+
+/* Below desktop: max-width 1279px */
+@media (max-width: 1279px) {
     .hero__rating {
         gap: 0px;
         flex-direction: column;
@@ -1668,8 +1687,6 @@
         padding: 40px 15px 15px;
     }
     
-
-    
     .section--consult .consult__row--cta {
         margin-top: 10px;
     }
@@ -1699,7 +1716,8 @@
     }
 }
 
-@media (min-width: 768px) and (max-width: 1279px) {
+/* Small tablet: min-width 768px and max-width 991px */
+@media (min-width: 768px) and (max-width: 991px) {
     .reviews__mobile .slider__slide {
         grid-column: span 6;
         opacity: 1;
@@ -1736,18 +1754,53 @@
     }
 }
 
-/* Desktop: min-width 1280px */
-@media (min-width: 1280px) {
-    .section--social-proof .slider__slide .row {
-        gap: var(--col-gap-desk);
+/* Mobile and Small tablet: max-width 991px */
+/* Мобильный hero показывается (по умолчанию display: block) */
+/* Десктопный hero скрыт (по умолчанию display: none) */
+@media (max-width: 991px) {
+    .section--hero {
+        display: none;
     }
-    
+}
+
+/* Tablet/MacBook and Desktop: min-width 992px */
+@media (min-width: 992px) {
     .hero-mobile {
         display: none;
     }
     
     .hero {
         display: block;
+    }
+}
+
+/* Tablet/MacBook: min-width 992px and max-width 1279px */
+@media (min-width: 992px) and (max-width: 1279px) {
+    .hero__box--with-doctor {
+        background-size: 380px, cover;
+    }
+    
+    .hero__content {
+        padding: 20px;
+    }
+    
+    .hero__content h1 {
+        font-size: 54px;
+    }
+    
+    .hero__rating {
+        margin-top: 20px;
+    }
+    
+    .hero__cta {
+        margin-top: 0;
+    }
+}
+
+/* Desktop: min-width 1280px */
+@media (min-width: 1280px) {
+    .section--social-proof .slider__slide .row {
+        gap: var(--col-gap-desk);
     }
     
     .gallery__grid {
@@ -1768,8 +1821,8 @@
     }
 }
 
-/* Mobile: max-width 767.98px */
-@media (max-width: 767.98px) { 
+/* Mobile: max-width 767px */
+@media (max-width: 767px) { 
     .section--reviews {
         padding-bottom: 20px;
     }
