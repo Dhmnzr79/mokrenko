@@ -740,6 +740,22 @@
     }
 }
 
+/* Tablet/MacBook: min-width 992px and max-width 1279px */
+@media (min-width: 992px) and (max-width: 1279px) {
+    .page-intro__layout {
+        padding: 20px;
+    }
+    
+    .page-intro__box {
+        background-size: 340px, cover;
+        min-height: 600px;
+    }
+    
+    .page-intro__content h1 {
+        font-size: 48px;
+    }
+}
+
 /* ============================================
    THANK YOU PAGE
    ============================================ */

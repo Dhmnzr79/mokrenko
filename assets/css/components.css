@@ -167,7 +167,7 @@
 }
 
 .case img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
     display: block;
 }
@@ -1488,21 +1488,6 @@
     }
 }
 
-/* Tablet/MacBook: min-width 992px and max-width 1279px */
-@media (min-width: 992px) and (max-width: 1279px) {
-    .reviews__desktop {
-        display: block;
-    }
-    
-    .reviews__mobile {
-        display: none;
-    }
-    
-    /* 3 карточки в ряд (каждая по 4 колонки) */
-    .reviews__desktop .col-lg-4 {
-        grid-column: span 4;
-    }
-}
 
 /* Below desktop: max-width 1279px */
 @media (max-width: 1279px) {
@@ -1776,6 +1761,19 @@
 
 /* Tablet/MacBook: min-width 992px and max-width 1279px */
 @media (min-width: 992px) and (max-width: 1279px) {
+    .reviews__desktop {
+        display: block;
+    }
+    
+    .reviews__mobile {
+        display: none;
+    }
+    
+    /* 3 карточки в ряд (каждая по 4 колонки) */
+    .reviews__desktop .col-lg-4 {
+        grid-column: span 4;
+    }
+    
     .hero__box--with-doctor {
         background-size: 380px, cover;
     }
@@ -1794,6 +1792,73 @@
     
     .hero__cta {
         margin-top: 0;
+    }
+    
+    /* Chief doctor: сетка как на десктопе (6/6) */
+    .chief-doctor__content .col-lg-6 {
+        grid-column: span 6;
+    }
+    
+    /* Services: сетка как на десктопе */
+    .services__grid .col-lg-4 {
+        grid-column: span 4;
+    }
+    
+    .services__header .col-lg-4 {
+        grid-column: span 4;
+    }
+    
+    .services__header .col-lg-8 {
+        grid-column: span 8;
+    }
+    
+    .service-card--bg {
+        min-height: auto;
+    }
+    
+    /* Benefits: сетка как на десктопе */
+    .benefits__row-201 .col-lg-8 {
+        grid-column: span 8;
+    }
+    
+    .benefits__row-201 .col-lg-4 {
+        grid-column: span 4;
+    }
+    
+    .benefits__row-205 .col-lg-4 {
+        grid-column: span 4;
+    }
+    
+    .section--consult .consult__box {
+        padding: 20px 20px 100px;
+    }
+    
+    .section--consult .consult__bg {
+        max-width: 390px;
+    }
+    
+    .section--contacts .contacts__box {
+        padding: 10px 10px 60px;
+    }
+    
+    .section--contacts .contacts__bg {
+        max-width: 350px;
+        left: 60%;
+    }
+
+    /* Location: сетка как на десктопе */
+    .section--location .col-lg-6 {
+        grid-column: span 6;
+    }
+    
+    .benefits__feature-icon img {
+        width: 54px;
+        height: 54px;
+    }
+    
+    /* Case: сетка как на десктопе (4/4/4) */
+    .row--case .col-lg-4 {
+        grid-column: span 4;
     }
 }
 
