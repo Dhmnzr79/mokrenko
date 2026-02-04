@@ -266,6 +266,14 @@ function register_service_meta_fields() {
         'default' => [],
     ]);
 
+    // SEO meta description for services
+    register_post_meta('service', '_service_meta_description', [
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'show_in_rest' => true,
+        'single' => true,
+    ]);
+
 }
 
 /**

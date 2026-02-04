@@ -1488,6 +1488,21 @@
     }
 }
 
+/* Tablet/MacBook: min-width 992px and max-width 1279px */
+@media (min-width: 992px) and (max-width: 1279px) {
+    .reviews__desktop {
+        display: block;
+    }
+    
+    .reviews__mobile {
+        display: none;
+    }
+    
+    /* 3 карточки в ряд (каждая по 4 колонки) */
+    .reviews__desktop .col-lg-4 {
+        grid-column: span 4;
+    }
+}
 
 /* Below desktop: max-width 1279px */
 @media (max-width: 1279px) {
@@ -1761,19 +1776,6 @@
 
 /* Tablet/MacBook: min-width 992px and max-width 1279px */
 @media (min-width: 992px) and (max-width: 1279px) {
-    .reviews__desktop {
-        display: block;
-    }
-    
-    .reviews__mobile {
-        display: none;
-    }
-    
-    /* 3 карточки в ряд (каждая по 4 колонки) */
-    .reviews__desktop .col-lg-4 {
-        grid-column: span 4;
-    }
-    
     .hero__box--with-doctor {
         background-size: 380px, cover;
     }

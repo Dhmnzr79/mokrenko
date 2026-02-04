@@ -95,6 +95,16 @@ function add_service_meta_boxes() {
         'high'
     );
 
+    // SEO meta description for services
+    add_meta_box(
+        'service_meta_description',
+        __('SEO Meta Description', 'mokrenko'),
+        'render_service_meta_description_meta_box',
+        'service',
+        'normal',
+        'default'
+    );
+
     // Метабокс для секции "Инфо-блоки"
     add_meta_box(
         'service_info_blocks',
@@ -1587,5 +1597,84 @@ function save_service_indications_meta_box($post_id) {
         }
     }
     update_post_meta($post_id, '_service_indications_right_items', $right_items);
+}
+
+/**
+ * Рендер метабокса SEO Meta Description
+ */
+function render_service_meta_description_meta_box($post) {
+    wp_nonce_field('service_meta_description_nonce', 'service_meta_description_nonce');
+    
+    $meta_description = get_post_meta($post->ID, '_service_meta_description', true);
+    $service_title = get_the_title($post->ID);
+    $auto_description = $service_title . ' в стоматологической клинике в Москве. Цены, этапы лечения, показания. Запись на консультацию.';
+    $auto_description_length = mb_strlen($auto_description);
+    ?>
+    <table class="form-table">
+        <tr>
+            <th><label for="service_meta_description"><?php _e('Meta Description', 'mokrenko'); ?></label></th>
+            <td>
+                <textarea 
+                    id="service_meta_description" 
+                    name="service_meta_description" 
+                    rows="3" 
+                    style="width: 100%;"
+                    maxlength="160"
+                    placeholder="<?php echo esc_attr($auto_description); ?>"
+                ><?php echo esc_textarea($meta_description); ?></textarea>
+                <p class="description">
+                    <?php _e('Необязательное поле. Если не заполнено, будет использован автоматический шаблон:', 'mokrenko'); ?>
+                    <br>
+                    <strong><?php echo esc_html($auto_description); ?></strong>
+                    <br>
+                    <span id="service_meta_description_length"><?php echo mb_strlen($meta_description ?: $auto_description); ?></span> / 160 <?php _e('символов', 'mokrenko'); ?>
+                </p>
+            </td>
+        </tr>
+    </table>
+    <script>
+    (function() {
+        var textarea = document.getElementById('service_meta_description');
+        var lengthSpan = document.getElementById('service_meta_description_length');
+        if (textarea && lengthSpan) {
+            textarea.addEventListener('input', function() {
+                var value = this.value || '<?php echo esc_js($auto_description); ?>';
+                lengthSpan.textContent = value.length;
+            });
+        }
+    })();
+    </script>
+    <?php
+}
+
+/**
+ * Сохранение метабокса SEO Meta Description
+ */
+add_action('save_post_service', 'save_service_meta_description_meta_box');
+
+function save_service_meta_description_meta_box($post_id) {
+    if (!isset($_POST['service_meta_description_nonce']) ||
+        !wp_verify_nonce($_POST['service_meta_description_nonce'], 'service_meta_description_nonce')) {
+        return;
+    }
+
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    if (isset($_POST['service_meta_description'])) {
+        $meta_description = sanitize_textarea_field($_POST['service_meta_description']);
+        // Обрезаем до 160 символов
+        if (mb_strlen($meta_description) > 160) {
+            $meta_description = mb_substr($meta_description, 0, 160);
+        }
+        update_post_meta($post_id, '_service_meta_description', $meta_description);
+    } else {
+        delete_post_meta($post_id, '_service_meta_description');
+    }
 }
 
