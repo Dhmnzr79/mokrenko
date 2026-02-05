@@ -15,7 +15,7 @@
 							<div class="col-sm-12 col-lg-6">
 								<div class="location__feature">
 									<div class="location__feature-icon">
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/contact_icon_1.svg" alt="Иконка парковки">
+										<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/contact_icon_1.svg" alt="">
 									</div>
 									<h3>Собственная бесплатная парковка</h3>
 									<p>Специально для наших пациентов у нас есть собственная бесплатная парковка</p>
@@ -24,7 +24,7 @@
 							<div class="col-sm-12 col-lg-6">
 								<div class="location__feature">
 									<div class="location__feature-icon">
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/contact_icon_2.svg" alt="Иконка метро рядом">
+										<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/contact_icon_2.svg" alt="">
 									</div>
 									<h3>Находимся в 5 минутах от метро</h3>
 									<p>В центре, на проспекте Мира. Между станциями метро «Рижская» и «Проспект Мира»</p>
@@ -35,7 +35,7 @@
 					<div class="location__cta">
 						<button class="btn location__call-btn" data-popup="open">
 							Заказать звонок
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка" class="location__call-arrow">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="" class="location__call-arrow">
 						</button>
 					</div>
 				</div>

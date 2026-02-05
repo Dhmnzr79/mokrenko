@@ -1256,10 +1256,12 @@
     max-width: 38%;
 }
 
-.hero-mobile h1 {
+.hero-mobile h1,
+.hero-mobile__title {
     font-size: clamp(26px, 4vw, 44px);
     line-height: 1.2;
     padding-right: 30%;
+    margin: 0;
 }
 
 .reviews__desktop {

@@ -27,7 +27,7 @@
 						</div>
 						<button class="btn contacts__cta-btn" data-popup="open">
 							Записаться на приём
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка" class="contacts__cta-arrow">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="" class="contacts__cta-arrow">
 						</button>
 					</div>
 				</div>

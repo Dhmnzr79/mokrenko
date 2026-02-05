@@ -17,28 +17,28 @@
 				<div class="award-card award-card--ratings">
 					<div class="award-card__rating-item">
 						<div class="award-card__logo">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/уandex_logo.svg" alt="Яндекс">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/уandex_logo.svg" alt="">
 						</div>
 						<div class="award-card__rating">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/like.svg" alt="Like" class="award-card__rating-icon">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/like.svg" alt="" class="award-card__rating-icon">
 							<span>Рейтинг 4,9 из 5</span>
 						</div>
 					</div>
 					<div class="award-card__rating-item">
 						<div class="award-card__logo">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/google_logo.svg" alt="Google">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/google_logo.svg" alt="">
 						</div>
 						<div class="award-card__rating">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/like.svg" alt="Like" class="award-card__rating-icon">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/like.svg" alt="" class="award-card__rating-icon">
 							<span>Рейтинг 4,9 из 5</span>
 						</div>
 					</div>
 					<div class="award-card__rating-item">
 						<div class="award-card__logo">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/zoon_logo.svg" alt="Zoon">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/zoon_logo.svg" alt="">
 						</div>
 						<div class="award-card__rating">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/like.svg" alt="Like" class="award-card__rating-icon">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/like.svg" alt="" class="award-card__rating-icon">
 							<span>Рейтинг 4,9 из 5</span>
 						</div>
 					</div>
@@ -48,14 +48,14 @@
 				<div class="award-card">
 					<div class="award-card__content">
 						<div class="award-card__icon">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/ya_logo.svg" alt="Яндекс">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/ya_logo.svg" alt="">
 						</div>
 						
 						<p>Выбор пользователей Яндекса</p>
 					</div>
 					<div class="award-card__link">
-						<a href="#" class="award-card__link-item">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/link_arrow_1.svg" alt="Ссылка">
+						<a href="<?php echo esc_url(home_url('/')); ?>" class="award-card__link-item">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/link_arrow_1.svg" alt="">
 						</a>
 					</div>
 				</div>
@@ -64,14 +64,14 @@
 				<div class="award-card">
 					<div class="award-card__content">
 						<div class="award-card__icon">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/30_index.svg" alt="30 Index">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/30_index.svg" alt="">
 						</div>
 					
 						<p>Входим в Топ-30 частных стоматологии Москвы на ноябрь 2022</p>
 					</div>
 					<div class="award-card__link">
-						<a href="#" class="award-card__link-item">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/link_arrow_2.svg" alt="Ссылка">
+						<a href="<?php echo esc_url(home_url('/')); ?>" class="award-card__link-item">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/link_arrow_2.svg" alt="">
 						</a>
 					</div>
 				</div>

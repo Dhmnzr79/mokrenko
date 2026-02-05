@@ -8,26 +8,26 @@ get_header();
 <section class="section section--page-intro-mobile page-intro-mobile">
 	<div class="container">
 		<div class="page-intro-mobile__box">
-			<h1>30 лет опыта в каждом решении и улыбке пациента</h1>
+			<p class="page-intro-mobile__title">30 лет опыта в каждом решении и улыбке пациента</p>
 			<img src="<?php echo get_template_directory_uri(); ?>/assets/images/mokrenko_first_mobile.png" alt="Доктор Мокренко" class="page-intro-mobile__image">
 		</div>
 		<div class="page-intro-mobile__benefits">
 			<div class="page-intro-mobile__benefit-item">
-				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="Галочка" class="page-intro-mobile__benefit-icon">
+				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="" class="page-intro-mobile__benefit-icon">
 				<p>Беспроцентная рассрочка 0% на 12 мес.</p>
 			</div>
 			<div class="page-intro-mobile__benefit-item">
-				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="Галочка" class="page-intro-mobile__benefit-icon">
+				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="" class="page-intro-mobile__benefit-icon">
 				<p>Высококлассные врачи с опытом более<br>10 лет</p>
 			</div>
 			<div class="page-intro-mobile__benefit-item">
-				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="Галочка" class="page-intro-mobile__benefit-icon">
+				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="" class="page-intro-mobile__benefit-icon">
 				<p>Честные цены без накруток и скрытых<br>платежей</p>
 			</div>
 		</div>
 		<button class="btn page-intro-mobile__cta-btn" data-popup="open">
 			Записаться на консультацию
-			<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
+			<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="">
 		</button>
 	</div>
 </section>
@@ -41,21 +41,21 @@ get_header();
 					<h1>30 лет опыта в каждом решении и улыбке пациента</h1>
 					<div class="page-intro__benefits">
 						<div class="page-intro__benefit-item">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="page-intro__benefit-icon">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="" class="page-intro__benefit-icon">
 							<p>Беспроцентная рассрочка 0% на 12 мес.</p>
 						</div>
 						<div class="page-intro__benefit-item">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="page-intro__benefit-icon">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="" class="page-intro__benefit-icon">
 							<p>Высококлассные врачи с опытом более<br>10 лет</p>
 						</div>
 						<div class="page-intro__benefit-item">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="page-intro__benefit-icon">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="" class="page-intro__benefit-icon">
 							<p>Честные цены без накруток и скрытых<br>платежей</p>
 						</div>
 					</div>
 					<button class="btn page-intro__cta-btn" data-popup="open">
 						Записаться на консультацию
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="">
 					</button>
 				</div>
 				<div class="page-intro__info">
@@ -140,7 +140,7 @@ get_header();
 	<div class="container">
 		<div class="video__container">
 			<button class="video__play-btn">
-				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/play.svg" alt="Play" class="video__play-icon">
+				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/play.svg" alt="" class="video__play-icon">
 			</button>
 		</div>
 	</div>
@@ -165,7 +165,7 @@ get_header();
 						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_07.jpg" alt="Фото пациента 3" class="reviews__face">
 					</div>
 					<div class="reviews__rating">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Рейтинг звезды" class="reviews__stars">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="" class="reviews__stars">
 						<p class="reviews__rating-text">Более 20 000 улыбок подарили мы за 19 лет работы</p>
 					</div>
 				</div>
@@ -206,7 +206,7 @@ get_header();
 							<h3 class="review-card__name"><?php echo esc_html($fio); ?></h3>
 							<?php if ($video_url): ?>
 							<a href="<?php echo esc_url($video_url); ?>" class="review-card__play" data-lightbox="video">
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/play.svg" alt="Play" class="review-card__play-icon">
+								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/play.svg" alt="" class="review-card__play-icon">
 							</a>
 							<?php endif; ?>
 						</div>
@@ -237,7 +237,7 @@ get_header();
 							<h3 class="review-card__name"><?php echo esc_html($fio); ?></h3>
 							<?php if ($video_url): ?>
 							<a href="<?php echo esc_url($video_url); ?>" class="review-card__play" data-lightbox="video">
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/play.svg" alt="Play" class="review-card__play-icon">
+								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/play.svg" alt="" class="review-card__play-icon">
 							</a>
 							<?php endif; ?>
 						</div>
@@ -311,7 +311,7 @@ get_header();
 						</div>
 						<button class="btn contacts__cta-btn">
 							Записаться на приём
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка" class="contacts__cta-arrow">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="" class="contacts__cta-arrow">
 						</button>
 					</div>
 				</div>

@@ -53,7 +53,7 @@ $button_link = $section_data['button_link'] ?? '';
 										<?php if ($icon_id) : ?>
 											<?php echo wp_get_attachment_image($icon_id, 'thumbnail', false, ['class' => 'service-hero__benefit-icon']); ?>
 										<?php else : ?>
-											<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="service-hero__benefit-icon">
+											<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="" class="service-hero__benefit-icon">
 										<?php endif; ?>
 										<p><?php echo esc_html($benefit['text']); ?></p>
 									</div>
@@ -71,12 +71,12 @@ $button_link = $section_data['button_link'] ?? '';
 							<?php if ($button_link) : ?>
 								<a href="<?php echo esc_url($button_link); ?>" class="btn service-hero__cta-btn">
 									<?php echo esc_html($button_text); ?>
-									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
+									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="">
 								</a>
 							<?php else : ?>
 								<button class="btn service-hero__cta-btn" data-popup="open">
 									<?php echo esc_html($button_text); ?>
-									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
+									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="">
 								</button>
 							<?php endif; ?>
 						<?php endif; ?>

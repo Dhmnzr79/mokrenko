@@ -362,7 +362,8 @@
     max-width: 38%;
 }
 
-.page-intro-mobile h1 {
+.page-intro-mobile h1,
+.page-intro-mobile__title {
     font-size: 54px;
     line-height: 1.2;
     padding-right: 30%;
@@ -635,7 +636,8 @@
     }
     
     /* Page intro mobile */
-    .page-intro-mobile h1 {
+    .page-intro-mobile h1,
+    .page-intro-mobile__title {
         font-size: 24px;
     }
     

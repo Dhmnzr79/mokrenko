@@ -8,26 +8,26 @@ get_header();
 <section class="section section--page-intro-mobile page-intro-mobile">
 	<div class="container">
 		<div class="page-intro-mobile__box">
-			<h1>До и После: Результаты, которыми мы гордимся</h1>
+			<p class="page-intro-mobile__title">До и После: Результаты, которыми мы гордимся</p>
 			<img src="<?php echo get_template_directory_uri(); ?>/assets/images/mokrenko_first_mobile.png" alt="Доктор Мокренко" class="page-intro-mobile__image">
 		</div>
 		<div class="page-intro-mobile__benefits">
 			<div class="page-intro-mobile__benefit-item">
-				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="Галочка" class="page-intro-mobile__benefit-icon">
+				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="" class="page-intro-mobile__benefit-icon">
 				<p>Реальные кейсы с фото, комментариями врача и сроками лечения</p>
 			</div>
 			<div class="page-intro-mobile__benefit-item">
-				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="Галочка" class="page-intro-mobile__benefit-icon">
+				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="" class="page-intro-mobile__benefit-icon">
 				<p>Посмотрите, каких результатов можно достичь — даже в сложных случаях.</p>
 			</div>
 			<div class="page-intro-mobile__benefit-item">
-				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="Галочка" class="page-intro-mobile__benefit-icon">
+				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="" class="page-intro-mobile__benefit-icon">
 				<p>Все фото сделаны в клинике. Никаких стоков — только честные результаты.</p>
 			</div>
 		</div>
 		<button class="btn page-intro-mobile__cta-btn" data-popup="open">
 			Записаться на консультацию
-			<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
+			<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="">
 		</button>
 	</div>
 </section>
@@ -41,21 +41,21 @@ get_header();
 					<h1>До и После: Результаты, которыми мы гордимся</h1>
 					<div class="page-intro__benefits">
 						<div class="page-intro__benefit-item">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="page-intro__benefit-icon">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="" class="page-intro__benefit-icon">
 							<p>Реальные кейсы с фото, комментариями врача и сроками лечения</p>
 						</div>
 						<div class="page-intro__benefit-item">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="page-intro__benefit-icon">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="" class="page-intro__benefit-icon">
 							<p>Посмотрите, каких результатов можно достичь — даже в сложных случаях.</p>
 						</div>
 						<div class="page-intro__benefit-item">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="page-intro__benefit-icon">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="" class="page-intro__benefit-icon">
 							<p>Все фото сделаны в клинике. Никаких стоков — только честные результаты.</p>
 						</div>
 					</div>
 					<button class="btn page-intro__cta-btn" data-popup="open">
 						Записаться на консультацию
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="">
 					</button>
 				</div>
 				<div class="page-intro__info">

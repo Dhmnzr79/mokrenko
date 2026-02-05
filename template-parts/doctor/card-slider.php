@@ -23,7 +23,7 @@ $link = get_permalink($doctor_id);
     <?php endif; ?>
     
     <a href="<?php echo esc_url($link); ?>" class="doctor-card-slider__link">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/link_arrow_1.svg" alt="Подробнее" class="doctor-card-slider__arrow">
+        <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/link_arrow_1.svg" alt="" class="doctor-card-slider__arrow">
     </a>
     
     <div class="doctor-card-slider__content">

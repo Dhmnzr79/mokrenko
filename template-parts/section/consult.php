@@ -19,19 +19,19 @@
 						<ul class="consult__list">
 							<li class="consult__item">
 								<span class="consult__item-icon">
-									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка">
+									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="">
 								</span>
 								<span class="consult__item-text">Цифровой 3D слепок вашей челюсти и улыбки</span>
 							</li>
 							<li class="consult__item">
 								<span class="consult__item-icon">
-									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка">
+									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="">
 								</span>
 								<span class="consult__item-text">Полное обследование и диагностика полости рта</span>
 							</li>
 							<li class="consult__item">
 								<span class="consult__item-icon">
-									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка">
+									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="">
 								</span>
 								<span class="consult__item-text">Составление детального плана лечения в 3‑х вариантах со стоимостью и сроками каждого этапа работ.</span>
 							</li>
@@ -50,7 +50,7 @@
 				<div class="consult__row consult__row--cta">
 					<button class="btn consult__cta-btn" data-popup="open">
 						Записаться на консультацию
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка" class="consult__cta-arrow">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="" class="consult__cta-arrow">
 					</button>
 				</div>
 			</div>

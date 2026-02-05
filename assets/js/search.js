@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <form class="search__form" method="get" action="/">
                 <input type="search" name="s" placeholder="Поиск по сайту..." class="search__input">
                 <button type="submit" class="search__submit">
-                    <img src="/mokrenko/wp-content/themes/mokrenko/assets/svg/link_arrow_1.svg" alt="Найти" class="search__icon">
+                    <img src="/mokrenko/wp-content/themes/mokrenko/assets/svg/link_arrow_1.svg" alt="" class="search__icon">
                 </button>
             </form>
         `;

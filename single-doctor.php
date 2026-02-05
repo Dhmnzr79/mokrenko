@@ -36,7 +36,7 @@ get_header();
 <section class="section section--page-intro-mobile page-intro-mobile">
 	<div class="container">
 		<div class="page-intro-mobile__box">
-			<h1><?php the_title(); ?></h1>
+			<p class="page-intro-mobile__title"><?php the_title(); ?></p>
 			<?php if ($photo): ?>
 				<img src="<?php echo esc_url($photo); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" class="page-intro-mobile__image">
 			<?php endif; ?>
@@ -57,7 +57,7 @@ get_header();
 		<?php endif; ?>
 		<button class="btn page-intro-mobile__cta-btn" data-popup="open">
 			Записаться к врачу
-			<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
+			<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="">
 		</button>
 	</div>
 </section>
@@ -83,7 +83,7 @@ get_header();
 					</div>
 					<button class="btn doctor-hero__btn" data-popup="open">
 						Записаться к врачу
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="">
 					</button>
 				</div>
 				<?php if ($photo): ?>
@@ -118,7 +118,7 @@ get_header();
 							<?php echo wp_get_attachment_image($photo_2, 'large', false, ['class' => 'doctor-info__photo']); ?>
 							<?php if ($video_url): ?>
 								<a href="<?php echo esc_url($video_url); ?>" class="doctor-info__video-btn" data-lightbox="video">
-									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/play.svg" alt="Смотреть видео" class="doctor-info__video-icon">
+									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/play.svg" alt="" class="doctor-info__video-icon">
 									<span class="doctor-info__video-text">Смотреть видео</span>
 								</a>
 							<?php endif; ?>
@@ -132,19 +132,19 @@ get_header();
 					<div class="doctor-info__facts">
 						<?php if ($fact_1): ?>
 							<div class="doctor-info__fact">
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="doctor-info__fact-icon">
+								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="" class="doctor-info__fact-icon">
 								<p><?php echo esc_html($fact_1); ?></p>
 							</div>
 						<?php endif; ?>
 						<?php if ($fact_2): ?>
 							<div class="doctor-info__fact">
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="doctor-info__fact-icon">
+								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="" class="doctor-info__fact-icon">
 								<p><?php echo esc_html($fact_2); ?></p>
 							</div>
 						<?php endif; ?>
 						<?php if ($fact_3): ?>
 							<div class="doctor-info__fact">
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="doctor-info__fact-icon">
+								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="" class="doctor-info__fact-icon">
 								<p><?php echo esc_html($fact_3); ?></p>
 							</div>
 						<?php endif; ?>

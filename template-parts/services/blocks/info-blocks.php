@@ -72,12 +72,12 @@ if (empty($blocks)) return;
                   <?php if ($button_link) : ?>
                     <a href="<?php echo esc_url($button_link); ?>" class="btn service-info-blocks__btn">
                       <?php echo esc_html($button_text); ?>
-                      <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
+                      <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="">
                     </a>
                   <?php else : ?>
                     <button class="btn service-info-blocks__btn" data-popup="open">
                       <?php echo esc_html($button_text); ?>
-                      <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
+                      <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="">
                     </button>
                   <?php endif; ?>
                 <?php endif; ?>
@@ -105,12 +105,12 @@ if (empty($blocks)) return;
                   <?php if ($button_link) : ?>
                     <a href="<?php echo esc_url($button_link); ?>" class="btn service-info-blocks__btn">
                       <?php echo esc_html($button_text); ?>
-                      <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
+                      <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="">
                     </a>
                   <?php else : ?>
                     <button class="btn service-info-blocks__btn" data-popup="open">
                       <?php echo esc_html($button_text); ?>
-                      <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
+                      <img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="">
                     </button>
                   <?php endif; ?>
                 <?php endif; ?>

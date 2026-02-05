@@ -39,12 +39,12 @@ if (!$title && !$subtitle && !$button_text) {
 					<?php if ($button_link) : ?>
 						<a href="<?php echo esc_url($button_link); ?>" class="btn service-cta-2__btn">
 							<?php echo esc_html($button_text); ?>
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="">
 						</a>
 					<?php else : ?>
 						<button class="btn service-cta-2__btn" data-popup="open">
 							<?php echo esc_html($button_text); ?>
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="">
 						</button>
 					<?php endif; ?>
 				<?php endif; ?>            

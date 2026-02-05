@@ -351,6 +351,18 @@ function get_page_url_by_template($template_name) {
 	return '#';
 }
 
+/**
+ * Ссылка на услугу по точному совпадению заголовка (для footer, front-page).
+ * Если не найдена — возвращает URL архива услуг.
+ */
+function theme_get_service_url_by_title($title) {
+	$page = get_page_by_title($title, OBJECT, 'service');
+	if ($page && $page->post_status === 'publish') {
+		return get_permalink($page->ID);
+	}
+	return get_post_type_archive_link('service') ?: home_url('/');
+}
+
 // Редирект после отправки Contact Form 7 на страницу благодарности
 // Используем JavaScript редирект через событие wpcf7mailsent для корректной работы с AJAX
 // Серверный редирект убран, так как он конфликтует с AJAX отправкой CF7
@@ -376,30 +388,68 @@ add_filter('wp_sitemaps_post_types', function($post_types) {
 	return $post_types;
 });
 
-// SEO meta description for services
+// SEO meta description: услуги, страницы, посты блога
 add_action('wp_head', function() {
-	if (!is_singular('service')) {
+	$meta_description = '';
+	$post_id = get_queried_object_id();
+
+	if (is_singular('service')) {
+		$meta_description = get_post_meta($post_id, '_service_meta_description', true);
+		if (empty($meta_description)) {
+			$meta_description = get_the_title($post_id) . ' в стоматологической клинике в Москве. Цены, этапы лечения, показания. Запись на консультацию.';
+		}
+	} elseif (is_page() && !is_front_page()) {
+		$excerpt = get_the_excerpt($post_id);
+		if ($excerpt !== '') {
+			$meta_description = $excerpt;
+		} else {
+			$meta_description = get_the_title($post_id) . ' — Стоматологическая клиника Елены Мокренко в Москве. Запись на консультацию.';
+		}
+	} elseif (is_single() && get_post_type() === 'post') {
+		$excerpt = get_the_excerpt($post_id);
+		if ($excerpt !== '') {
+			$meta_description = $excerpt;
+		} else {
+			$content = wp_strip_all_tags(get_post_field('post_content', $post_id));
+			$meta_description = mb_substr($content, 0, 160);
+		}
+	} else {
 		return;
 	}
-	
-	$post_id = get_queried_object_id();
-	$meta_description = get_post_meta($post_id, '_service_meta_description', true);
-	
-	// Если поле пустое, используем автоматический шаблон
-	if (empty($meta_description)) {
-		$service_title = get_the_title($post_id);
-		$meta_description = $service_title . ' в стоматологической клинике в Москве. Цены, этапы лечения, показания. Запись на консультацию.';
-	}
-	
-	// Обрезаем до 160 символов
+
 	if (mb_strlen($meta_description) > 160) {
 		$meta_description = mb_substr($meta_description, 0, 157) . '...';
 	}
-	
-	if (!empty($meta_description)) {
+	if ($meta_description !== '') {
 		echo '<meta name="description" content="' . esc_attr($meta_description) . '" />' . "\n";
 	}
 }, 1);
+
+// noindex для страницы благодарности (служебная)
+add_action('wp_head', function() {
+	if (is_page_template('page-thank-you.php')) {
+		echo '<meta name="robots" content="noindex, follow" />' . "\n";
+	}
+}, 2);
+
+// Исключить страницу благодарности из sitemap
+add_filter('wp_sitemaps_posts_query_args', function($args, $post_type) {
+	if ($post_type !== 'page') {
+		return $args;
+	}
+	$thank_you = get_pages([
+		'meta_key' => '_wp_page_template',
+		'meta_value' => 'page-thank-you.php',
+		'number' => 1,
+		'fields' => 'ids',
+	]);
+	if (empty($thank_you)) {
+		return $args;
+	}
+	$exclude = isset($args['post__not_in']) ? (array) $args['post__not_in'] : [];
+	$args['post__not_in'] = array_merge($exclude, $thank_you);
+	return $args;
+}, 10, 2);
 
 // Кастомный title для страниц
 add_filter('document_title_separator', function($separator) {
@@ -408,42 +458,55 @@ add_filter('document_title_separator', function($separator) {
 
 add_filter('document_title_parts', function($title_parts) {
 	$site_name = 'Стоматологическая клиника Елены Мокренко';
-	
+	$max_title_len = 60;
+
 	// Главная страница
 	if (is_front_page()) {
 		$title_parts['title'] = $site_name;
 		$title_parts['site'] = '';
 		return $title_parts;
 	}
-	
+
 	// Для услуг (post type service)
 	if (is_singular('service')) {
 		$service_title = get_the_title();
 		$title_parts['title'] = $service_title . ' в Москве';
 		$title_parts['site'] = $site_name;
+		if (mb_strlen($title_parts['title']) > $max_title_len) {
+			$title_parts['title'] = mb_substr($title_parts['title'], 0, $max_title_len - 1) . '…';
+		}
 		return $title_parts;
 	}
-	
+
 	// Статьи в блоге (обычные посты)
 	if (is_single() && get_post_type() === 'post') {
 		$post_title = get_the_title();
 		$title_parts['title'] = $post_title;
 		$title_parts['site'] = $site_name;
+		if (mb_strlen($title_parts['title']) > $max_title_len) {
+			$title_parts['title'] = mb_substr($title_parts['title'], 0, $max_title_len - 1) . '…';
+		}
 		return $title_parts;
 	}
-	
+
 	// Для типовых страниц (pages)
 	if (is_page()) {
 		$page_title = get_the_title();
 		$title_parts['title'] = $page_title;
 		$title_parts['site'] = $site_name;
+		if (mb_strlen($title_parts['title']) > $max_title_len) {
+			$title_parts['title'] = mb_substr($title_parts['title'], 0, $max_title_len - 1) . '…';
+		}
 		return $title_parts;
 	}
-	
+
 	// Для остальных страниц тоже добавляем название сайта
 	if (!isset($title_parts['site']) || empty($title_parts['site'])) {
 		$title_parts['site'] = $site_name;
 	}
-	
+	if (isset($title_parts['title']) && mb_strlen($title_parts['title']) > $max_title_len) {
+		$title_parts['title'] = mb_substr($title_parts['title'], 0, $max_title_len - 1) . '…';
+	}
+
 	return $title_parts;
 });

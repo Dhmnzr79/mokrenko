@@ -7,25 +7,25 @@ get_header();
 <section class="section section--hero-mobile hero-mobile">
 	<div class="container">
 		<div class="hero-mobile__box">
-			<h1>Отзывы наших пациентов</h1>
+			<p class="hero-mobile__title">Отзывы наших пациентов</p>
 			<img src="<?php echo get_template_directory_uri(); ?>/assets/images/mokrenko_first_mobile.png" alt="Доктор Мокренко" class="hero-mobile__image">
 		</div>
 
 		<div class="hero__rating">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_main.svg" alt="Рейтинг" class="hero__rating-icon">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_main.svg" alt="" class="hero__rating-icon">
 						<p class="hero__rating-text">Наш рейтинг на независимых порталах</p>
 					</div>
 		<div class="hero-mobile__features">
 			<div class="hero-mobile__feature-item">
-				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="Галочка" class="hero-mobile__feature-icon">
+				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="" class="hero-mobile__feature-icon">
 				<p>Гарантия полной безболезненности</p>
 			</div>
 			<div class="hero-mobile__feature-item">
-				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="Галочка" class="hero-mobile__feature-icon">
+				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="" class="hero-mobile__feature-icon">
 				<p>Честные цены без накруток и скрытых платежей</p>
 			</div>
 			<div class="hero-mobile__feature-item">
-				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="Галочка" class="hero-mobile__feature-icon">
+				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="" class="hero-mobile__feature-icon">
 				<p>Высококлассные врачи с опытом более 10 лет</p>
 			</div>
 
@@ -35,7 +35,7 @@ get_header();
 						<p>Полное обследование рта, а также полной анализ вашего организма по нашей методике</p>
 						<button class="btn hero__cta-btn" data-popup="open">
 								Записаться на консультацию
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка" class="hero__cta-arrow">
+								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="" class="hero__cta-arrow">
 							</button>
 					</div>
 	</div>
@@ -49,7 +49,7 @@ get_header();
 				<div class="hero__content">
 					<h1>Отзывы наших пациентов</h1>
 					<div class="hero__rating">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_main.svg" alt="Рейтинг" class="hero__rating-icon">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_main.svg" alt="" class="hero__rating-icon">
 						<p class="hero__rating-text">Наш рейтинг на независимых порталах</p>
 					</div>
 					<div class="hero__cta">
@@ -57,21 +57,21 @@ get_header();
 						<p>Полное обследование рта, а также полной анализ вашего организма по нашей методике</p>
 						<button class="btn hero__cta-btn" data-popup="open">
 								Записаться на консультацию
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка" class="hero__cta-arrow">
+								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="" class="hero__cta-arrow">
 							</button>
 					</div>
 				</div>
 				<div class="hero__features">
 					<div class="hero__feature-item">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="hero__feature-icon">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="" class="hero__feature-icon">
 						<p>Гарантия полной безболезненности</p>
 					</div>
 					<div class="hero__feature-item">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="hero__feature-icon">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="" class="hero__feature-icon">
 						<p>Честные цены без накруток и скрытых платежей</p>
 					</div>
 					<div class="hero__feature-item">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="hero__feature-icon">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="" class="hero__feature-icon">
 						<p>Высококлассные врачи с опытом более 10 лет</p>
 					</div>
 					<div class="hero__doctor-info">
@@ -108,7 +108,7 @@ get_header();
 						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_07.jpg" alt="Фото пациента 3" class="reviews__face">
 					</div>
 					<div class="reviews__rating">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Рейтинг звезды" class="reviews__stars">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="" class="reviews__stars">
 						<p class="reviews__rating-text">Более 20 000 улыбок подарили мы за 19 лет работы</p>
 					</div>
 				</div>
@@ -144,7 +144,7 @@ get_header();
 							<h3 class="review-card__name"><?php echo esc_html($fio); ?></h3>
 							<?php if ($video_url): ?>
 							<a href="<?php echo esc_url($video_url); ?>" class="review-card__play" data-lightbox="video">
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/play.svg" alt="Play" class="review-card__play-icon">
+								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/play.svg" alt="" class="review-card__play-icon">
 							</a>
 							<?php endif; ?>
 						</div>
@@ -175,7 +175,7 @@ get_header();
 							<h3 class="review-card__name"><?php echo esc_html($fio); ?></h3>
 							<?php if ($video_url): ?>
 							<a href="<?php echo esc_url($video_url); ?>" class="review-card__play" data-lightbox="video">
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/play.svg" alt="Play" class="review-card__play-icon">
+								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/play.svg" alt="" class="review-card__play-icon">
 							</a>
 							<?php endif; ?>
 						</div>

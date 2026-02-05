@@ -4,25 +4,25 @@ get_header();
 <section class="section section--hero-mobile hero-mobile">
 	<div class="container">
 		<div class="hero-mobile__box">
-			<h1>Стоматология Елены Мокренко</h1>
+			<p class="hero-mobile__title">Стоматология Елены Мокренко</p>
 			<img src="<?php echo get_template_directory_uri(); ?>/assets/images/mokrenko_first_mobile.png" alt="Доктор Мокренко" class="hero-mobile__image">
 		</div>
 
 		<div class="hero__rating">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_main.svg" alt="Рейтинг" class="hero__rating-icon">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_main.svg" alt="" class="hero__rating-icon">
 						<p class="hero__rating-text">Наш рейтинг на независимых порталах</p>
 					</div>
 		<div class="hero-mobile__features">
 			<div class="hero-mobile__feature-item">
-				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="Галочка" class="hero-mobile__feature-icon">
+				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="" class="hero-mobile__feature-icon">
 				<p>Гарантия полной безболезненности</p>
 			</div>
 			<div class="hero-mobile__feature-item">
-				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="Галочка" class="hero-mobile__feature-icon">
+				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="" class="hero-mobile__feature-icon">
 				<p>Честные цены без накруток и скрытых платежей</p>
 			</div>
 			<div class="hero-mobile__feature-item">
-				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="Галочка" class="hero-mobile__feature-icon">
+				<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_2.svg" alt="" class="hero-mobile__feature-icon">
 				<p>Высококлассные врачи с опытом более 10 лет</p>
 			</div>
 
@@ -32,7 +32,7 @@ get_header();
 						<p>Полное обследование рта, а также полной анализ вашего организма по нашей методике</p>
 					<button class="btn hero__cta-btn" data-popup="open">
 							Записаться на консультацию
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка" class="hero__cta-arrow">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="" class="hero__cta-arrow">
 						</button>
 					</div>
 	</div>
@@ -46,7 +46,7 @@ get_header();
 				<div class="hero__content">
 					<h1>Стоматология Елены Мокренко</h1>
 					<div class="hero__rating">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_main.svg" alt="Рейтинг" class="hero__rating-icon">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_main.svg" alt="" class="hero__rating-icon">
 						<p class="hero__rating-text">Наш рейтинг на независимых порталах</p>
 					</div>
 					<div class="hero__cta">
@@ -54,21 +54,21 @@ get_header();
 						<p>Полное обследование рта, а также полной анализ вашего организма по нашей методике</p>
 					<button class="btn hero__cta-btn" data-popup="open">
 							Записаться на консультацию
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="Стрелка" class="hero__cta-arrow">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="" class="hero__cta-arrow">
 						</button>
 					</div>
 				</div>
 				<div class="hero__features">
 					<div class="hero__feature-item">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="hero__feature-icon">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="" class="hero__feature-icon">
 						<p>Гарантия полной безболезненности</p>
 					</div>
 					<div class="hero__feature-item">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="hero__feature-icon">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="" class="hero__feature-icon">
 						<p>Честные цены без накруток и скрытых платежей</p>
 					</div>
 					<div class="hero__feature-item">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="hero__feature-icon">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="" class="hero__feature-icon">
 						<p>Высококлассные врачи с опытом более 10 лет</p>
 					</div>
 					<div class="hero__doctor-info">
@@ -98,7 +98,7 @@ get_header();
 						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_07.jpg" alt="Фото пациента 3" class="reviews__face">
 					</div>
 					<div class="reviews__rating">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Рейтинг звезды" class="reviews__stars">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="" class="reviews__stars">
 						<p class="reviews__rating-text">Более 20 000 улыбок подарили мы за 19 лет работы</p>
 					</div>
 				</div>
@@ -139,7 +139,7 @@ get_header();
 							<h3 class="review-card__name"><?php echo esc_html($fio); ?></h3>
 							<?php if ($video_url): ?>
 							<a href="<?php echo esc_url($video_url); ?>" class="review-card__play" data-lightbox="video">
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/play.svg" alt="Play" class="review-card__play-icon">
+								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/play.svg" alt="" class="review-card__play-icon">
 							</a>
 							<?php endif; ?>
 						</div>
@@ -170,7 +170,7 @@ get_header();
 							<h3 class="review-card__name"><?php echo esc_html($fio); ?></h3>
 							<?php if ($video_url): ?>
 							<a href="<?php echo esc_url($video_url); ?>" class="review-card__play" data-lightbox="video">
-								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/play.svg" alt="Play" class="review-card__play-icon">
+								<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/play.svg" alt="" class="review-card__play-icon">
 							</a>
 							<?php endif; ?>
 						</div>
@@ -217,7 +217,7 @@ get_header();
 						<div class="chief-doctor__block-209-1">
 							<div class="achievement-item">
 								<div class="achievement-icon">
-									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="achievement-icon__img">
+									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="" class="achievement-icon__img">
 								</div>
 								<p>Эксперт в корректировке формы, цвета и украшении зубов</p>
 							</div>
@@ -227,7 +227,7 @@ get_header();
 						<div class="chief-doctor__block-209-2">
 							<div class="achievement-item">
 								<div class="achievement-icon">
-									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="achievement-icon__img">
+									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="" class="achievement-icon__img">
 								</div>
 								<p>Сертифицированный специалист по установке люминиров с 12-летним опытом</p>
 							</div>
@@ -240,7 +240,7 @@ get_header();
 						<div class="chief-doctor__block-209-3">
 							<div class="achievement-item">
 								<div class="achievement-icon">
-									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="achievement-icon__img">
+									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="" class="achievement-icon__img">
 								</div>
 								<p>Участник Стоматологической Ассоциации России</p>
 							</div>
@@ -250,7 +250,7 @@ get_header();
 						<div class="chief-doctor__block-209-4">
 							<div class="achievement-item">
 								<div class="achievement-icon">
-									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="Галочка" class="achievement-icon__img">
+									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/chk_1.svg" alt="" class="achievement-icon__img">
 								</div>
 								<p>Участник American Dental Academy: повышение квалификации и обмен опытом с лучшими американскими и европейскими стоматологами</p>
 							</div>
@@ -261,10 +261,10 @@ get_header();
 			<div class="col-sm-12 col-lg-6">
 				<div class="chief-doctor__photo">
 					<div class="chief-doctor__icon">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/mokrenko_icon_01.svg" alt="Иконка Мокренко" class="chief-doctor__icon-img">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/mokrenko_icon_01.svg" alt="" class="chief-doctor__icon-img">
 					</div>
 					<div class="chief-doctor__experience">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/33_index.svg" alt="33 года опыта" class="chief-doctor__experience-icon">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/33_index.svg" alt="" class="chief-doctor__experience-icon">
 						<p class="chief-doctor__experience-text">Стоматолог-ортопед высшей категории с опытом более 33 лет</p>
 					</div>
 					
@@ -288,10 +288,10 @@ get_header();
 				<div class="service-card service-card--gradient">
 					<h3>Восстановить зуб</h3>
 					<div class="service-links">
-						<a href="#" class="service-link">Коронка на зуб</a>
-						<a href="#" class="service-link">Импланты зубов</a>
-						<a href="#" class="service-link">Протезирование зубов</a>
-						<a href="#" class="service-link">Реставрация зубов</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Коронка на зуб')); ?>" class="service-link">Коронка на зуб</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Импланты зубов')); ?>" class="service-link">Импланты зубов</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Протезирование зубов')); ?>" class="service-link">Протезирование зубов</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Реставрация зубов')); ?>" class="service-link">Реставрация зубов</a>
 					</div>
 				</div>
 			</div>
@@ -299,10 +299,10 @@ get_header();
 				<div class="service-card service-card--light-green">
 					<h3>Вылечить зубы</h3>
 					<div class="service-links">
-						<a href="#" class="service-link">Лечение зубов</a>
-						<a href="#" class="service-link">Удаление зубов</a>
-						<a href="#" class="service-link">Лечение десен</a>
-						<a href="#" class="service-link">Чистка зубов</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Лечение зубов')); ?>" class="service-link">Лечение зубов</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Удаление зубов')); ?>" class="service-link">Удаление зубов</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Лечение десен')); ?>" class="service-link">Лечение десен</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Чистка зубов')); ?>" class="service-link">Чистка зубов</a>
 					</div>
 				</div>
 			</div>
@@ -313,10 +313,10 @@ get_header();
 				<div class="service-card service-card--gradient">
 					<h3>Вставить все зубы</h3>
 					<div class="service-links">
-						<a href="#" class="service-link">Все зубы за 1 день All-on-4</a>
-						<a href="#" class="service-link">Имплантация All-on-6</a>
-						<a href="#" class="service-link">Несъёмные протезы</a>
-						<a href="#" class="service-link">Съёмные протезы</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Все зубы за 1 день All-on-4')); ?>" class="service-link">Все зубы за 1 день All-on-4</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Имплантация All-on-6')); ?>" class="service-link">Имплантация All-on-6</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Несъёмные протезы')); ?>" class="service-link">Несъёмные протезы</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Съёмные протезы')); ?>" class="service-link">Съёмные протезы</a>
 					</div>
 				</div>
 			</div>
@@ -324,10 +324,10 @@ get_header();
 				<div class="service-card service-card--light-green service-card--bg">
 					<h3>Красивая улыбка</h3>
 					<div class="service-links">
-						<a href="#" class="service-link">Виниры на зубы</a>
-						<a href="#" class="service-link">Брекеты</a>
-						<a href="#" class="service-link">Отбеливание зубов</a>
-						<a href="#" class="service-link">Чистка Air Flow</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Виниры на зубы')); ?>" class="service-link">Виниры на зубы</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Брекеты')); ?>" class="service-link">Брекеты</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Отбеливание зубов')); ?>" class="service-link">Отбеливание зубов</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Чистка Air Flow')); ?>" class="service-link">Чистка Air Flow</a>
 					</div>
 				</div>
 			</div>
@@ -413,7 +413,7 @@ get_header();
 						<div class="col-sm-12 col-lg-6">
 							<div class="benefits__feature benefits__feature--gradient">
 								<div class="benefits__feature-icon">
-									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/plus_icon_01.svg" alt="Иконка плюс" class="benefits__icon">
+									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/plus_icon_01.svg" alt="" class="benefits__icon">
 								</div>
 								<h3>Честные цены без накруток и скрытых платежей</h3>
 								<p>Цены на сайте соответствуют ценам в клинике. Не навязываем лишних услуг и не вносим скрытые платежи в договор. У нас честный подход.</p>
@@ -422,7 +422,7 @@ get_header();
 						<div class="col-sm-12 col-lg-6">
 							<div class="benefits__feature benefits__feature--light-green">
 								<div class="benefits__feature-icon">
-									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/plus_icon_02.svg" alt="Иконка лечения" class="benefits__icon">
+									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/plus_icon_02.svg" alt="" class="benefits__icon">
 								</div>
 								<h3>Качественное лечение с гарантией по договору</h3>
 								<p>Делаем только качественно и на века. Если по нашей вине у вас выпала пломба, коронка или имплант - мы исправим все абсолютно бесплатно в тот же день.</p>
@@ -436,7 +436,7 @@ get_header();
 					<div class="benefits__card-content">
 						<div class="benefits__card-icon benefits__card-icon--lab">
 							<img src="<?php echo get_template_directory_uri(); ?>/assets/images/plus_icon_bg.jpg" alt="Фон иконки" class="benefits__icon-bg">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/plus_icon_03.svg" alt="Иконка лаборатории" class="benefits__icon-main">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/plus_icon_03.svg" alt="" class="benefits__icon-main">
 						</div>
 						<div class="benefits__card-bottom">
 							<h3>Собственная лаборатория и оборудование</h3>
@@ -460,7 +460,7 @@ get_header();
 				<div class="benefits__card benefits__card--light-green">
 					<div class="benefits__card-content">
 						<div class="benefits__card-icon">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/plus_icon_04.svg" alt="Иконка без боли" class="benefits__icon">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/plus_icon_04.svg" alt="" class="benefits__icon">
 						</div>
 						<h3>Лечение без боли</h3>
 						<p>Вы ничего не почувствуете. Швейцарские медикаменты и 30-летний опыт главного врача позволяют гарантировать полное отсутствие боли</p>
@@ -480,7 +480,7 @@ get_header();
 				<div class="benefits__card benefits__card--light-green">
 					<div class="benefits__card-content">
 						<div class="benefits__card-icon">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/plus_icon_05.svg" alt="Иконка рассрочки" class="benefits__icon">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/plus_icon_05.svg" alt="" class="benefits__icon">
 						</div>
 						<h3>Рассрочка платежа</h3>
 						<p>Беспроцентная рассрочка на 6-12 месяцев</p>

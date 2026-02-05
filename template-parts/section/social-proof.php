@@ -42,7 +42,7 @@
 										</div>
 									</header>
 									<div class="proof-card__rating">
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Оценка 5 из 5" class="proof-card__stars">
+										<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="" class="proof-card__stars">
 										<span class="proof-card__date">15 марта</span>
 									</div>
 									<p class="proof-card__text">Прекрасное отношение к пациентам, врачи-профи, уже несколько лет только сюда, ставила пломбы, импланты - все в прекрасном состоянии, идеальные зубки:) Дети очень любят своего доктора - Надежду Семеновну Дугинец, дочь даже спрашивает - когда уже зубы пойдем лечить, так ей врач нравится. Успехов клинике и благодарность всем специалистам!</p>
@@ -58,7 +58,7 @@
 										</div>
 									</header>
 									<div class="proof-card__rating">
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Оценка 5 из 5" class="proof-card__stars">
+										<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="" class="proof-card__stars">
 										<span class="proof-card__date">22 февраля</span>
 									</div>
 									<p class="proof-card__text">Хочу выразить благодарность клинике и в частности хирургу Аросяну Андранику Владимировичу за отличную работу. Ставил импланты — все прошло спокойно и безболезненно. От первой консультации до установки прошло меньше недели, всё организовано очень чётко. Отдельное спасибо менеджеру Элеоноре за внимательное отношение и помощь.</p>
@@ -74,7 +74,7 @@
 										</div>
 									</header>
 									<div class="proof-card__rating">
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Оценка 5 из 5" class="proof-card__stars">
+										<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="" class="proof-card__stars">
 										<span class="proof-card__date">5 апреля</span>
 									</div>
 									<p class="proof-card__text">Хочу выразить огромную благодарность всему коллективу стоматологической клиники Елены Мокренко! Врачи здесь настоящие профессионалы, всегда внимательные и заботливые. Подробно объясняли каждую процедуру и отвечали на все мои вопросы. Это создало атмосферу доверия и спокойствия.</p>
@@ -90,7 +90,7 @@
 										</div>
 									</header>
 									<div class="proof-card__rating">
-										<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="Оценка 5 из 5" class="proof-card__stars">
+										<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="" class="proof-card__stars">
 										<span class="proof-card__date">18 марта</span>
 									</div>
 									<p class="proof-card__text">Выражаю огромную благодарность врачам стоматологической клиники Елены Мокренко, а именно хирургу Васильеву Богдану Владимировичу и ортопеду Сейфуллину Альберту Шамильевичу, за их золотые руки, выскокий профессионализм и заботу о пациентах! Также хочу отметить мед.персонал данной клиники, все очень вежливые и внимательные!</p>

@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-sm-12 col-lg-12">
 				<div class="footer__logo">
-					<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/logo.svg" alt="Mokrenko" class="footer__logo-img">
+					<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/logo.svg" alt="" class="footer__logo-img">
 				</div>
 			</div>
 		</div>
@@ -13,14 +13,14 @@
 				<div class="footer__section">
 					<h3 class="footer__title">Услуги:</h3>
 					<ul class="footer__list">
-						<li><a href="#" class="footer__link">Коронка на зуб</a></li>
-						<li><a href="#" class="footer__link">Импланты зубов</a></li>
-						<li><a href="#" class="footer__link">Протезирование зубов</a></li>
-						<li><a href="#" class="footer__link">Реставрация зубов</a></li>
-						<li><a href="#" class="footer__link">Лечение зубов</a></li>
-						<li><a href="#" class="footer__link">Удаление зубов</a></li>
-						<li><a href="#" class="footer__link">Лечение десен</a></li>
-						<li><a href="#" class="footer__link">Чистка зубов</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Коронка на зуб')); ?>" class="footer__link">Коронка на зуб</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Импланты зубов')); ?>" class="footer__link">Импланты зубов</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Протезирование зубов')); ?>" class="footer__link">Протезирование зубов</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Реставрация зубов')); ?>" class="footer__link">Реставрация зубов</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Лечение зубов')); ?>" class="footer__link">Лечение зубов</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Удаление зубов')); ?>" class="footer__link">Удаление зубов</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Лечение десен')); ?>" class="footer__link">Лечение десен</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Чистка зубов')); ?>" class="footer__link">Чистка зубов</a></li>
 					</ul>
 				</div>
 			</div>
@@ -28,14 +28,14 @@
 				<div class="footer__section">
 					<h3 class="footer__title footer__title--empty"></h3>
 					<ul class="footer__list">
-						<li><a href="#" class="footer__link">Все зубы за 1 день All-on-4</a></li>
-						<li><a href="#" class="footer__link">Имплантация All-on-6</a></li>
-						<li><a href="#" class="footer__link">Несъёмные протезы</a></li>
-						<li><a href="#" class="footer__link">Съёмные протезы</a></li>
-						<li><a href="#" class="footer__link">Виниры на зубы</a></li>
-						<li><a href="#" class="footer__link">Брекеты</a></li>
-						<li><a href="#" class="footer__link">Отбеливание зубов</a></li>
-						<li><a href="#" class="footer__link">Чистка Air Flow</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Все зубы за 1 день All-on-4')); ?>" class="footer__link">Все зубы за 1 день All-on-4</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Имплантация All-on-6')); ?>" class="footer__link">Имплантация All-on-6</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Несъёмные протезы')); ?>" class="footer__link">Несъёмные протезы</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Съёмные протезы')); ?>" class="footer__link">Съёмные протезы</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Виниры на зубы')); ?>" class="footer__link">Виниры на зубы</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Брекеты')); ?>" class="footer__link">Брекеты</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Отбеливание зубов')); ?>" class="footer__link">Отбеливание зубов</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Чистка Air Flow')); ?>" class="footer__link">Чистка Air Flow</a></li>
 					</ul>
 				</div>
 			</div>
@@ -45,7 +45,7 @@
 					<ul class="footer__list">
 						<li><a href="<?php echo esc_url(get_page_url_by_template('page-portfolio.php')); ?>" class="footer__link">Портфолио</a></li>
 						<li><a href="<?php echo esc_url(get_page_url_by_template('page-doctors.php')); ?>" class="footer__link">Врачи</a></li>
-						<li><a href="#" class="footer__link">Акции</a></li>
+						<li><a href="<?php echo esc_url(home_url('/')); ?>" class="footer__link">Акции</a></li>
 						<li><a href="<?php echo esc_url(get_page_url_by_template('page-blog.php')); ?>" class="footer__link">Блог</a></li>
 						<li><a href="<?php echo esc_url(get_page_url_by_template('page-reviews.php')); ?>" class="footer__link">Отзывы</a></li>
 						<li><a href="<?php echo esc_url(get_page_url_by_template('page-contacts.php')); ?>" class="footer__link">Контакты</a></li>
@@ -59,17 +59,17 @@
 						<input type="text" placeholder="Поиск..." class="footer__search-input">
 					</div>
 					<div class="footer__social">
-						<a href="#" class="footer__social-link">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/telegram.svg" alt="Telegram">
+						<a href="https://t.me/mokrenko_msk" target="_blank" rel="noopener noreferrer" class="footer__social-link">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/telegram.svg" alt="">
 						</a>
-						<a href="#" class="footer__social-link">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/whatsapp.svg" alt="WhatsApp">
+						<a href="https://wa.me/79850549339" target="_blank" rel="noopener noreferrer" class="footer__social-link">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/whatsapp.svg" alt="">
 						</a>
-						<a href="#" class="footer__social-link">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/vk.svg" alt="VK">
+						<a href="https://vk.com/mokrenko_msk" target="_blank" rel="noopener noreferrer" class="footer__social-link">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/vk.svg" alt="">
 						</a>
-						<a href="#" class="footer__social-link">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/youtube.svg" alt="YouTube">
+						<a href="https://www.youtube.com/@mokrenko_msk" target="_blank" rel="noopener noreferrer" class="footer__social-link">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/youtube.svg" alt="">
 						</a>
 					</div>
 				</div>
