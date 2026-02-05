@@ -273,13 +273,13 @@ get_header();
 			<div class="col-sm-12 col-lg-6">
 				<div class="certificates__gallery">
 					<a href="<?php echo get_template_directory_uri(); ?>/assets/images/lic_01.webp" class="certificates__image" data-lightbox="certificates" data-title="Лицензия 1">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/lic_01.webp" alt="Лицензия 1">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/lic_01.webp" alt="Лицензия на медицинскую деятельность (стоматология)">
 					</a>
 					<a href="<?php echo get_template_directory_uri(); ?>/assets/images/lic_02.webp" class="certificates__image" data-lightbox="certificates" data-title="Лицензия 2">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/lic_02.webp" alt="Лицензия 2">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/lic_02.webp" alt="">
 					</a>
 					<a href="<?php echo get_template_directory_uri(); ?>/assets/images/lic_03.webp" class="certificates__image" data-lightbox="certificates" data-title="Лицензия 3">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/lic_03.webp" alt="Лицензия 3">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/lic_03.webp" alt="">
 					</a>
 				</div>
 			</div>
@@ -291,7 +291,7 @@ get_header();
 <section class="section section--contacts contacts">
 	<div class="container">
 		<div class="contacts__box">
-			<img src="<?php echo get_template_directory_uri(); ?>/assets/images/mokrenko_first.png" alt="Врач" class="contacts__bg">
+			<img src="<?php echo get_template_directory_uri(); ?>/assets/images/mokrenko_first.png" alt="Главный врач клиники - Елена Мокренко" class="contacts__bg">
 			<div class="row">
 				<div class="col-sm-12 col-lg-6">
 					<!-- Пустая колонка для фото -->

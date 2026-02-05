@@ -18,7 +18,11 @@ $link = get_permalink($doctor_id);
 <div class="doctor-card-slider">
     <?php if ($photo): ?>
         <div class="doctor-card-slider__photo">
-            <img src="<?php echo esc_url($photo); ?>" alt="<?php echo esc_attr($doctor->post_title); ?>" class="doctor-card-slider__img">
+            <?php 
+            $doctor_name = $doctor->post_title;
+            $doctor_alt = $position ? $doctor_name . ' — ' . $position : $doctor_name;
+            ?>
+            <img src="<?php echo esc_url($photo); ?>" alt="<?php echo esc_attr($doctor_alt); ?>" class="doctor-card-slider__img">
         </div>
     <?php endif; ?>
     

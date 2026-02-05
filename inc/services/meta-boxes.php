@@ -1677,4 +1677,3 @@ function save_service_meta_description_meta_box($post_id) {
         delete_post_meta($post_id, '_service_meta_description');
     }
 }
-

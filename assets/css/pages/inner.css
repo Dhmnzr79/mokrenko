@@ -8,6 +8,7 @@
 	border-radius: 20px;
 	display: flex;
 	flex-direction: column;
+	overflow: hidden;
 }
 
 .doctor-hero__layout {
@@ -30,12 +31,17 @@
 	font-size: 60px;
 }
 
+.doctor-hero__position {
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
 .doctor-hero__preview {
 	font-size: 20px;
 }
 
 .doctor-hero__preview p {
-	font-size: 18px;
+	font-size: 17px;
 }
 
 .doctor-hero__experience {

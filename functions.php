@@ -405,6 +405,27 @@ add_action('wp_head', function() {
 		} else {
 			$meta_description = get_the_title($post_id) . ' — Стоматологическая клиника Елены Мокренко в Москве. Запись на консультацию.';
 		}
+	} elseif (is_singular('doctor')) {
+		$doctor_name = get_the_title($post_id);
+		$doctor_position = get_post_meta($post_id, 'doctor_position', true);
+		$doctor_experience = get_post_meta($post_id, 'doctor_experience_years', true);
+		
+		$parts = [];
+		if ($doctor_name) {
+			$parts[] = $doctor_name;
+		}
+		if ($doctor_position) {
+			$parts[] = $doctor_position;
+		}
+		
+		$name_position = !empty($parts) ? implode(' — ', $parts) : '';
+		
+		$experience_text = '';
+		if ($doctor_experience) {
+			$experience_text = 'Опыт ' . $doctor_experience . ' лет';
+		}
+		
+		$meta_description = trim($name_position . ($name_position ? '. ' : '') . $experience_text . ($experience_text ? '. ' : '') . 'Приём и консультация в клинике.');
 	} elseif (is_single() && get_post_type() === 'post') {
 		$excerpt = get_the_excerpt($post_id);
 		if ($excerpt !== '') {

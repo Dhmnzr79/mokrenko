@@ -4,6 +4,7 @@ get_header();
 
 <?php if (have_posts()) : while (have_posts()) : the_post(); 
 	$doctor_id = get_the_ID();
+	$position = get_post_meta($doctor_id, 'doctor_position', true);
 	$experience = get_post_meta($doctor_id, 'doctor_experience_years', true);
 	$excerpt = get_the_excerpt();
 	$photo = get_the_post_thumbnail_url($doctor_id, 'large');
@@ -37,8 +38,11 @@ get_header();
 	<div class="container">
 		<div class="page-intro-mobile__box">
 			<p class="page-intro-mobile__title"><?php the_title(); ?></p>
-			<?php if ($photo): ?>
-				<img src="<?php echo esc_url($photo); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" class="page-intro-mobile__image">
+			<?php if ($photo): 
+				$doctor_name = get_the_title();
+				$doctor_alt = $position ? $doctor_name . ' — ' . $position . '.' : $doctor_name;
+			?>
+				<img src="<?php echo esc_url($photo); ?>" alt="<?php echo esc_attr($doctor_alt); ?>" class="page-intro-mobile__image">
 			<?php endif; ?>
 		</div>
 		<?php if ($excerpt): ?>
@@ -70,6 +74,11 @@ get_header();
 				<div class="doctor-hero__content">
 					<div class="doctor-hero__info">
 						<h1><?php the_title(); ?></h1>
+						<?php if ($position): ?>
+							<div class="doctor-hero__position">
+								<p><?php echo esc_html($position); ?></p>
+							</div>
+						<?php endif; ?>
 						<?php if ($excerpt): ?>
 							<div class="doctor-hero__preview">
 								<p><?php echo esc_html($excerpt); ?></p>
@@ -115,7 +124,12 @@ get_header();
 				<div class="doctor-info__photo-wrapper">
 					<?php if ($photo_2): ?>
 						<div class="doctor-info__photo-container">
-							<?php echo wp_get_attachment_image($photo_2, 'large', false, ['class' => 'doctor-info__photo']); ?>
+							<?php 
+							$doctor_name = get_the_title();
+							$doctor_specialization = $position ? $position : '';
+							$doctor_alt = $doctor_specialization ? $doctor_name . ' — ' . $doctor_specialization : $doctor_name;
+							echo wp_get_attachment_image($photo_2, 'large', false, ['class' => 'doctor-info__photo', 'alt' => esc_attr($doctor_alt)]); 
+							?>
 							<?php if ($video_url): ?>
 								<a href="<?php echo esc_url($video_url); ?>" class="doctor-info__video-btn" data-lightbox="video">
 									<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/play.svg" alt="" class="doctor-info__video-icon">

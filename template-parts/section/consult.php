@@ -7,7 +7,7 @@
 <section class="section section--consult consult">
 	<div class="container">
         <div class="consult__box bg-gradient-brand consult__box--with-doctor">
-            <img class="consult__bg" src="<?php echo esc_url( wp_get_upload_dir()['baseurl'] . '/2025/10/gurdzan.png' ); ?>" alt="Врач" loading="lazy">
+            <img class="consult__bg" src="<?php echo esc_url( wp_get_upload_dir()['baseurl'] . '/2025/10/gurdzan.png' ); ?>" alt="Бесплатная консультация в клинике Елены Мокренко" loading="lazy">
 			<div class="consult__layout">
 				<div class="consult__row consult__row--title">
 					<h2 class="consult__title">Запишитесь на <span class="text-contrast">бесплатный осмотр</span> <br>к нашим врачам</h2>
