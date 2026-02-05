@@ -110,6 +110,9 @@ require_once get_template_directory() . '/inc/services/sections-registry.php';
 require_once get_template_directory() . '/inc/services/meta-fields.php';
 require_once get_template_directory() . '/inc/services/meta-boxes.php';
 
+// Подключение Schema.org микроразметки
+require_once get_template_directory() . '/inc/schema.php';
+
 add_action('init', function () {
 	if (!taxonomy_exists('service_category')) {
 		return;
@@ -254,7 +257,7 @@ add_action('wp_enqueue_scripts', function(){
 				myMap.behaviors.disable("scrollZoom");
 				
 				var myPlacemark = new ymaps.Placemark([55.7934, 37.6331], {
-					balloonContent: "Москва, проспект Мира, д. 57, корп. 2"
+					balloonContent: "г. Москва, ул. Проспект Мира 75, стр. 1 (м.Рижская)"
 				}, {
 					preset: "islands#redDotIcon"
 				});
@@ -503,6 +506,17 @@ add_filter('document_title_parts', function($title_parts) {
 	if (is_single() && get_post_type() === 'post') {
 		$post_title = get_the_title();
 		$title_parts['title'] = $post_title;
+		$title_parts['site'] = $site_name;
+		if (mb_strlen($title_parts['title']) > $max_title_len) {
+			$title_parts['title'] = mb_substr($title_parts['title'], 0, $max_title_len - 1) . '…';
+		}
+		return $title_parts;
+	}
+
+	// Для страниц врачей
+	if (is_singular('doctor')) {
+		$doctor_title = get_the_title();
+		$title_parts['title'] = $doctor_title;
 		$title_parts['site'] = $site_name;
 		if (mb_strlen($title_parts['title']) > $max_title_len) {
 			$title_parts['title'] = mb_substr($title_parts['title'], 0, $max_title_len - 1) . '…';

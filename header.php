@@ -21,7 +21,7 @@
 			</div>
 			<div class="col-sm-6 col-lg-3 header__address">
 				<div class="header__info">		
-					<div class="header__info-text">Москва, ул. Проспект Мира 75, стр. 1 (м.Рижская)</div>
+					<div class="header__info-text">г. Москва, ул. Проспект Мира 75, стр. 1 (м.Рижская)</div>
 				</div>
 			</div>
 			<div class="col-sm-6 col-lg-3 header__hours">

@@ -96,9 +96,9 @@ get_header();
 					<div class="contacts__content-block">
 						<h2>Контакты</h2>
 						<ul class="contacts__list">
-							<li data-emoji="📍">г. Москва, проспект Мира, д. 57, корп. 2</li>
+							<li data-emoji="📍">г. Москва, ул. Проспект Мира 75, стр. 1 (м.Рижская)</li>
 							<li data-emoji="📞"><a href="tel:+74950035476">+7 (495) 003-54-76</a></li>
-							<li data-emoji="✉️">info@mokrenko.ru</li>
+							<li data-emoji="✉️">mokrenko-msk@yandex.ru</li>
 							<li data-emoji="🕒">Пн-Пт: 9:00 - 21:00<br>Сб-Вс: 10:00 - 18:00</li>
 						</ul>
 						<div class="contacts__question">
