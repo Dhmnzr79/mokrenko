@@ -136,6 +136,25 @@
 	</div>
 </div>
 
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Уведомление о cookie" hidden>
+	<div class="cookie-banner__inner">
+		<p class="cookie-banner__text">Мы используем cookie. Продолжая пользоваться сайтом, вы соглашаетесь с <a href="https://mokrenko-msk.ru/privacy.pdf" target="_blank" rel="noopener" class="cookie-banner__link">политикой конфиденциальности</a>.</p>
+		<button type="button" class="cookie-banner__btn" aria-label="Принять">Принять</button>
+	</div>
+</div>
+<script>
+(function() {
+	var key = 'mokrenko_cookie_accept';
+	var banner = document.getElementById('cookie-banner');
+	if (!banner) return;
+	if (!localStorage.getItem(key)) banner.hidden = false;
+	banner.querySelector('.cookie-banner__btn').addEventListener('click', function() {
+		localStorage.setItem(key, '1');
+		banner.hidden = true;
+	});
+})();
+</script>
+
 <?php wp_footer(); ?>
 </body>
 </html>

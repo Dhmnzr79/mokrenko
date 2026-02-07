@@ -80,12 +80,6 @@
     min-width: 0;
 }
 
-@media (max-width: 991.98px) {
-    .slider--two .slider__slide {
-        flex: 0 0 calc((100% - 30px) / 2);
-    }
-}
-
 /* Слайдер social proof: карусель с шагом 1 карточка, показ 2 на десктопе */
 .slider--social .slider__container {
     overflow: hidden;
@@ -1826,6 +1820,9 @@
 @media (max-width: 991px) {
     .section--hero {
         display: none;
+    }
+    .slider--two .slider__slide {
+        flex: 0 0 calc((100% - 30px) / 2);
     }
 }
 

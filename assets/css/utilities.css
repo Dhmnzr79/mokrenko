@@ -15,14 +15,6 @@
   gap: 30px;
 }
 
-@media (max-width: 767px) {
-  .section--reviews .container,
-  .section--services .container,
-  .section--benefits .container {
-    gap: 16px;
-  }
-}
-
 /* demo backgrounds (для визуализации блоков) */
 .bg-demo-1 { background: #fde047; }
 .bg-demo-2 { background: #60a5fa; }
@@ -30,7 +22,14 @@
 .bg-demo-4 { background: #fca5a5; }
 .bg-demo-5 { background: #c084fc; }
 .bg-demo-card { background: #f3f4f6; border: 1px dashed #cbd5e1; padding: 16px; }
-/* дополнительные цвета */
 .bg-demo-6 { background:#fef3c7; }
 .bg-demo-7 { background:#93c5fd; }
 .bg-demo-8 { background:#86efac; }
+
+@media (max-width: 767px) {
+  .section--reviews .container,
+  .section--services .container,
+  .section--benefits .container {
+    gap: 16px;
+  }
+}

@@ -77,6 +77,12 @@ get_header();
 	</div>
 </section>
 
+<section class="section section--pdn-notice pdn-notice">
+	<div class="container">
+		<p class="pdn-notice__text">ПДн опубликованы на сайте с согласия на обработку персональных данных, разрешенных субъектом персональных данных для распространения, полученного в соответствии со ст. 10.1 152-ФЗ. Субъектами установлены запреты на обработку неограниченным кругом лиц, опубликованных персональных данных</p>
+	</div>
+</section>
+
 <section class="section section--doctors">
 	<div class="container">
 		<div class="row">

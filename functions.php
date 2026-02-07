@@ -499,17 +499,40 @@ add_action('wp_head', function() {
 	}
 }, 1);
 
+/**
+ * URL, которые не должны индексироваться (noindex): служебные, дубли, тонкие архивы.
+ * Используется в wp_head для meta robots.
+ */
+function mokrenko_should_noindex_garbage_url() {
+	if (is_404() || is_search() || is_page_template('page-thank-you.php')) {
+		return true;
+	}
+	if (is_author() || is_date()) {
+		return true;
+	}
+	if (is_paged()) {
+		return true;
+	}
+	if (is_tax('specialty') || is_tax('clinic') || is_tax('service_category')) {
+		return true;
+	}
+	if (is_category() || is_tag()) {
+		return true;
+	}
+	return false;
+}
+
 // Meta robots для SEO-страниц (index, follow)
 add_action('wp_head', function() {
-	if (is_404() || is_search() || is_page_template('page-thank-you.php')) {
+	if (mokrenko_should_noindex_garbage_url()) {
 		return;
 	}
 	echo '<meta name="robots" content="index, follow" />' . "\n";
 }, 2);
 
-// noindex для служебных страниц (благодарность, 404, поиск)
+// noindex для служебных и мусорных URL
 add_action('wp_head', function() {
-	if (is_404() || is_search() || is_page_template('page-thank-you.php')) {
+	if (mokrenko_should_noindex_garbage_url()) {
 		echo '<meta name="robots" content="noindex, follow" />' . "\n";
 	}
 }, 3);
