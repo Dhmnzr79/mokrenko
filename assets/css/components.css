@@ -225,25 +225,89 @@
     z-index: 2;
 }
 
-.case-card__link {
-    text-decoration: none;
-    position: relative;
+.case-card__link-wrap {
     display: inline-block;
+    overflow: hidden;
 }
 
-.case-card__link::after {
+.case-card__link {
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+}
+
+.case-card__link::after,
+.case-card__link::before {
     content: '';
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 0;
+    width: 100%;
     height: 2px;
     background: #7ED5D8;
-    transition: width 0.3s ease;
+    pointer-events: none;
+}
+
+.case-card__link::after {
+    transform: translateX(0);
+    transition: transform 0.25s ease 0s;
+}
+
+.case-card__link::before {
+    transform: translateX(-100%);
+    transition: transform 0.25s ease 0.18s;
 }
 
 .case-card__link:hover::after {
+    transform: translateX(100%);
+}
+
+.case-card__link:hover::before {
+    transform: translateX(0);
+    transition-delay: 0.18s;
+}
+
+/* Общий эффект подчёркивания (слайд вправо / въезд слева) — блог, 404 */
+.link-underline-slide-wrap {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.link-underline-slide {
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+}
+
+.link-underline-slide::after,
+.link-underline-slide::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
     width: 100%;
+    height: 2px;
+    background: #7ED5D8;
+    pointer-events: none;
+}
+
+.link-underline-slide::after {
+    transform: translateX(0);
+    transition: transform 0.25s ease 0s;
+}
+
+.link-underline-slide::before {
+    transform: translateX(-100%);
+    transition: transform 0.25s ease 0.18s;
+}
+
+.link-underline-slide:hover::after {
+    transform: translateX(100%);
+}
+
+.link-underline-slide:hover::before {
+    transform: translateX(0);
+    transition-delay: 0.18s;
 }
 
 .case-card__position {

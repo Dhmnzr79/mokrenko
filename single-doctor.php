@@ -297,9 +297,9 @@ if (!empty($cases)): ?>
 			<div class="row">
 				<div class="col-sm-12 col-lg-6">
 					<div class="reviews__faces">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_01.jpg" alt="Фото пациента 1" class="reviews__face">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_06.jpg" alt="Фото пациента 2" class="reviews__face">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_07.jpg" alt="Фото пациента 3" class="reviews__face">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_01.jpg" alt="" class="reviews__face">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_06.jpg" alt="" class="reviews__face">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_07.jpg" alt="" class="reviews__face">
 					</div>
 					<h2 class="doctor-question__title">Остались вопросы?</h2>
 					<p class="doctor-question__text">Задайте свой вопрос, и мы бесплатно проконсультируем Вас в течении 5 минут по любому вопросы и при необходимости запишем на бесплатную консультацию</p>

@@ -18,9 +18,9 @@
 					<h2>Более <span class="text-accent">25 000</span> улыбок мы подарили нашим клиентам за <span class="text-contrast">20 лет работы</span></h2>
 					<div class="reviews__stats">
 					<div class="reviews__faces">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_01.jpg" alt="Фото пациента 1" class="reviews__face">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_06.jpg" alt="Фото пациента 2" class="reviews__face">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_07.jpg" alt="Фото пациента 3" class="reviews__face">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_01.jpg" alt="" class="reviews__face">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_06.jpg" alt="" class="reviews__face">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_07.jpg" alt="" class="reviews__face">
 					</div>
 					<div class="reviews__rating">
 						<p class="reviews__rating-text">96% процентов пациентов приходят по рекомендации от своих друзей и близких.</p>

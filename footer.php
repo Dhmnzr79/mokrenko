@@ -62,8 +62,8 @@
 						<a href="https://t.me/mokrenko_msk" target="_blank" rel="noopener noreferrer" class="footer__social-link">
 							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/telegram.svg" alt="">
 						</a>
-						<a href="https://wa.me/79850549339" target="_blank" rel="noopener noreferrer" class="footer__social-link">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/whatsapp.svg" alt="">
+						<a href="https://t.me/Dr_Mokrenko" target="_blank" rel="noopener noreferrer" class="footer__social-link">
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/telegram.svg" alt="">
 						</a>
 						<a href="https://vk.com/mokrenko_msk" target="_blank" rel="noopener noreferrer" class="footer__social-link">
 							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/vk.svg" alt="">

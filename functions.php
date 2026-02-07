@@ -227,7 +227,7 @@ add_action('wp_enqueue_scripts', function(){
 		wp_enqueue_style('page-home', $uri.'pages/home.css', ['theme-utilities'], $ver);
 	}
 	
-	if (is_page(['about', 'reviews', 'contacts', 'team', 'prices', 'doctors', 'o-klinike', 'otzyvy', 'kontakty', 'komanda', 'tseny', 'vrachi']) || is_page_template('page-about.php') || is_page_template('page-reviews.php') || is_page_template('page-contacts.php') || is_page_template('page-prices.php') || is_page_template('page-doctors.php') || is_page_template('page-blog.php') || is_page_template('page-portfolio.php') || is_page_template('page-thank-you.php') || is_single()) {
+	if (is_404() || is_search() || is_page(['about', 'reviews', 'contacts', 'team', 'prices', 'doctors', 'o-klinike', 'otzyvy', 'kontakty', 'komanda', 'tseny', 'vrachi']) || is_page_template('page-about.php') || is_page_template('page-reviews.php') || is_page_template('page-contacts.php') || is_page_template('page-prices.php') || is_page_template('page-doctors.php') || is_page_template('page-blog.php') || is_page_template('page-portfolio.php') || is_page_template('page-thank-you.php') || is_single()) {
 		wp_enqueue_style('page-inner', $uri.'pages/inner.css', ['theme-utilities'], $ver);
 		wp_enqueue_style('page-home', $uri.'pages/home.css', ['theme-utilities'], $ver);
 		wp_enqueue_script('theme-lightbox', get_stylesheet_directory_uri() . '/assets/js/lightbox.js', [], $ver, true);
@@ -310,19 +310,18 @@ add_action('wp_enqueue_scripts', function(){
 
 // Функция для проверки, нужно ли скрывать обычный header (для страниц с .page-top)
 function theme_should_hide_default_header() {
+	if (is_404() || is_search()) {
+		return true;
+	}
 	$template = get_page_template_slug();
 	$templates_with_page_top = ['page-contacts.php'];
-	
 	if (in_array($template, $templates_with_page_top)) {
 		return true;
 	}
-	
-	// Можно добавить проверку по классу body или другим условиям
 	$body_classes = get_body_class();
 	if (in_array('page-has-top', $body_classes)) {
 		return true;
 	}
-	
 	return false;
 }
 
@@ -381,22 +380,46 @@ add_filter('wp_sitemaps_add_provider', function($provider, $name) {
 // Исключение из sitemap: post types reviews и case
 add_filter('wp_sitemaps_post_types', function($post_types) {
 	$excluded_types = ['reviews', 'case'];
-	
 	foreach ($excluded_types as $type) {
 		if (isset($post_types[$type])) {
 			unset($post_types[$type]);
 		}
 	}
-	
 	return $post_types;
 });
+
+// Исключить кейсы из поиска на сайте (кейсы только в слайдерах, не как отдельные страницы)
+add_action('pre_get_posts', function($query) {
+	if (is_admin() || !$query->is_main_query() || !$query->is_search()) {
+		return;
+	}
+	$pt = $query->get('post_type');
+	if (empty($pt) || $pt === 'any') {
+		$query->set('post_type', array_values(array_diff(get_post_types(['public' => true]), ['case'])));
+	} elseif (is_array($pt) && in_array('case', $pt)) {
+		$query->set('post_type', array_values(array_diff($pt, ['case'])));
+	}
+}, 10, 1);
+
+// Одиночные URL кейсов не должны открываться — редирект на портфолио
+add_action('template_redirect', function() {
+	if (!is_singular('case')) {
+		return;
+	}
+	$portfolio_url = get_page_url_by_template('page-portfolio.php');
+	$redirect_url = ($portfolio_url && !is_wp_error($portfolio_url)) ? $portfolio_url : home_url('/');
+	wp_safe_redirect($redirect_url, 301);
+	exit;
+}, 1);
 
 // SEO meta description: услуги, страницы, посты блога
 add_action('wp_head', function() {
 	$meta_description = '';
 	$post_id = get_queried_object_id();
 
-	if (is_singular('service')) {
+	if (is_front_page()) {
+		$meta_description = 'Стоматология Елены Мокренко в Москве — лечение зубов без боли, честные цены и гарантия по договору. Опыт врачей от 10 лет. Запись на консультацию.';
+	} elseif (is_singular('service')) {
 		$meta_description = get_post_meta($post_id, '_service_meta_description', true);
 		if (empty($meta_description)) {
 			$meta_description = get_the_title($post_id) . ' в стоматологической клинике в Москве. Цены, этапы лечения, показания. Запись на консультацию.';
@@ -437,6 +460,10 @@ add_action('wp_head', function() {
 			$content = wp_strip_all_tags(get_post_field('post_content', $post_id));
 			$meta_description = mb_substr($content, 0, 160);
 		}
+	} elseif (is_404()) {
+		$meta_description = 'Запрашиваемая страница не найдена. Перейдите на главную или в раздел контактов стоматологической клиники Елены Мокренко в Москве.';
+	} elseif (is_search()) {
+		$meta_description = 'Результаты поиска по запросу «' . esc_attr(get_search_query()) . '» на сайте стоматологической клиники Елены Мокренко в Москве.';
 	} else {
 		return;
 	}
@@ -449,12 +476,43 @@ add_action('wp_head', function() {
 	}
 }, 1);
 
-// noindex для страницы благодарности (служебная)
+// Canonical URL для всех страниц
 add_action('wp_head', function() {
-	if (is_page_template('page-thank-you.php')) {
+	$canonical = '';
+	
+	if (is_singular()) {
+		$canonical = get_permalink();
+	} elseif (is_front_page()) {
+		$canonical = home_url('/');
+	} elseif (is_home()) {
+		$canonical = get_permalink(get_option('page_for_posts'));
+	} elseif (is_category() || is_tag() || is_tax()) {
+		$canonical = get_term_link(get_queried_object());
+	} elseif (is_post_type_archive()) {
+		$canonical = get_post_type_archive_link(get_post_type());
+	} else {
+		$canonical = home_url(add_query_arg(null, null));
+	}
+	
+	if ($canonical && !is_wp_error($canonical)) {
+		echo '<link rel="canonical" href="' . esc_url($canonical) . '" />' . "\n";
+	}
+}, 1);
+
+// Meta robots для SEO-страниц (index, follow)
+add_action('wp_head', function() {
+	if (is_404() || is_search() || is_page_template('page-thank-you.php')) {
+		return;
+	}
+	echo '<meta name="robots" content="index, follow" />' . "\n";
+}, 2);
+
+// noindex для служебных страниц (благодарность, 404, поиск)
+add_action('wp_head', function() {
+	if (is_404() || is_search() || is_page_template('page-thank-you.php')) {
 		echo '<meta name="robots" content="noindex, follow" />' . "\n";
 	}
-}, 2);
+}, 3);
 
 // Исключить страницу благодарности из sitemap
 add_filter('wp_sitemaps_posts_query_args', function($args, $post_type) {
@@ -488,6 +546,23 @@ add_filter('document_title_parts', function($title_parts) {
 	if (is_front_page()) {
 		$title_parts['title'] = $site_name;
 		$title_parts['site'] = '';
+		return $title_parts;
+	}
+
+	// 404
+	if (is_404()) {
+		$title_parts['title'] = 'Страница не найдена';
+		$title_parts['site'] = $site_name;
+		return $title_parts;
+	}
+
+	// Поиск
+	if (is_search()) {
+		$title_parts['title'] = 'Результаты поиска: ' . get_search_query();
+		$title_parts['site'] = $site_name;
+		if (mb_strlen($title_parts['title']) > $max_title_len) {
+			$title_parts['title'] = mb_substr($title_parts['title'], 0, $max_title_len - 1) . '…';
+		}
 		return $title_parts;
 	}
 

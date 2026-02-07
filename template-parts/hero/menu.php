@@ -74,8 +74,8 @@
 		<a href="<?php echo esc_url(get_page_url_by_template('page-reviews.php')); ?>" class="hero__menu-link">Отзывы</a>
 		<a href="<?php echo esc_url(get_page_url_by_template('page-contacts.php')); ?>" class="hero__menu-link">Контакты</a>
 	</nav>
-	<div class="hero__menu-search">
-		<button class="hero__search-btn">
+	<div class="hero__menu-search" data-search-action="<?php echo esc_url(home_url('/')); ?>" data-theme-uri="<?php echo esc_url(get_stylesheet_directory_uri()); ?>">
+		<button class="hero__search-btn" type="button">
 			<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/search.svg" alt="" class="hero__search-icon">
 		</button>
 	</div>

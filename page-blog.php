@@ -113,7 +113,7 @@ get_header();
 									<?php the_excerpt(); ?>
 								</div>
 							<?php endif; ?>
-							<a href="<?php the_permalink(); ?>" class="blog-card__link">Читать далее →</a>
+							<div class="link-underline-slide-wrap"><a href="<?php the_permalink(); ?>" class="blog-card__link link-underline-slide">Читать далее</a></div>
 						</div>
 					</article>
 				</div>

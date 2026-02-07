@@ -37,7 +37,9 @@ $doctor_link = get_permalink($doctor_id);
                 <div class="case-card__content">
                     <h3 class="case-card__name"><?php echo esc_html($doctor->post_title); ?></h3>
                     <p class="case-card__position"><?php echo esc_html($doctor_position); ?></p>
-                    <a href="<?php echo esc_url($doctor_link); ?>" class="case-card__link">Подробнее</a>
+                    <div class="case-card__link-wrap">
+                        <a href="<?php echo esc_url($doctor_link); ?>" class="case-card__link">Подробнее</a>
+                    </div>
                 </div>
             </div>
         </div>

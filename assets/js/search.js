@@ -4,14 +4,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchContainer = document.querySelector('.hero__menu-search');
     
     if (searchBtn && searchContainer) {
-        // Создаем выпадающее меню
+        const searchAction = searchContainer.getAttribute('data-search-action') || '/';
+        const themeUri = searchContainer.getAttribute('data-theme-uri') || '';
+        const iconSrc = themeUri ? themeUri + '/assets/svg/link_arrow_1.svg' : '';
+
         const dropdown = document.createElement('div');
         dropdown.className = 'search__dropdown';
         dropdown.innerHTML = `
-            <form class="search__form" method="get" action="/">
+            <form class="search__form" method="get" action="${searchAction}">
                 <input type="search" name="s" placeholder="Поиск по сайту..." class="search__input">
                 <button type="submit" class="search__submit">
-                    <img src="/mokrenko/wp-content/themes/mokrenko/assets/svg/link_arrow_1.svg" alt="" class="search__icon">
+                    <img src="${iconSrc}" alt="" class="search__icon">
                 </button>
             </form>
         `;

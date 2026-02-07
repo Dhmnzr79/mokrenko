@@ -93,7 +93,7 @@ get_header();
 													<?php echo get_the_excerpt($related_post->ID); ?>
 												</div>
 											<?php endif; ?>
-											<a href="<?php echo get_permalink($related_post->ID); ?>" class="blog-card__link">Читать далее →</a>
+											<div class="link-underline-slide-wrap"><a href="<?php echo get_permalink($related_post->ID); ?>" class="blog-card__link link-underline-slide">Читать далее</a></div>
 										</div>
 									</article>
 								</div>

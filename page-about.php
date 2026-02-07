@@ -160,9 +160,9 @@ get_header();
 			<div class="col-sm-4 col-lg-4">
 				<div class="reviews__stats">
 					<div class="reviews__faces">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_01.jpg" alt="Фото пациента 1" class="reviews__face">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_06.jpg" alt="Фото пациента 2" class="reviews__face">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_07.jpg" alt="Фото пациента 3" class="reviews__face">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_01.jpg" alt="" class="reviews__face">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_06.jpg" alt="" class="reviews__face">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/circle_face_07.jpg" alt="" class="reviews__face">
 					</div>
 					<div class="reviews__rating">
 						<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/rating_stars.svg" alt="" class="reviews__stars">

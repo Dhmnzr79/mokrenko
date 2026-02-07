@@ -54,7 +54,7 @@
 						<p>Выбор пользователей Яндекса</p>
 					</div>
 					<div class="award-card__link">
-						<a href="<?php echo esc_url(home_url('/')); ?>" class="award-card__link-item">
+						<a href="https://yandex.ru/maps/org/stomatologicheskaya_klinika_yeleny_mokrenko/163438487792/reviews/?ll=37.634335%2C55.789806&z=17" target="_blank" rel="noopener noreferrer" class="award-card__link-item">
 							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/link_arrow_1.svg" alt="">
 						</a>
 					</div>
