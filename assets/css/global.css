@@ -565,12 +565,35 @@
     margin-bottom: 20px;
 }
 
+.footer__search-form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 .footer__search-input {
-    width: 100%;
+    flex: 1;
+    min-width: 0;
     padding: 10px 15px;
     border: 1px solid #ddd;
     border-radius: 8px;
     font-size: 14px;
+}
+
+.footer__search-submit {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.footer__search-icon {
+    display: block;
 }
 
 .footer__social {

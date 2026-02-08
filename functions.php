@@ -113,6 +113,149 @@ require_once get_template_directory() . '/inc/services/meta-boxes.php';
 // Подключение Schema.org микроразметки
 require_once get_template_directory() . '/inc/schema.php';
 
+// ====== amoCRM API v4 (Contact Form 7 → сделки). Токен в wp-config.php: AMO_ACCESS_TOKEN ======
+define('AMO_DOMAIN', 'kstrof3.amocrm.ru');
+
+function amo_request($method, $endpoint, $body = null) {
+	if (!defined('AMO_ACCESS_TOKEN') || AMO_ACCESS_TOKEN === '') {
+		return null;
+	}
+	$args = [
+		'method'  => $method,
+		'headers' => [
+			'Authorization' => 'Bearer ' . AMO_ACCESS_TOKEN,
+			'Content-Type'  => 'application/json',
+		],
+		'timeout' => 15,
+	];
+
+	if ($body !== null) {
+		$args['body'] = json_encode($body);
+	}
+
+	$response = wp_remote_request(
+		'https://' . AMO_DOMAIN . '/api/v4/' . ltrim($endpoint, '/'),
+		$args
+	);
+
+	if (is_wp_error($response)) {
+		error_log('amoCRM error: ' . $response->get_error_message());
+		return null;
+	}
+
+	$code = wp_remote_retrieve_response_code($response);
+	if ($code >= 400) {
+		error_log('amoCRM HTTP ' . $code . ': ' . wp_remote_retrieve_body($response));
+		return null;
+	}
+
+	return json_decode(wp_remote_retrieve_body($response), true);
+}
+
+add_action('wpcf7_mail_sent', function ($contact_form) {
+	if (!defined('AMO_ACCESS_TOKEN') || AMO_ACCESS_TOKEN === '') {
+		return;
+	}
+	$submission = WPCF7_Submission::get_instance();
+	if (!$submission) {
+		return;
+	}
+
+	$data = $submission->get_posted_data();
+	$name    = isset($data['your-name']) ? sanitize_text_field($data['your-name']) : '';
+	$phone   = isset($data['your-phone']) ? sanitize_text_field($data['your-phone']) : '';
+	$comment = isset($data['your-message']) ? sanitize_textarea_field($data['your-message']) : '';
+	$page    = isset($_SERVER['HTTP_REFERER']) ? esc_url_raw($_SERVER['HTTP_REFERER']) : '';
+
+	if ($phone === '') {
+		return;
+	}
+
+	// 1. Найти или создать контакт
+	$contact = amo_request('GET', 'contacts?query=' . urlencode($phone));
+
+	$contact_id = null;
+	if (!empty($contact['_embedded']['contacts'][0]['id'])) {
+		$contact_id = (int) $contact['_embedded']['contacts'][0]['id'];
+	} else {
+		$new_contact = amo_request('POST', 'contacts', [
+			[
+				'name' => $name !== '' ? $name : $phone,
+				'custom_fields_values' => [
+					[
+						'field_code' => 'PHONE',
+						'values' => [
+							['value' => $phone],
+						],
+					],
+				],
+			],
+		]);
+		$contact_id = isset($new_contact['_embedded']['contacts'][0]['id'])
+			? (int) $new_contact['_embedded']['contacts'][0]['id']
+			: null;
+	}
+
+	if (!$contact_id) {
+		return;
+	}
+
+	// 2. ID воронки и этапа
+	$pipelines = amo_request('GET', 'leads/pipelines');
+	$pipeline_id = null;
+	$status_id   = null;
+
+	if (!empty($pipelines['_embedded']['pipelines'])) {
+		foreach ($pipelines['_embedded']['pipelines'] as $pipeline) {
+			if (isset($pipeline['name']) && $pipeline['name'] === 'КОЛЛ ЦЕНТР') {
+				$pipeline_id = (int) $pipeline['id'];
+				$statuses = isset($pipeline['statuses']) ? $pipeline['statuses'] : (isset($pipeline['_embedded']['statuses']) ? $pipeline['_embedded']['statuses'] : []);
+				foreach ($statuses as $status) {
+					if (isset($status['name']) && $status['name'] === 'Новая заявка') {
+						$status_id = (int) $status['id'];
+						break;
+					}
+				}
+				break;
+			}
+		}
+	}
+
+	if (!$pipeline_id || !$status_id) {
+		return;
+	}
+
+	// 3. Создать сделку
+	$lead = amo_request('POST', 'leads', [
+		[
+			'name'        => 'Заявка с сайта',
+			'pipeline_id' => $pipeline_id,
+			'status_id'   => $status_id,
+			'_embedded'   => [
+				'contacts' => [
+					['id' => $contact_id],
+				],
+			],
+		],
+	]);
+
+	$lead_id = isset($lead['_embedded']['leads'][0]['id']) ? (int) $lead['_embedded']['leads'][0]['id'] : null;
+	if (!$lead_id) {
+		return;
+	}
+
+	// 4. Примечание
+	$note_text = "Заявка с сайта\nИмя: {$name}\nТелефон: {$phone}\nКомментарий: {$comment}\nСтраница: {$page}";
+	amo_request('POST', "leads/{$lead_id}/notes", [
+		[
+			'note_type' => 'common',
+			'params'    => [
+				'text' => $note_text,
+			],
+		],
+	]);
+});
+
 add_action('init', function () {
 	if (!taxonomy_exists('service_category')) {
 		return;
