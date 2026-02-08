@@ -112,10 +112,3 @@ h3 { font-size: clamp(18px, 2.4vw, 22px); line-height: 1.3; }
 /* В components.css (в начале) */
 .section--contacts { padding-top: 40px; } /* Модификатор здесь */
 ```
-
-## Чек-лист перед коммитом
-- [ ] Верный файл (base/layout/components/utilities/pages).
-- [ ] Нет дублей правил, нет `!important`.
-- [ ] Контекст ≤ 1 уровень.
-- [ ] Медиа внизу файла.
-- [ ] Комментарий/обоснование изменения.
