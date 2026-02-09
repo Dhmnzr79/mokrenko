@@ -374,26 +374,18 @@
 }
 
 .page-intro-mobile__box {
-    background: linear-gradient(99.05deg, #3AD5BC 2.79%, #B7D8F8 99.53%), #CEEBE6;
-    border-radius: 20px;
-    padding: 20px 20px 50px 20px;
+    background: linear-gradient(99.05deg, #2eb4d8 2.79%, #8ee1bf 99.53%), #CEEBE6;
+    border-radius: 10px;
     position: relative;
     margin-bottom: 20px;
+    padding: 20px 110px 20px 20px;
 }
 
 .page-intro-mobile__image {
     position: absolute;
-    right: 20px;
+    right: 10px;
     bottom: 0;
-    max-width: 38%;
-}
-
-.page-intro-mobile h1,
-.page-intro-mobile__title {
-    font-size: 54px;
-    line-height: 1.2;
-    padding-right: 30%;
-    margin: 0;
+    max-width: 110px;
 }
 
 .page-intro-mobile__benefits {
@@ -408,12 +400,6 @@
     align-items: flex-start;
     gap: 10px;
     flex-direction: column;
-}
-
-.page-intro-mobile__benefit-icon {
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
 }
 
 .page-intro-mobile__benefit-item p {
@@ -970,17 +956,17 @@ body.search {
 @media (max-width: 767px) {
     
     /* Page intro mobile */
-    .page-intro-mobile h1,
-    .page-intro-mobile__title {
-        font-size: 24px;
-    }
-    
-    .page-intro-mobile__box {
-        padding: 30px 20px;
+    .page-intro-mobile h1, .page-intro-mobile__title {
+        font-size: 22px;
+        color: #fff;
+        font-family: 'NTSomic', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        letter-spacing: 0.3px;
+        margin: 0;
+        line-height: 1.3;
     }
     
     .page-intro-mobile__image {
-        max-height: 140%;
+        max-width: 110px;
     }
     
     /* Button */
