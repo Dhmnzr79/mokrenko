@@ -1,3 +1,12 @@
+/* ============================================
+   MEDIA QUERIES STRUCTURE (рекомендуемый порядок):
+   1. Базовые стили (mobile-first)
+   2. @media (min-width: 768px) and (max-width: 991px) - планшеты
+   3. @media (min-width: 992px) and (max-width: 1279px) - макбуки
+   4. @media (min-width: 1280px) - десктоп
+   5. @media (max-width: 767px) - мобильные (переопределения)
+   ============================================ */
+
 /* Doctor hero block */
 .section--doctor-hero {
 	padding-block: 0;
@@ -266,10 +275,17 @@
     border-radius: 16px;
     padding: 16px;
     position: relative;
-    background-image: url('../../images/mokrenko_first.png'), linear-gradient(94.24deg, #84EBDA -5.47%, #B7D8F8 114.07%);
-    background-repeat: no-repeat, no-repeat;
-    background-position: 70% bottom, 0 0;
-    background-size: 370px, cover;
+    background: linear-gradient(94.24deg, #84EBDA -5.47%, #B7D8F8 114.07%);
+}
+
+.page-intro__doctor-image {
+    position: absolute;
+    right: 250px;
+    bottom: 0;
+    max-width: 370px;
+    height: auto;
+    z-index: 1;
+    pointer-events: none;
 }
 
 
@@ -282,6 +298,9 @@
     align-items: stretch;
     gap: 30px;
     padding: 40px;
+    position: relative;
+    z-index: 2;
+    min-height: 580px;
 }
 
 .page-intro__content {
@@ -289,6 +308,7 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
+    justify-content: space-between;
 }
 
 .page-intro__content h1 {
@@ -844,29 +864,48 @@ body.search {
 	}
 }
 
-/* Desktop / планшет: min-width 992px */
-@media (min-width: var(--brk-lg)) {
-    .page-intro-mobile {
-        display: none;
-    }
+/* Desktop: min-width 1280px */
+@media (min-width: 1280px) {
+    /* Desktop styles */
 }
 
+/* Tablet/MacBook: min-width 992px and max-width 1279px */
 @media (min-width: 992px) and (max-width: 1279px) {
     .page-intro__layout {
         padding: 20px;
     }
 
     .page-intro__box {
-        background-size: 340px, cover;
         min-height: 600px;
+    }
+
+    .page-intro__doctor-image {
+        max-width: 340px;
+        right: 40px;
     }
 
     .page-intro__content h1 {
         font-size: 48px;
+        padding-right: 0px;
+    }
+    
+    .page-intro__info {
+        background: #ffffff85;
+        max-width: 250px;
     }
 }
 
-@media (min-width: 768px) {
+/* Small tablet: min-width 768px and max-width 991px */
+@media (min-width: 768px) and (max-width: 991px) {
+    /* База для стилей планшетов - стили будут добавлены отдельно */
+}
+
+/* Tablet/MacBook and Desktop: min-width 992px */
+@media (min-width: 992px) {
+    .page-intro-mobile {
+        display: none;
+    }
+    
     .section--page-intro {
         display: block;
     }
@@ -880,14 +919,8 @@ body.search {
     }
 }
 
-@media (max-width: calc(var(--brk-lg) - 0.02px)) {
-    .page-intro {
-        display: none;
-    }
-}
-
-/* Mobile: до 768px */
-@media (max-width: 767px) {
+/* Mobile and Small tablet: до 991px */
+@media (max-width: 991px) {
     /* Скрываем десктопную версию первого экрана */
     .section--page-intro {
         display: none;
@@ -901,6 +934,14 @@ body.search {
     .section--page-intro-mobile {
         display: block;
     }
+    
+    .page-intro__doctor-image {
+        display: none;
+    }
+}
+
+/* Mobile: до 767px */
+@media (max-width: 767px) {
     
     /* Page intro mobile */
     .page-intro-mobile h1,

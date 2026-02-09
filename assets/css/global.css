@@ -1,6 +1,15 @@
 /* Global elements: Header, Footer, Page Top, Popups */
 
 /* ============================================
+   MEDIA QUERIES STRUCTURE (рекомендуемый порядок):
+   1. Базовые стили (mobile-first)
+   2. @media (min-width: 768px) and (max-width: 991px) - планшеты
+   3. @media (min-width: 992px) and (max-width: 1279px) - макбуки
+   4. @media (min-width: 1280px) - десктоп
+   5. @media (max-width: 767px) - мобильные (переопределения)
+   ============================================ */
+
+/* ============================================
    HEADER STYLES
    ============================================ */
 
@@ -119,6 +128,8 @@
     background: #fff;
     padding: 10px;
     border-radius: 10px;
+    position: relative;
+    z-index: 2;
 }
 
 .hero__menu-burger {
@@ -1048,6 +1059,11 @@ body.popup-open {
     }
 }
 
+/* Small tablet: min-width 768px and max-width 991px */
+@media (min-width: 768px) and (max-width: 991px) {
+    /* База для стилей планшетов - стили будут добавлены отдельно */
+}
+
 /* Tablet/MacBook: min-width 992px and max-width 1279px */
 @media (min-width: 992px) and (max-width: 1279px) {
     /* Header row: 4 колонки (3/3/3/3) как на десктопе */
@@ -1118,8 +1134,24 @@ body.popup-open {
     }
 }
 
-/* Below desktop: max-width 1279px */
-@media (max-width: 1279px) {
+/* Tablet/MacBook: min-width 992px and max-width 1279px */
+@media (min-width: 992px) and (max-width: 1279px) {
+    .footer__title--empty {
+        display: none;
+    }
+    
+    .footer__copyright {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .footer__copyright-right {
+        justify-content: flex-start;
+    }
+}
+
+/* Tablet: min-width 768px and max-width 991px */
+@media (min-width: 768px) and (max-width: 991px) {
     .footer__title--empty {
         display: none;
     }
@@ -1147,7 +1179,7 @@ body.popup-open {
 }
 
 /* Popup mobile */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .popup-overlay {
         align-items: flex-end;
     }

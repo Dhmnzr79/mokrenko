@@ -162,6 +162,7 @@ add_action('wpcf7_mail_sent', function ($contact_form) {
 	}
 
 	$data = $submission->get_posted_data();
+	error_log('AMO: form sent, phone=' . (isset($data['your-phone']) ? $data['your-phone'] : 'empty'));
 	$name    = isset($data['your-name']) ? sanitize_text_field($data['your-name']) : '';
 	$phone   = isset($data['your-phone']) ? sanitize_text_field($data['your-phone']) : '';
 	$comment = isset($data['your-message']) ? sanitize_textarea_field($data['your-message']) : '';
@@ -358,7 +359,27 @@ function theme_admin_scripts($hook) {
  *    - assets/admin/ - JS и CSS для админки
  */
 
-add_action('wp_enqueue_scripts', function(){
+	// Preload шрифта первого экрана, LCP-изображения и первого CSS (приоритет раньше других wp_head)
+	add_action('wp_head', function () {
+		$theme_uri = get_stylesheet_directory_uri();
+		$ver = wp_get_theme()->get('Version');
+		echo '<link rel="preload" href="' . esc_url($theme_uri . '/assets/fonts/NTSomic-Semibold.woff2') . '" as="font" type="font/woff2" crossorigin>' . "\n";
+		echo '<link rel="preload" href="' . esc_url($theme_uri . '/assets/css/base.css?ver=' . $ver) . '" as="style">' . "\n";
+		if (is_front_page()) {
+			echo '<link rel="preload" href="' . esc_url($theme_uri . '/assets/images/mokrenko_first_mobile.png') . '" as="image">' . "\n";
+			echo '<link rel="preload" href="' . esc_url($theme_uri . '/assets/images/mokrenko_first.png') . '" as="image" media="(min-width: 992px)">' . "\n";
+			// Минимальный critical CSS для первого экрана (hero-mobile)
+			echo '<style id="critical-css">:root{--container-max:1400px;--gutter-mob:16px;--gutter-desk:24px;--color-accent:#3EB3BC;--gradient-brand:linear-gradient(94.24deg,#84EBDA -5.47%,#B7D8F8 114.07%);}html{box-sizing:border-box;}*,*::before,*::after{box-sizing:inherit;}body{margin:0;font-size:16px;line-height:1.5;color:#111;font-family:system-ui,-apple-system,sans-serif;}.container{width:100%;max-width:1400px;margin:0 auto;padding-left:16px;padding-right:16px;}.section--hero-mobile{padding:20px 0;}.hero-mobile__image{max-width:100%;height:auto;display:block;}</style>' . "\n";
+		}
+		// Preload десктопного изображения врача для других страниц с hero блоками
+		$pages_with_hero_doctor = ['page-reviews.php', 'page-doctors.php', 'page-about.php', 'page-blog.php', 'page-prices.php', 'page-portfolio.php'];
+		$current_template = get_page_template_slug();
+		if (in_array($current_template, $pages_with_hero_doctor) || is_page_template($pages_with_hero_doctor)) {
+			echo '<link rel="preload" href="' . esc_url($theme_uri . '/assets/images/mokrenko_first.png') . '" as="image" media="(min-width: 992px)">' . "\n";
+		}
+	}, 0);
+
+	add_action('wp_enqueue_scripts', function(){
 	$ver = wp_get_theme()->get('Version');
 	$uri = get_stylesheet_directory_uri() . '/assets/css/';
 	wp_enqueue_style('theme-base',       $uri.'base.css',       [], $ver);
@@ -386,35 +407,10 @@ add_action('wp_enqueue_scripts', function(){
 		wp_enqueue_style('page-service', $uri.'pages/service.css', ['theme-utilities'], $ver);
 	}
 	
-	// Яндекс карта для страницы контактов
+	// Яндекс.Карты: ленивая загрузка при появлении блока в viewport (только страница контактов)
 	if (is_page_template('page-contacts.php')) {
-		wp_enqueue_script('yandex-map', 'https://api-maps.yandex.ru/2.1/?apikey=YOUR_API_KEY&lang=ru_RU', [], null, true);
-		wp_add_inline_script('yandex-map', '
-			ymaps.ready(function () {
-				var myMap = new ymaps.Map("yandex-map", {
-					center: [55.7934, 37.6331],
-					zoom: 16,
-					controls: []
-				});
-				
-				myMap.behaviors.disable("scrollZoom");
-				
-				var myPlacemark = new ymaps.Placemark([55.7934, 37.6331], {
-					balloonContent: "г. Москва, ул. Проспект Мира 75, стр. 1 (м.Рижская)"
-				}, {
-					preset: "islands#redDotIcon"
-				});
-				
-				myMap.geoObjects.add(myPlacemark);
-				
-				var mapContainer = document.getElementById("yandex-map");
-				mapContainer.addEventListener("wheel", function(e) {
-					if (!e.ctrlKey) {
-						e.preventDefault();
-					}
-				}, { passive: false });
-			});
-		', 'after');
+		$yandex_lazy = "(function(){var e=document.getElementById('yandex-map');if(!e)return;var u='https://api-maps.yandex.ru/2.1/?apikey=YOUR_API_KEY&lang=ru_RU';var i=function(){ymaps.ready(function(){var m=new ymaps.Map('yandex-map',{center:[55.7934,37.6331],zoom:16,controls:[]});m.behaviors.disable('scrollZoom');var p=new ymaps.Placemark([55.7934,37.6331],{balloonContent:'г. Москва, ул. Проспект Мира 75, стр. 1 (м.Рижская)'},{preset:'islands#redDotIcon'});m.geoObjects.add(p);var c=document.getElementById('yandex-map');if(c)c.addEventListener('wheel',function(ev){if(!ev.ctrlKey)ev.preventDefault();},{passive:false});});};var o=new IntersectionObserver(function(entries){if(!entries[0].isIntersecting)return;o.disconnect();var s=document.createElement('script');s.src=u;s.onload=i;document.head.appendChild(s);},{rootMargin:'100px'});o.observe(e);})();";
+		wp_add_inline_script('theme-mobile-menu', $yandex_lazy, 'after');
 	}
 	
 	// Enqueue slider script on front page
@@ -450,6 +446,18 @@ add_action('wp_enqueue_scripts', function(){
 	// Enqueue mobile menu script
 	wp_enqueue_script('theme-mobile-menu', get_stylesheet_directory_uri() . '/assets/js/mobile-menu.js', [], $ver, true);
 });
+
+// defer для скриптов темы (не блокировать рендер)
+add_filter('script_loader_tag', function ($tag, $handle, $src) {
+	$defer_handles = [
+		'theme-slider', 'theme-lightbox', 'theme-search', 'theme-services-menu',
+		'theme-popup', 'theme-mobile-menu'
+	];
+	if (in_array($handle, $defer_handles, true)) {
+		return str_replace(' src', ' defer src', $tag);
+	}
+	return $tag;
+}, 10, 3);
 
 // Функция для проверки, нужно ли скрывать обычный header (для страниц с .page-top)
 function theme_should_hide_default_header() {

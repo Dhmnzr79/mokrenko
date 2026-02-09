@@ -1,8 +1,19 @@
 :root{
+  /* Breakpoints */
+  --brk-mobile-max: 767px;        /* Мобильные: до 767px */
+  --brk-tablet-min: 768px;        /* Планшеты: 768-991px */
+  --brk-tablet-max: 991px;
+  --brk-desktop-small-min: 992px; /* Макбуки/планшеты: 992-1279px */
+  --brk-desktop-small-max: 1279px;
+  --brk-desktop-min: 1280px;      /* Десктоп: от 1280px */
+  --brk-desktop-xl: 1400px;       /* Большой десктоп */
+  
+  /* Legacy breakpoints (для обратной совместимости) */
   --brk-sm: 768px;
   --brk-lg: 1280px;
   --brk-xl: 1400px;
 
+  /* Container & spacing */
   --container-max: 1400px;
   --gutter-mob: 16px;
   --gutter-desk: 24px;

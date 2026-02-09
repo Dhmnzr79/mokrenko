@@ -2,6 +2,8 @@
 .container{
   width: min(var(--container-max), calc(100% - 2*var(--gutter-mob)));
   margin-inline: auto;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 /* 12-col grid */

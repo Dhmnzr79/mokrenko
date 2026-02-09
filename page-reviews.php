@@ -44,6 +44,7 @@ get_header();
 <section class="section section--hero hero">
 	<div class="container">
 		<div class="hero__box bg-gradient-brand hero__box--with-doctor">
+			<img src="<?php echo get_template_directory_uri(); ?>/assets/images/mokrenko_first.png" alt="Доктор Мокренко" class="hero__doctor-image" fetchpriority="high" loading="eager">
 			<?php get_template_part('template-parts/hero/menu'); ?>
 			<div class="hero__layout">
 				<div class="hero__content">

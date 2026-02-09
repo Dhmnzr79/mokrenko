@@ -33,15 +33,21 @@ document.addEventListener('DOMContentLoaded', function() {
             visibleSlides = window.innerWidth >= 768 ? 2 : 1;
         }
         
+        // Кэш размеров для карусели (устраняет forced reflow)
+        let cachedSlideWidth = 0;
+        let cachedGap = 30;
+        function updateCarouselCache() {
+            cachedSlideWidth = slides[0].offsetWidth;
+            var trackStyle = window.getComputedStyle(track);
+            cachedGap = parseInt(trackStyle.gap, 10) || 30;
+        }
+        
         // Update slider state
         function updateSlider() {
             if (isCarousel) {
-                // Карусель: сдвигаем track
-                const slideWidth = slides[0].offsetWidth;
-                const trackStyle = window.getComputedStyle(track);
-                const gap = parseInt(trackStyle.gap) || 30;
-                const offset = currentSlide * (slideWidth + gap);
-                track.style.transform = `translateX(-${offset}px)`;
+                // Карусель: используем кэш, запись в rAF чтобы не смешивать read/write
+                var offset = currentSlide * (cachedSlideWidth + cachedGap);
+                track.style.transform = 'translateX(-' + offset + 'px)';
                 
                 // Update button states
                 prevBtn.disabled = currentSlide === 0;
@@ -159,16 +165,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (newVisibleSlides !== visibleSlides) {
                     visibleSlides = newVisibleSlides;
-                    // Корректируем текущий слайд если нужно
                     if (currentSlide > totalSlides - visibleSlides) {
                         currentSlide = Math.max(0, totalSlides - visibleSlides);
                     }
-                    updateSlider();
+                    updateCarouselCache();
+                    requestAnimationFrame(function() { updateSlider(); });
                 }
             });
         }
         
-        // Initialize slider
-        updateSlider();
+        // Initialize: читаем размеры, затем в rAF применяем (разделение read/write)
+        if (isCarousel) {
+            updateCarouselCache();
+            requestAnimationFrame(function() { updateSlider(); });
+        } else {
+            updateSlider();
+        }
     });
 });
