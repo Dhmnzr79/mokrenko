@@ -485,6 +485,10 @@ get_header();
 						</div>
 						<h3>Рассрочка платежа</h3>
 						<p>Беспроцентная рассрочка на 6-12 месяцев</p>
+						<button class="btn" data-popup="open">
+							Узнать больше
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="">
+						</button>
 					</div>
 				</div>
 			</div>

@@ -407,11 +407,6 @@ function theme_admin_scripts($hook) {
 		wp_enqueue_style('page-service', $uri.'pages/service.css', ['theme-utilities'], $ver);
 	}
 	
-	// Яндекс.Карты: ленивая загрузка при появлении блока в viewport (только страница контактов)
-	if (is_page_template('page-contacts.php')) {
-		$yandex_lazy = "(function(){var e=document.getElementById('yandex-map');if(!e)return;var u='https://api-maps.yandex.ru/2.1/?apikey=YOUR_API_KEY&lang=ru_RU';var i=function(){ymaps.ready(function(){var m=new ymaps.Map('yandex-map',{center:[55.7934,37.6331],zoom:16,controls:[]});m.behaviors.disable('scrollZoom');var p=new ymaps.Placemark([55.7934,37.6331],{balloonContent:'г. Москва, ул. Проспект Мира 75, стр. 1 (м.Рижская)'},{preset:'islands#redDotIcon'});m.geoObjects.add(p);var c=document.getElementById('yandex-map');if(c)c.addEventListener('wheel',function(ev){if(!ev.ctrlKey)ev.preventDefault();},{passive:false});});};var o=new IntersectionObserver(function(entries){if(!entries[0].isIntersecting)return;o.disconnect();var s=document.createElement('script');s.src=u;s.onload=i;document.head.appendChild(s);},{rootMargin:'100px'});o.observe(e);})();";
-		wp_add_inline_script('theme-mobile-menu', $yandex_lazy, 'after');
-	}
 	
 	// Enqueue slider script on front page
 	if (is_front_page()) {

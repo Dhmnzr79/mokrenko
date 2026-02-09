@@ -54,7 +54,9 @@ get_header();
 
 <section class="section section--map">
 	<div class="container">
-		<div class="contacts__map" id="yandex-map"></div>
+		<div class="contacts__map" role="region" aria-label="Карта проезда">
+			<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A323a54469180fade51313f036c1802f512630e5b6ff890ed079c3eccf0923412&amp;width=100%25&amp;height=500&amp;lang=ru_RU&amp;scroll=true"></script>
+		</div>
 	</div>
 </section>
 
