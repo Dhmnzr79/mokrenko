@@ -46,7 +46,6 @@
 .service-hero__content h1 {
     margin: 0;
     font-size: 54px;
-    padding-right: 50px;
 }
 
 .service-hero__subtitle {
@@ -120,7 +119,7 @@
     left: -20px;
     width: 120px;
     height: 120px;
-    background-image: url(../../svg/figure_1.svg);
+    background-image: url("../../svg/figure_1.svg");
     z-index: 1;
     background-repeat: no-repeat;
     background-size: cover;
@@ -133,7 +132,7 @@
     right: -40px;
     width: 120px;
     height: 120px;
-    background-image: url(../../svg/figure_2.svg);
+    background-image: url("../../svg/figure_2.svg");
     z-index: 1;
     background-repeat: no-repeat;
     background-size: contain;
@@ -770,11 +769,29 @@
 }
 
 /* ========================================
-   Media Queries
+   MEDIA QUERIES
    ======================================== */
 
-/* Tablet: max-width 991.98px */
-@media (max-width: 991.98px) {
+/* Desktop: min-width 1280px */
+/* (нет специфичных стилей для десктопа) */
+
+
+/* Tablet/MacBook: min-width 992px and max-width 1279px */
+@media (min-width: 992px) and (max-width: 1279px) {
+    .service-hero__layout {
+        padding: 20px;
+    }
+    
+    .service-hero__content h1 {
+        font-size: 48px;
+    }
+}
+
+/* Tablet: min-width 768px and max-width 991px */
+/* (нет специфичных стилей для планшетов) */
+
+/* Mobile and Small tablet: max-width 991px */
+@media (max-width: 991px) {
     /* Service Hero */
     .service-hero__layout {
         flex-direction: column;
@@ -868,8 +885,8 @@
     }
 }
 
-/* Mobile: max-width 767.98px */
-@media (max-width: 767.98px) {
+/* Mobile: max-width 767px */
+@media (max-width: 767px) {
     /* Service Hero */
     .service-hero__layout {
         padding: 0px;
@@ -1138,41 +1155,6 @@
 
     .service-indications__item {
         font-size: 15px;
-    }
-}
-
-/* Tablet/MacBook: min-width 992px and max-width 1279px */
-@media (min-width: 992px) and (max-width: 1279px) {
-    .service-hero__layout {
-        padding: 20px;
-    }
-    
-    .service-hero__content h1 {
-        font-size: 48px;
-    }
-    
-    /* Service clinic benefits: сетка как на десктопе */
-    .service-clinic-benefits .col-lg-8 {
-        grid-column: span 8;
-    }
-    
-    .service-clinic-benefits .col-lg-4 {
-        grid-column: span 4;
-    }
-    
-    /* Service work stages: сетка как на десктопе */
-    .service-work-stages__stage .col-lg-6 {
-        grid-column: span 6;
-    }
-    
-    /* Service info blocks: сетка как на десктопе */
-    .service-info-blocks__block .col-lg-6 {
-        grid-column: span 6;
-    }
-    
-    /* Service indications: сетка как на десктопе */
-    .service-indications .col-lg-6 {
-        grid-column: span 6;
     }
 }
 

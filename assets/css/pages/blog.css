@@ -248,7 +248,43 @@
     gap: 0;
 }
 
-@media (max-width: 1279px) {
+/* ========================================
+   MEDIA QUERIES
+   ======================================== */
+
+/* Desktop: min-width 1280px */
+/* (нет специфичных стилей для десктопа) */
+
+/* Tablet/MacBook: min-width 992px and max-width 1279px */
+@media (min-width: 992px) and (max-width: 1279px) {
+    .blog__grid {
+        gap: var(--col-gap-mob);
+    }
+    
+    .blog-card__content {
+        padding: 16px 0;
+    }
+    
+    .blog-card__title {
+        font-size: 20px;
+    }
+    
+    .blog-single__article {
+        padding: 30px 20px;
+    }
+    
+    .blog-single__title {
+        font-size: 32px;
+    }
+    
+    /* Blog: 3 карточки в ряд (каждая по 4 колонки) */
+    .section--blog .col-lg-4 {
+        grid-column: span 4;
+    }
+}
+
+/* Tablet: min-width 768px and max-width 991px */
+@media (min-width: 768px) and (max-width: 991px) {
     .blog__grid {
         gap: var(--col-gap-mob);
     }
@@ -270,7 +306,8 @@
     }
 }
 
-@media (max-width: 767.98px) {
+/* Mobile: max-width 767px */
+@media (max-width: 767px) {
     .blog__grid {
         gap: 16px;
     }

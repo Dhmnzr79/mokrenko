@@ -171,7 +171,7 @@
 
 .section--doctors-works .case-card {
 	background-color: #d8e7e7;
-	background-image: url(../../svg/pattern.svg);
+	background-image: url("../../svg/pattern.svg");
 	background-position: left top;
 	background-repeat: no-repeat;
 	background-size: auto;
@@ -853,7 +853,7 @@ body.search {
 }
 
 /* ========================================
-   MEDIA QUERIES (десктоп → планшет → мобилка)
+   MEDIA QUERIES
    ======================================== */
 
 /* Desktop: min-width 1280px */
@@ -862,11 +862,6 @@ body.search {
 		padding-left: var(--gutter-desk, 24px);
 		padding-right: var(--gutter-desk, 24px);
 	}
-}
-
-/* Desktop: min-width 1280px */
-@media (min-width: 1280px) {
-    /* Desktop styles */
 }
 
 /* Tablet/MacBook: min-width 992px and max-width 1279px */
@@ -880,8 +875,7 @@ body.search {
     }
 
     .page-intro__doctor-image {
-        max-width: 340px;
-        right: 40px;
+        right: 100px;
     }
 
     .page-intro__content h1 {
@@ -893,9 +887,14 @@ body.search {
         background: #ffffff85;
         max-width: 250px;
     }
+    
+    /* Doctors: 3 карточки в ряд (каждая по 4 колонки) */
+    .section--doctors .col-lg-4 {
+        grid-column: span 4;
+    }
 }
 
-/* Small tablet: min-width 768px and max-width 991px */
+/* Tablet: min-width 768px and max-width 991px */
 @media (min-width: 768px) and (max-width: 991px) {
     /* База для стилей планшетов - стили будут добавлены отдельно */
 }
@@ -919,7 +918,7 @@ body.search {
     }
 }
 
-/* Mobile and Small tablet: до 991px */
+/* Mobile and Small tablet: max-width 991px */
 @media (max-width: 991px) {
     /* Скрываем десктопную версию первого экрана */
     .section--page-intro {
@@ -940,7 +939,7 @@ body.search {
     }
 }
 
-/* Mobile: до 767px */
+/* Mobile: max-width 767px */
 @media (max-width: 767px) {
     
     /* Page intro mobile */

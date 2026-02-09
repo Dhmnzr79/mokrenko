@@ -129,7 +129,7 @@
     padding: 10px;
     border-radius: 10px;
     position: relative;
-    z-index: 2;
+    z-index: 100;
 }
 
 .hero__menu-burger {
@@ -677,9 +677,8 @@
 .footer__disclaimer {
     background-color: #D0DEE1;
     padding: 12px 0;
-    margin-top: 0;
-    text-align: center;
     margin-top: 10px;
+    text-align: center;
 }
 
 .footer__disclaimer p {
@@ -1035,38 +1034,30 @@ body.popup-open {
 }
 
 /* ============================================
-   MEDIA QUERIES (десктоп → планшет → мобилка)
+   MEDIA QUERIES
    ============================================ */
 
-/* Desktop: min-width 992px */
-@media (min-width: 992px) {
+/* Desktop: min-width 1280px */
+@media (min-width: 1280px) {
     .services-dropdown {
         left: 0;
     }
     .services-dropdown__list {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-    /* Header */
     .site-header:not(.site-header--mobile) {
         display: block;
     }
     .site-header--mobile {
         display: none;
     }
-    /* Desktop menu on */
     .hero__menu {
         display: flex;
     }
 }
 
-/* Small tablet: min-width 768px and max-width 991px */
-@media (min-width: 768px) and (max-width: 991px) {
-    /* База для стилей планшетов - стили будут добавлены отдельно */
-}
-
 /* Tablet/MacBook: min-width 992px and max-width 1279px */
 @media (min-width: 992px) and (max-width: 1279px) {
-    /* Header row: 4 колонки (3/3/3/3) как на десктопе */
     .header__row .col-sm-6.col-lg-3 {
         grid-column: span 3;
     }
@@ -1078,10 +1069,39 @@ body.popup-open {
     .header__logo img {
         max-width: 220px;
     }
+    
+    .footer__title--empty {
+        display: none;
+    }
+    
+    .footer__copyright {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .footer__copyright-right {
+        justify-content: flex-start;
+    }
 }
 
-/* Mobile and Small tablet: max-width 991px */
-@media (max-width: 991px) {
+/* Tablet: min-width 768px and max-width 991px */
+@media (min-width: 768px) and (max-width: 991px) {
+    .footer__title--empty {
+        display: none;
+    }
+    
+    .footer__copyright {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .footer__copyright-right {
+        justify-content: flex-start;
+    }
+}
+
+/* Mobile: max-width 767px */
+@media (max-width: 767px) {
     .site-header:not(.site-header--mobile) {
         display: none;
     }
@@ -1132,13 +1152,6 @@ body.popup-open {
         width: 20px;
         height: 20px;
     }
-}
-
-/* Tablet/MacBook: min-width 992px and max-width 1279px */
-@media (min-width: 992px) and (max-width: 1279px) {
-    .footer__title--empty {
-        display: none;
-    }
     
     .footer__copyright {
         grid-template-columns: 1fr;
@@ -1148,38 +1161,7 @@ body.popup-open {
     .footer__copyright-right {
         justify-content: flex-start;
     }
-}
-
-/* Tablet: min-width 768px and max-width 991px */
-@media (min-width: 768px) and (max-width: 991px) {
-    .footer__title--empty {
-        display: none;
-    }
     
-    .footer__copyright {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    .footer__copyright-right {
-        justify-content: flex-start;
-    }
-}
-
-/* Footer mobile */
-@media (max-width: 767.98px) {
-    .footer__copyright {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    .footer__copyright-right {
-        justify-content: flex-start;
-    }
-}
-
-/* Popup mobile */
-@media (max-width: 767px) {
     .popup-overlay {
         align-items: flex-end;
     }
@@ -1199,12 +1181,24 @@ body.popup-open {
     .popup-overlay.closing .popup-sheet {
         transform: translateY(100%);
     }
-}
+    
+    .cookie-banner {
+        padding: 10px 16px;
+    }
 
-@media (prefers-reduced-motion: reduce) {
-    .popup-overlay,
-    .popup-sheet {
-        transition: none;
+    .cookie-banner__inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .cookie-banner__text {
+        font-size: 12px;
+    }
+
+    .cookie-banner__btn {
+        padding: 8px 16px;
+        font-size: 13px;
     }
 }
 
@@ -1261,24 +1255,10 @@ body.popup-open {
     cursor: pointer;
 }
 
-@media (max-width: 767.98px) {
-    .cookie-banner {
-        padding: 10px 16px;
-    }
-
-    .cookie-banner__inner {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 10px;
-    }
-
-    .cookie-banner__text {
-        font-size: 12px;
-    }
-
-    .cookie-banner__btn {
-        padding: 8px 16px;
-        font-size: 13px;
+@media (prefers-reduced-motion: reduce) {
+    .popup-overlay,
+    .popup-sheet {
+        transition: none;
     }
 }
 

@@ -453,7 +453,7 @@
 }
 
 .gallery__grid {
-  column-count: 2;
+  column-count: 1;
   column-gap: 16px;
 }
 
@@ -758,20 +758,38 @@
 }
 
 .section--consult .consult__layout {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 30px;
+    align-items: stretch;
+}
+
+.section--consult .consult__left {
+    grid-column: span 8;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    justify-content: space-between;
+    gap: 30px;
+    height: 100%;
+}
+
+.section--consult .consult__right {
+    grid-column: span 4;
+    height: 100%;
 }
 
 .section--consult .consult__row--cards {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    flex-direction: column;
     gap: 30px;
 }
 
 .section--consult .consult__card {
-    max-width: 380px;
+    max-width: 100%;
+}
+
+.consult__card--left {
+    margin-top: 50px;
 }
 
 .section--consult .consult__card--right {
@@ -779,6 +797,9 @@
     padding: 40px 25px 25px;
     border-radius: 20px;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .section--consult .consult__badge {
@@ -787,6 +808,12 @@
     color: #fff;
     border-radius: 28px;
     padding: 10px 18px;
+}
+
+.section--consult .consult__card-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .section--consult .consult__card--right .consult__badge {
@@ -846,8 +873,10 @@
     max-width: 760px;
 }
 
-.section--consult .consult__row--cta {
-    margin-top: 40px;
+.section--consult .consult__cta-btn {
+    margin-top: auto;
+    align-self: flex-start;
+    width: 100%;
 }
 
 .section--consult .consult__list {
@@ -1537,48 +1566,40 @@
 }
 
 /* ========================================
-   Media Queries
+   MEDIA QUERIES
    ======================================== */
 
-
-
-/* Tablet: min-width 768px and max-width 991px */
-@media (min-width: 768px) and (max-width: 991px) {
+/* Desktop: min-width 1280px */
+@media (min-width: 1280px) {
+    .section--social-proof .slider__slide .row {
+        gap: var(--col-gap-desk);
+    }
+    
     .gallery__grid {
-        column-count: 3;
-        column-gap: 20px;
+        column-count: 4;
+        column-gap: 30px;
     }
     
     .gallery__item {
-        margin-bottom: 20px;
-    }
-}
-
-/* Tablet/MacBook and Desktop: min-width 992px */
-@media (min-width: 992px) {
-    .gallery__grid {
-        column-count: 3;
-        column-gap: 20px;
+        margin-bottom: 30px;
     }
     
-    .gallery__item {
-        margin-bottom: 20px;
-    }
-}
-
-/* Mobile and Small tablet: max-width 991px */
-@media (max-width: 991px) {
-    .reviews__desktop {
-        display: none;
+    .doctor-card-slider {
+        height: 420px;
     }
     
-    .reviews__mobile {
-        display: block;
+    .doctor-card-slider__content {
+        height: 100%;
     }
 }
 
 /* Tablet/MacBook: min-width 992px and max-width 1279px */
 @media (min-width: 992px) and (max-width: 1279px) {
+    .gallery__grid {
+        column-count: 4;
+        column-gap: 30px;
+    }
+    
     .reviews__desktop {
         display: block;
     }
@@ -1596,9 +1617,8 @@
         gap: 0px;
         flex-direction: column;
         align-items: start;
-        margin-top: -30px;
+        margin-top: 20px;
         position: relative;
-        z-index: 5;
     }
     
     .hero__rating img {
@@ -1611,7 +1631,7 @@
     }
     
     .hero__cta {
-        margin-top: 30px;
+        margin-top: 50px;
     }
     
     .hero-mobile__features {
@@ -1625,6 +1645,7 @@
     
     .reviews__stats {
         flex-direction: column;
+        gap: 10px;
     }
     
     .reviews__face {
@@ -1682,7 +1703,7 @@
     }
     
     .service-card--bg {
-        min-height: 500px;
+        min-height: auto;
     }
     
     .doctors__stats {
@@ -1733,10 +1754,6 @@
         flex-direction: row;
     }
     
-    .reviews__stats {
-        gap: 10px;
-    }
-    
     .doctor-card-slider {
         padding: 20px;
         height: 300px;
@@ -1756,20 +1773,13 @@
         padding: 0;
     }
     
-    .section--consult .consult__box {
-        padding: 20px 20px 230px;
-    }
-    
+
     .section--consult .consult__card--right {
         padding: 40px 15px 15px;
     }
     
-    .section--consult .consult__row--cta {
-        margin-top: 10px;
-    }
-    
     .section--consult .consult__bg {
-        max-width: 150px;
+        max-width: 390px;
     }
     
     .section--location .location__map {
@@ -1777,11 +1787,11 @@
     }
     
     .section--contacts .contacts__box {
-        padding: 10px 10px 250px;
+        padding: 30px;
     }
     
     .section--contacts .contacts__bg {
-        max-width: 160px;
+        max-width: 350px;
     }
     
     .section--contacts .contacts__list li {
@@ -1791,11 +1801,101 @@
     .contacts__map {
         height: 400px;
     }
+    
+    .hero__doctor-image {
+        width: 30%;
+        right: 30%;
+    }
+    
+    .hero__content {
+        padding: 10px;
+    }
+    
+    .hero__content h1 {
+        font-size: 54px;
+    }
+    
+    .hero__features {
+        padding: 10px;
+    }
+    
+    .hero__doctor-info {
+        margin-top: 0px;
+    }
+    
+    /* Chief doctor: сетка как на десктопе (6/6) */
+    .chief-doctor__content .col-lg-6 {
+        grid-column: span 6;
+    }
+    
+    /* Services: сетка как на десктопе */
+    .services__grid .col-lg-4 {
+        grid-column: span 4;
+    }
+    
+    .services__header .col-lg-4 {
+        grid-column: span 4;
+    }
+    
+    .services__header .col-lg-8 {
+        grid-column: span 8;
+    }
+    
+    /* Benefits: сетка как на десктопе */
+    .benefits__row-201 .col-lg-8 {
+        grid-column: span 8;
+    }
+    
+    .benefits__row-201 .col-lg-4 {
+        grid-column: span 4;
+    }
+    
+    .benefits__row-205 .col-lg-4 {
+        grid-column: span 4;
+    }
+
+    /* Location: сетка как на десктопе */
+    .section--location .col-lg-6 {
+        grid-column: span 6;
+    }
+    
+    .benefits__feature-icon img {
+        width: 54px;
+        height: 54px;
+    }
+    
+    /* Case: сетка как на десктопе (4/4/4) */
+    .row--case .col-lg-4 {
+        grid-column: span 4;
+    }
 }
 
-/* Small tablet: min-width 768px and max-width 991px */
-/* База для стилей планшетов - стили будут добавлены отдельно */
+/* Tablet/MacBook and Desktop: min-width 992px */
+@media (min-width: 992px) {
+    .hero-mobile {
+        display: none;
+    }
+    
+    .hero {
+        display: block;
+    }
+    
+    .section--hero {
+        display: block;
+    }
+}
+
+/* Tablet: min-width 768px and max-width 991px */
 @media (min-width: 768px) and (max-width: 991px) {
+    .gallery__grid {
+        column-count: 3;
+        column-gap: 20px;
+    }
+    
+    .gallery__item {
+        margin-bottom: 20px;
+    }
+    
     .reviews__mobile .slider__slide {
         grid-column: span 6;
         opacity: 1;
@@ -1825,9 +1925,15 @@
 }
 
 /* Mobile and Small tablet: max-width 991px */
-/* Мобильный hero показывается (по умолчанию display: block) */
-/* Десктопный hero скрыт (по умолчанию display: none) */
 @media (max-width: 991px) {
+    .reviews__desktop {
+        display: none;
+    }
+    
+    .reviews__mobile {
+        display: block;
+    }
+    
     .section--hero {
         display: none;
     }
@@ -1839,144 +1945,23 @@
     .slider--two .slider__slide {
         flex: 0 0 calc((100% - 30px) / 2);
     }
-}
-
-/* Tablet/MacBook and Desktop: min-width 992px */
-@media (min-width: 992px) {
+    
     .hero-mobile {
-        display: none;
+        display: block;
     }
     
     .hero {
-        display: block;
-    }
-}
-
-/* Tablet/MacBook: min-width 992px and max-width 1279px */
-@media (min-width: 992px) and (max-width: 1279px) {
-    .hero__doctor-image {
-        width: 30%;
-        right: 30%;
-    }
-    
-    .hero__content {
-        padding: 10px;
-    }
-    
-    .hero__content h1 {
-        font-size: 54px;
-    }
-    
-    .hero__rating {
-        margin-top: 20px;
-    }
-    
-    .hero__features {
-        padding: 10px;
-    }
-    
-    .hero__doctor-info {
-        margin-top: 0px;
-    }
-    
-    .hero__cta {
-        margin-top: 50px;
-    }
-    
-    /* Chief doctor: сетка как на десктопе (6/6) */
-    .chief-doctor__content .col-lg-6 {
-        grid-column: span 6;
-    }
-    
-    /* Services: сетка как на десктопе */
-    .services__grid .col-lg-4 {
-        grid-column: span 4;
-    }
-    
-    .services__header .col-lg-4 {
-        grid-column: span 4;
-    }
-    
-    .services__header .col-lg-8 {
-        grid-column: span 8;
-    }
-    
-    .service-card--bg {
-        min-height: auto;
-    }
-    
-    /* Benefits: сетка как на десктопе */
-    .benefits__row-201 .col-lg-8 {
-        grid-column: span 8;
-    }
-    
-    .benefits__row-201 .col-lg-4 {
-        grid-column: span 4;
-    }
-    
-    .benefits__row-205 .col-lg-4 {
-        grid-column: span 4;
-    }
-    
-    .section--consult .consult__box {
-        padding: 20px 20px 100px;
-    }
-    
-    .section--consult .consult__bg {
-        max-width: 390px;
-    }
-    
-    .section--contacts .contacts__box {
-        padding: 10px 10px 60px;
-    }
-    
-    .section--contacts .contacts__bg {
-        max-width: 350px;
-        left: 60%;
-    }
-
-    /* Location: сетка как на десктопе */
-    .section--location .col-lg-6 {
-        grid-column: span 6;
-    }
-    
-    .benefits__feature-icon img {
-        width: 54px;
-        height: 54px;
-    }
-    
-    /* Case: сетка как на десктопе (4/4/4) */
-    .row--case .col-lg-4 {
-        grid-column: span 4;
-    }
-}
-
-/* Desktop: min-width 1280px */
-@media (min-width: 1280px) {
-    .section--social-proof .slider__slide .row {
-        gap: var(--col-gap-desk);
-    }
-    
-    .gallery__grid {
-        column-count: 4;
-        column-gap: 30px;
-    }
-    
-    .gallery__item {
-        margin-bottom: 30px;
-    }
-    
-    .doctor-card-slider {
-        height: 420px;
-    }
-    
-    .doctor-card-slider__content {
-        height: 100%;
+        display: none;
     }
 }
 
 /* Mobile: max-width 767px */
-@media (max-width: 767px) { 
+@media (max-width: 767px) {
+    .gallery__grid {
+        column-count: 1;
+        column-gap: 16px;
+    }
+    
     .section--reviews {
         padding-bottom: 20px;
     }
