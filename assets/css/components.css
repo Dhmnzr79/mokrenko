@@ -1887,6 +1887,30 @@
 
 /* Tablet: min-width 768px and max-width 991px */
 @media (min-width: 768px) and (max-width: 991px) {
+    .hero-mobile__image {
+        max-width: 110px;
+    }
+    
+    .hero-mobile h1,
+    .hero-mobile__title {
+        font-size: clamp(26px, 4vw, 44px);
+        line-height: 1.2;
+        padding-right: 30%;
+        margin: 0;
+        color: #fff;
+        font-family: 'NTSomic';
+        font-weight: 600;
+    }
+    
+    .hero__cta {
+        max-width: 100%;
+    }
+    
+    .hero-mobile__features {
+        display: flex;
+        margin-top: 40px;
+    }
+    
     .gallery__grid {
         column-count: 3;
         column-gap: 20px;
@@ -1919,8 +1943,80 @@
     }
 
     .section--consult .consult__bg {
-        max-width: 230px;
-        z-index: 10;
+        display: none;
+    }
+    
+    .section--consult .consult__layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .section--consult .consult__left,
+    .section--consult .consult__right {
+        grid-column: span 1;
+    }
+    
+    .section--consult .consult__box {
+        padding: 30px;
+    }
+    
+    .consult__card--left {
+        margin-top: 0;
+    }
+    
+    .section--contacts .contacts__box {
+        padding: 30px;
+    }
+    
+    .reviews__header .reviews__stats {
+        display: none;
+    }
+    
+    .case-card__position {
+        font-size: 14px;
+    }
+    
+    .doctor-card-slider__content {
+        height: 100%;
+    }
+    
+    .doctor-card-slider {
+        height: 300px;
+    }
+    
+    .slider {
+        margin-top: 40px;
+    }
+    
+    .case-card__content {
+        padding: 10px;
+    }
+    
+    .slider__slide .row,
+    .slider__slide .row--case,
+    .section--portfolio-category .slider__slide .row,
+    .section--portfolio-category .slider__slide .row--case,
+    .slider__track .slider__slide .row,
+    .slider__track .slider__slide .row--case {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+        grid-template-columns: none;
+    }
+    
+    .slider__slide .row > [class*="col-"],
+    .slider__slide .row--case > [class*="col-"],
+    .section--portfolio-category .slider__slide .row > [class*="col-"],
+    .section--portfolio-category .slider__slide .row--case > [class*="col-"],
+    .slider__slide .row > .col-sm-12,
+    .slider__slide .row--case > .col-sm-12,
+    .section--portfolio-category .slider__slide .row > .col-sm-12,
+    .section--portfolio-category .slider__slide .row--case > .col-sm-12,
+    .slider__track .slider__slide .row > [class*="col-"],
+    .slider__track .slider__slide .row--case > [class*="col-"] {
+        flex: 0 0 calc((100% - 60px) / 3);
+        grid-column: auto;
+        min-width: 0;
+        width: auto;
     }
 }
 

@@ -290,7 +290,11 @@
     }
     
     .blog-card__content {
-        padding: 16px;
+        padding: 16px 0;
+    }
+    
+    .section--blog .col-sm-12 {
+        grid-column: span 6;
     }
     
     .blog-card__title {

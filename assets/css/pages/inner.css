@@ -896,7 +896,34 @@ body.search {
 
 /* Tablet: min-width 768px and max-width 991px */
 @media (min-width: 768px) and (max-width: 991px) {
-    /* База для стилей планшетов - стили будут добавлены отдельно */
+    .page-intro-mobile__image {
+        position: absolute;
+        right: 20px;
+        bottom: 0;
+        max-width: 110px;
+    }
+    
+    .page-intro-mobile h1,
+    .page-intro-mobile__title {
+        font-size: 24px;
+        line-height: 1.2;
+        padding-right: 30%;
+        margin: 0;
+        color: #fff;
+        font-family: 'NTSomic', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 600;
+    }
+    
+    .page-intro-mobile__benefits {
+        display: flex;
+        flex-direction: row;
+        gap: 25px;
+        margin: 40px 0;
+    }
+    
+    .section--doctors .col-sm-12 {
+        grid-column: span 6;
+    }
 }
 
 /* Tablet/MacBook and Desktop: min-width 992px */
