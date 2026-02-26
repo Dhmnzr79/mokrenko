@@ -45,7 +45,7 @@ if (empty($blocks)) return;
           <?php if (!$reverse) : ?>
             <div class="col-sm-12 col-lg-6 service-info-blocks__col-image">
               <?php if ($image_id) : ?>
-                <div class="service-info-blocks__image">
+                <div class="service-info-blocks__image<?php echo ($block_index === 1) ? ' service-info-blocks__image--hide-mobile' : ''; ?>">
                   <?php echo wp_get_attachment_image($image_id, 'large', false, ['class' => 'service-info-blocks__img']); ?>
                 </div>
               <?php endif; ?>
@@ -119,7 +119,7 @@ if (empty($blocks)) return;
 
             <div class="col-sm-12 col-lg-6 service-info-blocks__col-image">
               <?php if ($image_id) : ?>
-                <div class="service-info-blocks__image">
+                <div class="service-info-blocks__image<?php echo ($block_index === 1) ? ' service-info-blocks__image--hide-mobile' : ''; ?>">
                   <?php echo wp_get_attachment_image($image_id, 'large', false, ['class' => 'service-info-blocks__img']); ?>
                 </div>
               <?php endif; ?>

@@ -35,6 +35,7 @@ get_header();
 <section class="section section--page-intro page-intro">
 	<div class="container">
 		<div class="page-intro__box bg-gradient-brand">
+			<img src="<?php echo get_template_directory_uri(); ?>/assets/images/mokrenko_first.png" alt="Доктор Мокренко" class="page-intro__doctor-image" fetchpriority="high" loading="eager">
 			<?php get_template_part('template-parts/hero/menu'); ?>
 			<div class="page-intro__layout">
 				<div class="page-intro__content">

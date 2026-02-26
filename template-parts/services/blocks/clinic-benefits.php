@@ -40,7 +40,7 @@ if (empty($title) && empty($cards) && empty($feature_card)) {
 							$card_title = isset($card['title']) ? $card['title'] : '';
 							$card_text = isset($card['text']) ? $card['text'] : '';
 						?>
-							<div class="col-sm-6">
+							<div class="col-sm-6 col-lg-6">
 								<div class="service-clinic-benefits__card">
 									<?php if ($icon_id) : ?>
 										<div class="service-clinic-benefits__card-icon">

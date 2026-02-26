@@ -5,7 +5,7 @@ get_header();
 	<div class="container">
 		<div class="hero-mobile__box">
 			<p class="hero-mobile__title">Стоматология Елены Мокренко</p>
-			<img src="<?php echo get_template_directory_uri(); ?>/assets/images/mokrenko_first_mobile.png" alt="Доктор Мокренко" class="hero-mobile__image">
+			<img src="<?php echo get_template_directory_uri(); ?>/assets/images/mokrenko_first_mobile.png" alt="Доктор Мокренко" class="hero-mobile__image" fetchpriority="high">
 		</div>
 
 		<div class="hero__rating">
@@ -41,6 +41,7 @@ get_header();
 <section class="section section--hero hero">
 	<div class="container">
 		<div class="hero__box bg-gradient-brand hero__box--with-doctor">
+			<img src="<?php echo get_template_directory_uri(); ?>/assets/images/mokrenko_first.png" alt="Доктор Мокренко" class="hero__doctor-image" fetchpriority="high" loading="eager">
 			<?php get_template_part('template-parts/hero/menu'); ?>
 			<div class="hero__layout">
 				<div class="hero__content">
@@ -484,6 +485,10 @@ get_header();
 						</div>
 						<h3>Рассрочка платежа</h3>
 						<p>Беспроцентная рассрочка на 6-12 месяцев</p>
+						<button class="btn" data-popup="open">
+							Узнать больше
+							<img src="<?php echo get_template_directory_uri(); ?>/assets/svg/arrow_btn.svg" alt="">
+						</button>
 					</div>
 				</div>
 			</div>

@@ -100,6 +100,7 @@ require_once get_template_directory() . '/inc/custom-types.php';
 require_once get_template_directory() . '/inc/meta-boxes.php';
 require_once get_template_directory() . '/inc/shortcodes.php';
 require_once get_template_directory() . '/inc/prices-import.php';
+require_once get_template_directory() . '/inc/services-import.php';
 require_once get_template_directory() . '/inc/svg-upload.php';
 
 // Подключение файлов системы услуг
@@ -112,6 +113,150 @@ require_once get_template_directory() . '/inc/services/meta-boxes.php';
 
 // Подключение Schema.org микроразметки
 require_once get_template_directory() . '/inc/schema.php';
+
+// ====== amoCRM API v4 (Contact Form 7 → сделки). Токен в wp-config.php: AMO_ACCESS_TOKEN ======
+define('AMO_DOMAIN', 'kstrof3.amocrm.ru');
+
+function amo_request($method, $endpoint, $body = null) {
+	if (!defined('AMO_ACCESS_TOKEN') || AMO_ACCESS_TOKEN === '') {
+		return null;
+	}
+	$args = [
+		'method'  => $method,
+		'headers' => [
+			'Authorization' => 'Bearer ' . AMO_ACCESS_TOKEN,
+			'Content-Type'  => 'application/json',
+		],
+		'timeout' => 15,
+	];
+
+	if ($body !== null) {
+		$args['body'] = json_encode($body);
+	}
+
+	$response = wp_remote_request(
+		'https://' . AMO_DOMAIN . '/api/v4/' . ltrim($endpoint, '/'),
+		$args
+	);
+
+	if (is_wp_error($response)) {
+		error_log('amoCRM error: ' . $response->get_error_message());
+		return null;
+	}
+
+	$code = wp_remote_retrieve_response_code($response);
+	if ($code >= 400) {
+		error_log('amoCRM HTTP ' . $code . ': ' . wp_remote_retrieve_body($response));
+		return null;
+	}
+
+	return json_decode(wp_remote_retrieve_body($response), true);
+}
+
+add_action('wpcf7_mail_sent', function ($contact_form) {
+	if (!defined('AMO_ACCESS_TOKEN') || AMO_ACCESS_TOKEN === '') {
+		return;
+	}
+	$submission = WPCF7_Submission::get_instance();
+	if (!$submission) {
+		return;
+	}
+
+	$data = $submission->get_posted_data();
+	error_log('AMO: form sent, phone=' . (isset($data['your-phone']) ? $data['your-phone'] : 'empty'));
+	$name    = isset($data['your-name']) ? sanitize_text_field($data['your-name']) : '';
+	$phone   = isset($data['your-phone']) ? sanitize_text_field($data['your-phone']) : '';
+	$comment = isset($data['your-message']) ? sanitize_textarea_field($data['your-message']) : '';
+	$page    = isset($_SERVER['HTTP_REFERER']) ? esc_url_raw($_SERVER['HTTP_REFERER']) : '';
+
+	if ($phone === '') {
+		return;
+	}
+
+	// 1. Найти или создать контакт
+	$contact = amo_request('GET', 'contacts?query=' . urlencode($phone));
+
+	$contact_id = null;
+	if (!empty($contact['_embedded']['contacts'][0]['id'])) {
+		$contact_id = (int) $contact['_embedded']['contacts'][0]['id'];
+	} else {
+		$new_contact = amo_request('POST', 'contacts', [
+			[
+				'name' => $name !== '' ? $name : $phone,
+				'custom_fields_values' => [
+					[
+						'field_code' => 'PHONE',
+						'values' => [
+							['value' => $phone],
+						],
+					],
+				],
+			],
+		]);
+		$contact_id = isset($new_contact['_embedded']['contacts'][0]['id'])
+			? (int) $new_contact['_embedded']['contacts'][0]['id']
+			: null;
+	}
+
+	if (!$contact_id) {
+		return;
+	}
+
+	// 2. ID воронки и этапа
+	$pipelines = amo_request('GET', 'leads/pipelines');
+	$pipeline_id = null;
+	$status_id   = null;
+
+	if (!empty($pipelines['_embedded']['pipelines'])) {
+		foreach ($pipelines['_embedded']['pipelines'] as $pipeline) {
+			if (isset($pipeline['name']) && $pipeline['name'] === 'КОЛЛ ЦЕНТР') {
+				$pipeline_id = (int) $pipeline['id'];
+				$statuses = isset($pipeline['statuses']) ? $pipeline['statuses'] : (isset($pipeline['_embedded']['statuses']) ? $pipeline['_embedded']['statuses'] : []);
+				foreach ($statuses as $status) {
+					if (isset($status['name']) && $status['name'] === 'Новая заявка') {
+						$status_id = (int) $status['id'];
+						break;
+					}
+				}
+				break;
+			}
+		}
+	}
+
+	if (!$pipeline_id || !$status_id) {
+		return;
+	}
+
+	// 3. Создать сделку
+	$lead = amo_request('POST', 'leads', [
+		[
+			'name'        => 'Заявка с сайта',
+			'pipeline_id' => $pipeline_id,
+			'status_id'   => $status_id,
+			'_embedded'   => [
+				'contacts' => [
+					['id' => $contact_id],
+				],
+			],
+		],
+	]);
+
+	$lead_id = isset($lead['_embedded']['leads'][0]['id']) ? (int) $lead['_embedded']['leads'][0]['id'] : null;
+	if (!$lead_id) {
+		return;
+	}
+
+	// 4. Примечание
+	$note_text = "Заявка с сайта\nИмя: {$name}\nТелефон: {$phone}\nКомментарий: {$comment}\nСтраница: {$page}";
+	amo_request('POST', "leads/{$lead_id}/notes", [
+		[
+			'note_type' => 'common',
+			'params'    => [
+				'text' => $note_text,
+			],
+		],
+	]);
+});
 
 add_action('init', function () {
 	if (!taxonomy_exists('service_category')) {
@@ -215,7 +360,27 @@ function theme_admin_scripts($hook) {
  *    - assets/admin/ - JS и CSS для админки
  */
 
-add_action('wp_enqueue_scripts', function(){
+	// Preload шрифта первого экрана, LCP-изображения и первого CSS (приоритет раньше других wp_head)
+	add_action('wp_head', function () {
+		$theme_uri = get_stylesheet_directory_uri();
+		$ver = wp_get_theme()->get('Version');
+		echo '<link rel="preload" href="' . esc_url($theme_uri . '/assets/fonts/NTSomic-Semibold.woff2') . '" as="font" type="font/woff2" crossorigin>' . "\n";
+		echo '<link rel="preload" href="' . esc_url($theme_uri . '/assets/css/base.css?ver=' . $ver) . '" as="style">' . "\n";
+		if (is_front_page()) {
+			echo '<link rel="preload" href="' . esc_url($theme_uri . '/assets/images/mokrenko_first_mobile.png') . '" as="image">' . "\n";
+			echo '<link rel="preload" href="' . esc_url($theme_uri . '/assets/images/mokrenko_first.png') . '" as="image" media="(min-width: 992px)">' . "\n";
+			// Минимальный critical CSS для первого экрана (hero-mobile)
+			echo '<style id="critical-css">:root{--container-max:1400px;--gutter-mob:16px;--gutter-desk:24px;--color-accent:#3EB3BC;--gradient-brand:linear-gradient(94.24deg,#84EBDA -5.47%,#B7D8F8 114.07%);}html{box-sizing:border-box;}*,*::before,*::after{box-sizing:inherit;}body{margin:0;font-size:16px;line-height:1.5;color:#111;font-family:system-ui,-apple-system,sans-serif;}.container{width:100%;max-width:1400px;margin:0 auto;padding-left:16px;padding-right:16px;}.section--hero-mobile{padding:20px 0;}.hero-mobile__image{max-width:100%;height:auto;display:block;}</style>' . "\n";
+		}
+		// Preload десктопного изображения врача для других страниц с hero блоками
+		$pages_with_hero_doctor = ['page-reviews.php', 'page-doctors.php', 'page-about.php', 'page-blog.php', 'page-prices.php', 'page-portfolio.php'];
+		$current_template = get_page_template_slug();
+		if (in_array($current_template, $pages_with_hero_doctor) || is_page_template($pages_with_hero_doctor)) {
+			echo '<link rel="preload" href="' . esc_url($theme_uri . '/assets/images/mokrenko_first.png') . '" as="image" media="(min-width: 992px)">' . "\n";
+		}
+	}, 0);
+
+	add_action('wp_enqueue_scripts', function(){
 	$ver = wp_get_theme()->get('Version');
 	$uri = get_stylesheet_directory_uri() . '/assets/css/';
 	wp_enqueue_style('theme-base',       $uri.'base.css',       [], $ver);
@@ -243,36 +408,6 @@ add_action('wp_enqueue_scripts', function(){
 		wp_enqueue_style('page-service', $uri.'pages/service.css', ['theme-utilities'], $ver);
 	}
 	
-	// Яндекс карта для страницы контактов
-	if (is_page_template('page-contacts.php')) {
-		wp_enqueue_script('yandex-map', 'https://api-maps.yandex.ru/2.1/?apikey=YOUR_API_KEY&lang=ru_RU', [], null, true);
-		wp_add_inline_script('yandex-map', '
-			ymaps.ready(function () {
-				var myMap = new ymaps.Map("yandex-map", {
-					center: [55.7934, 37.6331],
-					zoom: 16,
-					controls: []
-				});
-				
-				myMap.behaviors.disable("scrollZoom");
-				
-				var myPlacemark = new ymaps.Placemark([55.7934, 37.6331], {
-					balloonContent: "г. Москва, ул. Проспект Мира 75, стр. 1 (м.Рижская)"
-				}, {
-					preset: "islands#redDotIcon"
-				});
-				
-				myMap.geoObjects.add(myPlacemark);
-				
-				var mapContainer = document.getElementById("yandex-map");
-				mapContainer.addEventListener("wheel", function(e) {
-					if (!e.ctrlKey) {
-						e.preventDefault();
-					}
-				}, { passive: false });
-			});
-		', 'after');
-	}
 	
 	// Enqueue slider script on front page
 	if (is_front_page()) {
@@ -307,6 +442,18 @@ add_action('wp_enqueue_scripts', function(){
 	// Enqueue mobile menu script
 	wp_enqueue_script('theme-mobile-menu', get_stylesheet_directory_uri() . '/assets/js/mobile-menu.js', [], $ver, true);
 });
+
+// defer для скриптов темы (не блокировать рендер)
+add_filter('script_loader_tag', function ($tag, $handle, $src) {
+	$defer_handles = [
+		'theme-slider', 'theme-lightbox', 'theme-search', 'theme-services-menu',
+		'theme-popup', 'theme-mobile-menu'
+	];
+	if (in_array($handle, $defer_handles, true)) {
+		return str_replace(' src', ' defer src', $tag);
+	}
+	return $tag;
+}, 10, 3);
 
 // Функция для проверки, нужно ли скрывать обычный header (для страниц с .page-top)
 function theme_should_hide_default_header() {

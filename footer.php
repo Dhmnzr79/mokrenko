@@ -45,7 +45,6 @@
 					<ul class="footer__list">
 						<li><a href="<?php echo esc_url(get_page_url_by_template('page-portfolio.php')); ?>" class="footer__link">Портфолио</a></li>
 						<li><a href="<?php echo esc_url(get_page_url_by_template('page-doctors.php')); ?>" class="footer__link">Врачи</a></li>
-						<li><a href="<?php echo esc_url(home_url('/')); ?>" class="footer__link">Акции</a></li>
 						<li><a href="<?php echo esc_url(get_page_url_by_template('page-blog.php')); ?>" class="footer__link">Блог</a></li>
 						<li><a href="<?php echo esc_url(get_page_url_by_template('page-reviews.php')); ?>" class="footer__link">Отзывы</a></li>
 						<li><a href="<?php echo esc_url(get_page_url_by_template('page-contacts.php')); ?>" class="footer__link">Контакты</a></li>
@@ -56,7 +55,12 @@
 				<div class="footer__section">
 					<h3 class="footer__title">Поиск по сайту</h3>
 					<div class="footer__search">
-						<input type="text" placeholder="Поиск..." class="footer__search-input">
+						<form class="footer__search-form" method="get" action="<?php echo esc_url(home_url('/')); ?>">
+							<input type="search" name="s" placeholder="Поиск по сайту..." class="footer__search-input" aria-label="Поиск по сайту">
+							<button type="submit" class="footer__search-submit" aria-label="Искать">
+								<img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/svg/search.svg" alt="" class="footer__search-icon" width="20" height="20">
+							</button>
+						</form>
 					</div>
 					<div class="footer__social">
 						<a href="https://t.me/mokrenko_msk" target="_blank" rel="noopener noreferrer" class="footer__social-link">

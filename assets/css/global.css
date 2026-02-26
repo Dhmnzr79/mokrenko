@@ -1,6 +1,15 @@
 /* Global elements: Header, Footer, Page Top, Popups */
 
 /* ============================================
+   MEDIA QUERIES STRUCTURE (рекомендуемый порядок):
+   1. Базовые стили (mobile-first)
+   2. @media (min-width: 768px) and (max-width: 991px) - планшеты
+   3. @media (min-width: 992px) and (max-width: 1279px) - макбуки
+   4. @media (min-width: 1280px) - десктоп
+   5. @media (max-width: 767px) - мобильные (переопределения)
+   ============================================ */
+
+/* ============================================
    HEADER STYLES
    ============================================ */
 
@@ -119,6 +128,8 @@
     background: #fff;
     padding: 10px;
     border-radius: 10px;
+    position: relative;
+    z-index: 100;
 }
 
 .hero__menu-burger {
@@ -391,7 +402,6 @@
     width: 100%;
     text-align: left;
     font-size: 16px;
-    color: #111;
     padding: 12px 0;
     background: transparent;
     border: none;
@@ -399,6 +409,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-family: 'Golos Text', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
 .mobile-menu__next::after {
@@ -565,12 +576,35 @@
     margin-bottom: 20px;
 }
 
+.footer__search-form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 .footer__search-input {
-    width: 100%;
+    flex: 1;
+    min-width: 0;
     padding: 10px 15px;
     border: 1px solid #ddd;
     border-radius: 8px;
     font-size: 14px;
+}
+
+.footer__search-submit {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.footer__search-icon {
+    display: block;
 }
 
 .footer__social {
@@ -643,9 +677,8 @@
 .footer__disclaimer {
     background-color: #D0DEE1;
     padding: 12px 0;
-    margin-top: 0;
-    text-align: center;
     margin-top: 10px;
+    text-align: center;
 }
 
 .footer__disclaimer p {
@@ -1001,25 +1034,23 @@ body.popup-open {
 }
 
 /* ============================================
-   MEDIA QUERIES (десктоп → планшет → мобилка)
+   MEDIA QUERIES
    ============================================ */
 
-/* Desktop: min-width 992px */
-@media (min-width: 992px) {
+/* Desktop: min-width 1280px */
+@media (min-width: 1280px) {
     .services-dropdown {
         left: 0;
     }
     .services-dropdown__list {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-    /* Header */
     .site-header:not(.site-header--mobile) {
         display: block;
     }
     .site-header--mobile {
         display: none;
     }
-    /* Desktop menu on */
     .hero__menu {
         display: flex;
     }
@@ -1027,7 +1058,6 @@ body.popup-open {
 
 /* Tablet/MacBook: min-width 992px and max-width 1279px */
 @media (min-width: 992px) and (max-width: 1279px) {
-    /* Header row: 4 колонки (3/3/3/3) как на десктопе */
     .header__row .col-sm-6.col-lg-3 {
         grid-column: span 3;
     }
@@ -1039,10 +1069,23 @@ body.popup-open {
     .header__logo img {
         max-width: 220px;
     }
+    
+    .footer__title--empty {
+        display: none;
+    }
+    
+    .footer__copyright {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .footer__copyright-right {
+        justify-content: flex-start;
+    }
 }
 
-/* Mobile and Small tablet: max-width 991px */
-@media (max-width: 991px) {
+/* Tablet: min-width 768px and max-width 991px */
+@media (min-width: 768px) and (max-width: 991px) {
     .site-header:not(.site-header--mobile) {
         display: none;
     }
@@ -1093,10 +1136,7 @@ body.popup-open {
         width: 20px;
         height: 20px;
     }
-}
-
-/* Below desktop: max-width 1279px */
-@media (max-width: 1279px) {
+    
     .footer__title--empty {
         display: none;
     }
@@ -1111,8 +1151,59 @@ body.popup-open {
     }
 }
 
-/* Footer mobile */
-@media (max-width: 767.98px) {
+/* Mobile: max-width 767px */
+@media (max-width: 767px) {
+    .site-header:not(.site-header--mobile) {
+        display: none;
+    }
+    .site-header--mobile {
+        display: block;
+    }
+    .hero__menu {
+        display: none;
+    }
+    .page-top__menu-wrapper {
+        display: none;
+    }
+    .page-top {
+        display: none;
+    }
+    .header__row--mobile {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .header__mobile-logo {
+        flex-shrink: 0;
+    }
+    .header__mobile-logo .header__logo-img {
+        height: 44px;
+        width: auto;
+    }
+    .header__mobile-actions {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        justify-content: flex-end;
+    }
+    .header__mobile-phone,
+    .header__mobile-menu {
+        appearance: none;
+        border: 0;
+        background: #f3f4f6;
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+    .header__mobile-icon {
+        width: 20px;
+        height: 20px;
+    }
+    
     .footer__copyright {
         grid-template-columns: 1fr;
         gap: 15px;
@@ -1121,10 +1212,7 @@ body.popup-open {
     .footer__copyright-right {
         justify-content: flex-start;
     }
-}
-
-/* Popup mobile */
-@media (max-width: 768px) {
+    
     .popup-overlay {
         align-items: flex-end;
     }
@@ -1144,12 +1232,24 @@ body.popup-open {
     .popup-overlay.closing .popup-sheet {
         transform: translateY(100%);
     }
-}
+    
+    .cookie-banner {
+        padding: 10px 16px;
+    }
 
-@media (prefers-reduced-motion: reduce) {
-    .popup-overlay,
-    .popup-sheet {
-        transition: none;
+    .cookie-banner__inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .cookie-banner__text {
+        font-size: 12px;
+    }
+
+    .cookie-banner__btn {
+        padding: 8px 16px;
+        font-size: 13px;
     }
 }
 
@@ -1206,24 +1306,10 @@ body.popup-open {
     cursor: pointer;
 }
 
-@media (max-width: 767.98px) {
-    .cookie-banner {
-        padding: 10px 16px;
-    }
-
-    .cookie-banner__inner {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 10px;
-    }
-
-    .cookie-banner__text {
-        font-size: 12px;
-    }
-
-    .cookie-banner__btn {
-        padding: 8px 16px;
-        font-size: 13px;
+@media (prefers-reduced-motion: reduce) {
+    .popup-overlay,
+    .popup-sheet {
+        transition: none;
     }
 }
 

@@ -38,7 +38,7 @@ if (empty($title) && empty($subtitle) && empty($cards)) {
                         <?php foreach ($cards as $index => $card) : 
                             $card_text = isset($card['text']) ? $card['text'] : '';
                         ?>
-                            <div class="col-sm-6">
+                            <div class="col-sm-6 col-lg-6">
                                 <div class="service-cta__card">
                                     <p class="service-cta__card-text"><?php echo esc_html($card_text); ?></p>
                                 </div>
@@ -51,7 +51,7 @@ if (empty($title) && empty($subtitle) && empty($cards)) {
         
 
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-12 col-lg-12">
                 <div class="service-cta__form-wrapper">
                     <h3 class="service-cta__form-title">Оставьте заявку</h3>
                     <p class="service-cta__form-subtitle">Мы перезвоним вам, разберём вашу ситуацию, подскажем подходящие варианты и запишем на консультацию в удобное для Вас время</p>

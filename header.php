@@ -75,6 +75,7 @@
 		</div>
 		<nav class="mobile-menu__scroller" aria-label="Мобильное меню">
 			<ul class="mobile-menu__panel" id="mobileMenuRoot" data-title="Меню">
+				<li><a href="<?php echo esc_url(home_url('/')); ?>" class="mobile-menu__link">Главная</a></li>
 				<li><button class="mobile-menu__next" type="button" data-target="#mobileMenuServices">Услуги</button></li>
 				<li><a href="<?php echo esc_url(get_page_url_by_template('page-about.php')); ?>" class="mobile-menu__link">О клинике</a></li>
 				<li><a href="<?php echo esc_url(get_page_url_by_template('page-portfolio.php')); ?>" class="mobile-menu__link">Портфолио</a></li>

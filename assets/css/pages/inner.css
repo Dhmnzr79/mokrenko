@@ -1,3 +1,12 @@
+/* ============================================
+   MEDIA QUERIES STRUCTURE (рекомендуемый порядок):
+   1. Базовые стили (mobile-first)
+   2. @media (min-width: 768px) and (max-width: 991px) - планшеты
+   3. @media (min-width: 992px) and (max-width: 1279px) - макбуки
+   4. @media (min-width: 1280px) - десктоп
+   5. @media (max-width: 767px) - мобильные (переопределения)
+   ============================================ */
+
 /* Doctor hero block */
 .section--doctor-hero {
 	padding-block: 0;
@@ -162,7 +171,7 @@
 
 .section--doctors-works .case-card {
 	background-color: #d8e7e7;
-	background-image: url(../../svg/pattern.svg);
+	background-image: url("../../svg/pattern.svg");
 	background-position: left top;
 	background-repeat: no-repeat;
 	background-size: auto;
@@ -266,10 +275,17 @@
     border-radius: 16px;
     padding: 16px;
     position: relative;
-    background-image: url('../../images/mokrenko_first.png'), linear-gradient(94.24deg, #84EBDA -5.47%, #B7D8F8 114.07%);
-    background-repeat: no-repeat, no-repeat;
-    background-position: 70% bottom, 0 0;
-    background-size: 370px, cover;
+    background: linear-gradient(94.24deg, #84EBDA -5.47%, #B7D8F8 114.07%);
+}
+
+.page-intro__doctor-image {
+    position: absolute;
+    right: 250px;
+    bottom: 0;
+    max-width: 370px;
+    height: auto;
+    z-index: 1;
+    pointer-events: none;
 }
 
 
@@ -282,6 +298,9 @@
     align-items: stretch;
     gap: 30px;
     padding: 40px;
+    position: relative;
+    z-index: 2;
+    min-height: 580px;
 }
 
 .page-intro__content {
@@ -289,6 +308,7 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
+    justify-content: space-between;
 }
 
 .page-intro__content h1 {
@@ -354,26 +374,18 @@
 }
 
 .page-intro-mobile__box {
-    background: linear-gradient(99.05deg, #3AD5BC 2.79%, #B7D8F8 99.53%), #CEEBE6;
-    border-radius: 20px;
-    padding: 20px 20px 50px 20px;
+    background: linear-gradient(99.05deg, #2eb4d8 2.79%, #8ee1bf 99.53%), #CEEBE6;
+    border-radius: 10px;
     position: relative;
     margin-bottom: 20px;
+    padding: 20px 110px 20px 20px;
 }
 
 .page-intro-mobile__image {
     position: absolute;
-    right: 20px;
+    right: 10px;
     bottom: 0;
-    max-width: 38%;
-}
-
-.page-intro-mobile h1,
-.page-intro-mobile__title {
-    font-size: 54px;
-    line-height: 1.2;
-    padding-right: 30%;
-    margin: 0;
+    max-width: 110px;
 }
 
 .page-intro-mobile__benefits {
@@ -388,12 +400,6 @@
     align-items: flex-start;
     gap: 10px;
     flex-direction: column;
-}
-
-.page-intro-mobile__benefit-icon {
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
 }
 
 .page-intro-mobile__benefit-item p {
@@ -833,7 +839,7 @@ body.search {
 }
 
 /* ========================================
-   MEDIA QUERIES (десктоп → планшет → мобилка)
+   MEDIA QUERIES
    ======================================== */
 
 /* Desktop: min-width 1280px */
@@ -844,29 +850,74 @@ body.search {
 	}
 }
 
-/* Desktop / планшет: min-width 992px */
-@media (min-width: var(--brk-lg)) {
-    .page-intro-mobile {
-        display: none;
-    }
-}
-
+/* Tablet/MacBook: min-width 992px and max-width 1279px */
 @media (min-width: 992px) and (max-width: 1279px) {
     .page-intro__layout {
         padding: 20px;
     }
 
     .page-intro__box {
-        background-size: 340px, cover;
         min-height: 600px;
+    }
+
+    .page-intro__doctor-image {
+        right: 100px;
     }
 
     .page-intro__content h1 {
         font-size: 48px;
+        padding-right: 0px;
+    }
+    
+    .page-intro__info {
+        background: #ffffff85;
+        max-width: 250px;
+    }
+    
+    /* Doctors: 3 карточки в ряд (каждая по 4 колонки) */
+    .section--doctors .col-lg-4 {
+        grid-column: span 4;
     }
 }
 
-@media (min-width: 768px) {
+/* Tablet: min-width 768px and max-width 991px */
+@media (min-width: 768px) and (max-width: 991px) {
+    .page-intro-mobile__image {
+        position: absolute;
+        right: 20px;
+        bottom: 0;
+        max-width: 110px;
+    }
+    
+    .page-intro-mobile h1,
+    .page-intro-mobile__title {
+        font-size: 24px;
+        line-height: 1.2;
+        padding-right: 30%;
+        margin: 0;
+        color: #fff;
+        font-family: 'NTSomic', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 600;
+    }
+    
+    .page-intro-mobile__benefits {
+        display: flex;
+        flex-direction: row;
+        gap: 25px;
+        margin: 40px 0;
+    }
+    
+    .section--doctors .col-sm-12 {
+        grid-column: span 6;
+    }
+}
+
+/* Tablet/MacBook and Desktop: min-width 992px */
+@media (min-width: 992px) {
+    .page-intro-mobile {
+        display: none;
+    }
+    
     .section--page-intro {
         display: block;
     }
@@ -880,14 +931,8 @@ body.search {
     }
 }
 
-@media (max-width: calc(var(--brk-lg) - 0.02px)) {
-    .page-intro {
-        display: none;
-    }
-}
-
-/* Mobile: до 768px */
-@media (max-width: 767px) {
+/* Mobile and Small tablet: max-width 991px */
+@media (max-width: 991px) {
     /* Скрываем десктопную версию первого экрана */
     .section--page-intro {
         display: none;
@@ -902,18 +947,26 @@ body.search {
         display: block;
     }
     
-    /* Page intro mobile */
-    .page-intro-mobile h1,
-    .page-intro-mobile__title {
-        font-size: 24px;
+    .page-intro__doctor-image {
+        display: none;
     }
+}
+
+/* Mobile: max-width 767px */
+@media (max-width: 767px) {
     
-    .page-intro-mobile__box {
-        padding: 30px 20px;
+    /* Page intro mobile */
+    .page-intro-mobile h1, .page-intro-mobile__title {
+        font-size: 22px;
+        color: #fff;
+        font-family: 'NTSomic', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        letter-spacing: 0.3px;
+        margin: 0;
+        line-height: 1.3;
     }
     
     .page-intro-mobile__image {
-        max-height: 140%;
+        max-width: 110px;
     }
     
     /* Button */
