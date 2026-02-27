@@ -1,0 +1,13 @@
+{
+  "name": "mokrenko-theme",
+  "version": "1.0.0",
+  "description": "WordPress theme for Mokrenko",
+  "scripts": {
+    "lint:css": "stylelint \"assets/css/**/*.css\"",
+    "lint:css:fix": "stylelint \"assets/css/**/*.css\" --fix"
+  },
+  "devDependencies": {
+    "stylelint": "^16.0.0",
+    "stylelint-config-standard": "^36.0.0"
+  }
+}
