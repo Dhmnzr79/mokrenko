@@ -94,6 +94,32 @@
 
 			$terms_by_parent = [];
 			if (!is_wp_error($service_terms) && !empty($service_terms)) {
+				usort($service_terms, function($a, $b) {
+					$pa = 10;
+					$pb = 10;
+
+					$slugA = (string) $a->slug;
+					$slugB = (string) $b->slug;
+
+					if (strpos($slugA, 'imlantaciya') === 0 || strpos($slugA, 'implantaciya') === 0) {
+						$pa = 0;
+					} elseif (strpos($slugA, 'protezy-i-koronki') === 0 || strpos($slugA, 'protezy') === 0) {
+						$pa = 1;
+					}
+
+					if (strpos($slugB, 'imlantaciya') === 0 || strpos($slugB, 'implantaciya') === 0) {
+						$pb = 0;
+					} elseif (strpos($slugB, 'protezy-i-koronki') === 0 || strpos($slugB, 'protezy') === 0) {
+						$pb = 1;
+					}
+
+					if ($pa === $pb) {
+						return strcasecmp($a->name, $b->name);
+					}
+
+					return $pa <=> $pb;
+				});
+
 				foreach ($service_terms as $t) {
 					$terms_by_parent[(int) $t->parent][] = $t;
 				}

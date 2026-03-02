@@ -201,26 +201,72 @@
     position: absolute;
     top: calc(100% + 10px);
     left: 0;
-    width: min(920px, calc(100vw - 24px));
+    width: min(720px, calc(100vw - 24px));
     background: #fff;
     border-radius: 14px;
-    padding: 18px;
+    padding: 0;
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
     z-index: 50;
+    display: flex;
+    min-height: 280px;
 }
 
-.services-dropdown__group {
-    margin-bottom: 16px;
+.services-dropdown__categories {
+    flex-shrink: 0;
+    width: 180px;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 12px 0;
 }
 
-.services-dropdown__group:last-child {
-    margin-bottom: 0;
+.services-dropdown__category-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
-.services-dropdown__title {
+.services-dropdown__category-item {
+    margin: 0;
+}
+
+.services-dropdown__category-btn {
+    display: block;
+    width: 100%;
+    padding: 10px 16px;
+    text-align: left;
+    font: inherit;
     font-size: 14px;
+    color: currentColor;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.services-dropdown__category-btn:hover {
+    color: var(--color-accent);
+    background: rgba(62, 179, 188, 0.08);
+}
+
+.services-dropdown__category-btn--active {
+    color: var(--color-accent);
     font-weight: 600;
-    margin-bottom: 10px;
+    background: rgba(62, 179, 188, 0.08);
+}
+
+.services-dropdown__content {
+    flex: 1;
+    min-width: 0;
+    padding: 16px 20px;
+    overflow: auto;
+}
+
+.services-dropdown__panel {
+    display: none;
+}
+
+.services-dropdown__panel--active {
+    display: block;
 }
 
 .services-dropdown__list {
@@ -228,19 +274,27 @@
     padding: 0;
     list-style: none;
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 8px;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 24px;
 }
 
 .services-dropdown__link {
+    display: block;
+    padding: 6px 0;
     text-decoration: none;
     color: currentColor;
     font-size: 14px;
+    transition: color 0.15s ease;
+}
+
+.services-dropdown__link:hover {
+    color: var(--color-accent);
 }
 
 .services-dropdown__empty {
     font-size: 14px;
     opacity: 0.7;
+    padding: 18px;
 }
 
 .hero__search-btn {
@@ -1041,9 +1095,6 @@ body.popup-open {
 @media (min-width: 1280px) {
     .services-dropdown {
         left: 0;
-    }
-    .services-dropdown__list {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
     .site-header:not(.site-header--mobile) {
         display: block;

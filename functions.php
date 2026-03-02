@@ -263,11 +263,7 @@ add_action('init', function () {
 		return;
 	}
 
-	$default_terms = [
-		['name' => 'Имплантация зубов', 'slug' => 'implantation'],
-		['name' => 'Протезирование', 'slug' => 'prosthetics'],
-		['name' => 'Реставрация', 'slug' => 'restoration'],
-	];
+	$default_terms = [];
 
 	foreach ($default_terms as $t) {
 		if (term_exists($t['slug'], 'service_category')) {

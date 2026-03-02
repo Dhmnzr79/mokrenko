@@ -33,7 +33,12 @@ $stage_2_checklist = isset($stage_2['checklist']) && is_array($stage_2['checklis
     })
     : [];
 
-if (empty($title) && empty($subtitle) && empty($stage_1) && empty($stage_2)) {
+// Проверяем, есть ли фактический контент для этапов
+$stage_1_has = (!empty($stage_1['title']) || !empty($stage_1['image']) || !empty($stage_1_checklist));
+$stage_2_has = (!empty($stage_2['title']) || !empty($stage_2['image']) || !empty($stage_2_checklist));
+
+// Если не задан ни заголовок/подзаголовок, ни один из этапов — секцию не выводим
+if (empty($title) && empty($subtitle) && !$stage_1_has && !$stage_2_has) {
     return;
 }
 ?>
@@ -49,11 +54,6 @@ if (empty($title) && empty($subtitle) && empty($stage_1) && empty($stage_2)) {
 				<?php endif; ?>
 			</div>
 		<?php endif; ?>
-
-		<?php
-		$stage_1_has = (!empty($stage_1['title']) || !empty($stage_1['image']) || !empty($stage_1_checklist));
-		$stage_2_has = (!empty($stage_2['title']) || !empty($stage_2['image']) || !empty($stage_2_checklist));
-		?>
 
 		<?php if ($stage_1_has && $stage_2_has) : ?>
 			<div class="row service-work-stages__stage">

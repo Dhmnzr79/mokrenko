@@ -241,9 +241,12 @@ function mok_service_import_single(array $data) {
 	$hero = isset($data['hero']) && is_array($data['hero']) ? $data['hero'] : [];
 	update_post_meta($post_id, '_service_hero_title', isset($hero['title']) ? sanitize_text_field((string) $hero['title']) : '');
 	update_post_meta($post_id, '_service_hero_subtitle', isset($hero['subtitle']) ? sanitize_textarea_field((string) $hero['subtitle']) : '');
-	update_post_meta($post_id, '_service_hero_extra_line', isset($hero['extra_line']) ? sanitize_text_field((string) $hero['extra_line']) : '');
+	$hero_extra_line = isset($hero['extra_line']) && (string) $hero['extra_line'] !== '' ? (string) $hero['extra_line'] : (isset($hero['button_note']) ? (string) $hero['button_note'] : '');
+	update_post_meta($post_id, '_service_hero_extra_line', sanitize_text_field($hero_extra_line));
 	update_post_meta($post_id, '_service_hero_button_text', isset($hero['button_text']) ? sanitize_text_field((string) $hero['button_text']) : '');
-	update_post_meta($post_id, '_service_hero_info_text', isset($hero['button_note']) ? sanitize_textarea_field((string) $hero['button_note']) : '');
+	$hero_info = isset($hero['info']) && is_array($hero['info']) ? $hero['info'] : [];
+	update_post_meta($post_id, '_service_hero_info_title', isset($hero_info['title']) ? sanitize_text_field((string) $hero_info['title']) : '');
+	update_post_meta($post_id, '_service_hero_info_text', isset($hero_info['text']) ? sanitize_textarea_field((string) $hero_info['text']) : '');
 
 	$hero_benefits = [];
 	if (isset($hero['benefits']) && is_array($hero['benefits'])) {

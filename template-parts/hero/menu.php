@@ -5,63 +5,104 @@
 ?>
 <div class="hero__menu">
 	<div class="hero__menu-burger">
-		<?php $dropdown_id = 'servicesDropdown-' . wp_unique_id(); ?>
+		<?php
+		$dropdown_id = 'servicesDropdown-' . wp_unique_id();
+		$terms = get_terms([
+			'taxonomy' => 'service_category',
+			'hide_empty' => false,
+			'orderby' => 'name',
+			'order' => 'ASC',
+		]);
+		$has_terms = !is_wp_error($terms) && !empty($terms);
+
+		if ($has_terms) {
+			usort($terms, function($a, $b) {
+				$pa = 10;
+				$pb = 10;
+
+				$slugA = (string) $a->slug;
+				$slugB = (string) $b->slug;
+
+				// Имплантация
+				if (strpos($slugA, 'imlantaciya') === 0 || strpos($slugA, 'implantaciya') === 0) {
+					$pa = 0;
+				} elseif (strpos($slugA, 'protezy-i-koronki') === 0 || strpos($slugA, 'protezy') === 0) {
+					// Протезирование
+					$pa = 1;
+				}
+
+				if (strpos($slugB, 'imlantaciya') === 0 || strpos($slugB, 'implantaciya') === 0) {
+					$pb = 0;
+				} elseif (strpos($slugB, 'protezy-i-koronki') === 0 || strpos($slugB, 'protezy') === 0) {
+					$pb = 1;
+				}
+
+				if ($pa === $pb) {
+					return strcasecmp($a->name, $b->name);
+				}
+
+				return $pa <=> $pb;
+			});
+		}
+		?>
 		<button class="hero__burger-btn" aria-expanded="false" aria-controls="<?php echo esc_attr($dropdown_id); ?>">
 			<span class="hero__burger-icon"></span>
 			<span class="hero__burger-text">Услуги</span>
 		</button>
 		<div class="services-dropdown" id="<?php echo esc_attr($dropdown_id); ?>" style="display:none;">
-			<?php
-			$terms = get_terms([
-				'taxonomy' => 'service_category',
-				'hide_empty' => false,
-				'orderby' => 'name',
-				'order' => 'ASC',
-			]);
-
-			if (!is_wp_error($terms) && !empty($terms)) :
-				foreach ($terms as $term) :
-					$q = new WP_Query([
-						'post_type' => 'service',
-						'posts_per_page' => -1,
-						'post_status' => 'publish',
-						'tax_query' => [
-							[
-								'taxonomy' => 'service_category',
-								'field' => 'term_id',
-								'terms' => [$term->term_id],
+			<?php if ($has_terms) : ?>
+				<nav class="services-dropdown__categories" aria-label="Категории услуг">
+					<ul class="services-dropdown__category-list">
+						<?php foreach ($terms as $i => $term) : ?>
+							<li class="services-dropdown__category-item">
+								<button type="button" class="services-dropdown__category-btn<?php echo $i === 0 ? ' services-dropdown__category-btn--active' : ''; ?>" data-panel="services-panel-<?php echo (int) $term->term_id; ?>">
+									<?php echo esc_html($term->name); ?>
+								</button>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				</nav>
+				<div class="services-dropdown__content">
+					<?php foreach ($terms as $i => $term) :
+						$panel_id = 'services-panel-' . (int) $term->term_id;
+						$q = new WP_Query([
+							'post_type' => 'service',
+							'posts_per_page' => -1,
+							'post_status' => 'publish',
+							'tax_query' => [
+								[
+									'taxonomy' => 'service_category',
+									'field' => 'term_id',
+									'terms' => [$term->term_id],
+								],
 							],
-						],
-						'orderby' => [
-							'menu_order' => 'ASC',
-							'title' => 'ASC',
-						],
-						'no_found_rows' => true,
-					]);
-					?>
-					<div class="services-dropdown__group">
-						<div class="services-dropdown__title"><?php echo esc_html($term->name); ?></div>
-						<?php if ($q->have_posts()) : ?>
-							<ul class="services-dropdown__list">
-								<?php while ($q->have_posts()) : $q->the_post(); ?>
-									<li class="services-dropdown__item">
-										<a class="services-dropdown__link" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-									</li>
-								<?php endwhile; ?>
-							</ul>
-						<?php else : ?>
-							<div class="services-dropdown__empty">Пока нет услуг</div>
-						<?php endif; ?>
-					</div>
-					<?php
-					wp_reset_postdata();
-				endforeach;
-			else :
-				?>
+							'orderby' => [
+								'menu_order' => 'ASC',
+								'title' => 'ASC',
+							],
+							'no_found_rows' => true,
+						]);
+						?>
+						<div class="services-dropdown__panel<?php echo $i === 0 ? ' services-dropdown__panel--active' : ''; ?>" id="<?php echo esc_attr($panel_id); ?>" role="tabpanel" aria-hidden="<?php echo $i === 0 ? 'false' : 'true'; ?>">
+							<?php if ($q->have_posts()) : ?>
+								<ul class="services-dropdown__list">
+									<?php while ($q->have_posts()) : $q->the_post(); ?>
+										<li class="services-dropdown__item">
+											<a class="services-dropdown__link" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+										</li>
+									<?php endwhile; ?>
+								</ul>
+							<?php else : ?>
+								<div class="services-dropdown__empty">Пока нет услуг</div>
+							<?php endif; ?>
+						</div>
+						<?php
+						wp_reset_postdata();
+					endforeach; ?>
+				</div>
+			<?php else : ?>
 				<div class="services-dropdown__empty">Пока нет категорий</div>
-				<?php
-			endif;
-			?>
+			<?php endif; ?>
 		</div>
 	</div>
 	<nav class="hero__menu-nav">
@@ -79,5 +120,3 @@
 		</button>
 	</div>
 </div>
-
-

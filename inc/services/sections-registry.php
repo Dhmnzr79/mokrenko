@@ -94,8 +94,8 @@ function get_service_sections_order() {
     return [
         'hero',
         'benefits',
-        'clinic-benefits',
         'description',
+        'clinic-benefits',
         'cta',
         'work-stages',
         'what-included',

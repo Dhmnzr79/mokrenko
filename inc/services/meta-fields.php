@@ -86,6 +86,26 @@ function register_service_meta_fields() {
         'default' => []
     ]);
 
+    // Поля секции "Описание услуги"
+    register_post_meta('service', '_service_description_title', [
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'show_in_rest' => true,
+        'single' => true,
+    ]);
+    register_post_meta('service', '_service_description_text', [
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'show_in_rest' => true,
+        'single' => true,
+    ]);
+    register_post_meta('service', '_service_description_image', [
+        'type' => 'integer',
+        'sanitize_callback' => 'absint',
+        'show_in_rest' => true,
+        'single' => true,
+    ]);
+
     // Поля секции "Общие плюсы клиники"
     register_post_meta('service', '_service_clinic_benefits_title', [
         'type' => 'string',

@@ -34,6 +34,16 @@ function add_service_meta_boxes() {
         'normal',
         'high'
     );
+
+    // Метабокс для секции "Описание услуги"
+    add_meta_box(
+        'service_description',
+        __('Описание услуги', 'mokrenko'),
+        'render_service_description_meta_box',
+        'service',
+        'normal',
+        'high'
+    );
     
     // Метабокс для Clinic Benefits секции
     add_meta_box(
@@ -334,6 +344,75 @@ function render_service_hero_meta_box($post) {
 }
 
 /**
+ * Рендер метабокса секции "Описание услуги"
+ */
+function render_service_description_meta_box($post) {
+    wp_nonce_field('service_description_nonce', 'service_description_nonce');
+
+    $title = get_post_meta($post->ID, '_service_description_title', true);
+    $text  = get_post_meta($post->ID, '_service_description_text', true);
+    $image_id = get_post_meta($post->ID, '_service_description_image', true);
+    ?>
+    <table class="form-table">
+        <tr>
+            <th><label for="service_description_image"><?php _e('Картинка (левая колонка)', 'mokrenko'); ?></label></th>
+            <td>
+                <button type="button" class="button" id="service_description_image_button">
+                    <?php echo $image_id ? __('Изменить изображение', 'mokrenko') : __('Выбрать изображение', 'mokrenko'); ?>
+                </button>
+                <div id="service_description_image_preview" style="margin-top:10px;">
+                    <?php
+                    if ($image_id) {
+                        echo wp_get_attachment_image($image_id, 'medium');
+                    }
+                    ?>
+                </div>
+                <input type="hidden" id="service_description_image" name="service_description_image" value="<?php echo esc_attr($image_id); ?>">
+                <p class="description"><?php _e('Изображение будет отображаться слева, занимает 50% ширины блока.', 'mokrenko'); ?></p>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="service_description_title"><?php _e('Заголовок (правая колонка)', 'mokrenko'); ?></label></th>
+            <td>
+                <input type="text" id="service_description_title" name="service_description_title" value="<?php echo esc_attr($title); ?>" style="width:100%;">
+            </td>
+        </tr>
+        <tr>
+            <th><label for="service_description_text"><?php _e('Текст', 'mokrenko'); ?></label></th>
+            <td>
+                <textarea id="service_description_text" name="service_description_text" rows="5" style="width:100%;"><?php echo esc_textarea($text); ?></textarea>
+            </td>
+        </tr>
+    </table>
+    <script>
+    (function($){
+        $(function(){
+            var frame;
+            $('#service_description_image_button').on('click', function(e){
+                e.preventDefault();
+                if (frame) {
+                    frame.open();
+                    return;
+                }
+                frame = wp.media({
+                    title: '<?php echo esc_js(__('Выберите изображение для секции «Описание услуги»', 'mokrenko')); ?>',
+                    button: { text: '<?php echo esc_js(__('Использовать изображение', 'mokrenko')); ?>' },
+                    multiple: false
+                });
+                frame.on('select', function(){
+                    var attachment = frame.state().get('selection').first().toJSON();
+                    $('#service_description_image').val(attachment.id);
+                    $('#service_description_image_preview').html('<img src=\"' + attachment.sizes.medium.url + '\" alt=\"\" />');
+                });
+                frame.open();
+            });
+        });
+    })(jQuery);
+    </script>
+    <?php
+}
+
+/**
  * Сохранение метабокса Hero секции
  */
 add_action('save_post_service', 'save_service_hero_meta_box');
@@ -402,6 +481,38 @@ function save_service_hero_meta_box($post_id) {
     
     if (isset($_POST['service_hero_button_link'])) {
         update_post_meta($post_id, '_service_hero_button_link', esc_url_raw($_POST['service_hero_button_link']));
+    }
+}
+
+/**
+ * Сохранение метабокса секции "Описание услуги"
+ */
+add_action('save_post_service', 'save_service_description_meta_box');
+
+function save_service_description_meta_box($post_id) {
+    if (!isset($_POST['service_description_nonce']) ||
+        !wp_verify_nonce($_POST['service_description_nonce'], 'service_description_nonce')) {
+        return;
+    }
+
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    if (isset($_POST['service_description_title'])) {
+        update_post_meta($post_id, '_service_description_title', sanitize_text_field($_POST['service_description_title']));
+    }
+
+    if (isset($_POST['service_description_text'])) {
+        update_post_meta($post_id, '_service_description_text', sanitize_textarea_field($_POST['service_description_text']));
+    }
+
+    if (isset($_POST['service_description_image'])) {
+        update_post_meta($post_id, '_service_description_image', absint($_POST['service_description_image']));
     }
 }
 

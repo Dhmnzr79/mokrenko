@@ -13,7 +13,11 @@
     ],
     "button_text": "Записаться на осмотр",
     "button_note": "Оценим состояние дёсен и подберём план лечения",
-    "extra_line": ""
+    "extra_line": "Оценим состояние дёсен и подберём план лечения",
+    "info": {
+      "title": "25 000",
+      "text": "улыбок мы подарили за 15 лет работы"
+    }
   },
   "benefits": {
     "icon_url": "http://localhost:8084/wp-content/uploads/2025/12/benefit_chk.svg",
