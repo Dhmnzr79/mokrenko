@@ -605,9 +605,21 @@
 }
 
 .service-work-stages__checklist-item {
+    position: relative;
+    padding-left: 40px;
     display: flex;
     flex-direction: column;
     gap: 8px;
+}
+
+.service-work-stages__checklist-number {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--color-accent);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.3;
 }
 
 .service-work-stages__checklist-title {

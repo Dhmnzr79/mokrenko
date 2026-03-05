@@ -33,6 +33,9 @@ $stage_2_checklist = isset($stage_2['checklist']) && is_array($stage_2['checklis
     })
     : [];
 
+// Общий счётчик пунктов этапов (для 01, 02, 03, 04...)
+$work_stages_item_index = 0;
+
 // Проверяем, есть ли фактический контент для этапов
 $stage_1_has = (!empty($stage_1['title']) || !empty($stage_1['image']) || !empty($stage_1_checklist));
 $stage_2_has = (!empty($stage_2['title']) || !empty($stage_2['image']) || !empty($stage_2_checklist));
@@ -73,8 +76,11 @@ if (empty($title) && empty($subtitle) && !$stage_1_has && !$stage_2_has) {
 									<?php foreach ($stage_1_checklist as $item) :
 										$item_title = isset($item['title']) ? $item['title'] : '';
 										$item_description = isset($item['description']) ? $item['description'] : '';
+										$work_stages_item_index++;
+										$item_number = sprintf('%02d.', $work_stages_item_index);
 									?>
 										<li class="service-work-stages__checklist-item">
+											<span class="service-work-stages__checklist-number"><?php echo esc_html($item_number); ?></span>
 											<?php if ($item_title) : ?>
 												<h4 class="service-work-stages__checklist-title"><?php echo esc_html($item_title); ?></h4>
 											<?php endif; ?>
@@ -105,8 +111,11 @@ if (empty($title) && empty($subtitle) && !$stage_1_has && !$stage_2_has) {
 									<?php foreach ($stage_2_checklist as $item) :
 										$item_title = isset($item['title']) ? $item['title'] : '';
 										$item_description = isset($item['description']) ? $item['description'] : '';
+										$work_stages_item_index++;
+										$item_number = sprintf('%02d.', $work_stages_item_index);
 									?>
 										<li class="service-work-stages__checklist-item">
+											<span class="service-work-stages__checklist-number"><?php echo esc_html($item_number); ?></span>
 											<?php if ($item_title) : ?>
 												<h4 class="service-work-stages__checklist-title"><?php echo esc_html($item_title); ?></h4>
 											<?php endif; ?>
@@ -139,8 +148,11 @@ if (empty($title) && empty($subtitle) && !$stage_1_has && !$stage_2_has) {
 									<?php foreach ($stage_1_checklist as $item) :
 										$item_title = isset($item['title']) ? $item['title'] : '';
 										$item_description = isset($item['description']) ? $item['description'] : '';
+										$work_stages_item_index++;
+										$item_number = sprintf('%02d.', $work_stages_item_index);
 									?>
 										<li class="service-work-stages__checklist-item">
+											<span class="service-work-stages__checklist-number"><?php echo esc_html($item_number); ?></span>
 											<?php if ($item_title) : ?>
 												<h4 class="service-work-stages__checklist-title"><?php echo esc_html($item_title); ?></h4>
 											<?php endif; ?>
@@ -173,8 +185,11 @@ if (empty($title) && empty($subtitle) && !$stage_1_has && !$stage_2_has) {
 									<?php foreach ($stage_2_checklist as $item) :
 										$item_title = isset($item['title']) ? $item['title'] : '';
 										$item_description = isset($item['description']) ? $item['description'] : '';
+										$work_stages_item_index++;
+										$item_number = sprintf('%02d.', $work_stages_item_index);
 									?>
 										<li class="service-work-stages__checklist-item">
+											<span class="service-work-stages__checklist-number"><?php echo esc_html($item_number); ?></span>
 											<?php if ($item_title) : ?>
 												<h4 class="service-work-stages__checklist-title"><?php echo esc_html($item_title); ?></h4>
 											<?php endif; ?>
