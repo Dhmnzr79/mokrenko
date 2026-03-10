@@ -13,14 +13,14 @@
 				<div class="footer__section">
 					<h3 class="footer__title">Услуги:</h3>
 					<ul class="footer__list">
-						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Коронка на зуб')); ?>" class="footer__link">Коронка на зуб</a></li>
-						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Импланты зубов')); ?>" class="footer__link">Импланты зубов</a></li>
-						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Протезирование зубов')); ?>" class="footer__link">Протезирование зубов</a></li>
-						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Реставрация зубов')); ?>" class="footer__link">Реставрация зубов</a></li>
-						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Лечение зубов')); ?>" class="footer__link">Лечение зубов</a></li>
-						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Удаление зубов')); ?>" class="footer__link">Удаление зубов</a></li>
-						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Лечение десен')); ?>" class="footer__link">Лечение десен</a></li>
-						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Чистка зубов')); ?>" class="footer__link">Чистка зубов</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Имплантация одного зуба')); ?>" class="footer__link">Имплантация одного зуба</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Зубные коронки')); ?>" class="footer__link">Зубные коронки</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Протезирование зубов на имплантах')); ?>" class="footer__link">Протезирование зубов на имплантах</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Мостовидные протезы зубов')); ?>" class="footer__link">Мостовидные протезы зубов</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Лечение кариеса')); ?>" class="footer__link">Лечение кариеса</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Лечение пульпита')); ?>" class="footer__link">Лечение пульпита</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Лечение периодонтита')); ?>" class="footer__link">Лечение периодонтита</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Лечение пришеечного кариеса')); ?>" class="footer__link">Лечение пришеечного кариеса</a></li>
 					</ul>
 				</div>
 			</div>
@@ -28,14 +28,14 @@
 				<div class="footer__section">
 					<h3 class="footer__title footer__title--empty"></h3>
 					<ul class="footer__list">
-						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Все зубы за 1 день All-on-4')); ?>" class="footer__link">Все зубы за 1 день All-on-4</a></li>
-						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Имплантация All-on-6')); ?>" class="footer__link">Имплантация All-on-6</a></li>
-						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Несъёмные протезы')); ?>" class="footer__link">Несъёмные протезы</a></li>
-						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Съёмные протезы')); ?>" class="footer__link">Съёмные протезы</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('All-on-4')); ?>" class="footer__link">All-on-4</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('All-on-6')); ?>" class="footer__link">All-on-6</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Съёмное протезирование зубов')); ?>" class="footer__link">Съёмное протезирование зубов</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Бюгельные протезы')); ?>" class="footer__link">Бюгельные протезы</a></li>
 						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Виниры на зубы')); ?>" class="footer__link">Виниры на зубы</a></li>
-						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Брекеты')); ?>" class="footer__link">Брекеты</a></li>
-						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Отбеливание зубов')); ?>" class="footer__link">Отбеливание зубов</a></li>
-						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Чистка Air Flow')); ?>" class="footer__link">Чистка Air Flow</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Люминиры на зубы')); ?>" class="footer__link">Люминиры на зубы</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Отбеливание зубов ZOOM')); ?>" class="footer__link">Отбеливание зубов ZOOM</a></li>
+						<li><a href="<?php echo esc_url(theme_get_service_url_by_title('Лазерное отбеливание зубов')); ?>" class="footer__link">Лазерное отбеливание зубов</a></li>
 					</ul>
 				</div>
 			</div>

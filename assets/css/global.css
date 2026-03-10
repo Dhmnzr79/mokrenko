@@ -1,6 +1,38 @@
 /* Global elements: Header, Footer, Page Top, Popups */
 
 /* ============================================
+   Contact Form 7 antispam helpers
+   ============================================ */
+
+.wpcf7 .cf7-antispam {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+}
+
+.wpcf7 .wpcf7-form-control.wpcf7-hidden.cf7-antispam {
+    display: block;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.wpcf7-not-valid-tip {
+    font-size: 14px;
+}
+
+.wpcf7 form .wpcf7-response-output {
+    font-size: 14px;
+}
+
+/* ============================================
    MEDIA QUERIES STRUCTURE (рекомендуемый порядок):
    1. Базовые стили (mobile-first)
    2. @media (min-width: 768px) and (max-width: 991px) - планшеты
@@ -111,7 +143,6 @@
 
 .page-top__menu-wrapper {
     background: linear-gradient(94.24deg, #84EBDA -5.47%, #B7D8F8 114.07%);
-    padding: 10px;
     border-radius: 10px;
 }
 

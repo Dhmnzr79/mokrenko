@@ -114,6 +114,199 @@ require_once get_template_directory() . '/inc/services/meta-boxes.php';
 // Подключение Schema.org микроразметки
 require_once get_template_directory() . '/inc/schema.php';
 
+// ===============================
+// ЖЁСТКИЙ антиспам для Contact Form 7
+// ===============================
+
+function mokrenko_cf7_antispam_has_contacts_or_links($text) {
+	$text = trim((string) $text);
+
+	if ($text === '') {
+		return false;
+	}
+
+	$patterns = [
+		// Любой email
+		'/[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}/iu',
+
+		// Просто символ @ отдельно тоже баним
+		'/@/u',
+
+		// URL / www / домены
+		'~https?://\S+~iu',
+		'~www\.\S+~iu',
+		'/\b[a-z0-9][a-z0-9\-_.]*\.(ru|com|net|org|info|biz|site|online|top|xyz|shop|su|ua|by|kz|io|me|tv|pro|dev|app)\b/iu',
+
+		// Мессенджеры / соцсети / явные контактные слова
+		'/\b(telegram|tg|t\.me|whatsapp|wa|viber|vk|vkontakte|instagram|inst|facebook|meta|youtube)\b/iu',
+
+		// Телефоны в обычном виде
+		'/\+?\d[\d\-\s\(\)]{7,}\d/u',
+
+		// Телефоны, разбитые пробелами/скобками/тире
+		'/\b(?:\d[\s\-\(\)]*){8,}\d\b/u',
+	];
+
+	foreach ($patterns as $pattern) {
+		if (preg_match($pattern, $text)) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+function mokrenko_cf7_antispam_has_blacklist_words($text) {
+	return (bool) preg_match(
+		'/(продвижен|раскрут|реклама|реклам|seo|smm|таргет|лиды|лидогенерац|трафик|подписчик|маркетинг|директ|контекст|crypto|крипто|forex|форекс|инвестиц|заработок|оптом|база клиентов|коммерческ|сотрудничеств)/iu',
+		(string) $text
+	);
+}
+
+function mokrenko_cf7_antispam_validate_textarea($result, $tag) {
+	if (!class_exists('WPCF7_Submission')) {
+		return $result;
+	}
+
+	if (empty($tag->basetype) || $tag->basetype !== 'textarea') {
+		return $result;
+	}
+
+	$submission = WPCF7_Submission::get_instance();
+	if (!$submission) {
+		return $result;
+	}
+
+	$data = $submission->get_posted_data();
+	$name = isset($tag->name) ? $tag->name : '';
+
+	if ($name === '' || !isset($data[$name])) {
+		return $result;
+	}
+
+	$value = $data[$name];
+
+	if (is_array($value)) {
+		$value = implode(' ', $value);
+	}
+
+	$value = trim((string) $value);
+
+	if ($value === '') {
+		return $result;
+	}
+
+	if (mokrenko_cf7_antispam_has_contacts_or_links($value)) {
+		$result->invalidate(
+			$tag,
+			'В сообщении нельзя указывать ссылки, телефоны, email или контакты.'
+		);
+		return $result;
+	}
+
+	if (mokrenko_cf7_antispam_has_blacklist_words($value)) {
+		$result->invalidate(
+			$tag,
+			'Сообщение отклонено как рекламное.'
+		);
+		return $result;
+	}
+
+	return $result;
+}
+
+add_filter('wpcf7_validate_textarea', 'mokrenko_cf7_antispam_validate_textarea', 10, 2);
+add_filter('wpcf7_validate_textarea*', 'mokrenko_cf7_antispam_validate_textarea', 10, 2);
+
+// Дополнительная защита: помечаем как spam всю отправку,
+// если в textarea нашли контакты / ссылки / рекламу
+add_filter('wpcf7_spam', function ($spam, $contact_form) {
+	if ($spam || !class_exists('WPCF7_Submission')) {
+		return $spam;
+	}
+
+	$submission = WPCF7_Submission::get_instance();
+	if (!$submission) {
+		return $spam;
+	}
+
+	$data = $submission->get_posted_data();
+
+	// Honeypot-поле: [text hp_message]
+	if (!empty($data['hp_message'])) {
+		return true;
+	}
+
+	// Тайминг заполнения формы
+	$min_seconds = 5;
+	if (isset($data['cf7_time'])) {
+		$form_time = (int) $data['cf7_time'];
+		if ($form_time > 0 && $form_time < $min_seconds) {
+			return true;
+		}
+	}
+
+	// Жёсткая проверка всех textarea-подобных полей
+	foreach ($data as $key => $value) {
+		if (is_array($value)) {
+			$value = implode(' ', $value);
+		}
+
+		$value = trim((string) $value);
+
+		if ($value === '') {
+			continue;
+		}
+
+		// Проверяем только message/comment/textarea-похожие поля
+		if (preg_match('/(message|comment|text|textarea|msg|your-message)/iu', (string) $key)) {
+			if (mokrenko_cf7_antispam_has_contacts_or_links($value)) {
+				return true;
+			}
+			if (mokrenko_cf7_antispam_has_blacklist_words($value)) {
+				return true;
+			}
+		}
+	}
+
+	// Ограничение частоты отправок по cookie
+	$cookie_name = 'mok_cf7_rate';
+	$now         = time();
+	$window      = 10 * 60;
+	$max_count   = 5;
+
+	$start = $now;
+	$count = 0;
+
+	if (!empty($_COOKIE[$cookie_name])) {
+		if (preg_match('/^(\d+):(\d+)$/', (string) $_COOKIE[$cookie_name], $m)) {
+			$start = (int) $m[1];
+			$count = (int) $m[2];
+
+			if ($now - $start > $window) {
+				$start = $now;
+				$count = 0;
+			}
+		}
+	}
+
+	$count++;
+
+	$cookie_value = $start . ':' . $count;
+	$secure       = is_ssl();
+	$httponly     = true;
+	$path         = defined('COOKIEPATH') && COOKIEPATH ? COOKIEPATH : '/';
+	$domain       = defined('COOKIE_DOMAIN') && COOKIE_DOMAIN ? COOKIE_DOMAIN : '';
+
+	setcookie($cookie_name, $cookie_value, $now + $window, $path, $domain, $secure, $httponly);
+
+	if ($count > $max_count) {
+		return true;
+	}
+
+	return false;
+}, 10, 2);
+
 // ====== amoCRM API v4 (Contact Form 7 → сделки). Токен в wp-config.php: AMO_ACCESS_TOKEN ======
 define('AMO_DOMAIN', 'kstrof3.amocrm.ru');
 
@@ -417,6 +610,47 @@ function theme_admin_scripts($hook) {
 	
 	// Enqueue popup script
 	wp_enqueue_script('theme-popup', get_stylesheet_directory_uri() . '/assets/js/popup.js', [], $ver, true);
+
+		// Антиспам для CF7: honeypot и тайминг заполнения формы
+		$antispam_inline = <<<JS
+(function () {
+	document.addEventListener('DOMContentLoaded', function () {
+		var forms = document.querySelectorAll('form.wpcf7-form');
+		if (!forms.length) {
+			return;
+		}
+		var startTime = Date.now();
+
+		forms.forEach(function (form) {
+			// Тайминг: скрытое поле [hidden cf7_time]
+			var timeField = form.querySelector('input[name="cf7_time"]');
+			if (timeField) {
+				timeField.value = '';
+				form.addEventListener('submit', function () {
+					var seconds = Math.round((Date.now() - startTime) / 1000);
+					timeField.value = String(seconds);
+				});
+			}
+
+			// Honeypot: поле [text hp_message]
+			var hpField = form.querySelector('input[name="hp_message"]');
+			if (hpField) {
+				var wrapper = hpField.closest('p, div, span, label') || hpField;
+				wrapper.style.position = 'absolute';
+				wrapper.style.left = '-9999px';
+				wrapper.style.width = '1px';
+				wrapper.style.height = '1px';
+				wrapper.style.overflow = 'hidden';
+				wrapper.setAttribute('aria-hidden', 'true');
+
+				hpField.setAttribute('tabindex', '-1');
+				hpField.value = '';
+			}
+		});
+	});
+})();
+JS;
+		wp_add_inline_script('theme-popup', $antispam_inline);
 	
 	// Передаем URL страницы благодарности в JavaScript
 	$thank_you_page = get_page_by_path('thank-you');

@@ -289,10 +289,10 @@ get_header();
 				<div class="service-card service-card--gradient">
 					<h3>Восстановить зуб</h3>
 					<div class="service-links">
-						<a href="<?php echo esc_url(theme_get_service_url_by_title('Коронка на зуб')); ?>" class="service-link">Коронка на зуб</a>
-						<a href="<?php echo esc_url(theme_get_service_url_by_title('Импланты зубов')); ?>" class="service-link">Импланты зубов</a>
-						<a href="<?php echo esc_url(theme_get_service_url_by_title('Протезирование зубов')); ?>" class="service-link">Протезирование зубов</a>
-						<a href="<?php echo esc_url(theme_get_service_url_by_title('Реставрация зубов')); ?>" class="service-link">Реставрация зубов</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Имплантация одного зуба')); ?>" class="service-link">Имплантация одного зуба</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Зубные коронки')); ?>" class="service-link">Зубные коронки</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Протезирование зубов на имплантах')); ?>" class="service-link">Протезирование зубов на имплантах</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Мостовидные протезы зубов')); ?>" class="service-link">Мостовидные протезы зубов</a>
 					</div>
 				</div>
 			</div>
@@ -300,10 +300,10 @@ get_header();
 				<div class="service-card service-card--light-green">
 					<h3>Вылечить зубы</h3>
 					<div class="service-links">
-						<a href="<?php echo esc_url(theme_get_service_url_by_title('Лечение зубов')); ?>" class="service-link">Лечение зубов</a>
-						<a href="<?php echo esc_url(theme_get_service_url_by_title('Удаление зубов')); ?>" class="service-link">Удаление зубов</a>
-						<a href="<?php echo esc_url(theme_get_service_url_by_title('Лечение десен')); ?>" class="service-link">Лечение десен</a>
-						<a href="<?php echo esc_url(theme_get_service_url_by_title('Чистка зубов')); ?>" class="service-link">Чистка зубов</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Лечение кариеса')); ?>" class="service-link">Лечение кариеса</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Лечение пульпита')); ?>" class="service-link">Лечение пульпита</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Лечение периодонтита')); ?>" class="service-link">Лечение периодонтита</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Лечение пришеечного кариеса')); ?>" class="service-link">Лечение пришеечного кариеса</a>
 					</div>
 				</div>
 			</div>
@@ -312,12 +312,12 @@ get_header();
 		<div class="row services__header">
 			<div class="col-sm-12 col-lg-4">
 				<div class="service-card service-card--gradient">
-					<h3>Вставить все зубы</h3>
+					<h3>Восстановить все зубы</h3>
 					<div class="service-links">
-						<a href="<?php echo esc_url(theme_get_service_url_by_title('Все зубы за 1 день All-on-4')); ?>" class="service-link">Все зубы за 1 день All-on-4</a>
-						<a href="<?php echo esc_url(theme_get_service_url_by_title('Имплантация All-on-6')); ?>" class="service-link">Имплантация All-on-6</a>
-						<a href="<?php echo esc_url(theme_get_service_url_by_title('Несъёмные протезы')); ?>" class="service-link">Несъёмные протезы</a>
-						<a href="<?php echo esc_url(theme_get_service_url_by_title('Съёмные протезы')); ?>" class="service-link">Съёмные протезы</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('All-on-4')); ?>" class="service-link">All-on-4</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('All-on-6')); ?>" class="service-link">All-on-6</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Съёмное протезирование зубов')); ?>" class="service-link">Съёмное протезирование зубов</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Бюгельные протезы')); ?>" class="service-link">Бюгельные протезы</a>
 					</div>
 				</div>
 			</div>
@@ -326,9 +326,9 @@ get_header();
 					<h3>Красивая улыбка</h3>
 					<div class="service-links">
 						<a href="<?php echo esc_url(theme_get_service_url_by_title('Виниры на зубы')); ?>" class="service-link">Виниры на зубы</a>
-						<a href="<?php echo esc_url(theme_get_service_url_by_title('Брекеты')); ?>" class="service-link">Брекеты</a>
-						<a href="<?php echo esc_url(theme_get_service_url_by_title('Отбеливание зубов')); ?>" class="service-link">Отбеливание зубов</a>
-						<a href="<?php echo esc_url(theme_get_service_url_by_title('Чистка Air Flow')); ?>" class="service-link">Чистка Air Flow</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Люминиры на зубы')); ?>" class="service-link">Люминиры на зубы</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Отбеливание зубов ZOOM')); ?>" class="service-link">Отбеливание зубов ZOOM</a>
+						<a href="<?php echo esc_url(theme_get_service_url_by_title('Лазерное отбеливание зубов')); ?>" class="service-link">Лазерное отбеливание зубов</a>
 					</div>
 				</div>
 			</div>
